@@ -23,5 +23,13 @@
             {% block content %} {% endblock %}
         </div>
         <!-- ... (Bootstrap JavaScript links) ... -->
+
+        <!-- Include CKEditor -->
+        <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
+        <!-- Initialize CKEditor -->
+        <script>
+            CKEDITOR.replace('content');
+        </script>
       </body>
 </html>

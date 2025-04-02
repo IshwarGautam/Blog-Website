@@ -1,18 +1,16 @@
-{% extends 'base.html' %}
-
-{% block content %}
-    <h1>{% block title %} IG Tech Team {% endblock %}</h1>
-    {% if not posts %}
-        <p class="alert alert-primary">No any post found</p>
-    {% endif %}
-    {% for post in posts %}
-        <a href="{{ url_for('post', post_id=post['id']) }}">
-            <h2>{{ post['title'] }}</h2>
-        </a>
-        <span class="badge badge-primary">{{ post['created'] }}</span>
-        <a href="{{ url_for('edit', id=post['id']) }}">
-            <span class="badge badge-warning">Edit</span>
-        </a>
-        <hr>
-    {% endfor %}
-{% endblock %}
+{% extends 'base.html' %} {% block content %}
+<h1>{% block title %} IG Tech Team {% endblock %}</h1>
+{% if not posts %}
+<p class="alert alert-primary">No any post found</p>
+{% endif %} {% for post in posts %}
+<a href="{{ url_for('post', post_id=post['id']) }}">
+  <h2>{{ post['title'] }}</h2>
+</a>
+<span class="badge badge-primary">{{ post['created'] }}</span>
+{% if current_user.is_authenticated and current_user.is_admin %}
+<a href="{{ url_for('edit', id=post['id']) }}">
+  <span class="badge badge-warning">Edit</span>
+</a>
+{% endif %}
+<hr />
+{% endfor %} {% endblock %}

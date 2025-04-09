@@ -7,31 +7,21 @@ from googleapiclient.http import MediaFileUpload
 
 
 def extract_base64_images(content):
-    # Regex to find base64 image data
-    pattern = r"base64,([a-zA-Z0-9+/=]+)"
-    base64_images = re.findall(pattern, content)
-    print(content)
-    images = []
-    for image_data in base64_images:
-        # Identify image format from the content (e.g., image/png, image/jpeg)
-        if content.find(f"data:image/png;base64,{image_data}") != -1:
-            img_format = "image/png"
-        elif content.find(f"data:image/jpeg;base64,{image_data}") != -1:
-            img_format = "image/jpeg"
-        else:
-            img_format = "image/jpeg"  # Default to JPEG if not found
+    # Regex to find base64 image blocks with their filenames
+    pattern = (
+        r'data:(image/(?:png|jpeg));base64,([a-zA-Z0-9+/=]+)".*?data-filename="([^"]+)"'
+    )
+    matches = re.findall(pattern, content)
 
-        # Get file name
-        filename_match = re.search(r'data-filename="([^"]+)"', content)
-        filename = filename_match.group(1) if filename_match else "image.png"
+    images = []
+    for img_format, base64_data, filename in matches:
         images.append(
             {
-                "base64": f"data:{img_format};base64,{image_data}",
+                "base64": f"data:{img_format};base64,{base64_data}",
                 "format": img_format,
                 "filename": filename,
             }
         )
-
     return images
 
 
@@ -66,3 +56,13 @@ def upload_image_to_google_drive(
     os.remove(temp_image_path.name)
 
     return file_url
+
+
+def delete_image_from_google_drive(drive_service, file_id):
+    try:
+        drive_service.files().delete(fileId=file_id).execute()
+        print(f"Deleted image {file_id} from Google Drive")
+        return True
+    except Exception as e:
+        print(f"Error deleting image {file_id}: {e}")
+        return False

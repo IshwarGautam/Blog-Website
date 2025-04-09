@@ -11,3 +11,10 @@ CREATE TABLE IF NOT EXISTS users (
     password TEXT NOT NULL,
     is_admin INTEGER NOT NULL DEFAULT 0
 );
+
+CREATE TABLE IF NOT EXISTS post_images (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    post_id INTEGER NOT NULL,
+    drive_image_id TEXT NOT NULL,
+    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
+);

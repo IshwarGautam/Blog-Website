@@ -1,4 +1,5 @@
 import os
+import json
 from flask import Flask
 from dotenv import load_dotenv
 from database.models.user import User
@@ -25,7 +26,11 @@ def create_app():
         return User.get_user_by_id(user_id)
 
     # Google Drive setup
-    service_account_file = "credentials.json"
+    credentials_info = json.loads(os.getenv('GOOGLE_CREDENTIALS'))
+    with open("temp_credentials.json", "w") as f:
+        json.dump(credentials_info, f)
+
+    service_account_file = "temp_credentials.json"
     scopes = ["https://www.googleapis.com/auth/drive.file"]
     credentials = service_account.Credentials.from_service_account_file(
         service_account_file, scopes=scopes

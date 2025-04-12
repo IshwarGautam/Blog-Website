@@ -1,28 +1,19 @@
+from database.ext import db
 from flask_login import UserMixin
-import sqlite3
 
 
-class User(UserMixin):
-    def __init__(self, id, username, password, is_admin):
-        self.id = id
-        self.username = username
-        self.password = password  # This is the hashed password
-        self.is_admin = is_admin
+class User(UserMixin, db.Model):
+    __tablename__ = "users"
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(150), unique=True, nullable=False)
+    password = db.Column(db.String(200), nullable=False)  # hashed password
+    is_admin = db.Column(db.Boolean, default=False)
 
     @staticmethod
     def get_user_by_username(username):
-        con = sqlite3.connect("database/database.db")
-        cur = con.cursor()
-        cur.execute("SELECT * FROM users WHERE username = ?", (username,))
-        row = cur.fetchone()
-        con.close()
-        return User(*row) if row else None
+        return User.query.filter_by(username=username).first()
 
     @staticmethod
     def get_user_by_id(user_id):
-        con = sqlite3.connect("database/database.db")
-        cur = con.cursor()
-        cur.execute("SELECT * FROM users WHERE id = ?", (user_id,))
-        row = cur.fetchone()
-        con.close()
-        return User(*row) if row else None
+        return User.query.get(int(user_id))

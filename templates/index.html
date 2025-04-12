@@ -3,12 +3,12 @@
 {% if not posts %}
 <p class="alert alert-primary">No any post found</p>
 {% endif %} {% for post in posts %}
-<a href="{{ url_for('post', post_id=post['id']) }}">
+<a href="{{ url_for('post.post', post_id=post['id']) }}">
   <h2>{{ post['title'] }}</h2>
 </a>
 <span class="badge badge-primary">{{ post['created'] }}</span>
 {% if current_user.is_authenticated and current_user.is_admin %}
-<a href="{{ url_for('edit', id=post['id']) }}">
+<a href="{{ url_for('post.edit', id=post['id']) }}">
   <span class="badge badge-warning">Edit</span>
 </a>
 {% endif %}

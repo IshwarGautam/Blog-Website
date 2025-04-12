@@ -2,85 +2,138 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <!-- Summernote CSS -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
-      rel="stylesheet"
-    />
-    <!-- jQuery & Summernote JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
-    <!-- Highlight.js for syntax highlighting -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
     <!-- Favicon -->
     <link
       rel="icon"
       type="image/png"
       href="{{ url_for('static', filename='Images/favicon.png') }}"
     />
-    <title>IGTechTeam</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <style>
+      body {
+        background-color: #f7f9fb;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #0d6efd !important;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+    </style>
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-md navbar-light bg-light w-100">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{{ url_for('post.index') }}">Home</a>
+    <nav class="navbar navbar-expand-md navbar-light bg-white sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="{{ url_for('post.index') }}">
+          IGTechTeam
+        </a>
+
         <div class="navbar-nav">
           {% if current_user.is_authenticated and current_user.is_admin %}
-          <a class="nav-link" href="{{ url_for('post.create') }}"
-            >Create Post</a
-          >
+          <a class="nav-link" href="{{ url_for('post.create') }}">
+            Create Post
+          </a>
           {% endif %}
         </div>
-        <div class="navbar-nav ml-auto">
+
+        <div class="navbar-nav ml-auto d-flex align-items-center gap-2">
           <a
-            class="nav-link btn btn-success mr-2"
+            class="btn btn-primary px-4 py-2 fw-semibold shadow-sm mr-2"
             href="{{ url_for('auth.login') }}"
-            >Login</a
           >
+            Login
+          </a>
+
           {% if current_user.is_authenticated and current_user.is_admin %}
           <a
-            class="nav-link btn btn-secondary"
+            class="btn btn-outline-secondary px-4 py-2 fw-semibold shadow-sm"
             href="{{ url_for('auth.logout') }}"
-            >Logout</a
           >
+            Logout
+          </a>
           {% endif %}
         </div>
       </div>
     </nav>
+
+    <!-- Site Notice -->
     <div class="container text-center">
       <div class="alert alert-warning" role="alert">
         🚧 Website construction is going on! Please check back later. 🚧
       </div>
     </div>
+
+    <!-- Flash Messages -->
     <div class="container">
       {% for message in get_flashed_messages() %}
       <div class="alert alert-danger">{{ message }}</div>
       {% endfor %}
-      <!-- Content block -->
-      {% block content %} {% endblock %}
     </div>
 
-    <!-- Summernote Editor -->
+    <!-- Page Content -->
+    <div class="container">{% block content %} {% endblock %}</div>
+
+    <!-- Summernote Initialization -->
     <script>
       $(document).ready(function () {
         $("#summernote").summernote({
-          height: 300, // Editor height
+          height: 300,
           toolbar: [
-            ["style", ["style"]], // Add Heading options (H1, H2, H3, etc.)
+            ["style", ["style"]],
             ["font", ["bold", "italic", "underline", "clear"]],
             ["fontname", ["fontname"]],
             ["fontsize", ["fontsize"]],
@@ -88,25 +141,23 @@
             ["para", ["ul", "ol", "paragraph"]],
             ["insert", ["link", "picture", "video", "table", "hr"]],
             ["view", ["fullscreen", "codeview", "help"]],
-            ["custom", ["codeblock"]], // Custom Code Block button
+            ["custom", ["codeblock"]],
           ],
           buttons: {
-            // Custom Code Block Button
             codeblock: function (context) {
               var ui = $.summernote.ui;
               var button = ui.button({
                 contents: '<i class="fa fa-code"></i> Code Block',
                 tooltip: "Insert Code Block",
                 click: function () {
-                  // Insert an empty code block where the user can type
                   var codeBlock = `
                     <pre><code class="language-python" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
                   `;
                   context.invoke("editor.pasteHTML", codeBlock);
-                  hljs.highlightAll(); // Apply syntax highlighting immediately
+                  hljs.highlightAll();
                   var codeBlockNode =
                     context.invoke("editor.getBody").lastChild;
-                  $(codeBlockNode).find("code").focus(); // Focus on the inserted code block
+                  $(codeBlockNode).find("code").focus();
                 },
               });
               return button.render();
@@ -114,7 +165,7 @@
           },
         });
 
-        hljs.highlightAll(); // Apply syntax highlighting on page load
+        hljs.highlightAll();
       });
     </script>
   </body>

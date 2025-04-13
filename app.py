@@ -26,7 +26,7 @@ def create_app():
         return User.get_user_by_id(user_id)
 
     # Google Drive setup
-    credentials_info = json.loads(os.getenv('GOOGLE_CREDENTIALS'))
+    credentials_info = json.loads(os.getenv("GOOGLE_CREDENTIALS"))
     with open("temp_credentials.json", "w") as f:
         json.dump(credentials_info, f)
 
@@ -35,6 +35,9 @@ def create_app():
     credentials = service_account.Credentials.from_service_account_file(
         service_account_file, scopes=scopes
     )
+    if os.path.exists(service_account_file):
+        os.remove(service_account_file)
+
     drive_service = build("drive", "v3", credentials=credentials)
 
     # Attach drive service to app context
@@ -53,5 +56,5 @@ def create_app():
 
 app = create_app()
 
-# if __name__ == "__main__":
-#     app.run(debug=True)
+if os.getenv("ENVIRONMENT") == "dev":
+    app.run(debug=True)

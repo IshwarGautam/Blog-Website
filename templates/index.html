@@ -1,16 +1,38 @@
 {% extends 'base.html' %} {% block content %}
 <h1>{% block title %} Latest Posts {% endblock %}</h1>
+
 {% if not posts %}
 <p class="alert alert-primary">No any post found</p>
 {% endif %} {% for post in posts %}
-<a href="{{ url_for('post.post', post_id=post['id']) }}">
-  <h2>{{ post['title'] }}</h2>
-</a>
-<span class="badge badge-primary">{{ post['created'] }}</span>
-{% if current_user.is_authenticated and current_user.is_admin %}
-<a href="{{ url_for('post.edit', id=post['id']) }}">
-  <span class="badge badge-warning">Edit</span>
-</a>
-{% endif %}
+<div class="row mb-4">
+  <div class="col-md-8">
+    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
+      <a href="{{ url_for('post.post', post_id=post.id) }}" class="text-dark">
+        <h2 class="post-title">{{ post.title }}</h2>
+      </a>
+      <div class="d-flex align-items-center mb-3">
+        <span class="badge badge-primary">{{ post.created }}</span>
+        {% if current_user.is_authenticated and current_user.is_admin %}
+        <a
+          href="{{ url_for('post.edit', id=post.id) }}"
+          class="badge badge-warning ml-1"
+          >Edit</a
+        >
+        {% endif %}
+      </div>
+      <p>{{ post.excerpt }}</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <div class="featured-image-container">
+      <img
+        src="{{ post.featured_image }}"
+        alt="Featured Image"
+        class="img-fluid rounded featured-img"
+      />
+    </div>
+  </div>
+</div>
 <hr />
 {% endfor %} {% endblock %}

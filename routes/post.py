@@ -1,5 +1,6 @@
 import re
 from database.ext import db
+from bs4 import BeautifulSoup
 from werkzeug.exceptions import abort
 from database.models.post import Post, PostImage
 from flask_login import login_required, current_user
@@ -29,9 +30,30 @@ def get_post(post_id):
     return post
 
 
+def generate_excerpt_and_image(html, word_limit=30):
+    soup = BeautifulSoup(html, "html.parser")
+
+    text = soup.get_text(separator=" ")
+    words = text.split()
+    excerpt = " ".join(words[:word_limit]) + "..."
+
+    # Extract first image URL
+    img_tag = soup.find("img")
+    if img_tag and img_tag.get("src"):
+        featured_image = img_tag["src"]
+    else:
+        featured_image = url_for("static", filename="Images/blank.png")
+
+    return excerpt, featured_image
+
+
 @post_bp.route("/")
 def index():
     posts = Post.query.order_by(Post.id.desc()).all()
+
+    for post in posts:
+        post.excerpt, post.featured_image = generate_excerpt_and_image(post.content)
+
     return render_template("index.html", posts=posts)
 
 

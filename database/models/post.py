@@ -9,6 +9,8 @@ class Post(db.Model):
     created = db.Column(db.DateTime, default=datetime.now(timezone.utc), nullable=False)
     title = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text, nullable=False)
+    slug = db.Column(db.String(150), unique=True, nullable=False)
+    featured_image = db.Column(db.String(255), nullable=True)
     images = db.relationship("PostImage", backref="post", cascade="all, delete-orphan")
 
 

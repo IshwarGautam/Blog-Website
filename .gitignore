@@ -3,5 +3,5 @@ credentials.json
 
 *.pyc
 __pycache__/
-
+migrations
 

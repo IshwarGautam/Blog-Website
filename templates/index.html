@@ -7,14 +7,14 @@
 <div class="row mb-4">
   <div class="col-md-8">
     <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="{{ url_for('post.post', post_id=post.id) }}" class="text-dark">
+      <a href="{{ url_for('post.post', slug=post.slug) }}" class="text-dark">
         <h2 class="post-title">{{ post.title }}</h2>
       </a>
       <div class="d-flex align-items-center mb-3">
         <span class="badge badge-primary">{{ post.created }}</span>
         {% if current_user.is_authenticated and current_user.is_admin %}
         <a
-          href="{{ url_for('post.edit', id=post.id) }}"
+          href="{{ url_for('post.edit', slug=post.slug) }}"
           class="badge badge-warning ml-1"
           >Edit</a
         >

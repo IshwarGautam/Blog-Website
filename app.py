@@ -2,6 +2,7 @@ import os
 import json
 from flask import Flask
 from dotenv import load_dotenv
+from flask_migrate import Migrate
 from database.models.user import User
 from database.ext import db, login_manager
 
@@ -50,6 +51,9 @@ def create_app():
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(post_bp)
+
+    # initialize migrate
+    Migrate(app, db)
 
     return app
 

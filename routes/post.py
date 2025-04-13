@@ -1,7 +1,7 @@
 import re
 from database.ext import db
 from bs4 import BeautifulSoup
-from werkzeug.exceptions import abort
+from utils.slug import generate_unique_slug
 from database.models.post import Post, PostImage
 from flask_login import login_required, current_user
 from flask import (
@@ -23,19 +23,23 @@ from utils.helper import (
 post_bp = Blueprint("post", __name__)
 
 
-def get_post(post_id):
-    post = Post.query.get(post_id)
-    if post is None:
-        abort(404)
+def get_post(slug):
+    post = Post.query.filter_by(slug=slug).first_or_404()
     return post
 
 
-def generate_excerpt_and_image(html, word_limit=30):
+def generate_excerpt(html, word_limit=30):
     soup = BeautifulSoup(html, "html.parser")
 
     text = soup.get_text(separator=" ")
     words = text.split()
     excerpt = " ".join(words[:word_limit]) + "..."
+
+    return excerpt
+
+
+def get_featured_image(html):
+    soup = BeautifulSoup(html, "html.parser")
 
     # Extract first image URL
     img_tag = soup.find("img")
@@ -43,8 +47,7 @@ def generate_excerpt_and_image(html, word_limit=30):
         featured_image = img_tag["src"]
     else:
         featured_image = url_for("static", filename="Images/blank.png")
-
-    return excerpt, featured_image
+    return featured_image
 
 
 @post_bp.route("/")
@@ -52,14 +55,14 @@ def index():
     posts = Post.query.order_by(Post.id.desc()).all()
 
     for post in posts:
-        post.excerpt, post.featured_image = generate_excerpt_and_image(post.content)
+        post.excerpt = generate_excerpt(post.content)
 
     return render_template("index.html", posts=posts)
 
 
-@post_bp.route("/<int:post_id>")
-def post(post_id):
-    post = get_post(post_id)
+@post_bp.route("/<slug>")
+def post(slug):
+    post = get_post(slug)
     return render_template("post.html", post=post)
 
 
@@ -90,7 +93,12 @@ def create():
                 drive_image_id = file_url.split("id=")[-1].split("&")[0]
                 uploaded_images.append(drive_image_id)
 
-            post = Post(title=title, content=content)
+            slug = generate_unique_slug(title)
+            featured_image = get_featured_image(content)
+
+            post = Post(
+                title=title, slug=slug, content=content, featured_image=featured_image
+            )
             db.session.add(post)
             db.session.commit()
 
@@ -102,14 +110,14 @@ def create():
     return render_template("create.html")
 
 
-@post_bp.route("/<int:id>/edit", methods=["GET", "POST"])
+@post_bp.route("/<slug>/edit", methods=["GET", "POST"])
 @login_required
-def edit(id):
+def edit(slug):
     if not current_user.is_admin:
         flash("Access denied! Admins only.")
         return redirect(url_for("post.index"))
 
-    post = get_post(id)
+    post = get_post(slug)
     if request.method == "POST":
         title = request.form["title"]
         content = request.form["content"]
@@ -145,8 +153,14 @@ def edit(id):
         for img_id in new_ids_to_insert:
             db.session.add(PostImage(post_id=post.id, drive_image_id=img_id))
 
+        new_slug = generate_unique_slug(title, post_id=post.id)
+        featured_image = get_featured_image(content)
+
         post.title = title
         post.content = content
+        post.slug = new_slug
+        post.featured_image = featured_image
+
         db.session.commit()
 
         flash("Post updated successfully!")
@@ -155,10 +169,10 @@ def edit(id):
     return render_template("edit.html", post=post)
 
 
-@post_bp.route("/<int:id>/delete", methods=["POST"])
+@post_bp.route("/<slug>/delete", methods=["POST"])
 @login_required
-def delete(id):
-    post = get_post(id)
+def delete(slug):
+    post = get_post(slug)
     for image in post.images:
         delete_image_from_google_drive(current_app.drive_service, image.drive_image_id)
 

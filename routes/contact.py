@@ -19,7 +19,7 @@ def contact():
 
         msg = Message(
             subject=f"Contact Form Submission - IG Tech Team",
-            sender="no-matter-what-the-email-is@gmail.com", # it will overwrite with the mail_username
+            sender="no-matter-what-the-email-is@gmail.com",  # it will overwrite with the mail_username
             recipients=[os.getenv("MAIL_USERNAME")],
             body=f"Sender Name: {name}\nSender Email: {email}\n\nMessage:\n{message}",
             reply_to=email,

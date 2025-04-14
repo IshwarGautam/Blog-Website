@@ -1,0 +1,132 @@
+{% extends 'base.html' %} {% block content %}
+<style>
+  .about-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 1rem;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .about-image {
+    max-width: 250px;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .about-text {
+    max-width: 600px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .social-icons {
+    margin-top: 1.5rem;
+  }
+
+  .social-icons a {
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    color: #333;
+    transition: transform 0.2s ease;
+  }
+
+  .social-icons a:hover {
+    transform: scale(1.2);
+  }
+
+  .youtube-btn {
+    margin-top: 1rem;
+    display: inline-block;
+    background-color: #ff0000;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  .youtube-btn:hover {
+    background-color: #cc0000;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  body.dark .about-text,
+  body.dark .social-icons a {
+    color: #e0e0e0;
+  }
+</style>
+
+<div class="about-container">
+  <img
+    src="{{ url_for('static', filename='images/profile.jpeg') }}"
+    alt="Profile"
+    class="about-image"
+  />
+
+  <div class="about-text">
+    <h2>Hello, I'm Ishwar 👋</h2>
+    <p>
+      I'm a passionate developer and currently working as a
+      <strong>Senior Software Engineer at Leapfrog Technology, Nepal</strong>.
+      With expertise in
+      <strong>Flask, Python, and modern web technologies</strong>, I love
+      solving real-world problems through code. I have been actively involved in
+      several projects related to
+      <strong
+        >Machine Learning, Deep Learning, Natural Language Processing (NLP), and
+        Artificial Intelligence</strong
+      >.
+    </p>
+    <p>
+      I love creating web applications, exploring new technologies, and sharing
+      knowledge through my content.
+    </p>
+    <p>
+      I also run a <strong>YouTube channel</strong> where I post tech tutorials
+      and project breakdowns.
+      <br />
+      👉
+      <a
+        class="youtube-btn"
+        href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+        target="_blank"
+        >Subscribe on YouTube</a
+      >
+    </p>
+
+    <div class="social-icons">
+      <a href="https://www.facebook.com/igtechteam/" target="_blank"
+        ><i class="fab fa-facebook"></i
+      ></a>
+      <a href="https://www.instagram.com/ishwar_gautam1/" target="_blank"
+        ><i class="fab fa-instagram"></i
+      ></a>
+      <a href="https://github.com/ishwargautam" target="_blank"
+        ><i class="fab fa-github"></i
+      ></a>
+      <a href="https://www.linkedin.com/in/ishwargautam1" target="_blank"
+        ><i class="fab fa-linkedin"></i
+      ></a>
+      <a
+        href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+        target="_blank"
+        ><i class="fab fa-tiktok"></i
+      ></a>
+    </div>
+  </div>
+</div>
+{% endblock %}

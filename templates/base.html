@@ -36,6 +36,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
 
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     <style>
       body {
         background-color: #f7f9fb;
@@ -73,7 +76,6 @@
         margin-top: 1rem;
       }
 
-      /* Post Card Styling */
       .post-card {
         background-color: #ffffff;
         border-radius: 8px;
@@ -82,7 +84,8 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 100%; /* Ensuring the card takes up full available height */
+        height: 100%;
+        padding: 1rem;
       }
 
       .post-title {
@@ -96,8 +99,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 200px;
-        width: 300px;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
         border-radius: 8px;
         overflow: hidden;
       }
@@ -117,26 +120,6 @@
       .text-dark {
         text-decoration: none;
       }
-
-      /* Ensuring both post card and image have equal height */
-      .row {
-        display: flex;
-        flex-wrap: nowrap;
-      }
-
-      .col-md-8 {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-      }
-
-      .col-md-4 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex: 0 0 180px;
-        height: 100%;
-      }
     </style>
   </head>
   <body>
@@ -147,30 +130,45 @@
           IGTechTeam
         </a>
 
-        <div class="navbar-nav">
-          {% if current_user.is_authenticated and current_user.is_admin %}
-          <a class="nav-link" href="{{ url_for('post.create') }}">
-            Create Post
-          </a>
-          {% endif %}
-        </div>
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <div class="navbar-nav ml-auto d-flex align-items-center gap-2">
-          <a
-            class="btn btn-primary px-4 py-2 fw-semibold shadow-sm mr-2"
-            href="{{ url_for('auth.login') }}"
-          >
-            Login
-          </a>
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            {% if current_user.is_authenticated and current_user.is_admin %}
+            <a class="nav-link" href="{{ url_for('post.create') }}">
+              Create Post
+            </a>
+            {% endif %}
+          </div>
 
-          {% if current_user.is_authenticated and current_user.is_admin %}
-          <a
-            class="btn btn-outline-secondary px-4 py-2 fw-semibold shadow-sm"
-            href="{{ url_for('auth.logout') }}"
-          >
-            Logout
-          </a>
-          {% endif %}
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-primary px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="{{ url_for('auth.login') }}"
+            >
+              Login
+            </a>
+
+            {% if current_user.is_authenticated and current_user.is_admin %}
+            <a
+              class="btn btn-outline-secondary px-4 py-2 fw-semibold shadow-sm"
+              href="{{ url_for('auth.logout') }}"
+            >
+              Logout
+            </a>
+            {% endif %}
+          </div>
         </div>
       </div>
     </nav>

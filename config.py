@@ -14,3 +14,10 @@ class Config:
     PROJECT_ID = os.getenv("PROJECT_ID")
 
     SQLALCHEMY_DATABASE_URI = f"postgresql://{DB_USER}.{PROJECT_ID}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+
+    # Contact Form
+    MAIL_SERVER = os.getenv("MAIL_SERVER")
+    MAIL_PORT = os.getenv("MAIL_PORT")
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = os.getenv("MAIL_USERNAME")
+    MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")

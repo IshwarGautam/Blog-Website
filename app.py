@@ -4,7 +4,7 @@ from flask import Flask
 from dotenv import load_dotenv
 from flask_migrate import Migrate
 from database.models.user import User
-from database.ext import db, login_manager
+from database.ext import db, login_manager, mail
 
 # Load environment variables
 load_dotenv()
@@ -19,6 +19,7 @@ def create_app():
     app.config.from_object(Config)
 
     db.init_app(app)
+    mail.init_app(app)
     login_manager.init_app(app)
     login_manager.login_view = "auth.login"
 
@@ -48,9 +49,11 @@ def create_app():
     # Register Blueprints
     from routes.auth import auth_bp
     from routes.post import post_bp
+    from routes.contact import contact_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(post_bp)
+    app.register_blueprint(contact_bp)
 
     # initialize migrate
     Migrate(app, db)

@@ -95,6 +95,13 @@
         color: #343a40;
       }
 
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
       .featured-image-container {
         display: flex;
         justify-content: center;

@@ -246,9 +246,15 @@
                 contents: '<i class="fa fa-code"></i> Code Block',
                 tooltip: "Insert Code Block",
                 click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
                   var codeBlock = `
-                    <pre><code class="language-python" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
-                  `;
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
                   context.invoke("editor.pasteHTML", codeBlock);
                   hljs.highlightAll();
                   var codeBlockNode =
@@ -259,6 +265,17 @@
               return button.render();
             },
           },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
         });
 
         hljs.highlightAll();

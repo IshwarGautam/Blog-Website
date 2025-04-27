@@ -41,8 +41,10 @@ def generate_excerpt(html, word_limit=30):
 def get_featured_image(html):
     soup = BeautifulSoup(html, "html.parser")
 
-    # Extract first image URL
-    img_tag = soup.find("img")
+    img_tag = soup.find("img", selected=True)
+    if not img_tag:
+        img_tag = soup.find("img")
+
     if img_tag and img_tag.get("src"):
         featured_image = img_tag["src"]
     else:

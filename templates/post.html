@@ -1,7 +1,143 @@
 {% extends 'base.html' %} {% block content %}
-<h2>{% block title %} {{ post['title'] }} {% endblock %}</h2>
-<span class="badge badge-primary">{{ post['created'] }}</span>
-<div class="post-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    {{ post['title'] }}
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 {{ post['created'] }}
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
   <p>{{ post['content'] | safe }}</p>
 </div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="{{ url_for('post.index') }}"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
 {% endblock %}

@@ -54,9 +54,12 @@ def get_featured_image(html):
 
 @post_bp.route("/")
 def index():
-    posts = Post.query.order_by(Post.id.desc()).all()
+    page = request.args.get("page", 1, type=int)
+    query = Post.query.order_by(Post.id.desc())
 
-    for post in posts:
+    posts = db.paginate(query, page=page, per_page=10, error_out=False)
+
+    for post in posts.items:
         post.excerpt = generate_excerpt(post.content)
 
     return render_template("index.html", posts=posts)

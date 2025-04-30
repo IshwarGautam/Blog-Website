@@ -47,18 +47,33 @@
 
     <style>
       body {
-        background-color: #f7f9fb;
+        background-color: #e6f0f7;
         font-family: "Segoe UI", sans-serif;
       }
 
       .navbar {
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
       }
 
       .navbar-brand {
         font-weight: bold;
         font-size: 1.4rem;
-        color: #0d6efd !important;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
       }
 
       .navbar-nav .btn {
@@ -149,11 +164,27 @@
       body.note-editor-fullscreen {
         overflow: hidden;
       }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
     </style>
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-md navbar-light bg-white sticky-top">
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
       <div class="container">
         <a class="navbar-brand" href="{{ url_for('post.index') }}">
           IGTechTeam
@@ -187,7 +218,7 @@
 
           <div class="navbar-nav ml-auto d-flex align-items-center">
             <a
-              class="btn btn-primary px-4 py-2 fw-semibold shadow-sm mr-2"
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
               href="{{ url_for('auth.login') }}"
             >
               Login
@@ -195,7 +226,7 @@
 
             {% if current_user.is_authenticated and current_user.is_admin %}
             <a
-              class="btn btn-outline-secondary px-4 py-2 fw-semibold shadow-sm"
+              class="btn btn-outline-light px-4 py-2 fw-semibold shadow-sm"
               href="{{ url_for('auth.logout') }}"
             >
               Logout
@@ -222,6 +253,58 @@
 
     <!-- Page Content -->
     <div class="container">{% block content %} {% endblock %}</div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <p class="mb-0">© 2025 IGTechTeam. All Rights Reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-right">
+            <div class="social-icons">
+              <a href="https://www.facebook.com/igtechteam/" target="_blank"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/ishwar_gautam1/"
+                target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://github.com/ishwargautam" target="_blank"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/ishwargautam1"
+                target="_blank"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a
+                href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+                target="_blank"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+            </div>
+            <a
+              class="youtube-btn"
+              href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+              target="_blank"
+              style="
+                background: #ff0000;
+                color: white;
+                padding: 0.6rem 1.2rem;
+                border-radius: 30px;
+                text-decoration: none;
+                font-weight: bold;
+                transition: background 0.3s ease;
+              "
+            >
+              🔔 Subscribe on YouTube
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <!-- Summernote Initialization -->
     <script>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/docs/static/Images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/docs/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/docs/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/docs/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/docs/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    Set up React and NodeJS in TypeScript
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-27 10:13:59.206333
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><p><img src="https://drive.google.com/thumbnail?id=1Yz1d7Abw1J0GOfh68KUeiLDM0VA80LZy&sz=w1000" data-filename="react-node-connect.png" style="width: 50%;"><br></p><p>This post will go from scratch to set up React and NodeJS in TypeScript. We will send a response from the server to the client.</p><h2 class="wp-block-heading">Step 1: Decide a project folder</h2><p>Open the command prompt where you want to place your project. Right now, I am opening the command prompt on my desktop. I will put my project on a Desktop. I will rename my project folder as React-Node-TypeScript for now. You can choose the project folder name by yourself.</p><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">mkdir React-Node-TypeScript</font></b></pre><h2 class="wp-block-heading">Step 2: Change the directory to that folder</h2><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">cd React-Node-TypeScript</font></b></pre><h2 class="wp-block-heading">Step 3: Open Visual Studio Code</h2><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">code .</font></b></pre><p>Now you can use the VS code terminal to write the command. Open terminal with Ctrl + backtick (`)</p><h2 class="wp-block-heading">Step 4: Make two directories for client and server</h2><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">mkdir client, server</font></b></pre><h2 class="wp-block-heading">Step 5: Set up Server </h2><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">cd server
+npm init -y</font></b></pre><p>This will create a package.json file in a server directory.</p><p><strong><em>Install required packages:</em></strong></p><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">npm install express @types/express typescript ts-node-dev nodemon cors @types/cors  </font></b></pre><p>Now create the src directory; inside the src, create the index.ts file below.</p><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">mkdir src</font></b></pre><p>Create an index.ts file in the src directory and write the initial code as below:</p><pre><code class="language-javascript hljs" contenteditable="true" style=""><span class="hljs-comment">// index.ts</span>
+<span class="hljs-keyword">import</span> cors <span class="hljs-keyword">from</span> <span class="hljs-string">"cors"</span>;
+<span class="hljs-keyword">import</span> express <span class="hljs-keyword">from</span> <span class="hljs-string">"express"</span>;
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>();
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">PORT</span> = <span class="hljs-number">5000</span>;
+
+<span class="hljs-comment">// Enable CORS for all routes</span>
+app.<span class="hljs-title function_">use</span>(<span class="hljs-title function_">cors</span>());
+
+app.<span class="hljs-title function_">get</span>(<span class="hljs-string">"/"</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> {
+  res.<span class="hljs-title function_">send</span>(<span class="hljs-string">"Hello from Server!"</span>);
+});
+
+app.<span class="hljs-title function_">listen</span>(<span class="hljs-variable constant_">PORT</span>, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Server is running on port <span class="hljs-subst">${PORT}</span>`</span>);
+});</code></pre><p>Create a tsconfig.json file to configure TypeScript compilation:</p><pre class="wp-block-syntaxhighlighter-code"><font color="#9c0000"><b>npx tsc --init</b></font></pre><p>Edit the tsconfig.json file to specify the src directory as the root directory. Also, look for outdir and set it to the dist folder. All your compiled js code will be placed in this folder.</p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"compilerOptions"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+     .......
+    <span class="hljs-attr">"outDir"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"./dist"</span><span class="hljs-punctuation">,</span>   
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"include"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"src/**/*"</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span></code></pre><p>Edit the package.json file to include the start script. As we have already installed nodemon, we don't need to restart the server if we change anything on the code.</p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-attr">"scripts"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"start"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"npx tsc &amp;&amp; nodemon ./src/index.ts"</span>
+<span class="hljs-punctuation">}</span></code></pre><p>Create a .gitignore file on the server side and add a path of a file that you don't want to track by the version controller.</p><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">/node_modules
+</font></b><font color="#9c0000"><b>/dist</b></font></pre><p>Now everything is set. You can start the server.</p><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">npm start</font></b></pre><p>You will get a message like 'Server is running on port 5000' which indicates your server is successfully running.</p><p>Don't close the terminal. Keep your server running. Open another new terminal. Now we will set up the client side.</p><h2 class="wp-block-heading">Step 6: Set up the client</h2><p>Make sure you are in the root directory. In my case, it is React-Node-TypeScript.</p><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">cd client
+npx create-react-app . --template typescript</font></b></pre><p>It may take a little bit of time. It will set up the initial react code. Now we will make changes on our own.</p><p>First, remove the .git folder from the client directory, we can track the client and server folders from the root directory.</p><p>Start the client project.</p><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">npm start</font></b></pre><p>Your client application will run in port 3000 if not already used.</p><p>Now you can open another new terminal and keep the client running.</p><p>Make sure you are in the client folder. Install the Axios library.</p><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">npm install axios</font></b></pre><p>Create a utils folder in the src directory, then create a http.ts file and add the below code.</p><pre><code class="language-javascript hljs" contenteditable="true" style=""><span class="hljs-comment">// http.ts</span>
+<span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">"axios"</span>;
+
+<span class="hljs-keyword">const</span> http = axios.<span class="hljs-title function_">create</span>({
+  <span class="hljs-attr">baseURL</span>: <span class="hljs-string">"http://localhost:5000"</span>, <span class="hljs-comment">// assuming your Node.js server is running on port 5000</span>
+});
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> fetchMessage = <span class="hljs-keyword">async</span> (): <span class="hljs-title class_">Promise</span>&lt;string&gt; =&gt; {
+  <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> http.<span class="hljs-title function_">get</span>(<span class="hljs-string">"/"</span>);
+  <span class="hljs-keyword">return</span> response.<span class="hljs-property">data</span>;
+};</code></pre><p>Now update the App.tsx file. Replace with the following code.</p><pre><code class="language-javascript hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> <span class="hljs-string">"./App.css"</span>;
+<span class="hljs-keyword">import</span> { fetchMessage } <span class="hljs-keyword">from</span> <span class="hljs-string">"./utils/http"</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, { useEffect, useState } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> [message, setMessage] = useState&lt;string&gt;(<span class="hljs-string">""</span>);
+
+  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">const</span> <span class="hljs-title function_">fetchData</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetchMessage</span>();
+        <span class="hljs-title function_">setMessage</span>(data);
+      } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">"Error fetching data:"</span>, error);
+      }
+    };
+
+    <span class="hljs-title function_">fetchData</span>();
+  }, []);
+
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"App"</span>&gt;</span>{message}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span>;</code></pre><p>You can remove all the default styling. Clear App.css and index.css</p><p>Check your application. The message should display 'Hello from Server!' coming from the server.</p><p>Congratulations, you have successfully set up the React and NodeJS project in typescript.</p><p>Make sure your folder structure looks something like this.</p><pre><code class="language-plaintext hljs" contenteditable="true" style="">React-Node-TypeScript/
+├── client/
+│   ├── public/
+│   │   ├── index.html
+│   │   └── ...
+│   ├── src/
+│   │   ├── utils
+│   │   ├── ├── http.ts
+│   │   ├── App.css
+│   │   ├── App.tsx
+│   │   ├── index.css
+│   │   ├── index.tsx
+│   │   └── ...
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── ...
+├── server/
+│   ├── dist/
+│   ├── src/
+│   │   ├── index.ts
+│   │   └── ...
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── ...</code></pre></p>
+</div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/docs/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

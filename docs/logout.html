@@ -10,7 +10,7 @@
     <link
       rel="icon"
       type="image/png"
-      href="{{ url_for('static', filename='Images/favicon.png') }}"
+      href="/docs/static/Images/favicon.png"
     />
 
     <!-- Bootstrap CSS -->
@@ -193,7 +193,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-light sticky-top">
       <div class="container">
-        <a class="navbar-brand" href="{{ url_for('post.index') }}">
+        <a class="navbar-brand" href="/docs/">
           IGTechTeam
         </a>
 
@@ -212,33 +212,22 @@
 
         <div class="collapse navbar-collapse" id="navbarContent">
           <div class="navbar-nav mr-auto">
-            {% if current_user.is_authenticated and current_user.is_admin %}
-            <a class="nav-link" href="{{ url_for('post.create') }}">
-              Create Post
-            </a>
-            {% endif %}
-            <a class="nav-link" href="{{ url_for('contact.contact') }}"
+            
+            <a class="nav-link" href="/docs/contact.html"
               >Contact</a
             >
-            <a class="nav-link" href="{{ url_for('about.about') }}">About me</a>
+            <a class="nav-link" href="/docs/about.html">About me</a>
           </div>
 
           <div class="navbar-nav ml-auto d-flex align-items-center">
             <a
               class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
-              href="{{ url_for('auth.login') }}"
+              href="/docs/login.html"
             >
               Login
             </a>
 
-            {% if current_user.is_authenticated and current_user.is_admin %}
-            <a
-              class="btn btn-outline-light px-4 py-2 fw-semibold shadow-sm"
-              href="{{ url_for('auth.logout') }}"
-            >
-              Logout
-            </a>
-            {% endif %}
+            
           </div>
         </div>
       </div>
@@ -253,16 +242,47 @@
 
     <!-- Flash Messages -->
     <div class="container">
-      {% for message in get_flashed_messages() %}
-      <div class="alert alert-danger">{{ message }}</div>
-      {% endfor %}
+      
+      <div class="alert alert-danger">Please log in to access this page.</div>
+      
     </div>
 
     <!-- Page Content -->
-    <div class="container page-content">{% block content %} {% endblock %}</div>
+    <div class="container page-content">
+<h1> Login </h1>
+
+<form method="POST" action="/docs/login.html">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input
+      type="text"
+      class="form-control"
+      id="username"
+      name="username"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      name="password"
+      required
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+<p class="mt-3">
+  Need an account? Contact the Admin. Some features like creating or deleting
+  posts may be unavailable otherwise.
+</p>
+</div>
 
     <!-- Footer -->
-    {% block footer %}
+    
     <footer class="bg-dark text-white py-4 mt-5">
       <div class="container">
         <div class="row">
@@ -313,7 +333,7 @@
         </div>
       </div>
     </footer>
-    {% endblock %}
+    
 
     <!-- Summernote Initialization -->
     <script>

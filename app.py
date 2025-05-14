@@ -63,7 +63,7 @@ def create_app():
     return app
 
 
-app = create_app()
+if os.getenv("ENVIRONMENT") == "dev" and os.getenv("IS_BUILD") != "yes":
+    app = create_app()
 
-if os.getenv("ENVIRONMENT") == "dev":
     app.run(debug=True)

@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/docs/static/Images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/docs/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/docs/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/docs/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/docs/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    Deep Learning most important Interview Questions 2025
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-27 10:13:59.206333
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><div class="wp-block-buttons has-custom-font-size has-small-font-size" style="display: flex; gap: 10px; flex-wrap: wrap;">
+    <a href="/python-interview-questions-2025-python-programming-language" target="_blank" style="padding: 10px 20px; background-color: #0073aa; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer;" onmouseover="this.style.backgroundColor='#005177';" onmouseout="this.style.backgroundColor='#0073aa';">
+        Python
+    </a>
+
+    <a href="/machine-learning-most-important-interview-questions-2025-ml-full-course" target="_blank" style="padding: 10px 20px; background-color: #0073aa; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer;" onmouseover="this.style.backgroundColor='#005177';" onmouseout="this.style.backgroundColor='#0073aa';">
+        Machine Learning
+    </a>
+
+    <a href="/deep-learning-most-important-interview-questions-2025" target="_blank" style="padding: 10px 20px; background-color: #0073aa; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer;" onmouseover="this.style.backgroundColor='#005177';" onmouseout="this.style.backgroundColor='#0073aa';">
+        Deep Learning
+    </a>
+
+    <a href="/data-structure-and-algorithm-interview-questions-2025" target="_blank" style="padding: 10px 20px; background-color: #0073aa; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer;" onmouseover="this.style.backgroundColor='#005177';" onmouseout="this.style.backgroundColor='#0073aa';">
+        Data Structure
+    </a>
+</div>
+
+
+
+<!-- /wp:button --><p><br></p><p>Here are the most popular and usually askable questions about Deep Learning during a job interview or an internship program. I have written each answer in simple language to ensure clarity and ease of understanding.</p><h2 class="wp-block-heading"><strong>1. What is Deep Learning?</strong></h2><p>Deep learning is a subclass of Machine Learning that employs the Neural Network concept. The idea behind deep learning is to build learning algorithms that mimic the human brain. The 'deep' in deep learning refers to the layers of layers in the network.</p><h2 class="wp-block-heading"><strong>2. What is Neural Network?</strong></h2><p>A neural network is a circuit of neurons. Neural Networks are classified into two categories. They are:</p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>Biological Neural Network</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Artificial Neural Network</li>
+<!-- /wp:list-item --></ul><p><strong>Biological Neural Network:</strong></p><p><img src="https://drive.google.com/thumbnail?id=1QfVA-DGI4cvP_B6sV6lZjEw5ACDkc0eI&amp;sz=w1000" data-filename="biological-neural-network.png" style="width: 627.205px; height: 220.425px;"><strong><br></strong></p><figure class="wp-block-image"><br></figure><p>In a biological neural network, the input signals are transferred to the cell body through dendrites. The cell body processes the information that they have received from dendrites. And Axon is like a cable through which neurons send information. Finally, synapses allow the nerve cell to pass an electrical and chemical signal to another neuron. This is how biological neuron works.</p><p><strong>Artificial Neural Network:</strong></p><p>With Neural Networks, obviously, we want to talk about Artificial One. An artificial neural network (ANN) is a collection of artificial neurons, modeled loosely after the human brain, that are designed to recognize patterns.</p><p>ANN mainly consists of three layers:</p><ul class="wp-block-list"><p><!-- wp:list-item -->
+</p><li>input layer</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>one or more hidden layer</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>output layer</li>
+<!-- /wp:list-item --><p></p><p><img src="https://drive.google.com/thumbnail?id=1Xcwn36MMrXWJa9TQmXboba8_NjV5F21Z&amp;sz=w1000" data-filename="artificial-neural-network.png" style="width: 299px;"><!-- /wp:list-item --></p></ul><figure class="wp-block-image aligncenter"><br></figure><h2 class="wp-block-heading"><strong>3. What is the role of the </strong>activation function in the <strong>Neural Network?</strong></h2><p>An activation function decides whether a neuron should be activated (fired) or not at the most basic level. The process involves calculating the weighted sum and further adding bias to it on the input before sending it to the next layer.</p><p>Some of the activation functions are Linear, Sigmoid, SoftMax, ReLU, etc.</p><p><img src="https://drive.google.com/thumbnail?id=1r2hOP_TKGI3plp2NFoqTSZayRL6Ty6Qi&amp;sz=w1000" data-filename="activation-function-neural-network.png" style="width: 526px;"><br></p><figure class="wp-block-image"><br></figure><h2 class="wp-block-heading"><strong>4. What is a </strong>convolutional Neural Network? How it is different from a <strong>fully connected Neural Network?</strong></h2><p>Convolutional Neural Networks are a type of artificial neural network that is frequently used for analyzing visual information. Convolutional Neural Network includes the following four stages:</p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>Convolution Layer</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Normalization</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Pooling</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Fully Connected</li>
+<!-- /wp:list-item --></ul><p>When it comes to large-dimension images, the number of neurons to process an entire complex image set will be very high. This leads to overfitting because all of the hidden layers are connected in a feed-forward neural network. This is not practical. The solution is Convolutional Neural Network (CNN).</p><p>In CNNs, every neuron in a layer connects only to a small portion of the preceding layer, rather than to all of its neurons.</p><p><img src="https://drive.google.com/thumbnail?id=1szQQbj1ouL6xbN-JX3o6LqmmTtE-8YXC&amp;sz=w1000" data-filename="fully-connected-vs-convolutional.png" style="width: 703.2px; height: 291.717px;"><br></p><figure class="wp-block-image"><br></figure><p>So, in convolution neural networks, only the region which is significant are connected to each other.</p><h2 class="wp-block-heading"><strong>5. What is Recurrent Neural Network?</strong></h2><p>A recurrent neural network (RNN) is a sort of artificial neural network (ANN) that makes use of time series or sequential data to learn. The previous step's output is provided as input to the next phase in RNN.</p><p>For example, while predicting the next word of a sentence, the previous words are necessary, and so the previous words must be remembered. As a result, RNN was created, which solved the problem with the help of a Hidden Layer.</p><p><img src="https://drive.google.com/thumbnail?id=1vVe-bWXWMMscq0JNKsQdOQhdWU_btUOn&amp;sz=w1000" data-filename="rnn-block-diagram.png" style="width: 971.2px; height: 546.3px;"><br></p><figure class="wp-block-image"><br></figure><p>The evolution of RNN:</p><p><img src="https://drive.google.com/thumbnail?id=1z7jnKwZeUskeJWvB23r5-OFbQYa2Y2Ge&amp;sz=w1000" data-filename="rnn-evolution.png" style="width: 972.2px; height: 546.862px;"><br></p><figure class="wp-block-image"><br></figure><p><strong><em>For more details, watch this video:</em></strong></p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/M1Kk1rqCkbU" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading"><strong>6. What is gradient descent? What are its type?</strong></h2><p>A gradient measures how much the output of a function changes if we change the input a little bit.&nbsp;Gradient descent is an iterative optimization algorithm for finding the local minimum of a function. This algorithm&nbsp;tries to minimize the error by taking small steps toward the minimum value. These steps involve updating the weights and biases in a neural network.</p><p>There are three types of gradient descent. They are:</p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>Batch Gradient Descent</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Stochastic Gradient Descent</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Mini-Batch Gradient Descent</li>
+<!-- /wp:list-item --></ul><p><strong>Batch Gradient Descent:</strong></p><p>In batch gradient descent, we go through all training samples and calculate cumulative error and then we backpropagate to adjust the weight. This technique works well with small training sets. Batch Gradient Descent is often referred to as Vanilla Gradient Descent.</p><p><strong>Stochastic Gradient Descent (SGD):</strong></p><p>This method uses one (randomly picked) sample for a forward pass and then adjusts weight. It is good when the training set is very big and we don't want too much computation.</p><p><strong>Mini batch gradient descent:</strong></p><p>It is a combination of batch gradient descent and SGD. In this method, instead of choosing one randomly picked training sample, we will use a batch of randomly picked training samples.</p><h2 class="wp-block-heading"><strong>7. Difference between the loss function and cost function?</strong></h2><p>The cost function is the average of the loss functions for all training sets, whereas the loss function computes the error for a single training set.</p><h2 class="wp-block-heading"><strong>8. What is the role of Adam Optimizer?</strong></h2><p>Basically, the optimizer updates network weights iteratively based on the training data. Adam is a stochastic gradient descent replacement optimization technique for deep learning model training.&nbsp;It is a combination of gradient descent with the momentum algorithm and the RMSP (Root Mean Square Propagation) algorithm.</p><h2 class="wp-block-heading"><strong>9. What is the </strong>learning rate in neural networks<strong>?</strong></h2><p>The step size or learning rate determines how often the weights are adjusted during training. It's a hyperparameter that governs the extent of model changes in response to estimated errors whenever the model weights are updated.</p><h2 class="wp-block-heading"><strong>10. </strong>What is categorical cross-entropy<strong>? When to use it?</strong></h2><p>Cross entropy measures the efficiency of a classification model whose final result is a probability that varies from 0 to 1.</p><p>Categorical cross-entropy is a loss function that is used in multi-class classification tasks. This method is appropriate when an example can only belong to one out of many possible categories, and the model must decide which one.</p><h2 class="wp-block-heading"><strong>11. What is overfitting and underfitting?</strong></h2><p>A model is said to be&nbsp;<strong>overfitted</strong>&nbsp;when the model is fitted to training data too well. A model begins to learn from the noise and wrong information when it is trained with such a large amount of data. To solve this, we need to resample the data and estimate the model accuracy using techniques like k-fold cross-validation.</p><p>A model is said to be&nbsp;<strong>underfitted</strong>&nbsp;when the model is unable to understand or extract patterns from the data. It happens when the algorithm used to extract patterns is inappropriate or the data to train the model is very less.</p><h2 class="wp-block-heading"><strong>12. What is backpropagation?</strong></h2><p><!-- wp:buttons {"fontSize":"small"} -->
+
+<!-- /wp:buttons -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"linkDestination":"none"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:image {"linkDestination":"custom","align":"center"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"linkDestination":"custom"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"linkDestination":"custom"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"linkDestination":"custom"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"linkDestination":"custom"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/M1Kk1rqCkbU","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+
+<!-- /wp:list --></p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>Backpropagation is a supervised learning method used to train neural networks.&nbsp;</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>It transfers the error information from the output node to the inner node. It makes it possible to calculate the gradient effectively.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>It is most useful for feed-forward networks (networks that have no feedback, or simply, have no connections that loop).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Backpropagation requires that the activation function used by artificial neurons is differentiable.</li>
+<!-- /wp:list-item --></ul></p>
+</div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/docs/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/docs/static/Images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/docs/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/docs/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/docs/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/docs/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+<h1> Latest Posts </h1>
+
+ 
+<div class="row mb-4">
+  <div class="col-md-8">
+    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
+      <a href="/docs/set-up-react-and-nodejs-in-typescript.html" class="text-dark">
+        <h2 class="post-title">Set up React and NodeJS in TypeScript</h2>
+      </a>
+      <div class="d-flex align-items-center mb-3">
+        <span class="badge badge-primary">2025-04-27 10:13:59.206333</span>
+        
+      </div>
+      <p>This post will go from scratch to set up React and NodeJS in TypeScript. We will send a response from the server to the client. Step 1: Decide a project...</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <div class="featured-image-container">
+      <img
+        src="https://drive.google.com/thumbnail?id=1Yz1d7Abw1J0GOfh68KUeiLDM0VA80LZy&amp;sz=w1000"
+        alt="Featured Image"
+        class="img-fluid rounded featured-img"
+      />
+    </div>
+  </div>
+</div>
+<hr />
+
+<div class="row mb-4">
+  <div class="col-md-8">
+    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
+      <a href="/docs/react-native-create-ludo-board-for-mobile-phone.html" class="text-dark">
+        <h2 class="post-title">React Native - Create Ludo Board for Mobile Phone</h2>
+      </a>
+      <div class="d-flex align-items-center mb-3">
+        <span class="badge badge-primary">2025-04-27 10:13:59.206333</span>
+        
+      </div>
+      <p>React Native is a popular open-source library for mobile phones for building user interfaces with JavaScript, and it runs on React. You may have come across several tutorials on React...</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <div class="featured-image-container">
+      <img
+        src="https://drive.google.com/thumbnail?id=1fYVDJxtjDVPAKg593SfaVeMy549egnuK&amp;sz=w1000"
+        alt="Featured Image"
+        class="img-fluid rounded featured-img"
+      />
+    </div>
+  </div>
+</div>
+<hr />
+
+<div class="row mb-4">
+  <div class="col-md-8">
+    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
+      <a href="/docs/recruitee-api-documentation-retrieving-job-and-talent-pool.html" class="text-dark">
+        <h2 class="post-title">Recruitee API Documentation: Retrieving Job and Talent Pool</h2>
+      </a>
+      <div class="d-flex align-items-center mb-3">
+        <span class="badge badge-primary">2025-04-27 10:13:59.206333</span>
+        
+      </div>
+      <p>What will you learn? Get all candidates Get a candidate by their ID Filter a candidate by their status Get a collection of the company’s offers – jobs and talent...</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <div class="featured-image-container">
+      <img
+        src="https://drive.google.com/thumbnail?id=1cFt03h1xFlkzSQxZSxmcn5ekzAOISB9A&amp;sz=w1000"
+        alt="Featured Image"
+        class="img-fluid rounded featured-img"
+      />
+    </div>
+  </div>
+</div>
+<hr />
+
+<div class="row mb-4">
+  <div class="col-md-8">
+    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
+      <a href="/docs/hubspot-api-integration-and-ultimate-guide-to-private-apps.html" class="text-dark">
+        <h2 class="post-title">Hubspot: API Integration and Ultimate Guide to Private Apps</h2>
+      </a>
+      <div class="d-flex align-items-center mb-3">
+        <span class="badge badge-primary">2025-04-27 10:13:59.206333</span>
+        
+      </div>
+      <p>What will you learn? Private apps Defining scopes API Integration Get an individual record Get all records Post, Patch, and Delete request Get all deals Get skills from deals Get...</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <div class="featured-image-container">
+      <img
+        src="https://drive.google.com/thumbnail?id=1gQ9S5wcrqxcPl45BClZpJRKSYR05Yi5r&amp;sz=w1000"
+        alt="Featured Image"
+        class="img-fluid rounded featured-img"
+      />
+    </div>
+  </div>
+</div>
+<hr />
+
+<div class="row mb-4">
+  <div class="col-md-8">
+    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
+      <a href="/docs/web-crawling-with-python-selenium.html" class="text-dark">
+        <h2 class="post-title">Web crawling with Python Selenium</h2>
+      </a>
+      <div class="d-flex align-items-center mb-3">
+        <span class="badge badge-primary">2025-04-27 10:13:59.206333</span>
+        
+      </div>
+      <p>Selenium is the most popular framework for automation. What will you learn? What is web crawling? Crawl a Facebook website and perform some action on it. Explore each of the...</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <div class="featured-image-container">
+      <img
+        src="https://drive.google.com/thumbnail?id=1R_o8dr0TmwkLcuO59szrwYck-00Lltt6&amp;sz=w1000"
+        alt="Featured Image"
+        class="img-fluid rounded featured-img"
+      />
+    </div>
+  </div>
+</div>
+<hr />
+
+<div class="row mb-4">
+  <div class="col-md-8">
+    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
+      <a href="/docs/deep-learning-most-important-interview-questions-2025.html" class="text-dark">
+        <h2 class="post-title">Deep Learning most important Interview Questions 2025</h2>
+      </a>
+      <div class="d-flex align-items-center mb-3">
+        <span class="badge badge-primary">2025-04-27 10:13:59.206333</span>
+        
+      </div>
+      <p>Python Machine Learning Deep Learning Data Structure Here are the most popular and usually askable questions about Deep Learning during a job interview or an internship program. I have written...</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <div class="featured-image-container">
+      <img
+        src="https://drive.google.com/thumbnail?id=1QfVA-DGI4cvP_B6sV6lZjEw5ACDkc0eI&amp;sz=w1000"
+        alt="Featured Image"
+        class="img-fluid rounded featured-img"
+      />
+    </div>
+  </div>
+</div>
+<hr />
+
+<div class="row mb-4">
+  <div class="col-md-8">
+    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
+      <a href="/docs/data-structure-and-algorithm-interview-questions-2025.html" class="text-dark">
+        <h2 class="post-title">Data Structure and Algorithm Interview Questions 2025</h2>
+      </a>
+      <div class="d-flex align-items-center mb-3">
+        <span class="badge badge-primary">2025-04-27 10:13:59.206333</span>
+        
+      </div>
+      <p>Python Machine Learning Deep Learning Data Structure Here are the most popular and usually askable questions about Data Structure during a job interview or an internship program. I have written...</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <div class="featured-image-container">
+      <img
+        src="https://drive.google.com/thumbnail?id=1HQks8R0k9sSw0Tg0Ef1JHDI0asItVNpe&amp;sz=w1000"
+        alt="Featured Image"
+        class="img-fluid rounded featured-img"
+      />
+    </div>
+  </div>
+</div>
+<hr />
+
+<div class="row mb-4">
+  <div class="col-md-8">
+    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
+      <a href="/docs/python-advanced-course-with-notes-and-source-code.html" class="text-dark">
+        <h2 class="post-title">Python Advanced course with notes and source code</h2>
+      </a>
+      <div class="d-flex align-items-center mb-3">
+        <span class="badge badge-primary">2025-04-27 10:13:59.206333</span>
+        
+      </div>
+      <p>Python is a popular programming language created by Guido van Rossum and released in 1991. It is a platform-independent, high-level, object-oriented language. Python requires less code than other programming languages...</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <div class="featured-image-container">
+      <img
+        src="https://drive.google.com/thumbnail?id=1CLO5PHXcLp0SYfFKOcUdD_HsY0lpyd55&amp;sz=w1000"
+        alt="Featured Image"
+        class="img-fluid rounded featured-img"
+      />
+    </div>
+  </div>
+</div>
+<hr />
+
+<div class="row mb-4">
+  <div class="col-md-8">
+    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
+      <a href="/docs/machine-learning-most-important-interview-questions-2025-ml-full-course.html" class="text-dark">
+        <h2 class="post-title">Machine Learning most important Interview Questions 2025 | ML Full course</h2>
+      </a>
+      <div class="d-flex align-items-center mb-3">
+        <span class="badge badge-primary">2025-04-27 10:13:59.206333</span>
+        
+      </div>
+      <p>Python Machine Learning Deep Learning Data Structure Here are the most popular and usually askable questions about Machine Learning during a job interview or an internship program. I have written...</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <div class="featured-image-container">
+      <img
+        src="https://drive.google.com/thumbnail?id=1KFYJ6_qeLyQ75Axzi7XSv8_VIQ3A1_fP&amp;sz=w1000"
+        alt="Featured Image"
+        class="img-fluid rounded featured-img"
+      />
+    </div>
+  </div>
+</div>
+<hr />
+
+<div class="row mb-4">
+  <div class="col-md-8">
+    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
+      <a href="/docs/python-interview-questions-2025-python-programming-language.html" class="text-dark">
+        <h2 class="post-title">Python Interview Questions 2025 | Python Programming Language</h2>
+      </a>
+      <div class="d-flex align-items-center mb-3">
+        <span class="badge badge-primary">2025-04-27 10:13:59.206333</span>
+        
+      </div>
+      <p>Python Machine Learning Deep Learning Data Structure Here are the most common and often asked Python Programming Language questions during job interviews or internships. Each question&#39;s answer is written in...</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <div class="featured-image-container">
+      <img
+        src="https://drive.google.com/thumbnail?id=1J81zm0rTuENn1fVvqB2se5CcTF9VPKv5&amp;sz=w1000"
+        alt="Featured Image"
+        class="img-fluid rounded featured-img"
+      />
+    </div>
+  </div>
+</div>
+<hr />
+
+
+<!-- Pagination controls -->
+
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    
+    <li class="page-item disabled">
+      <span class="page-link">Previous</span>
+    </li>
+     
+    <li class="page-item active">
+      <a class="page-link" href="/docs/?page=1"
+        >1</a
+      >
+    </li>
+    
+    <li class="page-item ">
+      <a class="page-link" href="/docs/?page=2"
+        >2</a
+      >
+    </li>
+    
+    <li class="page-item ">
+      <a class="page-link" href="/docs/?page=3"
+        >3</a
+      >
+    </li>
+    
+    <li class="page-item ">
+      <a class="page-link" href="/docs/?page=4"
+        >4</a
+      >
+    </li>
+     
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="/docs/?page=2"
+        >Next</a
+      >
+    </li>
+    
+  </ul>
+</nav>
+ </div>
+
+    <!-- Footer -->
+    
+    <footer class="bg-dark text-white py-4 mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <p class="mb-0">© 2025 IGTechTeam. All Rights Reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-right">
+            <div class="social-icons">
+              <a href="https://www.facebook.com/igtechteam/" target="_blank"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/ishwar_gautam1/"
+                target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://github.com/ishwargautam" target="_blank"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/ishwargautam1"
+                target="_blank"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a
+                href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+                target="_blank"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+            </div>
+            <a
+              class="youtube-btn"
+              href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+              target="_blank"
+              style="
+                background: #ff0000;
+                color: white;
+                padding: 0.6rem 1.2rem;
+                border-radius: 30px;
+                text-decoration: none;
+                font-weight: bold;
+                transition: background 0.3s ease;
+              "
+            >
+              🔔 Subscribe on YouTube
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

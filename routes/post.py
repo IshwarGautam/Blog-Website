@@ -65,7 +65,7 @@ def index():
     return render_template("index.html", posts=posts)
 
 
-@post_bp.route("/<slug>")
+@post_bp.route("/<slug>.html")
 def post(slug):
     post = get_post(slug)
     return render_template("post.html", post=post)

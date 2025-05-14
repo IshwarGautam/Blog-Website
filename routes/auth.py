@@ -9,7 +9,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 auth_bp = Blueprint("auth", __name__)
 
 
-@auth_bp.route("/login", methods=["GET", "POST"])
+@auth_bp.route("/login.html", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         username = request.form["username"]

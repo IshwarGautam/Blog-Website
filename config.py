@@ -2,6 +2,7 @@ import os
 
 
 class Config:
+    ENVIRONMENT = os.getenv("ENVIRONMENT")
     SECRET_KEY = os.getenv("SECRET_KEY")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
@@ -21,3 +22,6 @@ class Config:
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.getenv("MAIL_USERNAME")
     MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
+
+    FREEZER_DESTINATION = "docs"
+    FREEZER_BASE_URL = "http://127.0.0.1:5500/docs" if ENVIRONMENT == "dev" else "https://www.ishwargautam1.com.np/"

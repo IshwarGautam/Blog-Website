@@ -53,8 +53,8 @@ def get_featured_image(html):
 
 
 @post_bp.route("/")
-def index():
-    page = request.args.get("page", 1, type=int)
+@post_bp.route("/page/<int:page>.html")
+def index(page=1):
     query = Post.query.order_by(Post.id.desc())
 
     posts = db.paginate(query, page=page, per_page=10, error_out=False)

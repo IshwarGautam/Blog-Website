@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/docs/static/Images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/docs/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/docs/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/docs/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/docs/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    Getting Started with Flask: Python Framework
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-23 05:40:43.193235
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#flask-intro">Flask Introduction: Definition and how to install</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#get-started">Get started with Flask: print Hello World</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#html-code">Flask: Write HTML code</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#multiple-routes">Add multiple routes</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#login-logout">Add a login and a logout page</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#perform-action">Perform an action when a submit button is clicked</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#additional-stuff">Get the required image, CSS, and HTML file for this project</a></li>
+<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="flask-intro">Flask Introduction: Definition and how to install</h2><p>Flask is a Python-based web application framework i.e. it is a third-party Python package that is used to create web apps.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/Yh23ZtfYOSs" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p><strong><em><span style="text-decoration: underline">To install Flask:</span></em></strong></p><p><code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-luminous-vivid-orange-color">pip install flask</mark></code></p><h2 class="wp-block-heading" id="get-started">Get started with Flask: print Hello World</h2><p>Let's print "Hello World".&nbsp;</p><p>'/' indicates our home page which we have to pass during routing. This code prints 'Hello World' on our main page or home page.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask
+app = Flask(__name__)
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/"</span></span>)  </span><span class="hljs-comment"># flask routing</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">hello</span>():
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello World…"</span>
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    app.run()</code></pre><h2 class="wp-block-heading" id="html-code">Flask: Write HTML code</h2><p>We can also return html code as below.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask
+app = Flask(__name__)
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/"</span></span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">hello</span>():
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello World… &lt;h1&gt;Ishwar&lt;/h1&gt;"</span>
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    app.run()</code></pre><h2 class="wp-block-heading" id="multiple-routes">Add multiple routes</h2><p>Now, the below code contains two routes: one is a home page, and another to display your name. When you write your name in the URL, it will display the output as "Hello {your name}! How are you?"</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask  
+app = Flask(__name__)  
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/"</span></span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">home</span>():
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"This is home page"</span>
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/&lt;name&gt;"</span></span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">user</span>(<span class="hljs-params">name</span>):
+    <span class="hljs-keyword">return</span> <span class="hljs-string">f"Hello <span class="hljs-subst">{name}</span>! How are you?"</span> 
+  
+<span class="hljs-keyword">if</span> __name__ ==<span class="hljs-string">"__main__"</span>:  
+    app.run()</code></pre><p>"/" indicates the home page, right?&nbsp;</p><p>We can also pass two routes for the same function.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask  
+app = Flask(__name__)  
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/"</span></span>)</span>
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/home"</span></span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">home</span>():
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"This is home page"</span>
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/home/&lt;name&gt;"</span></span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">user</span>(<span class="hljs-params">name</span>):
+    <span class="hljs-keyword">return</span> <span class="hljs-string">f"Hello <span class="hljs-subst">{name}</span>! How are you?"</span> 
+  
+<span class="hljs-keyword">if</span> __name__ ==<span class="hljs-string">"__main__"</span>:  
+    app.run()</code></pre><p>Now, "/home" also indicates the home page.</p><p>We are not required to basically return messages; we are free to return HTML pages as well. For this, we have to import render_template from the flask, and then all we have to do is, pass the name of the HTML page in render_template.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, render_template
+app = Flask(__name__)
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/"</span></span>)</span>
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/home"</span></span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">home</span>():
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"This is home page"</span>
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/html"</span></span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">html</span>():
+    <span class="hljs-keyword">return</span> render_template(<span class="hljs-string">"new.html"</span>)
+  
+<span class="hljs-keyword">if</span> __name__ ==<span class="hljs-string">"__main__"</span>:  
+    app.run()</code></pre><h2 class="wp-block-heading" id="login-logout">Add a login and a logout page</h2><p>Let's add a login and logout page. The login page displays a message as "Login successfully" whereas the logout page redirects us to the home page.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, redirect, url_for
+app = Flask(__name__)
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/"</span></span>)  </span>
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/home"</span></span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">home</span>():
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"This is home page"</span>
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/login"</span></span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">login</span>():
+    <span class="hljs-keyword">return</span> (<span class="hljs-string">"Login successfully...."</span>)
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/logout"</span></span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">logout</span>():
+    <span class="hljs-keyword">return</span> redirect(url_for(<span class="hljs-string">"home"</span>))
+    
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    app.run()</code></pre><p>Let's add html file to our home page and login page. (The code for the HTML page is attached below)</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, redirect, url_for, render_template
+app = Flask(__name__)
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/"</span></span>)  </span>
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/home"</span></span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">home</span>():
+    <span class="hljs-keyword">return</span> render_template(<span class="hljs-string">"home.html"</span>)
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/login"</span></span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">login</span>():
+    <span class="hljs-keyword">return</span> render_template(<span class="hljs-string">"login.html"</span>)
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/logout"</span></span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">logout</span>():
+    <span class="hljs-keyword">return</span> redirect(url_for(<span class="hljs-string">"home"</span>))
+    
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    app.run()</code></pre><h2 class="wp-block-heading" id="perform-action">Perform an action when a submit button is clicked</h2><p>I have made a form on the login.html page. But what happens if I click the submit button?</p><p>I have to perform some action when I click the submit button, right?</p><p>Here, I have added a submit function to display messages as per our action.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, redirect, url_for, render_template, request
+app = Flask(__name__)
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/"</span></span>)  </span>
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/home"</span></span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">home</span>():
+    <span class="hljs-keyword">return</span> render_template(<span class="hljs-string">"home.html"</span>)
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/login"</span></span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">login</span>():
+    <span class="hljs-keyword">return</span> render_template(<span class="hljs-string">"login.html"</span>)
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/logout"</span></span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">logout</span>():
+    <span class="hljs-keyword">return</span> redirect(url_for(<span class="hljs-string">"home"</span>))
+
+<span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">'/submit'</span>,methods = [<span class="hljs-string">'POST'</span>, <span class="hljs-string">'GET'</span>]</span>)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">submit</span>():
+    <span class="hljs-keyword">if</span> request.method == <span class="hljs-string">'POST'</span>:
+        user = request.form[<span class="hljs-string">'nm'</span>]
+        <span class="hljs-keyword">return</span> <span class="hljs-string">f"Login successfully by post method, Hello <span class="hljs-subst">{user}</span>"</span>
+    <span class="hljs-keyword">else</span>:
+        user = request.args.get(<span class="hljs-string">'nm'</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-string">f"Login successfully by get method, Hello <span class="hljs-subst">{user}</span>"</span>
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    app.run()</code></pre><h2 class="wp-block-heading" id="additional-stuff">Get the required image, CSS, and HTML file for this project</h2><h2 class="wp-block-heading">static/img.jpg</h2><h2 class="wp-block-heading"><img src="https://drive.google.com/thumbnail?id=1ibb-gBlqXyC5zSjboNthNPxvLD4Tkqy3&sz=w1000" data-filename="homepage.png" style="width: 400px;"></h2><figure class="wp-block-image size-large"><br></figure><h2 class="wp-block-heading">static/style.css</h2><pre><code class="language-css hljs" contenteditable="true" style=""><span class="hljs-selector-tag">body</span>{
+    <span class="hljs-attribute">color</span>:orange;
+}</code></pre><h2 class="wp-block-heading">templates/home.html</h2><pre><code class="language-html hljs language-xml" contenteditable="true" style="">{% extends "layout.html" %}
+{% block content %}
+<span class="hljs-tag">&lt;<span class="hljs-name">image</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"{{ url_for('static', filename='img.jpg') }}"</span>&gt;</span>
+{% endblock %}</code></pre><h2 class="wp-block-heading">templates/layout.html</h2><pre><code class="language-html hljs language-xml" contenteditable="true" style=""><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"</span> <span class="hljs-attr">integrity</span>=<span class="hljs-string">"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">"anonymous"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"{{ url_for('static',filename='style.css')}}"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Home <span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"navbar navbar-expand-lg navbar-light bg-light"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"collapse navbar-collapse"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"navbarNav"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"navbar-nav"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nav-item active"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nav-link"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/home"</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nav-item"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nav-link"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/login"</span>&gt;</span>Login<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nav-item"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nav-link"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/logout"</span>&gt;</span>Logout<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container-fluid"</span>&gt;</span>
+        {% block content %}
+        
+        {% endblock %}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        
+        https://code.jquery.com/jquery-3.5.1.slim.min.js
+https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
+https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><h2 class="wp-block-heading">templates/login.html</h2><pre><code class="language-html hljs language-xml" contenteditable="true" style="">{% extends "layout.html" %}
+{% block content %}
+
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"/submit"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span>
+    Username: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"nm"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+    Password: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"pswd"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"submit"</span>/&gt;</span> 
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+
+{% endblock %}</code></pre><h2 class="wp-block-heading">templates/new.html</h2><pre><code class="language-html hljs language-xml" contenteditable="true" style=""><span style="text-wrap-mode: wrap;">&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;This is my html file&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h2&gt;Due to Corona Virus, there is lockdown in my locality....&lt;/h2&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</span></code></pre><h2 class="wp-block-heading">Conclusion:</h2><p>This is the absolute Flask tutorial. In this tutorial, we simply learn how to get started with Flask, deal with routing, create a page, and so on. In the above video, you may noticed I have used Jupyter Notebook for writing code. This is not a good practice. For recording and for explaining purposes only, I chose Jupyter Notebook. You can try with other editors like Visual Studio or any other of your choice.</p><p><!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/Yh23ZtfYOSs","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:image {"id":1299,"sizeSlug":"large","linkDestination":"none"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"css"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"xml"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"xml"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"xml"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"xml"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph --></p><p>I hope this post is very helpful to you. If you have any questions, you can ask me in the comment section. I will back to you as soon as possible. Thanks.</p></p>
+</div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/docs/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

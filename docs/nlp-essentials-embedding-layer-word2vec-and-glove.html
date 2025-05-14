@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/docs/static/Images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/docs/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/docs/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/docs/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/docs/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    NLP Essentials: Embedding Layer, Word2Vec, and GloVe
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-23 05:40:43.193235
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><h2 class="wp-block-heading">What will you learn [NLP Essentials]?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#embedding-layer">Embedding Layer</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#word2vec">Word2Vec in NLP</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#glove">Glove (Global Vectors for Word Representation)</a></li>
+<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="embedding-layer">Embedding layer</h2><p>An<strong> embedding layer</strong> is a word embedding technique used in natural language processing. It is one of the available layers in&nbsp;Keras&nbsp;i.e., Keras provides an Embedding layer that can be used for neural networks on text data. The embedding layer is defined as the&nbsp;first hidden layer of the <strong>network</strong>.&nbsp;</p><p>This layer takes three arguments:</p><p>1.&nbsp;<strong>input_dim</strong>: the size of the vocabulary in text data</p><p>2.&nbsp;<strong>output_dim</strong>: the size of the output or vector space that the words will be embedded.</p><p>3.&nbsp;<strong>input_length</strong>: length of the input sequences</p><p>The embedding layer is initialized with random weights and then learns word embeddings of the training dataset. Other Word embedding techniques are&nbsp;Word2Vec&nbsp;and&nbsp;Glove.&nbsp;</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/wwz93b-OMf0" width="640" height="360" class="note-video-clip"></iframe></div></figure><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
+tf.__version__
+
+reviews=[<span class="hljs-string">'awesome movie'</span>,
+         <span class="hljs-string">'not good'</span>,
+         <span class="hljs-string">'I loved this movie'</span>,
+         <span class="hljs-string">'Good direction'</span>,
+         <span class="hljs-string">'awful'</span>,
+         <span class="hljs-string">'rocks'</span>,
+         <span class="hljs-string">'Never coming back'</span>,
+         <span class="hljs-string">'bad story'</span>
+]
+
+<span class="hljs-comment">### Vocabulary size</span>
+voc_size=<span class="hljs-number">5000</span>
+
+<span class="hljs-comment"># One hot representation</span>
+<span class="hljs-keyword">from</span> tensorflow.keras.preprocessing.text <span class="hljs-keyword">import</span> one_hot
+onehot=[one_hot(words,voc_size) <span class="hljs-keyword">for</span> words <span class="hljs-keyword">in</span> reviews] 
+<span class="hljs-built_in">print</span>(onehot)
+
+<span class="hljs-comment"># Embeding Layer</span>
+<span class="hljs-keyword">from</span> tensorflow.keras.layers <span class="hljs-keyword">import</span> Embedding
+<span class="hljs-keyword">from</span> tensorflow.keras.preprocessing.sequence <span class="hljs-keyword">import</span> pad_sequences
+<span class="hljs-keyword">from</span> tensorflow.keras.models <span class="hljs-keyword">import</span> Sequential
+
+max_length=<span class="hljs-number">4</span>
+embedded_docs=pad_sequences(onehot,padding=<span class="hljs-string">'post'</span>,maxlen=max_length)
+<span class="hljs-built_in">print</span>(embedded_docs)
+
+model=Sequential()
+model.add(Embedding(input_dim=voc_size,output_dim=<span class="hljs-number">10</span>,input_length = max_length))
+model.<span class="hljs-built_in">compile</span>(optimizer=<span class="hljs-string">'adam'</span>, loss=<span class="hljs-string">'binary_crossentropy'</span>)
+
+model.summary()
+model.predict(embedded_docs)
+
+<span class="hljs-built_in">print</span>(model.predict(embedded_docs[<span class="hljs-number">0</span>]))</code></pre><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><br></div></figure><h2 class="wp-block-heading" id="word2vec">Word2Vec in NLP | Natural Language Processing</h2><p>Word2Vec is a method for converting words to numbers or vector representations. This technique was published in 2013. This algorithm includes skip-gram and CBOW models (Continuous Bag of Words model).</p><p><img src="https://drive.google.com/thumbnail?id=1q7pFiTILckTescpVzYFw57WCieWGVra9&amp;sz=w1000" data-filename="word2vec.png" style="width: 1099px;"></p><figure class="wp-block-image size-large"><br></figure><p>As illustrated in the diagram, CBOW predicts a word by a context, whereas Skip-gram predicts the context by a word.</p><p>Now, what's the difference between <strong>Glove</strong> and <strong>Word2Vec</strong>? The glove is a pre-trained file that is also used to obtain vector representation for words. Basically, Glove pre-computes a large co-occurrence matrix (word*word) in memory, then factorize it. Whereas, Word2Vec processes each co-occurrence separately. Thus, Glove takes more memory whereas Word2Vec takes more time to train. This is based on your project whether to choose Glove or Word2Vec.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/zKO0ogiaOik" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading">To install gensim:</h2><p><code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-luminous-vivid-orange-color"><font color="#ff9c00">pip install gensim</font></mark></code></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> nltk
+<span class="hljs-keyword">import</span> re
+<span class="hljs-keyword">from</span> gensim.models <span class="hljs-keyword">import</span> Word2Vec
+<span class="hljs-keyword">from</span> nltk.corpus <span class="hljs-keyword">import</span> stopwords</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># Required package from nltk</span>
+nltk.download(<span class="hljs-string">'stopwords'</span>)
+nltk.download(<span class="hljs-string">'punkt'</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">Paragraph= <span class="hljs-string">"""Frequently Asked Questions
+The Basics
+What is Colaboratory?
+A product of Google Research is Colaboratory, or "Colab" for short. Colab excels in three areas: machine learning, teaching, and data analysis. Through the browser, anyone may write and run arbitrary Python code. In terms of technology, Colab is a hosted Jupyter notebook service that provides free access to computer resources, including GPUs, and doesn't require any setup to use.
+
+Is it really free to use?
+Yes. Colab is free to use.
+
+Seems too good to be true. What are the limitations?
+Colab's resources are neither endless or guaranteed, and the consumption caps occasionally change. In order for Colab to offer materials for free, this is required. For more details, see Resource Limits
+
+Colab Pro can be of interest to users who want more dependable access to greater resources.
+
+What is the difference between Jupyter and Colab?
+Colab is built on the open-source project Jupyter. You can use and share Jupyter Notebooks with others using Colab without having to download, install, or run anything.
+
+Using Colab
+What happened to my notebooks, and can I share them?
+Colab notebooks are saved in Google Drive and can also be imported from GitHub. Similar to how Google Docs or Sheets may be shared, Colab notebooks can as well. Simply utilize the Google Drive file sharing instructions or click the Share icon in the upper right corner of any Colab notebook.
+
+What will be shared if I share my notebook?
+The complete contents of your notebook (text, code, output, and comments) are shared when you share a notebook. By selecting Edit &gt; Notebook settings &gt; Omit code cell output when saving this notebook, you can prevent saving or sharing code cell output. The virtual machine you're using, as well as any custom files and libraries you've installed, will not be shared. As a result, it's a good idea to include cells that install and load any custom libraries or files required by your notebook.
+
+Is it possible to import an existing Jupyter/IPython notebook into Colab?
+Yes. From the File menu, select "Upload notebook".
+
+How can I search Colab notebooks?
+You can search Colab notebooks using Google Drive. All notebooks in Drive can be viewed by clicking on the Colab logo at the top left of the notebook view. You may also use File &gt; Open notebook to look for notebooks you've recently opened.
+
+Where is my code executed? When I close the browser window, what happens to my execution state?
+The code is run in a virtual computer dedicated to your account. Virtual machines are removed after a period of inactivity, and the Colab service enforces a maximum lifetime.
+
+How can I get my data out?
+You can download any Colab notebook you've made from Google Drive using these methods, or from the File menu in Colab. The open source Jupyter notebook format (.ipynb) is used to store all Colab notebooks.
+
+How can I reset the virtual machine(s) on which my code runs, and why is this occasionally unavailable?
+Select Runtime &gt; Factory reset runtime to restore the original state of all managed virtual machines allocated to you. This can be useful when a virtual machine has become unhealthy, for example, due to an inadvertent overwrite of system files or the installation of incompatible applications. To avoid excessive resource consumption, Colab limits how frequently this can be done. Please try again later if an attempt fails.
+
+Why does drive.mount() occasionally fail with a "timed out" error, and why do I/O operations in drive.mount()-mounted folders occasionally fail?
+When the number of files or subfolders in a folder becomes too enormous, Google Drive activities may time out. If the top-level "My Drive" folder contains thousands of objects, mounting the drive will most certainly fail. Failed attempts cache partial state locally before stalling out, so repeated attempts may finally succeed. If you run into this issue, try transferring files and folders directly from "My Drive" into subfolders. When reading from other directories after a successful drive.mount(), a similar situation can arise. Accessing items in any folder with multiple items can result in issues such as OSError: [Errno 5] Input/output error.  Again, you can resolve this issue by relocating directly enclosed items into subfolders.
+It's worth noting that "deleting" files or subfolders by transferring them to the Trash may not be adequate; if that doesn't appear to help, Empty your Trash.
+
+Why do Drive operations occasionally fail owing to quota constraints?
+Google Drive imposes several restrictions, such as per-user and per-file operation counts and bandwidth constraints. Exceeding these restrictions will result in the same Input/Output error as described above, as well as a message in the Colab UI. Accessing a popular shared file, or accessing too many separate files too soon, is a common reason. Workarounds include:
+
+To prevent other users from exceeding its limits, copy the file using drive.google.com and don't distribute it around.
+Choose to copy data from Drive to the Colab VM in an archive format (such as.zip or.tar.gz files) and unarchive the data locally on the VM rather than in the mounted Drive directory to avoid doing several short I/O reads.
+Wait till the quotas reset the following day.
+Why do storage quota-related drive activities occasionally fail?
+The amount of data that each user can save in Google Drive is restricted. If you need to free up space and Google Drive operations are failing with input/output errors or you receive a message that your storage quota has been exceeded, remove some files using drive.google.com and empty your trash. The reclaimed space might not be accessible in Colab right away.
+
+Visit Google Drive to acquire additional Drive space. Please take note that purchasing more Drive space will not result in more disk space becoming accessible for Colab VMs. Subscribing to Colab Pro will.
+
+Resource Limits
+Why aren’t resources guaranteed in Colab?
+Colab must continue to be adaptable enough to change usage restrictions and hardware availability as needed in order to provide computing resources without charge. The resources that Colab has available change over time to meet changing demand, as well as to support overall growth and other variables.
+
+The resource restrictions prevent some users from doing everything they wish to do in Colab. Many users have expressed a desire for faster GPUs, longer-lasting notebooks, more RAM, greater usage caps, and less erratic usage patterns. The first step we are taking to assist consumers who want more out of Colab is introducing Colab Pro. Our long-term objective is to maintain a free version of Colab while expanding sustainably to serve our users' requirements. Please sample Colab Pro and let us know what you think if you're interested in doing more with Colab than the resource restrictions of the free edition of Colab permit.
+
+What are the usage limits of Colab?
+Colab is able to offer free resources in part because it uses dynamic usage caps that occasionally change and does not guarantee or supply unlimited resources. This implies that overall utilization caps, idle timeout durations, maximum VM lifetimes, available GPU kinds, and other parameters change over time. These restrictions are not made public by Colab in part because they can—and occasionally do—change quickly.
+
+Sometimes, users who use Colab interactively rather than for lengthy computations or users who have recently utilized fewer resources in Colab have priority access to GPUs and TPUs. As a result, users who use Colab for lengthy calculations or users who have recently accessed more resources in Colab are more likely to hit utilization caps and have temporary access restrictions placed on GPU and TPU usage. Colab's user interface may be used in conjunction with a local runtime running on the user's own hardware if they have high computing requirements. Colab Pro may be of interest to users who want larger and more reliable use limitations.
+
+What types of GPUs are available in Colab?
+As time goes by, several GPU models become available in Colab. For Colab to be able to offer free access to these resources, this is necessary. Nvidia K80s, T4s, P4s, and P100s are frequently among the GPUs that are offered in Colab. What kind of GPU you can connect to at any given time in Colab cannot be selected. Colab Pro might be of interest to those who want more dependable access to Colab's fastest GPUs.
+
+It should be noted that using Colab to mine cryptocurrencies is completely prohibited and may result in your account being completely blocked from using Colab.
+
+How long can notebooks run in Colab?
+Virtual machines that can last up to 12 hours at their maximum lifetime are connected to the notebooks that execute them. When kept idle for too long, notebooks will also disconnect from virtual machines. The behavior of the maximum VM lifetime and the idle timeout may change over time or depending on your usage. In order for Colab to provide free computational resources, this is necessary. Colab Pro might be of interest to users that want more stable idle timeout behaviors over time and longer VM lifetimes.
+
+How much memory is available in Colab?
+Colab virtual machines' memory allocation changes with time (albeit it remains constant for the duration of the VM). (Over time, RAM can be adjusted, allowing us to keep Colab free.) When Colab determines that you are going to need more memory, you might occasionally be automatically given a VM with more of it. Users that want Colab to run more reliably and with more memory may be interested in Colab Pro.
+
+How can Colab best serve my needs?
+In order to avoid a small number of users monopolizing scarce resources, Colab prioritizes resources for users who have recently consumed fewer resources. Consider closing your Colab tabs when you are finished with your work in order to get the most out of Colab. You should also avoid choosing a GPU if it is not necessary for your job. You will be less likely to encounter use caps in Colab as a result of this. Colab Pro may be of interest to users who want to use more resources than are permitted by the free edition of Colab.
+
+My GPU is not being used, according to a message I noticed. What ought I to do?
+Accelerated computing environments like GPU and TPU are optional at Colab. The GPU or TPU is not necessarily being used just because code is being run in a GPU or TPU runtime. If you are not using the GPU, we advise switching to a standard runtime to prevent exceeding your GPU usage restrictions. Select Hardware Accelerator from the Runtime &gt; Change Runtime Type menu and set it to None.
+
+See the Tensorflow With GPU and TPUs In Colab example notebooks for demonstrations of how to use GPU and TPU runtimes in Colab.
+
+Additional Questions
+What browsers are supported?
+The most recent versions of Chrome, Firefox, and Safari were used for the most extensive testing of Colab's compatibility with most popular browsers.
+
+How is this related to colaboratory.jupyter.org?
+We collaborated with the Jupyter development team in 2014 to produce a prototype of the tool. Colab has now developed further under the direction of internal usage.
+
+What about other programming languages?
+Python and its ecosystem of complementary tools are the main areas of concentration for Colab. We are aware that customers would like support for more Jupyter kernels, such as R or Scala. Although we have no ETA at this time, we would like to support these.
+
+I found a bug or have a question, who do I contact?
+Open any Colab notebook. Then choose "Send feedback..." from the Help menu.
+
+Why prompt to enable third-party cookies?
+To display rich outputs securely, Colab leverages HTML iframes and service workers hosted on different origins. To use the service workers within iframes, browsers need to have third-party cookies enabled. If you choose not to enable third-party cookies for all websites, you can allow the hostname googleusercontent.com in your browser's settings.
+
+How do I change the editor font?
+The editor in Colab employs a simple monospace font. In the majority of contemporary browsers, you can specify which font family is used for monospace. Here's a few common ones:
+
+To configure the "Monospace" font in Firefox, follow the instructions in the Firefox support manuals.
+In Chrome, navigate to "chrome://settings/fonts" and modify the section labeled "Fixed-width font".
+Does Colab support Python 2?
+According to the Python development team, Python 2 will no longer get security updates or bug fixes after January 1st, 2020. Colab is gradually discontinuing support for Python 2 notebooks and has stopped updating the Python 2 runtimes. We advise switching crucial notebooks to Python 3.
+
+To change your Python 2 notebook's runtime to Python 3, choose Runtime &gt; Change Runtime Type and select Python 3. Changing the runtime from Python 3 to Python 2 is not supported. See Porting Python 2 Code to Python 3 for instructions on making the switch from Python 2 to Python 3.
+
+Where can I learn more about Colab Pro?
+There is an FAQ for Colab Pro on the Colab Pro sign-up page.
+"""</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># Preprocessing the data and preparing the dataset</span>
+sentences = nltk.sent_tokenize(Paragraph)
+final_text = []
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(sentences)):
+    review = re.sub(<span class="hljs-string">'[^a-zA-Z]'</span>, <span class="hljs-string">' '</span>, sentences[i])
+    review = review.lower()
+    review = review.split()
+    review = [word <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> review <span class="hljs-keyword">if</span> word <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">set</span>(stopwords.words(<span class="hljs-string">'english'</span>))]
+    final_text.append(review)
+<span class="hljs-built_in">print</span>(final_text)
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(final_text))</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># Training the Word2Vec model</span>
+model = Word2Vec(final_text)
+<span class="hljs-built_in">print</span>(model)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># finding vocabulary</span>
+vocab = model.wv.vocab
+<span class="hljs-built_in">print</span>(vocab.keys())
+
+<span class="hljs-comment"># vocab = model.wv.key_to_index</span>
+<span class="hljs-comment"># print(vocab)</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># Finding Word Vectors</span>
+vector = model.wv[<span class="hljs-string">'colab'</span>]
+<span class="hljs-built_in">print</span>(vector)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># Most similar words</span>
+similar = model.wv.most_similar(<span class="hljs-string">'notebooks'</span>)
+similar</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># finding similarity score between two words in vocab</span>
+model.wv.similarity(w1=<span class="hljs-string">"jupyter"</span>,w2=<span class="hljs-string">"notebooks"</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">model.wv.similarity(w1=<span class="hljs-string">"notebooks"</span>,w2=<span class="hljs-string">"notebooks"</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(vocab))</code></pre><p style="font-size: 14px;"><span style="font-weight: bolder; color: rgb(0, 0, 0); font-family: sans-serif; font-size: 1rem;">Conclusion:</span><span style="color: rgb(0, 0, 0); font-family: sans-serif; font-size: 1rem;">&nbsp;We have less vocabulary right now but for large documents, we will have more vocabulary and we can find the most similar&nbsp;words&nbsp;using the word2vec model.</span></p><div><span style="color: rgb(0, 0, 0); font-family: sans-serif; font-size: 1rem;"><br></span></div><h1><span style="font-size: 2rem; color: rgb(0, 0, 0); font-family: sans-serif;">GLOVE (Global Vectors for Word Representation) | Natural Language Processing</span></h1><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Glove (<strong>Global Vectors for Word Representation</strong>) is an unsupervised learning technique used to obtain vector representations for words. This is a&nbsp;pre-trained&nbsp;file. You can use this file to convert each word into vectors. You can download this file from&nbsp;<a rel="noreferrer noopener" href="https://nlp.stanford.edu/projects/glove/" target="_blank">here</a>.&nbsp;Each word is mapped into its corresponding vectors based on the similarity between each word. The place where it is mapped is called embedding space.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">&nbsp;<br>Now, what's the difference between&nbsp;<strong>Glove</strong>&nbsp;and&nbsp;<strong>Word2Vec</strong>? Basically, Glove pre-computes a large co-occurrence matrix (word*word) in memory, then factorize it. Whereas, Word2Vec processes each co-occurrence separately. Thus, Glove takes more memory whereas Word2Vec takes more time to train. This is based on your project whether to choose Glove or Word2Vec.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/7ahKnJTF_9Y" width="640" height="360" class="note-video-clip"></iframe></div></figure><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np 
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd 
+<span class="hljs-keyword">import</span> os
+
+os.getcwd()
+os.chdir(<span class="hljs-string">'Desktop\Code\VS code'</span>)
+os.getcwd()
+os.listdir(<span class="hljs-string">'glove.6B'</span>)
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">read_data</span>(<span class="hljs-params">file_name</span>):
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(file_name,<span class="hljs-string">'r'</span>, encoding=<span class="hljs-string">'utf-8'</span>) <span class="hljs-keyword">as</span> f:
+        word_vocab = <span class="hljs-built_in">set</span>() 
+        word2vector = <span class="hljs-built_in">dict</span>()
+        <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> f:
+            line = line.strip() <span class="hljs-comment">#Remove white space</span>
+            words_Vec = line.split()
+            word_vocab.add(words_Vec[<span class="hljs-number">0</span>])
+            word2vector[words_Vec[<span class="hljs-number">0</span>]] = np.array(words_Vec[<span class="hljs-number">1</span>:],dtype=<span class="hljs-built_in">float</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Total Words in DataSet:"</span>,<span class="hljs-built_in">len</span>(word_vocab))
+    <span class="hljs-keyword">return</span> word_vocab,word2vector
+
+vocab, w2v = read_data(<span class="hljs-string">"glove.6B/glove.6B.50d.txt"</span>)
+
+<span class="hljs-comment"># Cosine-similarity</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">cos_sim</span>(<span class="hljs-params">u,v</span>):
+    <span class="hljs-string">"""
+    u: vector of 1st word
+    v: vector of 2nd Word
+    """</span>
+    numerator = np.dot(u,v)
+    denominator= np.sqrt(np.<span class="hljs-built_in">sum</span>(np.square(u))) * np.sqrt(np.<span class="hljs-built_in">sum</span>(np.square(v)))
+    <span class="hljs-keyword">return</span> numerator/denominator
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Similarity Score of King and Queen"</span>,cos_sim(w2v[<span class="hljs-string">'king'</span>],w2v[<span class="hljs-string">'queen'</span>]))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Similarity Score of Father and Apple"</span>,cos_sim(w2v[<span class="hljs-string">'father'</span>],w2v[<span class="hljs-string">'apple'</span>]))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Similarity Score of Man and Woman"</span>,cos_sim(w2v[<span class="hljs-string">'man'</span>],w2v[<span class="hljs-string">'woman'</span>]))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Similarity Score of Clothes and Shoes"</span>,cos_sim(w2v[<span class="hljs-string">'clothes'</span>],w2v[<span class="hljs-string">'shoes'</span>]))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Similarity Score of Water and USA"</span>,cos_sim(w2v[<span class="hljs-string">'water'</span>],w2v[<span class="hljs-string">'usa'</span>]))</code></pre><h2 class="wp-block-heading">Conclusion</h2><p>This post is all about the NLP Essentials: Embedding layer, word2vec, and glove technique. These all are very important concepts in Natural Language Processing. If you are looking for a complete course on NLP, click <a href="https://www.youtube.com/playlist?list=PLiWNvnK7PSPErp-DQRRbTKT1_fVKDDL3p" target="_blank" rel="noreferrer noopener">here</a>.</p><p><!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/wwz93b-OMf0","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":1285,"sizeSlug":"large","linkDestination":"none"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/zKO0ogiaOik","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/7ahKnJTF_9Y","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph --></p><p>I hope this post is very helpful to You. Visit my Channel <a href="https://www.youtube.com/@IGTechTeam" target="_blank" rel="noreferrer noopener">IG Tech Team</a> and get more of your desired content including other NLP Essentials. If you have any questions, ask me in the comment section. I will reply as soon as possible. Keep learning.</p></p>
+</div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/docs/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

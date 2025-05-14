@@ -24,4 +24,8 @@ class Config:
     MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
 
     FREEZER_DESTINATION = "docs"
-    FREEZER_BASE_URL = "http://127.0.0.1:5500/docs" if ENVIRONMENT == "dev" else "https://www.ishwargautam1.com.np/"
+    FREEZER_BASE_URL = (
+        "http://127.0.0.1:5500/docs"
+        if ENVIRONMENT == "dev"
+        else "https://www.ishwargautam1.com.np/"
+    )

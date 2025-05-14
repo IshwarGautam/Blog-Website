@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/docs/static/Images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/docs/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/docs/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/docs/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/docs/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    Handwritten Digit recognition part-by-part complete project with a full explanation
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-21 09:14:50.117231
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Handwritten digit recognition is a very simple project that takes a digit as input and predicts that digit as output.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#part-1">Part 1: Collect the images of digits (0-9)</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#part-2">Part 2: Generate dataset through collected images.</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#part-3">Part 3: Train the model and calculate the accuracy.</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#part-4">Part 4: Live prediction of digits.</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#part-5">Part 5: Converting Project into GUI interface.</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#part-6">(Extra) Part 6: Implement in Tkinter-canvas</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#application">Convert a project into an application (setup file) </a></li>
+<!-- /wp:list-item --></ol><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Demo:</strong></h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/grHXPlwtNQY" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="part-1"><strong>Part 1:</strong> Collect Images</h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/maXzirBEpYM" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Part 1 requires us to collect images of digits (from 0 to 9). The pyscreenshot package can be used to collect images. This package can be downloaded with pip, Python Package Installer. This pip can be installed automatically when Python is installed. To install pyscreenshot, open any terminal and enter the following command:</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-luminous-vivid-orange-color"><code>pip install pyscreenshot</code></mark></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">I'm also importing time since I want to pause my execution for a second so that I can draw the following image (digit). Everything is clear in the code below, but some may have difficulty locating the exact bbox coordinate value. This coordinate value specifies which portion of your screen will be captured.&nbsp;This coordinate was discovered through trial and error. You might also try using the same&nbsp;coordinate that I am using&nbsp;for your first run. However, because our laptop sizes vary, it is possible that it will be different for you and me. So, you have to&nbsp;utilize the trial and error method to identify the correct coordinate value.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> pyscreenshot <span class="hljs-keyword">as</span> ImageGrab
+<span class="hljs-keyword">import</span> time
+images_folder=<span class="hljs-string">"captured_images/0/"</span>
+ 
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>,<span class="hljs-number">100</span>):
+   time.sleep(<span class="hljs-number">8</span>)
+   im=ImageGrab.grab(bbox=(<span class="hljs-number">60</span>,<span class="hljs-number">170</span>,<span class="hljs-number">400</span>,<span class="hljs-number">550</span>)) <span class="hljs-comment">#x1,y1,x2,y2</span>
+   <span class="hljs-built_in">print</span>(<span class="hljs-string">"saved......"</span>,i)
+   im.save(images_folder+<span class="hljs-built_in">str</span>(i)+<span class="hljs-string">'.png'</span>)
+   <span class="hljs-built_in">print</span>(<span class="hljs-string">"clear screen now and redraw now........"</span>)</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="part-2"><strong>Part 2:</strong> Generate dataset</h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/jcSWNU4jRL4" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Part 2 requires us to create our <a href="https://drive.google.com/file/d/1aMRLUWmv_l1IbjL76Re-47knaZ09pfVZ/view?usp=sharing" target="_blank" rel="noreferrer noopener">dataset</a> from the images we obtained in Part 1. To construct a dataset, we must first assign 1 to the drawn region and 0 to the background. That means our dataset will only include two values: 0 and 1. I'm sure you're aware that pixel values range from 0 to 255. In most cases, 0 symbolizes black and 255 represents white. I'm assigning 0 to pixel values ranging from 0 to 100, and 1 to pixel values ranging from 100 to 255. Our pixel values are now merely 0 and 1, rather than 0 and 255. In this manner, I am producing a dataset (CSV file).</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">The final step is to open the dataset, shuffle it i.e., change the position of each row of data, and display it.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment">#Generate dataset</span>
+<span class="hljs-keyword">import</span> cv2
+<span class="hljs-keyword">import</span> csv
+<span class="hljs-keyword">import</span> glob
+ 
+header  =[<span class="hljs-string">"label"</span>]
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>,<span class="hljs-number">784</span>):
+   header.append(<span class="hljs-string">"pixel"</span>+<span class="hljs-built_in">str</span>(i))
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'dataset.csv'</span>, <span class="hljs-string">'a'</span>) <span class="hljs-keyword">as</span> f:
+   writer = csv.writer(f)
+   writer.writerow(header)
+   
+<span class="hljs-keyword">for</span> label <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):
+   dirList = glob.glob(<span class="hljs-string">"captured_images/"</span>+<span class="hljs-built_in">str</span>(label)+<span class="hljs-string">"/*.png"</span>)
+   
+   <span class="hljs-keyword">for</span> img_path <span class="hljs-keyword">in</span> dirList:
+       im= cv2.imread(img_path)
+       im_gray = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
+       im_gray = cv2.GaussianBlur(im_gray,(<span class="hljs-number">15</span>,<span class="hljs-number">15</span>), <span class="hljs-number">0</span>)
+       roi= cv2.resize(im_gray,(<span class="hljs-number">28</span>,<span class="hljs-number">28</span>), interpolation=cv2.INTER_AREA)
+       
+       data=[]
+       data.append(label)
+       rows, cols = roi.shape
+       
+       <span class="hljs-comment">## Fill the data array with pixels one by one.</span>
+       <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(rows):
+           <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(cols):
+               k =roi[i,j]
+               <span class="hljs-keyword">if</span> k&gt;<span class="hljs-number">100</span>:
+                   k=<span class="hljs-number">1</span>
+               <span class="hljs-keyword">else</span>:
+                   k=<span class="hljs-number">0</span>
+               data.append(k)
+       <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'dataset.csv'</span>, <span class="hljs-string">'a'</span>) <span class="hljs-keyword">as</span> f:
+           writer = csv.writer(f)
+           writer.writerow(data)</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong><em>Load the dataset:</em></strong></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Then we have to open the dataset, shuffle it i.e., change the position of each row of data, and display it.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd <span class="hljs-comment">#pip install pandas</span>
+<span class="hljs-keyword">from</span> sklearn.utils <span class="hljs-keyword">import</span> shuffle <span class="hljs-comment">#pip install scikit-learn</span>
+<span class="hljs-comment">#0,....,1.....,2.....</span>
+<span class="hljs-comment">#5,3,1,0,2,5,.......</span>
+
+data = pd.read_csv(<span class="hljs-string">'dataset.csv'</span>)
+data = shuffle(data)
+<span class="hljs-built_in">print</span>(data)</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="part-3">Part 3: Train the model and calculate the accuracy</h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/ocbXj4LM--U" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Part 3 requires us to train our model and calculate its accuracy. To train our model, we can utilize scikit-learn. Run the following command to install scikit-learn:</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><code><mark style="background-color: rgb(255, 231, 156);" class="has-inline-color has-luminous-vivid-orange-color">pip install scikit-learn</mark></code></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Separating dependent and independent variables:</strong></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Then we have to separate the dependent (Y) and the independent variable (X). The pixel value (between 0 and 1) will be our independent variable. Keep in mind that each digit is represented by a massive amount of 0 and 1. Our digit (from 0 to 9) will be our dependent variable.</p><pre><code class="language-python hljs" contenteditable="true" style="">X = data.drop([<span class="hljs-string">"label"</span>],axis=<span class="hljs-number">1</span>)
+Y= data[<span class="hljs-string">"label"</span>]</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Preview of one image using matplotlib</strong></p><pre><code class="language-python hljs" contenteditable="true" style="">%matplotlib inline
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> cv2
+idx = <span class="hljs-number">314</span>
+img = X.loc[idx].values.reshape(<span class="hljs-number">28</span>,<span class="hljs-number">28</span>)
+<span class="hljs-built_in">print</span>(Y[idx])
+plt.imshow(img)</code></pre><figure class="wp-block-image size-large"><img src="https://igtechteam.wordpress.com/wp-content/uploads/2023/06/image-25.png?w=402" alt="" class="wp-image-1320"></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Train-Test split</strong></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+train_x,test_x,train_y,test_y = train_test_split(X,Y, test_size = <span class="hljs-number">0.2</span>)</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Fit the model using svc and also save the model using joblib</strong></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> joblib
+<span class="hljs-keyword">from</span> sklearn.svm <span class="hljs-keyword">import</span> SVC
+classifier=SVC(kernel=<span class="hljs-string">"linear"</span>, random_state=<span class="hljs-number">6</span>)
+classifier.fit(train_x,train_y)
+joblib.dump(classifier, <span class="hljs-string">"model/digit_recognizer"</span>)</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Calculate accuracy</strong></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> metrics
+prediction=classifier.predict(test_x)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Accuracy= "</span>,metrics.accuracy_score(prediction, test_y))</code></pre><p>I am giving 80% of my data to the training part and the remaining 20% to the testing part (as I have defined test_size = 0.2).&nbsp;Remember, training images are used to create our model, and testing images are used to calculate accuracy. In the training part, we train our model i.e., we give our model pixel value (bunch of 0 and 1) and also label (i.e. which digit is this). That means we teach our model.&nbsp;After this step, our model gets learned. Now, in the testing part, we only give pixel value (a bunch of 0 and 1) to our model, our model has to predict that digit. We count how much our model returns a true answer. This way, we calculate accuracy. If our accuracy is 0.97, that means out of 100 data, 97 are correctly predicted and 3 are wrong.&nbsp;</p><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="part-4"><strong>Part 4:</strong> Live Prediction</h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/NKlFuYf11gE" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">In part 4, we have to predict digits drawn in paint. Our model is already trained, right? Now, we don't provide 20% images (testing images) to our model but we provide new images. We draw a digit in paint and at the same time, pass that digit to the model, our model has to predict that digit.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">I am using an infinite loop so that I can test any number of inputs. If I press enter, it should close all the windows and stop my execution because I have passed cv2.waitkey(1)==13, and this 13 is the ASCII value of enter. But, I am using waitkey(10000) to display the same window for the long run. So, if I press enter, my execution does not halt. I have to press enter again and again (I think 4 or 5 times) and then only my execution gets stopped. I didn't get any solution regarding this. This is also nice, not. This is not a big deal to press enter 4 or 5 times but if you find any other solution, please let me know.&nbsp;</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment">#prediction of image drawn in paint</span>
+ 
+<span class="hljs-keyword">import</span> joblib
+<span class="hljs-keyword">import</span> cv2
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np <span class="hljs-comment">#pip install numpy</span>
+<span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">import</span> pyscreenshot <span class="hljs-keyword">as</span> ImageGrab
+ 
+model=joblib.load(<span class="hljs-string">"model/digit_recognizer"</span>)
+image_folder=<span class="hljs-string">"img/"</span>
+ 
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+   img=ImageGrab.grab(bbox=(<span class="hljs-number">60</span>,<span class="hljs-number">170</span>,<span class="hljs-number">400</span>,<span class="hljs-number">500</span>))
+   
+   img.save(images_folder+<span class="hljs-string">"img.png"</span>)
+   im = cv2.imread(images_folder+<span class="hljs-string">"img.png"</span>)
+   im_gray = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
+   im_gray  =cv2.GaussianBlur(im_gray, (<span class="hljs-number">15</span>,<span class="hljs-number">15</span>), <span class="hljs-number">0</span>)
+   
+   <span class="hljs-comment">#Threshold the image</span>
+   ret, im_th = cv2.threshold(im_gray,<span class="hljs-number">100</span>, <span class="hljs-number">255</span>, cv2.THRESH_BINARY)
+   roi = cv2.resize(im_th, (<span class="hljs-number">28</span>,<span class="hljs-number">28</span>), interpolation  =cv2.INTER_AREA)
+   
+   rows,cols=roi.shape
+   
+   X = []
+   
+   <span class="hljs-comment">##  Fill the data array with pixels one by one.</span>
+   <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(rows):
+       <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(cols):
+           k = roi[i,j]
+           <span class="hljs-keyword">if</span> k&gt;<span class="hljs-number">100</span>:
+               k=<span class="hljs-number">1</span>
+           <span class="hljs-keyword">else</span>:
+               k=<span class="hljs-number">0</span>
+           X.append(k)
+           
+   predictions  =model.predict([X])
+   <span class="hljs-built_in">print</span>(<span class="hljs-string">"Prediction:"</span>,predictions[<span class="hljs-number">0</span>])
+   cv2.putText(im, <span class="hljs-string">"Prediction is: "</span>+<span class="hljs-built_in">str</span>(predictions[<span class="hljs-number">0</span>]), (<span class="hljs-number">20</span>,<span class="hljs-number">20</span>), <span class="hljs-number">0</span>, <span class="hljs-number">0.8</span>,(<span class="hljs-number">0</span>,<span class="hljs-number">255</span>,<span class="hljs-number">0</span>),<span class="hljs-number">2</span>,cv2.LINE_AA)
+   
+   cv2.startWindowThread()
+   cv2.namedWindow(<span class="hljs-string">"Result"</span>)
+   cv2.imshow(<span class="hljs-string">"Result"</span>,im)
+   cv2.waitKey(<span class="hljs-number">10000</span>)
+   <span class="hljs-keyword">if</span> cv2.waitKey(<span class="hljs-number">1</span>)==<span class="hljs-number">13</span>: <span class="hljs-comment">#27 is the ascii value of esc, 13 is the ascii value of enter</span>
+       <span class="hljs-keyword">break</span>
+cv2.destroyAllWindows()</code></pre><pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"> </pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="part-5"><strong>Part 5 (Converting the above project in GUI):</strong></h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">If you don't know GUI, please watch this video first:&nbsp;<a href="https://youtu.be/FclrlobIOXM" target="_blank" rel="noreferrer noopener">GUI using Python (Tkinter)</a></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">We will now convert our project into a GUI application.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/XUTkyHeMZPQ" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p>We have finished the major sections (parts 1–4). You have your output, right? But why is this part 5? Nowadays, converting any Python project to a GUI application is essential. If you wish to submit your project to a&nbsp;college or a different organization, you must transform it into a graphical user interface (GUI) application. Tkinter, one of the GUI toolkits, is what I'm utilizing for this.</p><p>The codes listed above are repeated here. However, you must be careful about where you place the code. I'm going to explain it pretty simply. So, make sure you've seen this video.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Note: The below code is the same as the above four parts. They are merged here. So, don't get worried by looking at these codes:</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
+<span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> *
+<span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> messagebox
+ 
+window=tk.Tk()
+window.title(<span class="hljs-string">"Handwritten digit recognition"</span>)
+ 
+l1=tk.Label(window,text=<span class="hljs-string">"Digit"</span>,font=(<span class="hljs-string">'Algerian'</span>,<span class="hljs-number">20</span>))
+l1.place(x=<span class="hljs-number">5</span>,y=<span class="hljs-number">0</span>)
+ 
+t1=tk.Entry(window,width=<span class="hljs-number">20</span>, border=<span class="hljs-number">5</span>)
+t1.place(x=<span class="hljs-number">150</span>, y=<span class="hljs-number">0</span>)
+ 
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">screen_capture</span>():
+   <span class="hljs-keyword">import</span> pyscreenshot <span class="hljs-keyword">as</span> ImageGrab
+   <span class="hljs-keyword">import</span> time
+   <span class="hljs-keyword">import</span> os
+   os.startfile(<span class="hljs-string">"C:/ProgramData/Microsoft/Windows/Start Menu/Programs/Accessories/Paint"</span>)
+   s1=t1.get()
+   os.chdir(<span class="hljs-string">"E:/DS and ML/Untitled Folder/Untitled Folder/captured_images"</span>)
+   os.mkdir(s1)
+   os.chdir(<span class="hljs-string">"E:/DS and ML/Untitled Folder/Untitled Folder/"</span>)
+ 
+   images_folder=<span class="hljs-string">"captured_images/"</span>+s1+<span class="hljs-string">"/"</span>
+   time.sleep(<span class="hljs-number">15</span>)
+   <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>,<span class="hljs-number">5</span>):
+       time.sleep(<span class="hljs-number">8</span>)
+       im=ImageGrab.grab(bbox=(<span class="hljs-number">60</span>,<span class="hljs-number">170</span>,<span class="hljs-number">400</span>,<span class="hljs-number">550</span>)) <span class="hljs-comment">#x1,y1,x2,y2</span>
+       <span class="hljs-built_in">print</span>(<span class="hljs-string">"saved......"</span>,i)
+       im.save(images_folder+<span class="hljs-built_in">str</span>(i)+<span class="hljs-string">'.png'</span>)
+       <span class="hljs-built_in">print</span>(<span class="hljs-string">"clear screen now and redraw now........"</span>)
+   messagebox.showinfo(<span class="hljs-string">"Result"</span>,<span class="hljs-string">"Capturing screen is completed!!"</span>)
+   
+b1=tk.Button(window,text=<span class="hljs-string">"1. Open paint and capture the screen"</span>, font=(<span class="hljs-string">'Algerian'</span>,<span class="hljs-number">15</span>),bg=<span class="hljs-string">"orange"</span>,fg=<span class="hljs-string">"black"</span>,command=screen_capture)
+b1.place(x=<span class="hljs-number">5</span>, y=<span class="hljs-number">50</span>)
+ 
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_dataset</span>():
+   <span class="hljs-keyword">import</span> cv2
+   <span class="hljs-keyword">import</span> csv
+   <span class="hljs-keyword">import</span> glob
+ 
+   header  =[<span class="hljs-string">"label"</span>]
+   <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>,<span class="hljs-number">784</span>):
+       header.append(<span class="hljs-string">"pixel"</span>+<span class="hljs-built_in">str</span>(i))
+   <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'dataset.csv'</span>, <span class="hljs-string">'a'</span>) <span class="hljs-keyword">as</span> f:
+       writer = csv.writer(f)
+       writer.writerow(header)
+ 
+   <span class="hljs-keyword">for</span> label <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):
+       dirList = glob.glob(<span class="hljs-string">"captured_images/"</span>+<span class="hljs-built_in">str</span>(label)+<span class="hljs-string">"/*.png"</span>)
+ 
+       <span class="hljs-keyword">for</span> img_path <span class="hljs-keyword">in</span> dirList:
+           im= cv2.imread(img_path)
+           im_gray = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
+           im_gray = cv2.GaussianBlur(im_gray,(<span class="hljs-number">15</span>,<span class="hljs-number">15</span>), <span class="hljs-number">0</span>)
+           roi= cv2.resize(im_gray,(<span class="hljs-number">28</span>,<span class="hljs-number">28</span>), interpolation=cv2.INTER_AREA)
+ 
+           data=[]
+           data.append(label)
+           rows, cols = roi.shape
+ 
+           <span class="hljs-comment">##  Fill the data array with pixels one by one.</span>
+           <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(rows):
+               <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(cols):
+                   k =roi[i,j]
+                   <span class="hljs-keyword">if</span> k&gt;<span class="hljs-number">100</span>:
+                       k=<span class="hljs-number">1</span>
+                   <span class="hljs-keyword">else</span>:
+                       k=<span class="hljs-number">0</span>
+                   data.append(k)
+           <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'dataset.csv'</span>, <span class="hljs-string">'a'</span>) <span class="hljs-keyword">as</span> f:
+               writer = csv.writer(f)
+               writer.writerow(data)
+   messagebox.showinfo(<span class="hljs-string">"Result"</span>,<span class="hljs-string">"Generating dataset is completed!!"</span>)
+   
+b2=tk.Button(window,text=<span class="hljs-string">"2. Generate dataset"</span>, font=(<span class="hljs-string">'Algerian'</span>,<span class="hljs-number">15</span>),bg=<span class="hljs-string">"pink"</span>,fg=<span class="hljs-string">"blue"</span>,command=generate_dataset)
+b2.place(x=<span class="hljs-number">5</span>, y=<span class="hljs-number">100</span>)
+ 
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">train_save_accuracy</span>():
+   <span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+   <span class="hljs-keyword">from</span> sklearn.utils <span class="hljs-keyword">import</span> shuffle
+   data  =pd.read_csv(<span class="hljs-string">'dataset.csv'</span>)
+   data=shuffle(data)
+   X = data.drop([<span class="hljs-string">"label"</span>],axis=<span class="hljs-number">1</span>)
+   Y= data[<span class="hljs-string">"label"</span>]
+   <span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+   train_x,test_x,train_y,test_y = train_test_split(X,Y, test_size = <span class="hljs-number">0.2</span>)
+   <span class="hljs-keyword">import</span> joblib
+   <span class="hljs-keyword">from</span> sklearn.svm <span class="hljs-keyword">import</span> SVC
+   classifier=SVC(kernel=<span class="hljs-string">"linear"</span>, random_state=<span class="hljs-number">6</span>)
+   classifier.fit(train_x,train_y)
+   joblib.dump(classifier, <span class="hljs-string">"model/digit_recognizer"</span>)
+   <span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> metrics
+   prediction=classifier.predict(test_x)
+   acc=metrics.accuracy_score(prediction, test_y)
+   messagebox.showinfo(<span class="hljs-string">"Result"</span>,<span class="hljs-string">f"Your accuracy is <span class="hljs-subst">{acc}</span>"</span>)
+   
+b3=tk.Button(window,text=<span class="hljs-string">"3. Train the model, save it and calculate accuracy"</span>, font=(<span class="hljs-string">'Algerian'</span>,<span class="hljs-number">15</span>),bg=<span class="hljs-string">"green"</span>,fg=<span class="hljs-string">"white"</span>,command=train_save_accuracy)
+b3.place(x=<span class="hljs-number">5</span>, y=<span class="hljs-number">150</span>)
+ 
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">prediction</span>():
+   <span class="hljs-keyword">import</span> joblib
+   <span class="hljs-keyword">import</span> cv2
+   <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np <span class="hljs-comment">#pip install numpy</span>
+   <span class="hljs-keyword">import</span> time
+   <span class="hljs-keyword">import</span> pyscreenshot <span class="hljs-keyword">as</span> ImageGrab
+   <span class="hljs-keyword">import</span> os
+   os.startfile(<span class="hljs-string">"C:/ProgramData/Microsoft/Windows/Start Menu/Programs/Accessories/Paint"</span>)
+   
+   model=joblib.load(<span class="hljs-string">"model/digit_recognizer"</span>)
+   images_folder=<span class="hljs-string">"img/"</span>
+   time.sleep(<span class="hljs-number">15</span>)
+   <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+       img=ImageGrab.grab(bbox=(<span class="hljs-number">60</span>,<span class="hljs-number">170</span>,<span class="hljs-number">400</span>,<span class="hljs-number">500</span>))
+ 
+       img.save(images_folder+<span class="hljs-string">"img.png"</span>)
+       im = cv2.imread(images_folder+<span class="hljs-string">"img.png"</span>)
+       im_gray = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
+       im_gray  =cv2.GaussianBlur(im_gray, (<span class="hljs-number">15</span>,<span class="hljs-number">15</span>), <span class="hljs-number">0</span>)
+ 
+       <span class="hljs-comment">#Threshold the image</span>
+       ret, im_th = cv2.threshold(im_gray,<span class="hljs-number">100</span>, <span class="hljs-number">255</span>, cv2.THRESH_BINARY)
+       roi = cv2.resize(im_th, (<span class="hljs-number">28</span>,<span class="hljs-number">28</span>), interpolation  =cv2.INTER_AREA)
+ 
+       rows,cols=roi.shape
+ 
+       X = []
+ 
+       <span class="hljs-comment">##  Fill the data array with pixels one by one.</span>
+       <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(rows):
+           <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(cols):
+               k = roi[i,j]
+               <span class="hljs-keyword">if</span> k&gt;<span class="hljs-number">100</span>:
+                   k=<span class="hljs-number">1</span>
+               <span class="hljs-keyword">else</span>:
+                   k=<span class="hljs-number">0</span>
+               X.append(k)
+ 
+       predictions  =model.predict([X])
+       <span class="hljs-built_in">print</span>(<span class="hljs-string">"Prediction:"</span>,predictions[<span class="hljs-number">0</span>])
+       cv2.putText(im, <span class="hljs-string">"Prediction is: "</span>+<span class="hljs-built_in">str</span>(predictions[<span class="hljs-number">0</span>]), (<span class="hljs-number">20</span>,<span class="hljs-number">20</span>), <span class="hljs-number">0</span>, <span class="hljs-number">0.8</span>,(<span class="hljs-number">0</span>,<span class="hljs-number">255</span>,<span class="hljs-number">0</span>),<span class="hljs-number">2</span>,cv2.LINE_AA)
+ 
+       cv2.startWindowThread()
+       cv2.namedWindow(<span class="hljs-string">"Result"</span>)
+       cv2.imshow(<span class="hljs-string">"Result"</span>,im)
+       cv2.waitKey(<span class="hljs-number">10000</span>)
+       <span class="hljs-keyword">if</span> cv2.waitKey(<span class="hljs-number">1</span>)==<span class="hljs-number">13</span>: <span class="hljs-comment">#27 is the ascii value of esc, 13 is the ascii value of enter</span>
+           <span class="hljs-keyword">break</span>
+   cv2.destroyAllWindows()
+   
+b4=tk.Button(window,text=<span class="hljs-string">"4. Live prediction"</span>, font=(<span class="hljs-string">'Algerian'</span>,<span class="hljs-number">15</span>),bg=<span class="hljs-string">"white"</span>,fg=<span class="hljs-string">"red"</span>,command=prediction)
+b4.place(x=<span class="hljs-number">5</span>, y=<span class="hljs-number">200</span>)
+ 
+window.geometry(<span class="hljs-string">"600x300"</span>)
+window.mainloop()</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="part-6">Part 6 (Extra): Implement in Tkinter Canvas</h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/OPNY_3uUJys" width="640" height="360" class="note-video-clip"></iframe><strong style="font-size: 1rem;"><em><br></em></strong></div><div class="wp-block-embed__wrapper"><strong style="font-size: 1rem;"><em>Again another part? But why?</em></strong></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">This is an additional step. I'm creating a graphical user interface with Tkinter Canvas. You can use Tkinter Canvas to make your project appear attractive. I'm not using paint from my system in this case. I'm making paint from Python code, which is a bad idea because it reduces our precision. So, use this video to get an idea of what extra measures you may take to make your project more appealing. You can modify this. But believe me when I say that if you create paint and a brush that draws a really smooth image, this will be a fantastic job. You will leave an impression on everyone!</p><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="application"><strong>Convert your project into the application (setup file):</strong></h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/D6jXMw7STUQ" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p>To run the code, you must launch your Python IDE, right? After this section, you won't need it anymore. Transform your entire project into an application or setup file. You can open this project just like any other application, such as a game.</p><h2 class="wp-block-heading">Conclusion:</h2><p>In this way, you can make a complete Handwritten Digit Recognition project. First of all, you have to collect images of digits and then generate a dataset. Then you need to train a model and using this model, you have to predict digits. You can implement and display your output in a GUI window which improves user interaction. </p><p><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:embed {"url":"https://youtu.be/grHXPlwtNQY","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:embed {"url":"https://youtu.be/maXzirBEpYM","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:embed {"url":"https://youtu.be/jcSWNU4jRL4","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:embed {"url":"https://youtu.be/ocbXj4LM\u002d\u002dU","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:image {"id":1320,"sizeSlug":"large","linkDestination":"none"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:embed {"url":"https://youtu.be/NKlFuYf11gE","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/XUTkyHeMZPQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:embed {"url":"https://youtu.be/OPNY_3uUJys","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:embed {"url":"https://youtu.be/D6jXMw7STUQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph --></p><p>I hope this project is very helpful to you. If you have any questions, don't hesitate to ask me in the comment section. I will reply as soon as possible. Thanks.</p></p>
+</div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/docs/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

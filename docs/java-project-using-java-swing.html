@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/docs/static/Images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/docs/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/docs/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/docs/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/docs/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    Java project using Java Swing
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-21 09:14:50.117231
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><p>Java Swing is one of the popular tools in Java that is useful to create window-based applications.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#crud">Java Swing and Java Frame to insert, update, and delete records from a database.</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#press-button">Using Java Swing to sum two numbers and display output when you press the button.</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#press-key">Java program to display output when the user presses any key from the keyboard.</a></li>
+<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="crud">Java Swing and Java Frame to insert, update, and delete records from a database</h2><p><strong>JLabel</strong>: It displays a single line of read-only text.</p><p><strong>JTextArea</strong>: It displays a multiline text area field. You can also use JTextField which displays a single-line text area field.</p><p><strong>JButton</strong>: It displays a button and you can also trigger this button i.e., perform certain actions.<br>I am writing the connection part code on the same page. You can also write this code on a separate page. All you have to do is just create the object of that connection class and use it.</p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> javaSwing;
+
+<span class="hljs-keyword">import</span> javax.swing.*;
+<span class="hljs-keyword">import</span> java.awt.*;
+<span class="hljs-keyword">import</span> java.awt.event.*;
+<span class="hljs-keyword">import</span> java.sql.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Frame</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ActionListener</span> {
+  JLabel l1, l2, l3, l4, l5;
+  JTextArea t1, t2, t3, t4;
+  JButton b1, b2, b3;
+
+  Main() {
+    <span class="hljs-type">JFrame</span> <span class="hljs-variable">f</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JFrame</span>();
+    l1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JLabel</span>((<span class="hljs-string">"ID: "</span>));
+    l1.setBounds(<span class="hljs-number">50</span>, <span class="hljs-number">10</span>, <span class="hljs-number">70</span>, <span class="hljs-number">50</span>);
+
+    t1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JTextArea</span>();
+    t1.setBounds(<span class="hljs-number">100</span>, <span class="hljs-number">25</span>, <span class="hljs-number">100</span>, <span class="hljs-number">20</span>);
+
+    l2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JLabel</span>((<span class="hljs-string">"Name: "</span>));
+    l2.setBounds(<span class="hljs-number">50</span>, <span class="hljs-number">40</span>, <span class="hljs-number">70</span>, <span class="hljs-number">50</span>);
+    t2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JTextArea</span>();
+    t2.setBounds(<span class="hljs-number">100</span>, <span class="hljs-number">55</span>, <span class="hljs-number">100</span>, <span class="hljs-number">20</span>);
+
+    l3 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JLabel</span>((<span class="hljs-string">"Age: "</span>));
+    l3.setBounds(<span class="hljs-number">50</span>, <span class="hljs-number">70</span>, <span class="hljs-number">70</span>, <span class="hljs-number">50</span>);
+    t3 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JTextArea</span>();
+    t3.setBounds(<span class="hljs-number">100</span>, <span class="hljs-number">85</span>, <span class="hljs-number">100</span>, <span class="hljs-number">20</span>);
+
+    l4 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JLabel</span>((<span class="hljs-string">"Address: "</span>));
+    l4.setBounds(<span class="hljs-number">50</span>, <span class="hljs-number">100</span>, <span class="hljs-number">70</span>, <span class="hljs-number">50</span>);
+    t4 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JTextArea</span>();
+    t4.setBounds(<span class="hljs-number">100</span>, <span class="hljs-number">115</span>, <span class="hljs-number">100</span>, <span class="hljs-number">20</span>);
+
+    b1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JButton</span>(<span class="hljs-string">"Insert: "</span>);
+    b1.setBounds(<span class="hljs-number">10</span>, <span class="hljs-number">150</span>, <span class="hljs-number">100</span>, <span class="hljs-number">40</span>);
+    b1.addActionListener(<span class="hljs-built_in">this</span>);
+
+    b2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JButton</span>(<span class="hljs-string">"Update: "</span>);
+    b2.setBounds(<span class="hljs-number">90</span>, <span class="hljs-number">150</span>, <span class="hljs-number">100</span>, <span class="hljs-number">40</span>);
+    b2.addActionListener(<span class="hljs-built_in">this</span>);
+
+    b3 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JButton</span>(<span class="hljs-string">"Delete: "</span>);
+    b3.setBounds(<span class="hljs-number">180</span>, <span class="hljs-number">150</span>, <span class="hljs-number">100</span>, <span class="hljs-number">40</span>);
+    b3.addActionListener(<span class="hljs-built_in">this</span>);
+
+    l5 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JLabel</span>(<span class="hljs-string">""</span>);
+    l5.setBounds(<span class="hljs-number">50</span>, <span class="hljs-number">200</span>, <span class="hljs-number">200</span>, <span class="hljs-number">50</span>);
+
+    f.add(l1);
+    f.add(t1);
+    f.add(l2);
+    f.add(t2);
+    f.add(l3);
+    f.add(t3);
+    f.add(l4);
+    f.add(t4);
+    f.add(b1);
+    f.add(b2);
+    f.add(b3);
+    f.add(l5);
+
+    f.setSize(<span class="hljs-number">300</span>, <span class="hljs-number">300</span>);
+    f.setLayout(<span class="hljs-literal">null</span>);
+    f.setVisible(<span class="hljs-literal">true</span>);
+    f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
+  }
+
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">actionPerformed</span><span class="hljs-params">(ActionEvent e)</span> {
+    <span class="hljs-type">String</span> <span class="hljs-variable">s1</span> <span class="hljs-operator">=</span> t1.getText(); <span class="hljs-comment">//id</span>
+    <span class="hljs-type">String</span> <span class="hljs-variable">s2</span> <span class="hljs-operator">=</span> t2.getText(); <span class="hljs-comment">//name</span>
+    <span class="hljs-type">String</span> <span class="hljs-variable">s3</span> <span class="hljs-operator">=</span> t3.getText(); <span class="hljs-comment">//age</span>
+    <span class="hljs-type">String</span> <span class="hljs-variable">s4</span> <span class="hljs-operator">=</span> t4.getText(); <span class="hljs-comment">//address</span>
+
+    <span class="hljs-type">Connection</span> <span class="hljs-variable">conn</span> <span class="hljs-operator">=</span> setconnection();
+    <span class="hljs-keyword">if</span> (e.getSource() == b1) {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-type">Statement</span> <span class="hljs-variable">st</span> <span class="hljs-operator">=</span> conn.createStatement();
+        st.executeUpdate(<span class="hljs-string">"insert into Stu_Table(id,name,age,address) "</span> +
+          <span class="hljs-string">"values('"</span> + s1 + <span class="hljs-string">"','"</span> + s2 + <span class="hljs-string">"','"</span> + s3 + <span class="hljs-string">"','"</span> + s4 + <span class="hljs-string">"')"</span>);
+      } <span class="hljs-keyword">catch</span> (SQLException e1) {
+        System.out.println(e1);
+      }
+      l5.setText(<span class="hljs-string">"Data inserted"</span>);
+    }
+    <span class="hljs-keyword">if</span> (e.getSource() == b2) {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-type">Statement</span> <span class="hljs-variable">st</span> <span class="hljs-operator">=</span> conn.createStatement();
+        st.executeUpdate(<span class="hljs-string">"update Stu_Table set name='"</span> + s2 + <span class="hljs-string">"',age='"</span> + s3 + <span class="hljs-string">"',address='"</span> + s4 + <span class="hljs-string">"'"</span> +
+          <span class="hljs-string">" where id='"</span> + s1 + <span class="hljs-string">"'"</span>);
+      } <span class="hljs-keyword">catch</span> (SQLException e2) {
+        System.out.println(e2);
+      }
+      l5.setText(<span class="hljs-string">"Data updated"</span>);
+    }
+    <span class="hljs-keyword">if</span> (e.getSource() == b3) {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-type">Statement</span> <span class="hljs-variable">st</span> <span class="hljs-operator">=</span> conn.createStatement();
+        st.executeUpdate(<span class="hljs-string">"delete from Stu_Table where id='"</span> + s1 + <span class="hljs-string">"'"</span>);
+      } <span class="hljs-keyword">catch</span> (SQLException e3) {
+        System.out.println(e3);
+      }
+      l5.setText(<span class="hljs-string">"Data deleted"</span>);
+    }
+
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Connection <span class="hljs-title function_">setconnection</span><span class="hljs-params">()</span> {
+    <span class="hljs-type">String</span> <span class="hljs-variable">databaseURL</span> <span class="hljs-operator">=</span> <span class="hljs-string">"jdbc:mysql://localhost:3306/Student_DB"</span>;
+    <span class="hljs-type">String</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-string">"root"</span>;
+    <span class="hljs-type">String</span> <span class="hljs-variable">password</span> <span class="hljs-operator">=</span> <span class="hljs-string">""</span>;
+    <span class="hljs-type">Connection</span> <span class="hljs-variable">conn</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;
+
+    <span class="hljs-keyword">try</span> {
+      Class.forName(<span class="hljs-string">"com.mysql.cj.jdbc.Driver"</span>);
+      <span class="hljs-keyword">try</span> {
+        conn = DriverManager.getConnection(databaseURL, user, password);
+        System.out.println(<span class="hljs-string">"Connected to the database"</span>);
+      } <span class="hljs-keyword">catch</span> (SQLException e) {
+        System.out.println(e);
+      }
+    } <span class="hljs-keyword">catch</span> (ClassNotFoundException e) {
+      System.out.println(<span class="hljs-string">"Class not found exception"</span>);
+    }
+    <span class="hljs-keyword">return</span> conn;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+    <span class="hljs-comment">// write your code here</span>
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">Main</span>();
+
+  }
+}</code></pre><h2 class="wp-block-heading" id="press-button">Using Java Swing to sum two numbers and display output when you press the button</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Create a program that adds two numbers using swing components. For both input and output, use text fields. The output should be shown by the programmer when a user clicks a button.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Remember, you have to display output when you press the button. Next question you might have to display output when you press any key from the keyboard. So, these two are different questions. I have covered both of these questions. This is the post where I will show you the sum of two numbers and display the output when you press the button.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">You are asked to use Java Swing to solve this question. Java Swing is a very popular tool to create window-based applications.</p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-comment">// Create a program that adds two numbers using swing components.</span>
+<span class="hljs-comment">// For both input and output, use text fields.</span>
+<span class="hljs-comment">// The output should be shown by the programmer when a user clicks a button.</span>
+
+<span class="hljs-keyword">package</span> javaSwing;
+
+<span class="hljs-keyword">import</span> javax.swing.*;
+<span class="hljs-keyword">import</span> java.awt.*;
+<span class="hljs-keyword">import</span> java.awt.event.ActionEvent;
+<span class="hljs-keyword">import</span> java.awt.event.ActionListener;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Frame</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ActionListener</span> {
+    JLabel l1,l2;
+    JTextArea t1,t2,t3;
+    JButton b1;
+    Main(){
+        JFrame f=<span class="hljs-keyword">new</span> <span class="hljs-title class_">JFrame</span>();
+        l1=<span class="hljs-keyword">new</span> <span class="hljs-title class_">JLabel</span>(<span class="hljs-string">"First num: "</span>);
+        l1.setBounds(<span class="hljs-number">20</span>,<span class="hljs-number">10</span>,<span class="hljs-number">100</span>,<span class="hljs-number">20</span>);
+        <span class="hljs-comment">//don't need to remember this coordinate</span>
+        <span class="hljs-comment">//because in our coming videos, we will use layout manager (GridLayout) which is very easy to use</span>
+       
+        t1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JTextArea</span>();
+        t1.setBounds(<span class="hljs-number">120</span>,<span class="hljs-number">10</span>,<span class="hljs-number">100</span>,<span class="hljs-number">20</span>);
+
+        l2=<span class="hljs-keyword">new</span> <span class="hljs-title class_">JLabel</span>(<span class="hljs-string">"Second num: "</span>);
+        l2.setBounds(<span class="hljs-number">20</span>,<span class="hljs-number">40</span>,<span class="hljs-number">100</span>,<span class="hljs-number">20</span>);
+        t2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JTextArea</span>();
+        t2.setBounds(<span class="hljs-number">120</span>,<span class="hljs-number">40</span>,<span class="hljs-number">100</span>,<span class="hljs-number">20</span>);
+
+        b1=<span class="hljs-keyword">new</span> <span class="hljs-title class_">JButton</span>(<span class="hljs-string">"Sum: "</span>);
+        b1.setBounds(<span class="hljs-number">20</span>,<span class="hljs-number">70</span>,<span class="hljs-number">80</span>,<span class="hljs-number">20</span>);
+        b1.addActionListener(<span class="hljs-built_in">this</span>);
+        t3=<span class="hljs-keyword">new</span> <span class="hljs-title class_">JTextArea</span>();
+        t3.setBounds(<span class="hljs-number">120</span>,<span class="hljs-number">70</span>,<span class="hljs-number">100</span>,<span class="hljs-number">20</span>);
+
+        f.add(l1);f.add(t1);
+        f.add(l2);f.add(t2);
+        f.add(b1);f.add(t3);
+
+        f.setSize(<span class="hljs-number">250</span>,<span class="hljs-number">200</span>);
+        f.setLayout(<span class="hljs-literal">null</span>);
+        f.setVisible(<span class="hljs-literal">true</span>);
+        f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">actionPerformed</span><span class="hljs-params">(ActionEvent e)</span> {
+        <span class="hljs-keyword">if</span>(e.getSource()==b1){
+            <span class="hljs-type">int</span> <span class="hljs-variable">firstnum</span> <span class="hljs-operator">=</span> Integer.parseInt(t1.getText());
+            <span class="hljs-type">int</span> <span class="hljs-variable">secondnum</span> <span class="hljs-operator">=</span> Integer.parseInt(t2.getText());
+            <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> firstnum+secondnum;
+            t3.setText(Integer.toString(sum));
+        }
+    }
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-comment">// write your code here</span>
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">Main</span>();
+    }
+}</code></pre><h2 class="wp-block-heading" id="press-key">Java program to display output when the user presses any key from the keyboard</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Create a Java program that uses swing components to find the sum of two numbers. For input and output, use text fields. If you press any key on the keyboard, your application should display output. To handle events, use a key adapter.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/mD4diLcwknU" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Remember</strong>: you have to press any key from the keyboard to display the output. It is not okay to display the output when you press a button. That is a different question.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">We can use KeyAdapter and KeyEvent for this purpose.</p><pre><code class="language-java hljs" contenteditable="true" style=""><span style="text-wrap-mode: wrap;">package swing;
+
+import java.awt.GridLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import javax.swing.*;  //JLabel, JTextField, JFrame
+
+public class Java_project extends KeyAdapter {
+	JLabel l1,l2,l3,l4;
+	JTextField t1,t2,t3,t4;
+	JFrame f = new JFrame();
+	Java_project(){
+		l1 = new JLabel("First num: ");
+		t1 = new JTextField();
+		l2 = new JLabel("Second num: ");
+		t2 = new JTextField();
+		l3 = new JLabel("Press any key from keyboard: ");
+		t3 = new JTextField();
+		t3.addKeyListener(this);
+		l4 = new JLabel("Output: ");
+		t4 = new JTextField();
+		f.add(l1);f.add(t1);
+		f.add(l2);f.add(t2);
+		f.add(l3);f.add(t3);
+		f.add(l4);f.add(t4);
+
+		f.setSize(250,150);
+		f.setLayout(new GridLayout(4,2));
+		f.setLocationRelativeTo(null);
+		f.setVisible(true);
+		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
+	}
+	
+	public void keyPressed(KeyEvent e) {
+		int firstnum = Integer.parseInt(t1.getText());
+		int secondnum = Integer.parseInt(t2.getText());
+		int sum = firstnum + secondnum;
+		t3.setText(null);
+	    t4.setText(Integer.toString(sum));
+	}
+	
+	public static void main(String[] args) {
+		new Java_project();	
+	}
+}</span></code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Note</strong>: In the above video, I have displayed output in the dialogue box and in this code, I have displayed output in the text field, this is what the question asks us to do.</p><h2 class="wp-block-heading">Conclusion:</h2><p>In this way, you can open a GUI window and perform operations like CRUD, adding two integer values, and displaying out on pressing a button or key from a keyboard.</p><p><!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/mD4diLcwknU","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph --></p><p>I hope this post is very helpful to you. Don't hesitate to ask me in the comment section if you have any queries. I will reply as soon as possible. Thanks.</p></p>
+</div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/docs/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

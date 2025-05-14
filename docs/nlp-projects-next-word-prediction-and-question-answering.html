@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/docs/static/Images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/docs/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/docs/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/docs/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/docs/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    NLP Projects: Next Word Prediction and Question Answering
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-23 05:40:43.193235
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><p>Let's make NLP Projects.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#next-word-prediction">Next word prediction using LSTM</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#bert">What is Bert?</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#question-answering">Question Answering application using BERT</a></li>
+<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="next-word-prediction"><strong>Next word prediction:</strong></h2><p>If given the&nbsp;three words of a sentence, it should be able to guess the fourth. <em>Long-Short-Term&nbsp;Memory</em>&nbsp;is what I'm employing in this situation.<br><strong>Note: </strong>Recurrent Neural Network (RNN) architecture is a tool used in deep learning, and LSTM falls under this category. Input, output, forget, and cell are the components of a typical LSTM unit.</p><p>For more information,&nbsp;<a rel="noreferrer noopener" href="https://youtu.be/69Hd5NoTBcE" target="_blank">click here</a></p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/VB7bbFIEAhk" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading">1: Import libraries</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
+<span class="hljs-keyword">from</span> tensorflow.keras.preprocessing.text <span class="hljs-keyword">import</span> Tokenizer
+<span class="hljs-keyword">from</span> tensorflow.keras.layers <span class="hljs-keyword">import</span> Embedding, LSTM, Dense
+<span class="hljs-keyword">from</span> tensorflow.keras.models <span class="hljs-keyword">import</span> Sequential
+<span class="hljs-keyword">from</span> tensorflow.keras.utils <span class="hljs-keyword">import</span> to_categorical
+<span class="hljs-keyword">from</span> tensorflow.keras.optimizers <span class="hljs-keyword">import</span> Adam
+<span class="hljs-keyword">import</span> pickle
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> os</code></pre><h2 class="wp-block-heading">2: Load your file</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> google.colab <span class="hljs-keyword">import</span> files
+uploaded = files.upload()</code></pre><h2 class="wp-block-heading">3: Open and pre-process the data</h2><pre><code class="language-python hljs" contenteditable="true" style="">file = <span class="hljs-built_in">open</span>(<span class="hljs-string">"Pride and Prejudice.txt"</span>, <span class="hljs-string">"r"</span>, encoding = <span class="hljs-string">"utf8"</span>)
+
+<span class="hljs-comment"># store file in list</span>
+lines = []
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> file:
+    lines.append(i)
+
+<span class="hljs-comment"># Convert list to string</span>
+data = <span class="hljs-string">""</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> lines:
+  data = <span class="hljs-string">' '</span>. join(lines) 
+
+<span class="hljs-comment">#replace unnecessary stuff with space</span>
+data = data.replace(<span class="hljs-string">'\n'</span>, <span class="hljs-string">''</span>).replace(<span class="hljs-string">'\r'</span>, <span class="hljs-string">''</span>).replace(<span class="hljs-string">'\ufeff'</span>, <span class="hljs-string">''</span>).replace(<span class="hljs-string">'“'</span>,<span class="hljs-string">''</span>).replace(<span class="hljs-string">'”'</span>,<span class="hljs-string">''</span>)  <span class="hljs-comment">#new line, carriage return, unicode character --&gt; replace by space</span>
+
+<span class="hljs-comment">#remove unnecessary spaces </span>
+data = data.split()
+data = <span class="hljs-string">' '</span>.join(data)
+data[:<span class="hljs-number">500</span>]
+<span class="hljs-built_in">len</span>(data)</code></pre><h2 class="wp-block-heading">4: Implement tokenization and make additional adjustments</h2><pre><code class="language-python hljs" contenteditable="true" style="">tokenizer = Tokenizer()
+tokenizer.fit_on_texts([data])
+
+<span class="hljs-comment"># saving the tokenizer for predict function</span>
+pickle.dump(tokenizer, <span class="hljs-built_in">open</span>(<span class="hljs-string">'token.pkl'</span>, <span class="hljs-string">'wb'</span>))
+
+sequence_data = tokenizer.texts_to_sequences([data])[<span class="hljs-number">0</span>]
+sequence_data[:<span class="hljs-number">15</span>]
+<span class="hljs-built_in">len</span>(sequence_data)
+vocab_size = <span class="hljs-built_in">len</span>(tokenizer.word_index) + <span class="hljs-number">1</span>
+<span class="hljs-built_in">print</span>(vocab_size)
+sequences = []
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>, <span class="hljs-built_in">len</span>(sequence_data)):
+    words = sequence_data[i-<span class="hljs-number">3</span>:i+<span class="hljs-number">1</span>]
+    sequences.append(words)
+    
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"The Length of sequences are: "</span>, <span class="hljs-built_in">len</span>(sequences))
+sequences = np.array(sequences)
+sequences[:<span class="hljs-number">10</span>]
+X = []
+y = []
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> sequences:
+    X.append(i[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>])
+    y.append(i[<span class="hljs-number">3</span>])
+    
+X = np.array(X)
+y = np.array(y)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Data: "</span>, X[:<span class="hljs-number">10</span>])
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Response: "</span>, y[:<span class="hljs-number">10</span>])
+y = to_categorical(y, num_classes=vocab_size)
+y[:<span class="hljs-number">5</span>]</code></pre><h2 class="wp-block-heading">5: Creating the model</h2><pre><code class="language-python hljs" contenteditable="true" style="">model = Sequential()
+model.add(Embedding(vocab_size, <span class="hljs-number">10</span>, input_length=<span class="hljs-number">3</span>))
+model.add(LSTM(<span class="hljs-number">1000</span>, return_sequences=<span class="hljs-literal">True</span>))
+model.add(LSTM(<span class="hljs-number">1000</span>))
+model.add(Dense(<span class="hljs-number">1000</span>, activation=<span class="hljs-string">"relu"</span>))
+model.add(Dense(vocab_size, activation=<span class="hljs-string">"softmax"</span>))
+model.summary()</code></pre><h2 class="wp-block-heading">6: Plot the model</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> tensorflow <span class="hljs-keyword">import</span> keras
+<span class="hljs-keyword">from</span> keras.utils.vis_utils <span class="hljs-keyword">import</span> plot_model
+
+keras.utils.plot_model(model, to_file=<span class="hljs-string">'plot.png'</span>, show_layer_names=<span class="hljs-literal">True</span>)</code><img src="https://drive.google.com/thumbnail?id=11JqiAp9RBiULuQ_jrIJztNX3cv-C8A_j&amp;sz=w1000" data-filename="plot-model.png" style="width: 214px;"></pre><figure class="wp-block-image size-large"><br></figure><h2 class="wp-block-heading">7: Train the model</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> tensorflow.keras.callbacks <span class="hljs-keyword">import</span> ModelCheckpoint
+
+checkpoint = ModelCheckpoint(<span class="hljs-string">"next_words.h5"</span>, monitor=<span class="hljs-string">'loss'</span>, verbose=<span class="hljs-number">1</span>, save_best_only=<span class="hljs-literal">True</span>)
+model.<span class="hljs-built_in">compile</span>(loss=<span class="hljs-string">"categorical_crossentropy"</span>, optimizer=Adam(learning_rate=<span class="hljs-number">0.001</span>))
+model.fit(X, y, epochs=<span class="hljs-number">70</span>, batch_size=<span class="hljs-number">64</span>, callbacks=[checkpoint])</code></pre><h2 class="wp-block-heading">8: Let's predict</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> tensorflow.keras.models <span class="hljs-keyword">import</span> load_model
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> pickle
+
+<span class="hljs-comment"># Load the model and tokenizer</span>
+model = load_model(<span class="hljs-string">'next_words.h5'</span>)
+tokenizer = pickle.load(<span class="hljs-built_in">open</span>(<span class="hljs-string">'token.pkl'</span>, <span class="hljs-string">'rb'</span>))
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">Predict_Next_Words</span>(<span class="hljs-params">model, tokenizer, text</span>):
+
+  sequence = tokenizer.texts_to_sequences([text])
+  sequence = np.array(sequence)
+  preds = np.argmax(model.predict(sequence))
+  predicted_word = <span class="hljs-string">""</span>
+  
+  <span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">in</span> tokenizer.word_index.items():
+      <span class="hljs-keyword">if</span> value == preds:
+          predicted_word = key
+          <span class="hljs-keyword">break</span>
+  
+  <span class="hljs-built_in">print</span>(predicted_word)
+  <span class="hljs-keyword">return</span> predicted_word</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">while</span>(<span class="hljs-literal">True</span>):
+  text = <span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter your line: "</span>)
+  
+  <span class="hljs-keyword">if</span> text == <span class="hljs-string">"0"</span>:
+      <span class="hljs-built_in">print</span>(<span class="hljs-string">"Execution completed....."</span>)
+      <span class="hljs-keyword">break</span>
+  
+  <span class="hljs-keyword">else</span>:
+      <span class="hljs-keyword">try</span>:
+          text = text.split(<span class="hljs-string">" "</span>)
+          text = text[-<span class="hljs-number">3</span>:]
+          <span class="hljs-built_in">print</span>(text)
+        
+          Predict_Next_Words(model, tokenizer, text)
+          
+      <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"Error occurred: "</span>,e)
+        <span class="hljs-keyword">continue</span></code></pre><p><strong><em>Final output:</em></strong></p><p>Enter your line: The Project Gutenberg&nbsp;<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pale-pink-color"><font color="#9c0000">(our input)</font></mark></p><p>['The', 'Project', 'Gutenberg']&nbsp;<mark style="background-color: transparent;" class="has-inline-color has-pale-pink-color"><font color="#9c0000">(takes the last three words of our input)</font></mark></p><p>literary<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pale-pink-color">&nbsp;<font color="#9c0000">(return a next word)</font></mark></p><hr class="wp-block-separator has-alpha-channel-opacity"><p><br>Enter your line: The Project Gutenberg eBook of</p><p>['Gutenberg', 'eBook', 'of']</p><p>pride</p><hr class="wp-block-separator has-alpha-channel-opacity"><p><br>Enter your line: how can you abuse your own</p><p>['abuse', 'your', 'own']</p><p>children</p><hr class="wp-block-separator has-alpha-channel-opacity"><p><br>Enter your line: He was quite</p><p>['He', 'was', 'quite']</p><p>young</p><hr class="wp-block-separator has-alpha-channel-opacity"><p><br>Enter your line: He could not help seeing that you were about five times as</p><p>['five', 'times', 'as']</p><p>pretty</p><hr class="wp-block-separator has-alpha-channel-opacity"><p><br>Enter your line: and her sister</p><p>['and', 'her', 'sister']</p><p>scarcely</p><hr class="wp-block-separator has-alpha-channel-opacity"><p><br>Enter your line: however, it may all come to</p><p>['all', 'come', 'to']</p><p>nothing&nbsp;</p><hr class="wp-block-separator has-alpha-channel-opacity"><p>Enter your line: 0&nbsp;<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pale-pink-color"><font color="#9c0000">(to stop execution)</font></mark></p><p>Execution completed.....</p><h2 class="wp-block-heading" id="question-answering">Question Answering using Bert | Natural Language Processing</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question Answering project is very easy to build with BERT because we can use pre-defined files and make things easy. When we ask some questions, it should return the correct answer.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/670bR8lYUmc" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading" id="bert"><strong>What is Bert?</strong></h2><ul class="wp-block-list wp-embed-aspect-16-9 wp-has-aspect-ratio"><p><!-- wp:list-item -->
+</p><li>Bert stands for Bi-directional Encoder Representations from Transformers.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>It is a freely available&nbsp;framework for natural language processing (NLP).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Bert was pre-trained using an unlabeled plain text corpus (Entire English Wikipedia, and the Brown Corpus).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>If we stack the Transformer encoder, we get Bert.</li>
+<div style="text-align: left;"><img selected="" src="https://drive.google.com/thumbnail?id=1NqsQRuO0UtDNQJobhN6tDH15IRv5-2bP&amp;sz=w1000" data-filename="bert.png" style="font-size: 1rem; width: 292px;"></div><!-- /wp:list-item --><p></p></ul><figure class="wp-block-image aligncenter size-large"><br></figure><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><span style="text-decoration: underline"><strong>Now let's move to the Question Answering project using Bert:</strong></span></em></h2><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">1: Install Required Libraries</h2><pre><code class="language-python hljs" contenteditable="true" style="">pip install transformers
+pip install torch</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">2: Importing required packages</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> BertForQuestionAnswering
+<span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> BertTokenizer
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">3: Load the pre-trained Bert model</h2><pre><code class="language-python hljs" contenteditable="true" style="">model = BertForQuestionAnswering.from_pretrained(<span class="hljs-string">'bert-large-uncased-whole-word-masking-finetuned-squad'</span>)
+
+tokenizer_for_bert = BertTokenizer.from_pretrained(<span class="hljs-string">'bert-large-uncased-whole-word-masking-finetuned-squad'</span>)</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">4: Define the function for question-answering</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">bert_question_answer</span>(<span class="hljs-params">question, passage, max_len=<span class="hljs-number">500</span></span>):
+    
+    <span class="hljs-string">"""
+    question: What is the name of YouTube Channel
+    passage: Watch complete playlist of Natural Language Processing. Don't forget to like, share and subscribe my channel IG Tech Team
+    """</span>
+
+    <span class="hljs-comment">#Tokenize input question and passage </span>
+    <span class="hljs-comment">#Include unique tokens- [CLS] and [SEP]</span>
+    input_ids = tokenizer_for_bert.encode (question, passage,  max_length= max_len, truncation=<span class="hljs-literal">True</span>)  
+    <span class="hljs-string">"""
+    [101, 2054, 2003, 1996, 2171, 1997, 7858, 3149, 102, 3422, 3143, 2377, 9863, 1997, 3019, 2653, 6364, 1012, 
+    2123, 1005, 1056, 5293, 2000, 2066, 1010, 3745, 1998, 4942, 29234, 2026, 3149, 1045, 2290, 6627, 2136, 102]
+    """</span>
+
+    <span class="hljs-comment">#Getting number of tokens in 1st sentence (question) and 2nd sentence (passage that contains answer)</span>
+    sep_index = input_ids.index(<span class="hljs-number">102</span>) 
+    len_question = sep_index + <span class="hljs-number">1</span>   
+    len_passage = <span class="hljs-built_in">len</span>(input_ids)- len_question  
+    <span class="hljs-string">"""
+    8
+    9
+    27
+    """</span>
+    
+    <span class="hljs-comment">#Need to separate question and passage</span>
+    <span class="hljs-comment">#Segment ids will be 0 for question and 1 for passage</span>
+    segment_ids =  [<span class="hljs-number">0</span>]*len_question + [<span class="hljs-number">1</span>]*(len_passage)  
+    <span class="hljs-string">"""
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    """</span>
+
+    <span class="hljs-comment">#Converting token ids to tokens</span>
+    tokens = tokenizer_for_bert.convert_ids_to_tokens(input_ids) 
+    <span class="hljs-string">"""
+    tokens = ['[CLS]', 'what', 'is', 'the', 'name', 'of', 'youtube', 'channel', '[SEP]', 'watch', 'complete', 
+    'play', '##list', 'of', 'natural', 'language', 'processing', '.', 'don', "'", 't', 'forget', 'to', 'like', 
+    ',', 'share', 'and', 'sub', '##scribe', 'my', 'channel', 'i', '##g', 'tech', 'team', '[SEP]']
+    """</span>
+
+    <span class="hljs-comment">#Getting start and end scores for answer</span>
+    <span class="hljs-comment">#Converting input arrays to torch tensors before passing to the model</span>
+    start_token_scores = model(torch.tensor([input_ids]), token_type_ids=torch.tensor([segment_ids]) )[<span class="hljs-number">0</span>]
+    end_token_scores = model(torch.tensor([input_ids]), token_type_ids=torch.tensor([segment_ids]) )[<span class="hljs-number">1</span>]
+    <span class="hljs-string">"""
+    tensor([[-5.9787, -3.0541, -7.7166, -5.9291, -6.8790, -7.2380, -1.8289, -8.1006,
+         -5.9786, -3.9319, -5.6230, -4.1919, -7.2068, -6.7739, -2.3960, -5.9425,
+         -5.6828, -8.7007, -4.2650, -8.0987, -8.0837, -7.1799, -7.7863, -5.1605,
+         -8.2832, -5.1088, -8.1051, -5.3985, -6.7129, -1.4109, -3.2241,  1.5863,
+         -4.9714, -4.1138, -5.9107, -5.9786]], grad_fn=&lt;SqueezeBackward1&gt;)
+    tensor([[-2.1025, -2.9121, -5.9192, -6.7459, -6.4667, -5.6418, -1.4504, -3.1943,
+         -2.1024, -5.7470, -6.3381, -5.8520, -3.4871, -6.7667, -5.4711, -3.9885,
+         -1.2502, -4.0869, -6.4930, -6.3751, -6.1309, -6.9721, -7.5558, -6.4056,
+         -6.7456, -5.0527, -7.3854, -7.0440, -4.3720, -3.8936, -2.1085, -5.8211,
+         -2.0906, -2.2184,  1.4268, -2.1026]], grad_fn=&lt;SqueezeBackward1&gt;)
+    """</span>
+
+    <span class="hljs-comment">#Converting scores tensors to numpy arrays</span>
+    start_token_scores = start_token_scores.detach().numpy().flatten()
+    end_token_scores = end_token_scores.detach().numpy().flatten()
+    <span class="hljs-string">"""
+    [-5.978666  -3.0541189 -7.7166095 -5.929051  -6.878973  -7.238004
+    -1.8289301 -8.10058   -5.9786286 -3.9319289 -5.6229596 -4.191908
+    -7.20684   -6.773916  -2.3959794 -5.942456  -5.6827617 -8.700695
+    -4.265001  -8.09874   -8.083673  -7.179875  -7.7863474 -5.16046
+    -8.283156  -5.108819  -8.1051235 -5.3984528 -6.7128663 -1.4108785
+    -3.2240815  1.5863497 -4.9714    -4.113782  -5.9107194 -5.9786243]
+
+    [-2.1025064 -2.912148  -5.9192414 -6.745929  -6.466673  -5.641759
+    -1.4504088 -3.1943028 -2.1024144 -5.747039  -6.3380575 -5.852047
+    -3.487066  -6.7667046 -5.471078  -3.9884708 -1.2501552 -4.0868535
+    -6.4929943 -6.375147  -6.130891  -6.972091  -7.5557766 -6.405638
+    -6.7455807 -5.0527067 -7.3854156 -7.043977  -4.37199   -3.8935976
+    -2.1084964 -5.8210607 -2.0906193 -2.2184045  1.4268283 -2.1025767]
+    """</span>
+    <span class="hljs-comment">#Getting start and end index of answer based on highest scores</span>
+    answer_start_index = np.argmax(start_token_scores)
+    answer_end_index = np.argmax(end_token_scores)
+    <span class="hljs-string">"""
+    31
+    34
+    """</span>
+
+    <span class="hljs-comment">#Getting scores for start and end token of the answer</span>
+    start_token_score = np.<span class="hljs-built_in">round</span>(start_token_scores[answer_start_index], <span class="hljs-number">2</span>)
+    end_token_score = np.<span class="hljs-built_in">round</span>(end_token_scores[answer_end_index], <span class="hljs-number">2</span>)
+    <span class="hljs-string">"""
+    1.59
+    1.43
+    """</span>
+
+    <span class="hljs-comment">#Combining subwords starting with ## and get full words in output. </span>
+    <span class="hljs-comment">#It is because tokenizer breaks words which are not in its vocab.</span>
+    answer = tokens[answer_start_index] 
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(answer_start_index + <span class="hljs-number">1</span>, answer_end_index + <span class="hljs-number">1</span>):
+        <span class="hljs-keyword">if</span> tokens[i][<span class="hljs-number">0</span>:<span class="hljs-number">2</span>] == <span class="hljs-string">'##'</span>:  
+            answer += tokens[i][<span class="hljs-number">2</span>:] 
+        <span class="hljs-keyword">else</span>:
+            answer += <span class="hljs-string">' '</span> + tokens[i]  
+
+    <span class="hljs-comment"># If the answer didn't find in the passage</span>
+    <span class="hljs-keyword">if</span> (start_token_score &lt; <span class="hljs-number">0</span> ) <span class="hljs-keyword">or</span> ( answer_start_index == <span class="hljs-number">0</span>) <span class="hljs-keyword">or</span> ( answer_end_index &lt;  answer_start_index) <span class="hljs-keyword">or</span> (answer == <span class="hljs-string">'[SEP]'</span>):
+        answer = <span class="hljs-string">"Sorry!, I was unable to discover an answer in the passage."</span>
+    
+    <span class="hljs-keyword">return</span> (answer_start_index, answer_end_index, start_token_score, end_token_score,  answer)
+
+<span class="hljs-comment">#Testing function</span>
+bert_question_answer(<span class="hljs-string">"What is the name of YouTube Channel"</span>, <span class="hljs-string">"Watch complete playlist of Natural Language Processing. Don't forget to like, share and subscribe my channel IG Tech Team "</span>)</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Let's use another passage and check the output</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># Let me define one passage</span>
+passage = <span class="hljs-string">"""Hello, I am Ishwar. My friend name is Ajay. He is the son of Kristen. I spend most of the time with Ajay. 
+He always call me by my nick name. Ajay call me programmer. Except Ajay, my other friend call me by my original name. 
+Bijay is also my friend. """</span>
+
+<span class="hljs-built_in">print</span> (<span class="hljs-string">f'Length of the passage: <span class="hljs-subst">{<span class="hljs-built_in">len</span>(passage.split())}</span> words'</span>)
+
+question1 =<span class="hljs-string">"What is my name"</span> 
+<span class="hljs-built_in">print</span> (<span class="hljs-string">'\nQuestion 1:\n'</span>, question1)
+_, _ , _ , _, ans  = bert_question_answer( question1, passage)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">'\nAnswer from BERT: '</span>, ans ,  <span class="hljs-string">'\n'</span>)
+
+
+question2 =<span class="hljs-string">"Who is the father of Ajay"</span>
+<span class="hljs-built_in">print</span> (<span class="hljs-string">'\nQuestion 2:\n'</span>, question2)
+_, _ , _ , _, ans  = bert_question_answer( question2, passage)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">'\nAnswer from BERT: '</span>, ans ,  <span class="hljs-string">'\n'</span>)
+
+question3 =<span class="hljs-string">"With whom does Ishwar spend the majority of his time?"</span> 
+<span class="hljs-built_in">print</span> (<span class="hljs-string">'\nQuestion 3:\n'</span>, question3)
+_, _ , _ , _, ans  = bert_question_answer( question3, passage)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">'\nAnswer from BERT: '</span>, ans ,  <span class="hljs-string">'\n'</span>)
+
+Again another,
+<span class="hljs-comment"># Let me define another passage</span>
+passage= <span class="hljs-string">""""Natural language processing," or NLP, is the study of interactions between computers and humans using natural language. It is employed in the application of machine learning algorithms to text and speech. NLP can be used to develop systems such as speech recognition, document summarization, machine translation, spam detection, named entity recognition, question answering, autocomplete, predictive typing, and so on. Most of us now have cellphones with speech recognition. NLP is used by these devices to understand what is said. In addition, many people use laptops with operating systems that include built-in speech recognition. For creating Python programs that work with human language data, the Natural Language Toolkit (NLTK) is a well-liked framework. The list of text-processing tools also includes programs for categorization, tokenization, stemming, tagging, parsing, and semantic reasoning. The best part is that NLTK is a free, open source, community-driven project. We'll utilize this toolbox to demonstrate the fundamentals of the natural language processing discipline. I'll assume we've loaded the NLTK toolbox for the following examples. We can achieve this by importing nltk. 
+Sentence tokenization (also known as sentence segmentation) is the challenge of breaking down a string of written language into individual sentences. The concept appears to be extremely easy. The task of breaking a string of written language into its component words is known as word tokenization (also known as word segmentation). Space is a good approximation of a word divider in English and many other languages that use some type of Latin alphabet. However, we may still have issues if we merely divide by space to attain the desired results. Some English compound nouns are written differently, and some contain a space. In most cases, we use a library to obtain the desired effects, so don't sweat the minutiae. Stop words are words that are removed from the text before or after it is processed. When machine learning is applied to text, these words might create a lot of noise. That is why we aim to get rid of these superfluous terms.
+Stop words are typically the most common terms in a language, such as "and," "the," and "a," but there is no single universal list of stopwords. The list of stop words may fluctuate depending on your application. The NLTK tool includes a predefined list of stopwords that correspond to the most frequently used words. If you are using it for the first time, you must download the stop words using the following code: nltk.download("stopwords"). Once the download is complete, we can load the stopwords package from nltk.corpus and utilize it to load the stop words."""</span>
+
+<span class="hljs-built_in">print</span> (<span class="hljs-string">f'Length of the passage: <span class="hljs-subst">{<span class="hljs-built_in">len</span>(passage.split())}</span> words'</span>)
+
+
+question =<span class="hljs-string">"What is full form of NLTK"</span>
+<span class="hljs-built_in">print</span> (<span class="hljs-string">'\nQuestion 1:\n'</span>, question)
+_, _ , _ , _, ans  = bert_question_answer( question, passage)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">'\nAnswer from BERT: '</span>, ans ,  <span class="hljs-string">'\n'</span>)
+
+question =<span class="hljs-string">"What are stop words "</span>
+<span class="hljs-built_in">print</span> (<span class="hljs-string">'\nQuestion 2:\n'</span>, question)
+_, _ , _ , _, ans  = bert_question_answer( question, passage)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">'\nAnswer from BERT: '</span>, ans ,  <span class="hljs-string">'\n'</span>)
+
+question =<span class="hljs-string">"What is NLP "</span>
+<span class="hljs-built_in">print</span> (<span class="hljs-string">'\nQuestion 3:\n'</span>, question)
+_, _ , _ , _, ans  = bert_question_answer( question, passage)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">'\nAnswer from BERT: '</span>, ans ,  <span class="hljs-string">'\n'</span>)
+
+question =<span class="hljs-string">"How to get NLTK Stop Words"</span>
+<span class="hljs-built_in">print</span> (<span class="hljs-string">'\nQuestion 4:\n'</span>, question)
+_, _ , _ , _, ans  = bert_question_answer( question, passage)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">'\nAnswer from BERT: '</span>, ans ,  <span class="hljs-string">'\n'</span>)
+
+question =<span class="hljs-string">"How do smartphones interpret speech recognition"</span>
+<span class="hljs-built_in">print</span> (<span class="hljs-string">'\nQuestion 5:\n'</span>, question)
+_, _ , _ , _, ans  = bert_question_answer( question, passage)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">'\nAnswer from BERT: '</span>, ans ,  <span class="hljs-string">'\n'</span>)
+
+question =<span class="hljs-string">"What is Computer vision"</span>
+<span class="hljs-built_in">print</span> (<span class="hljs-string">'\nQuestion 6:\n'</span>, question)
+_, _ , _ , _, ans  = bert_question_answer( question, passage)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">'\nAnswer from BERT: '</span>, ans ,  <span class="hljs-string">'\n'</span>)
+
+question =<span class="hljs-string">"What is supervised learning"</span>
+<span class="hljs-built_in">print</span> (<span class="hljs-string">'\nQuestion 7:\n'</span>, question)
+_, _ , _ , _, ans  = bert_question_answer( question, passage)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">'\nAnswer from BERT: '</span>, ans ,  <span class="hljs-string">'\n'</span>)</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="text-decoration: underline"><em>Output from this cell will be:</em></span></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Length of the passage: 433 words<br>Question 1:&nbsp;What is full form of NLTK<br>Answer from BERT:&nbsp; natural language toolkit&nbsp;</p><hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio"><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 2:&nbsp;What are stop words&nbsp;<br>Answer from BERT:&nbsp; words which are filtered out before or after processing of text&nbsp;</p><hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio"><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 3:&nbsp;What is NLP&nbsp;<br>Answer from BERT:&nbsp; a subfield of computer science and artificial intelligence concerned with interactions between computers and human ( natural ) languages&nbsp;</p><hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio"><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 4:&nbsp;How to download stop words from nltk<br>Answer from BERT:&nbsp; import nltk&nbsp;</p><hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio"><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 5:&nbsp;What do smartphones use to understand speech recognition&nbsp;<br>Answer from BERT:&nbsp; nlp&nbsp;</p><hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio"><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 6:&nbsp;What is Computer vision<br>Answer from BERT:&nbsp; artificial intelligence&nbsp;</p><hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio"><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 7:&nbsp;What is supervised learning<br>Answer from BERT:&nbsp; Sorry!, I was unable to discover an answer in the passage.</p><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Final Question Answering application:</strong></h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment">#@title Question-Answering Application { vertical-output: true }</span>
+<span class="hljs-comment">#@markdown ---</span>
+question= <span class="hljs-string">"what is natural language processing"</span> <span class="hljs-comment">#@param {type:"string"}</span>
+passage = <span class="hljs-string">"NLP stands for Natural Language Processing. NLP is a branch of Artificial Intelligence (AI) that studies how machines understand human language.  This is the complete playlist of Natural Language Processing. I have made several video related to this like Tokenizer, stop words, sequence to sequence model, Bert (Bi-directional Encoder Representation from Transformers. Bert is bidirectional."</span> <span class="hljs-comment">#@param {type:"string"}</span>
+<span class="hljs-comment">#@markdown ---</span>
+
+_, _ , _ , _, ans  = bert_question_answer( question, passage)
+
+<span class="hljs-comment">#@markdown Answer:</span>
+<span class="hljs-built_in">print</span>(ans)</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="text-decoration: underline"><em>Final output:</em></span></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><img src="https://drive.google.com/thumbnail?id=1WIfV3KWlu82NFghjBEDJKbu80dARc5jj&amp;sz=w1000" data-filename="question-answering-app.png" style="width: 629px;"></p><figure class="wp-block-image size-large"><br></figure><h2 class="wp-block-heading">Conclusion</h2><p>In this way, you can make a complete NLP Projects with LSTM (Next word prediction) and BERT (Question Answering). If you are looking for a complete course on NLP, you can click <a href="https://www.youtube.com/playlist?list=PLiWNvnK7PSPErp-DQRRbTKT1_fVKDDL3p" target="_blank" rel="noreferrer noopener">here</a>.</p><p><!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/VB7bbFIEAhk","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:image {"id":1278,"sizeSlug":"large","linkDestination":"none"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/670bR8lYUmc","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"type":"video","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:list -->
+
+<!-- wp:image {"id":1281,"sizeSlug":"large","linkDestination":"none","align":"center"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:separator -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:separator -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:separator -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:separator -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:separator -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:separator -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":1282,"sizeSlug":"large","linkDestination":"none"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph --></p><p>I hope from this post, you get an idea of how can you create your own NLP Projects. If you have any questions, drop your comment in the comment section below. I will back to you as soon as possible. Keep learning mate.</p></p>
+</div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/docs/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

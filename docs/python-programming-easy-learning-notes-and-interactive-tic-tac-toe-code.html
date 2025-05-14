@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/docs/static/Images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/docs/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/docs/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/docs/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/docs/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    Python Programming: Easy Learning, Notes, and Interactive Tic Tac Toe Code
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-27 09:29:35.155731
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><h2 class="wp-block-heading"><img src="https://drive.google.com/thumbnail?id=1CAvnjaMyFcp4KGCJiWgJSodE3ghNlyG1&amp;sz=w1000" data-filename="python-featured-img.png" style="width: 50%;"><br></h2><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#python-intro">Introduction to Python programming language and how to set up Jupyter Notebook</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#print">How to print in Python?</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#comment">Comment in Python</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#input">How to take input from the user?</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#string-operation">String Operations</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#slicing">Slicing in Python</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#string-formatting">String formatting</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#decision-making">Decision making: if, if-else, if-elif-else</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#looping">Looping in Python: for and while</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#list">List</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#tuple">Tuple</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#dictionary">Dictionary: Key-value pair</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#set">Set</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#function">Function in Python</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#tic-tac-toe">Tic Tac Toe game in Python</a></li>
+<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="python-intro">Introduction to Python programming language</h2><p>Python programming language is a high-level programming language and it is very easy to use for beginners; it reduces the space as compared to other programming languages. We can use many IDEs: Jupyter Notebook, Sublime Text, Pycharm, Visual Studio Code, Atom, etc.</p><p><strong><em>To set up Jupyter Notebook:</em></strong></p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>Download Python in your system from <a rel="noreferrer noopener" href="https://www.python.org/downloads/" target="_blank">here</a> (when you install Python, you can get Python IDLE and pip; using that pip you can install Jupyter Notebook in your system)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Open the command prompt and type <mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-luminous-vivid-orange-color"><code>pip install jupyter</code></mark></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>To open Jupyter Notebook: type <code>jupyter notebook </code>(You can change the path like d drive, e drive, and particular folder to open Jupiter notebook. ) Note: If you open Jupyter Notebook in e drive, you are not allowed to open any file from other drives like D drive. And if you open Jupyter Notebook in a particular folder, you are allowed to open files that are in that folder only.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Jupyter Notebook allows you to create notes as well as code, making it an excellent IDE for coding.</li>
+<!-- /wp:list-item --></ul><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/OTPvu3_KOZA" width="640" height="360" class="note-video-clip"></iframe><span style="font-size: 1rem;"><br></span></div><div class="wp-block-embed__wrapper"><span style="font-size: 1rem;"><b>Python programming language</b></span></div></figure><p>Python is a high-level programming language that is very easy to use and reduces space as compared to other programming languages like C and C++.</p><p><b>Which IDE to use??<br></b>We can use Jupyter Notebook, Pycharm, Visual Studio Code, sublime text, etc.</p><h2 class="wp-block-heading" id="print">How to print in Python??</h2><p>We can use the 'print' keyword to print in Python.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">print</span>(<span class="hljs-string">"My name is Ishwar Gautam"</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">print</span>(<span class="hljs-number">3</span>+<span class="hljs-number">4</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-number">3</span>+<span class="hljs-number">7</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">print</span>(<span class="hljs-number">3</span>+<span class="hljs-number">7</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-number">9</span>+<span class="hljs-number">6</span>) <span class="hljs-comment"># it is a good practice to use print statement before</span></code></pre><h2 class="wp-block-heading" id="comment">Comment in Python</h2><p>A comment is not a code, so we can write any human language in a comment. We can use comments so that we can clarify what we are trying to do in the program.</p><pre><code class="language-python hljs" contenteditable="true" style="">x = <span class="hljs-number">5</span> <span class="hljs-comment"># 5 is assigned to x variable (single line comment)</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-string">'''Multiline Comment: Hello everyone
+Welcome to 30 minutes course
+by IG Tech Team'''</span> </code></pre><h2 class="wp-block-heading" id="input">How to take input from the user</h2><p>To take input from the user, we can use input keyword.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter your name: "</span>)</code></pre><p>Note: number can be both integer and string<br>If you add two strings: '5' + '6' = 56<br>If you add two integers: 5 + 6 = 11</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># program to sum any two numbers input by the user</span>
+num1 = <span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter first number: "</span>)
+num2 = <span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter second number: "</span>)
+<span class="hljs-built_in">print</span>(num1+num2) <span class="hljs-comment">#string concatenation</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style="">num1 = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter first number: "</span>))
+num2 = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter second number: "</span>))
+<span class="hljs-built_in">print</span>(num1+num2)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment">## Considering two inputs at the same time</span>
+num1, num2 = <span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter any two numbers"</span>).split()
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">int</span>(num1)+<span class="hljs-built_in">int</span>(num2))</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">num1, num2 = <span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter any two numbers"</span>).split(<span class="hljs-string">','</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">int</span>(num1)+<span class="hljs-built_in">int</span>(num2))</code></pre><h2 class="wp-block-heading" id="string-operation">String operation</h2><p>We can get the length of the string, get an index of each character in a string, count the repeated number of characters, convert to lowercase or uppercase, and so on.</p><pre><code class="language-python hljs" contenteditable="true" style="">name = <span class="hljs-string">'Ishwar Gautam'</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">len</span>(name)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">name.index(<span class="hljs-string">'h'</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">name.count(<span class="hljs-string">'a'</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">name.upper()</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">name.lower()</code></pre><h2 class="wp-block-heading" id="slicing">Slicing in Python</h2><p>Slicing is an important concept in Python. It can be used to get part of a string as below.</p><pre><code class="language-python hljs" contenteditable="true" style="">name = <span class="hljs-string">'IG Tech Team'</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style="">name[<span class="hljs-number">3</span>:<span class="hljs-number">7</span>] <span class="hljs-comment">#from 3 to 7-1</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style="">name[<span class="hljs-number">3</span>:]  <span class="hljs-comment">#from 3 to all</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style="">name[:<span class="hljs-number">7</span>] <span class="hljs-comment"># from beginning to 7-1</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style="">name[<span class="hljs-number">3</span>:<span class="hljs-number">7</span>:<span class="hljs-number">2</span>] <span class="hljs-comment"># from 3 to 7-1 but step argument 2</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># to reverse the string</span>
+<span class="hljs-string">'''in C or C++, it takes large block of code to reverse the string 
+but in python, we can do it in just one line of code with the help of slicing'''</span>
+name[::-<span class="hljs-number">1</span>]</code></pre><h2 class="wp-block-heading" id="string-formatting">String formatting</h2><pre><code class="language-python hljs" contenteditable="true" style="">name = <span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter your name: "</span>)
+age = <span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter your age: "</span>)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"your name is {} and your age is {}"</span>.<span class="hljs-built_in">format</span>(name,age))</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">print</span>(<span class="hljs-string">f"Your name is <span class="hljs-subst">{name}</span> and your age is <span class="hljs-subst">{age}</span>"</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">print</span>(<span class="hljs-string">"your surname is %s and you are %s years old"</span>%(name,age))</code></pre><h2 class="wp-block-heading" id="decision-making">Decision making: if, if-else, if-elif-else</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">if</span> name==<span class="hljs-string">'Ishwar'</span>: 
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Print True statement"</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">if</span> name==<span class="hljs-string">'FA'</span>: 
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Print True statement"</span>)
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Print False statement"</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">if</span> name==<span class="hljs-string">'FA'</span>: 
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Print True statement"</span>)
+<span class="hljs-keyword">elif</span> name == <span class="hljs-string">'Ishwar'</span>:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Print Else statement"</span>)
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Print False statement"</span>)</code></pre><h2 class="wp-block-heading" id="looping">Looping in Python: for, while</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>): <span class="hljs-comment"># i=0,1,2,3,4</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"IG Tech Team"</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>): <span class="hljs-comment"># i=1,2,3,4</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"IG Tech Team"</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">i = <span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span>(i&lt;<span class="hljs-number">5</span>):
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Welcome to 30 minute course"</span>)
+    i+=<span class="hljs-number">1</span>  <span class="hljs-comment">#i=i+1</span></code></pre><h2 class="wp-block-heading" id="list">List</h2><p>elements inside a square bracket</p><pre><code class="language-python hljs" contenteditable="true" style="">a = [<span class="hljs-number">3</span>,<span class="hljs-number">6</span>,<span class="hljs-number">8</span>,<span class="hljs-number">5</span>]</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">type</span>(a)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">b = [<span class="hljs-string">'Ishwar'</span>,<span class="hljs-string">'IG tech team'</span>]</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">type</span>(b)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">c = [<span class="hljs-number">3</span>, <span class="hljs-number">8</span>,<span class="hljs-string">"Ishwar"</span>]</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">type</span>(c)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">print</span>(c[<span class="hljs-number">2</span>])</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># add two list</span>
+b+c</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># append element in list --&gt; always append in last</span>
+c.append(<span class="hljs-string">"Amit"</span>)
+<span class="hljs-built_in">print</span>(c)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># insert element in list in any place</span>
+c.insert(<span class="hljs-number">1</span>,<span class="hljs-string">"Tech"</span>)
+<span class="hljs-built_in">print</span>(c)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># delete element from list</span>
+c.pop()</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">print</span>(c)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">c.pop(<span class="hljs-number">0</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">print</span>(c)</code></pre><h2 class="wp-block-heading" id="tuple">Tuple</h2><p>elements inside parenthesis</p><pre><code class="language-python hljs" contenteditable="true" style="">a = (<span class="hljs-number">3</span>,<span class="hljs-number">7</span>,<span class="hljs-number">9</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">type</span>(a)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">b = (<span class="hljs-string">"Ishwar"</span>,<span class="hljs-string">"IG"</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">type</span>(b)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">c = (<span class="hljs-string">"Ishwar"</span>, <span class="hljs-number">3</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">type</span>(c)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># add two tuple</span>
+b + c</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">c.append(<span class="hljs-number">7</span>)  <span class="hljs-comment"># gives error</span>
+<span class="hljs-comment"># we can't do append, insert, pop in tuple</span></code></pre><h2 class="wp-block-heading" id="dictionary">Dictionary: key-value pair</h2><p>elements inside curly bracket</p><pre><code class="language-python hljs" contenteditable="true" style="">dic = {<span class="hljs-string">"name"</span>:<span class="hljs-string">"Ishwar"</span>, <span class="hljs-string">"age"</span>:<span class="hljs-number">24</span>}</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">type</span>(dic)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">d = <span class="hljs-built_in">dict</span>(name = <span class="hljs-string">"Ishwar"</span>, age=<span class="hljs-number">24</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">type</span>(d)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">print</span>(d[<span class="hljs-string">'name'</span>])</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># add element in dictionary</span>
+d[<span class="hljs-string">'address'</span>]=<span class="hljs-string">'Butwal</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">print</span>(d)</code></pre><h2 class="wp-block-heading" id="set">Set</h2><p>element inside a curly bracket but doesn't have a key-value pair</p><pre><code class="language-python hljs" contenteditable="true" style="">s = {<span class="hljs-number">3</span>,<span class="hljs-number">6</span>,<span class="hljs-number">8</span>}</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">type</span>(s)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">s = {<span class="hljs-number">6.3</span>, <span class="hljs-string">"Ishwar"</span>}</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">type</span>(s)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># list vs set</span>
+l = [<span class="hljs-number">3</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">9</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">8</span>,<span class="hljs-number">3</span>,<span class="hljs-number">6</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">0</span>,<span class="hljs-number">7</span>]
+s = {<span class="hljs-number">3</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">9</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">8</span>,<span class="hljs-number">3</span>,<span class="hljs-number">6</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">0</span>,<span class="hljs-number">7</span>}</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">print</span>(l)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">print</span>(s) 
+<span class="hljs-comment"># set contains unique elements, so set is very useful when we have to remove redundant element</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># remove redundant element from list</span>
+l = [<span class="hljs-number">3</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">9</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">8</span>,<span class="hljs-number">3</span>,<span class="hljs-number">6</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">0</span>,<span class="hljs-number">7</span>]
+l = <span class="hljs-built_in">set</span>(l)
+l = <span class="hljs-built_in">list</span>(l)
+<span class="hljs-built_in">print</span>(l)</code></pre><h2 class="wp-block-heading" id="function">Function in Python</h2><p>A function is a block of code that can be reusable throughout the program.</p><pre><code class="language-plaintext hljs" contenteditable="true" style="">syntax: def function_name(parameter){
+    //code
+   }</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">area_of_square</span>(<span class="hljs-params">l</span>):
+    <span class="hljs-keyword">return</span> l*l
+<span class="hljs-built_in">print</span>(area_of_square(<span class="hljs-number">5</span>))</code></pre><h2 class="wp-block-heading" id="tic-tac-toe">Tic Tac Toe game using python</h2><p class="wp-embed-aspect-4-3 wp-has-aspect-ratio">Tic Tac Toe is one of the most basic games for beginners. I am using Python programming language to make this game.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-4-3 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/j-_cldeEmww" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="wp-embed-aspect-4-3 wp-has-aspect-ratio">PrintBoard() is the first function to make a 3*3 board. game() is the main function where I have implemented all the code. There are two players 'X' and 'O'. We have to change their turn one after another.</p><p class="wp-embed-aspect-4-3 wp-has-aspect-ratio">I have imported clear_output because, in reality, we don't have so many boards, right? We make changes on the same board. So, I am clearing the previous output so that it looks like we are playing on only one board.</p><p class="wp-embed-aspect-4-3 wp-has-aspect-ratio">Watch the video so that you will get all the syntax very clearly.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> IPython.display <span class="hljs-keyword">import</span> clear_output
+board = {<span class="hljs-string">'7'</span>: <span class="hljs-string">' '</span> , <span class="hljs-string">'8'</span>: <span class="hljs-string">' '</span> , <span class="hljs-string">'9'</span>: <span class="hljs-string">' '</span> ,
+         <span class="hljs-string">'4'</span>: <span class="hljs-string">' '</span> , <span class="hljs-string">'5'</span>: <span class="hljs-string">' '</span> , <span class="hljs-string">'6'</span>: <span class="hljs-string">' '</span> ,
+         <span class="hljs-string">'1'</span>: <span class="hljs-string">' '</span> , <span class="hljs-string">'2'</span>: <span class="hljs-string">' '</span> , <span class="hljs-string">'3'</span>: <span class="hljs-string">' '</span> }
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">PrintBoard</span>(<span class="hljs-params">board</span>):
+    <span class="hljs-built_in">print</span>(board[<span class="hljs-string">'7'</span>] + <span class="hljs-string">'|'</span> + board[<span class="hljs-string">'8'</span>] + <span class="hljs-string">'|'</span> + board[<span class="hljs-string">'9'</span>])
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">'-+-+-'</span>)
+    <span class="hljs-built_in">print</span>(board[<span class="hljs-string">'4'</span>] + <span class="hljs-string">'|'</span> + board[<span class="hljs-string">'5'</span>] + <span class="hljs-string">'|'</span> + board[<span class="hljs-string">'6'</span>])
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">'-+-+-'</span>)
+    <span class="hljs-built_in">print</span>(board[<span class="hljs-string">'1'</span>] + <span class="hljs-string">'|'</span> + board[<span class="hljs-string">'2'</span>] + <span class="hljs-string">'|'</span> + board[<span class="hljs-string">'3'</span>])
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">game</span>():
+    turn = <span class="hljs-string">'O'</span>
+    count= <span class="hljs-number">0</span>
+    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+        PrintBoard(board)
+        move= <span class="hljs-built_in">input</span>(<span class="hljs-string">"It's your turn "</span>+turn+<span class="hljs-string">". Which place do you want to move?"</span>)
+        clear_output()
+        <span class="hljs-keyword">if</span> board[move] ==<span class="hljs-string">' '</span>:
+            board[move] =turn
+            count+=<span class="hljs-number">1</span>
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"The place is already occupied. Try next one: "</span>)
+            <span class="hljs-keyword">continue</span>
+            
+         <span class="hljs-comment">#Now we will check if player X or Y won or not</span>
+        <span class="hljs-keyword">if</span> board[<span class="hljs-string">'7'</span>]==board[<span class="hljs-string">'8'</span>]==board[<span class="hljs-string">'9'</span>] != <span class="hljs-string">' '</span>:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"\n Game over \n"</span>)
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"***** "</span>+turn+<span class="hljs-string">" won. ****"</span>)
+            <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">elif</span> board[<span class="hljs-string">'4'</span>]==board[<span class="hljs-string">'5'</span>]==board[<span class="hljs-string">'6'</span>] != <span class="hljs-string">' '</span>:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"\n Game over \n"</span>)
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"***** "</span> +turn+<span class="hljs-string">" won. ****"</span>)
+            <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">elif</span> board[<span class="hljs-string">'1'</span>]==board[<span class="hljs-string">'2'</span>]==board[<span class="hljs-string">'3'</span>] != <span class="hljs-string">' '</span>:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"\n Game over \n"</span>)
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"***** "</span>+turn+<span class="hljs-string">" won. ****"</span>)
+            <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">elif</span> board[<span class="hljs-string">'1'</span>]==board[<span class="hljs-string">'4'</span>]==board[<span class="hljs-string">'7'</span>] != <span class="hljs-string">' '</span>:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"\n Game over \n"</span>)
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"***** "</span>+turn+<span class="hljs-string">" won. ****"</span>)
+            <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">elif</span> board[<span class="hljs-string">'2'</span>]==board[<span class="hljs-string">'5'</span>]==board[<span class="hljs-string">'8'</span>] != <span class="hljs-string">' '</span>:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"\n Game over \n"</span>)
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"***** "</span>+turn+<span class="hljs-string">" won. ****"</span>)
+            <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">elif</span> board[<span class="hljs-string">'3'</span>]==board[<span class="hljs-string">'6'</span>]==board[<span class="hljs-string">'9'</span>] != <span class="hljs-string">' '</span>:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"\n Game over \n"</span>)
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"***** "</span>+turn+<span class="hljs-string">" won. ****"</span>)
+            <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">elif</span> board[<span class="hljs-string">'7'</span>]==board[<span class="hljs-string">'5'</span>]==board[<span class="hljs-string">'3'</span>] != <span class="hljs-string">' '</span>:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"\n Game over \n"</span>)
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"***** "</span>+turn+<span class="hljs-string">" won. ****"</span>)
+            <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">elif</span> board[<span class="hljs-string">'1'</span>]==board[<span class="hljs-string">'5'</span>]==board[<span class="hljs-string">'9'</span>] != <span class="hljs-string">' '</span>:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"\n Game over \n"</span>)
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"***** "</span>+turn+<span class="hljs-string">" won. ****"</span>)
+            <span class="hljs-keyword">break</span>
+            
+        <span class="hljs-comment">#incase neither X or O get won</span>
+        <span class="hljs-keyword">if</span> count==<span class="hljs-number">9</span>:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"Game over!! \n"</span>)
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"The game is Draw!!"</span>)
+            <span class="hljs-keyword">break</span>
+            
+        <span class="hljs-comment">#changing the player</span>
+        <span class="hljs-keyword">if</span> turn == <span class="hljs-string">'O'</span>:
+            turn=<span class="hljs-string">'X'</span>
+        <span class="hljs-keyword">else</span>:
+            turn=<span class="hljs-string">'O'</span>
+game()</code></pre><h2 class="wp-block-heading">Conclusion</h2><p>This is a very basic tutorial on Python programming language. If you are looking for more similar types of course. Here is the list:</p><ol class="wp-block-list"><!-- wp:list-item -->
+<li><a href="/python-advanced-course-with-notes-and-source-code" target="_blank" rel="noreferrer noopener">Advanced Python Programming Language </a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="/python-interview-questions-2025-python-programming-language" target="_blank" rel="noreferrer noopener">Python Programming Language Interview Preparations</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://www.youtube.com/playlist?list=PLiWNvnK7PSPEPlHFnK5KxuFmyAMnGeWy7" target="_blank" rel="noreferrer noopener">Python Programming Language full course in Nepali Language</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://www.youtube.com/playlist?list=PLiWNvnK7PSPFUAyqK0PhNvsKQcGANhp69" target="_blank" rel="noreferrer noopener">Python Programming Language full playlist in the English Language</a></li>
+<!-- /wp:list-item --></ol><p><!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:embed {"url":"https://youtu.be/OTPvu3_KOZA","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-4-3 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/j-_cldeEmww","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-4-3 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-4-3 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-4-3 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-4-3 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-4-3 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph --></p><p>I hope this post is very helpful to you. If you have any questions, ask me in the comment section. I will reply as soon as possible. Keep learning.</p></p>
+</div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/docs/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

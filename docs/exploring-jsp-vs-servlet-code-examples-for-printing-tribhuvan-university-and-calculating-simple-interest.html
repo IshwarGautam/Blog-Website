@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/docs/static/Images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/docs/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/docs/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/docs/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/docs/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    Exploring JSP vs Servlet: Code Examples for printing &#39;Tribhuvan University&#39; and calculating &#39;Simple Interest&#39;
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-21 09:14:50.117231
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><style>
+#fancy-table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#fancy-table td, tbody tr:first-child {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#fancy-table tr:nth-child(even){background-color: #f2f2f2;}
+
+#fancy-table tr:hover {background-color: #ddd;}
+
+#fancy-table tbody tr:first-child {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+
+<p>JSP and Servlet are server-side technology used for creating web applications and to create dynamic web content. We will see JSP vs Servlet later as we proceed further.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#jsp-intro">JSP Introduction</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#jsp-print-Tribhuvan-University">JSP (Java Server Page) to display/print Tribhuvan University 10 times.</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#si-interest">JSP and Servlet program | Calculate simple interest and do necessary validation.</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#servlet-program">Write a Servlet program to display Tribhuvan University 10 times.</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#jsp-servlet">JSP vs Servlet</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#insert-data-code">Insert data in the database using JSP and Servlet</a></li>
+<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="jsp-intro">JSP Introduction</h2><ul class="wp-block-list"><!-- wp:list-item -->
+<li>JSP is a server-side technology that allows the development of dynamic, platform-independent manners for constructing Web-based applications.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>JSP provides access to the entire Java API family, including the JDBC API for connecting enterprise databases.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Dynamic web pages are created using it.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>JSP is an extended version of a servlet.</li>
+<!-- /wp:list-item --></ul><h2 class="wp-block-heading"><strong id="jsp-print-Tribhuvan-University">JSP (Java Server Page) to display/print Tribhuvan University</strong> 10 times</h2><pre><code class="language-html hljs language-xml" contenteditable="true" style="">&lt;%@ page language="java" contentType="text/html"%&gt;
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>JSP program<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+
+ &lt;%
+ String msg="Tribhuvan University";
+ for (int i=0;i&lt;10;i++){
+	 out.print(msg+"<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>");
+ }
+ %&gt;
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><p><strong>Related Questions:</strong></p><div class="wp-block-group"><!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Write a simple JSP program to display “Lalitpur, Nepal” 10 times.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Write a simple JSP program to display “Kathmandu, Nepal” 10 times.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Write a simple JSP file to display 'IOST' 20 times.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>What is JSP? Discuss with a suitable example</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div><h2 class="wp-block-heading" id="si-interest">JSP and Servlet program | Calculate simple interest and do necessary validation</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Create a dynamic project that will accept the principle, rate, and time from the JSP page and use the Servlet to execute a simple interest calculation. In another response JSP page, pass the relevant result. Do necessary validation where necessary.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Note:</strong> </p><ul class="wp-block-list wp-embed-aspect-16-9 wp-has-aspect-ratio"><!-- wp:list-item -->
+<li>JSP (Java Server Page) is a technology that runs on the server.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>It is used for creating web applications. </li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>It is used to generate dynamic web content.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>JSP is an extended version of the servlet. </li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Servlet is a pure Java code whereas JSP is a html-based code. </li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Servlet is faster than JSP. </li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>JSP coding is easy than Servlet.</li>
+<!-- /wp:list-item --></ul><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><u>value.jsp</u></em></p><pre><code class="language-html hljs language-xml" contenteditable="true" style="">&lt;%@ page language="java" contentType="text/html"&gt;
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Provide values<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+	<span class="hljs-keyword">function</span> <span class="hljs-title function_">validateForm</span>(<span class="hljs-params"></span>){
+		<span class="hljs-keyword">var</span> p = <span class="hljs-variable language_">document</span>.<span class="hljs-property">myForm</span>.<span class="hljs-property">principle</span>.<span class="hljs-property">value</span>;
+		<span class="hljs-keyword">var</span> t = <span class="hljs-variable language_">document</span>.<span class="hljs-property">myForm</span>.<span class="hljs-property">time</span>.<span class="hljs-property">value</span>;
+		<span class="hljs-keyword">var</span> r = <span class="hljs-variable language_">document</span>.<span class="hljs-property">myForm</span>.<span class="hljs-property">rate</span>.<span class="hljs-property">value</span>;
+		<span class="hljs-keyword">if</span>(p!=<span class="hljs-string">""</span> &amp;&amp; t!=<span class="hljs-string">""</span> &amp;&amp; r!=<span class="hljs-string">""</span>) {
+			<span class="hljs-keyword">var</span> numbers = <span class="hljs-regexp">/^[0-9]+$/</span>;
+		    <span class="hljs-keyword">if</span>(!(p.<span class="hljs-title function_">match</span>(numbers) &amp;&amp; t.<span class="hljs-title function_">match</span>(numbers) &amp;&amp; r.<span class="hljs-title function_">match</span>(numbers))){
+		    	<span class="hljs-title function_">alert</span>(<span class="hljs-string">"Please provide only integer values"</span>);
+		    	<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+		    }
+		}
+		<span class="hljs-keyword">else</span>{
+			<span class="hljs-title function_">alert</span>(<span class="hljs-string">"Textfield can't be empty"</span>);
+			<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+		}	
+	}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"myForm"</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"Servletpage"</span> 
+	<span class="hljs-attr">onsubmit</span>=<span class="hljs-string">"return validateForm()"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"get"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Principle: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"principle"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+		Rate: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"rate"</span> &gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+		Time in year: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"time"</span> &gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Submit"</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em>Servletpage.java:</em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> ishwar;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> javax.servlet.ServletException;
+<span class="hljs-keyword">import</span> javax.servlet.annotation.WebServlet;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServlet;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
+
+
+<span class="hljs-meta">@WebServlet("/Servletpage")</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Servletpage</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">HttpServlet</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span> L;
+
+
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span>
+    <span class="hljs-keyword">throws</span> ServletException, IOException {
+        <span class="hljs-type">int</span> <span class="hljs-variable">principle</span> <span class="hljs-operator">=</span> Integer.parseInt(request.getParameter(<span class="hljs-string">"principle"</span>));
+        <span class="hljs-type">int</span> <span class="hljs-variable">time</span> <span class="hljs-operator">=</span> Integer.parseInt(request.getParameter(<span class="hljs-string">"time"</span>));
+        <span class="hljs-type">int</span> <span class="hljs-variable">rate</span> <span class="hljs-operator">=</span> Integer.parseInt(request.getParameter(<span class="hljs-string">"rate"</span>));
+        <span class="hljs-type">float</span> <span class="hljs-variable">SI</span> <span class="hljs-operator">=</span> ((principle * time * rate) / (<span class="hljs-type">float</span>) <span class="hljs-number">100</span>);
+        request.setAttribute(<span class="hljs-string">"Result"</span>, SI);
+        request.getRequestDispatcher(<span class="hljs-string">"Result.jsp"</span>).forward(request, response);
+
+        <span class="hljs-comment">/*
+         * If we pass certain value from jsp to another jsp page:
+         *  &lt;% int principle = Integer.parseInt(request.getParameter("principle")) %&gt;;
+         */</span>
+    }
+}</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em>Result.jsp:</em></p><pre><code class="language-html hljs language-xml" contenteditable="true" style="">&lt;%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%&gt;
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Simple Interest<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Result: <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Simple Interest =  ${Result} <span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><h2 class="wp-block-heading" id="servlet-program"><br></h2><h2 class="wp-block-heading" id="servlet-program">Write a Servlet program to display Tribhuvan University 10 times</h2><p>Printing&nbsp;any message with Servlet is the same as printing&nbsp;that message with HTML, with a few small differences.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/c-6s6R1Lt-E" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p>A servlet is a technology that is used to create a web application. Servlet works on the server side.</p><p>The four steps of the Servlet life cycle are as follows:</p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>Loading a Servlet</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Initializing the Servlet</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Request handling</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Destroying the Servlet</li></ul><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> myprogram;
+
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.io.PrintWriter;
+
+<span class="hljs-keyword">import</span> javax.servlet.ServletException;
+<span class="hljs-keyword">import</span> javax.servlet.annotation.WebServlet;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServlet;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
+
+
+<span class="hljs-meta">@WebServlet("/display_msg")</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">display_msg</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">HttpServlet</span> {
+
+	<span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span>
+			<span class="hljs-keyword">throws</span> ServletException, IOException {
+		<span class="hljs-comment">//opening</span>
+		response.setContentType(<span class="hljs-string">"text/html"</span>);
+		<span class="hljs-type">PrintWriter</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> response.getWriter();
+		
+		<span class="hljs-comment">//To print Tribhuvan University 10 times using Servlet</span>
+		out.println(<span class="hljs-string">"&lt;html&gt;&lt;body&gt;"</span>);
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">10</span>;i++) {
+			out.println(<span class="hljs-string">"Tribhuvan University &lt;/br&gt;"</span>);
+		}
+		
+		<span class="hljs-comment">//Note: to print just Tribhuvan University, no need to write for loop</span>
+		<span class="hljs-comment">//just write:</span>
+		out.println(<span class="hljs-string">"Tribhuvan University"</span>)
+		
+		<span class="hljs-comment">//closing</span>
+		out.println(<span class="hljs-string">"&lt;/body&gt;&lt;/html&gt;"</span>);
+				
+	}
+
+}</code></pre><h2 class="wp-block-heading" id="insert-data">JSP vs Servlet | Insert data in the database using JSP and Servlet</h2><p>How can we insert data in the database using JSP (Java Server Page) and Servlet?</p><h2 class="wp-block-heading" id="jsp-servlet">JSP vs Servlet</h2><p><strong>What is JSP?</strong></p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>JSP --&gt; Java Server Page</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>server-side technology</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>used for creating a web application</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>used to create dynamic web content</li>
+<!-- /wp:list-item --></ul><p><strong>What is a servlet?</strong></p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>server-side technology</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>used for creating a web application</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>used to create dynamic web content</li>
+<!-- /wp:list-item --></ul><p><strong>Are JSP and Servlet the same term then?</strong></p><p>No, here is the difference:</p><figure class="wp-block-table"><table id="fancy-table"><tbody><tr><td><strong>S.N.</strong></td><td><strong>Servlet</strong></td><td><strong>JSP</strong></td></tr><tr><td>a.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>A servlet is a Java code.</td><td>JSP is a html-based code.</td></tr><tr><td>b.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Modification in servlet is a time-consuming task because it includes reloading, recompiling, and restarting the server.</td><td>JSP is easy to code because it is nothing but a html code.</td></tr><tr><td>c.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Servlet is faster than JSP.</td><td>JSP is slower than servlet because the first step in the JSP lifecycle is the translation of JSP to Java code and then compilation.</td></tr><tr><td>d.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Servlet can accept all protocol requests.</td><td>JSP is slower than servlet because the first step in the JSP lifecycle is the translation of JSP to Java code and then compile.</td></tr><tr><td>e.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>In servlet, we can override the service() method.</td><td>In JSP, we cannot override its service() method.</td></tr><tr><td>f.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Modification in servlet is a time-consuming task because it includes reloading, recompiling and restarting the server.</td><td>JSP modification is fast, just need to click the refresh button.</td></tr></tbody></table></figure><h2 class="wp-block-heading" id="insert-data-code">Insert data in the database using JSP and Servlet</h2><p><em><u>com/crud/Dao/StudentRecordDao.java:</u></em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> com.crud.Dao;
+
+<span class="hljs-keyword">import</span> java.sql.Connection;
+<span class="hljs-keyword">import</span> java.sql.PreparedStatement;
+<span class="hljs-keyword">import</span> java.sql.SQLException;
+
+<span class="hljs-keyword">import</span> com.crud.model.StudentModel;
+<span class="hljs-keyword">import</span> com.crud.util.DbConnect;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StudentRecordDao</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insertRecord</span><span class="hljs-params">(StudentModel student)</span> {
+	<span class="hljs-type">Connection</span> <span class="hljs-variable">conn</span> <span class="hljs-operator">=</span> DbConnect.getConnection();
+	<span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">"insert into stu_table(name,address) values(?,?)"</span>;
+	<span class="hljs-keyword">try</span> {
+	    <span class="hljs-type">int</span> <span class="hljs-variable">rowInserted</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+	    <span class="hljs-type">PreparedStatement</span> <span class="hljs-variable">stmt</span> <span class="hljs-operator">=</span> conn.prepareStatement(sql);
+	    stmt.setString(<span class="hljs-number">1</span>, student.getName());
+	    stmt.setString(<span class="hljs-number">2</span>, student.getAddress());
+	    rowInserted = stmt.executeUpdate();
+	    <span class="hljs-keyword">if</span>(rowInserted&gt;<span class="hljs-number">0</span>) {
+		System.out.println(<span class="hljs-string">"Data Inserted..."</span>);
+	    }
+	} <span class="hljs-keyword">catch</span> (SQLException e) {
+	    System.out.println(e);
+	}
+    }
+}</code></pre><p><em><u>com/crud/model/StudentModel.java:</u></em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> com.crud.model;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StudentModel</span> {
+	<span class="hljs-keyword">private</span> String name;
+	<span class="hljs-keyword">private</span> String address;
+	
+	<span class="hljs-keyword">public</span> <span class="hljs-title function_">StudentModel</span><span class="hljs-params">( String name, String address)</span> {
+		<span class="hljs-built_in">super</span>();
+		<span class="hljs-built_in">this</span>.name = name;
+		<span class="hljs-built_in">this</span>.address = address;
+	}
+
+	<span class="hljs-keyword">public</span> String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span> {
+		<span class="hljs-keyword">return</span> name;
+	}
+
+	<span class="hljs-keyword">public</span> String <span class="hljs-title function_">getAddress</span><span class="hljs-params">()</span> {
+		<span class="hljs-keyword">return</span> address;
+	}
+}</code></pre><p><em>com/crud/service/StudentService.java:</em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> com.crud.service;
+
+<span class="hljs-keyword">import</span> com.crud.Dao.StudentRecordDao;
+<span class="hljs-keyword">import</span> com.crud.model.StudentModel;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StudentService</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insertRecord</span><span class="hljs-params">(StudentModel student)</span> {
+	<span class="hljs-type">StudentRecordDao</span> <span class="hljs-variable">dao</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StudentRecordDao</span>();
+	dao.insertRecord(student);
+    }
+}</code></pre><p><em><u>com/crud/servlet/StudentServlet.java:</u></em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> com.crud.servlet;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> javax.servlet.ServletException;
+<span class="hljs-keyword">import</span> javax.servlet.annotation.WebServlet;
+<span class="hljs-keyword">import</span> javax.servlet.http.*;
+
+<span class="hljs-keyword">import</span> com.crud.model.StudentModel;
+<span class="hljs-keyword">import</span> com.crud.service.StudentService;
+
+
+<span class="hljs-meta">@WebServlet("/StudentServlet")</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StudentServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">HttpServlet</span> {
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;
+
+   
+	<span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> 
+			<span class="hljs-keyword">throws</span> ServletException, IOException {
+		String name=request.getParameter(<span class="hljs-string">"myName"</span>);
+		<span class="hljs-type">String</span> <span class="hljs-variable">address</span> <span class="hljs-operator">=</span> request.getParameter(<span class="hljs-string">"myAddress"</span>);
+		<span class="hljs-type">StudentModel</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StudentModel</span>(name,address);
+		<span class="hljs-type">StudentService</span> <span class="hljs-variable">service</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StudentService</span>();
+		service.insertRecord(student);
+	}
+
+	
+	<span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doPost</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> 
+			<span class="hljs-keyword">throws</span> ServletException, IOException {
+	
+		doGet(request, response);
+	}
+
+}</code></pre><p><em><u>com/crud/util/DbConnect.java:</u></em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> com.crud.util;
+<span class="hljs-keyword">import</span> java.sql.*;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DbConnect</span> {
+     <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">databaseURL</span> <span class="hljs-operator">=</span> <span class="hljs-string">"jdbc:mysql://localhost:3306/students"</span>
+     <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-string">"root"</span>;
+     <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">password</span> <span class="hljs-operator">=</span> <span class="hljs-string">""</span>;
+     
+     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Connection <span class="hljs-title function_">getConnection</span><span class="hljs-params">()</span> {
+    	 Connection conn=<span class="hljs-literal">null</span>;
+	     <span class="hljs-keyword">try</span> {
+	         Class.forName(<span class="hljs-string">"com.mysql.jdbc.Driver"</span>);
+	         <span class="hljs-keyword">try</span> {
+	             conn = DriverManager.getConnection(databaseURL, user, password);
+	             System.out.println(<span class="hljs-string">"Connected to the database"</span>);
+	         } <span class="hljs-keyword">catch</span> (SQLException e) {
+	             System.out.println(e);
+	         }
+	     } <span class="hljs-keyword">catch</span> (ClassNotFoundException e) {
+	         System.out.println(<span class="hljs-string">"Class not found exception"</span>);
+	     }
+	     <span class="hljs-keyword">return</span> conn;
+     }
+}</code></pre><h2 class="wp-block-heading">Conclusion</h2><p>This is how you write JSP and servlet programs. They can be combined to perform certain actions like I have calculated simple interest above. I have also mentioned how you can display Tribhuvan University 10 times with JSP or Servlet.</p><p><!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:group -->
+
+<!-- /wp:group -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"type":"video","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"xml","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"xml","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/c-6s6R1Lt-E","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:table {"hasFixedLayout":false} -->
+
+<!-- /wp:table -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph --></p><p>I hope this post is very helpful to you. If you have any questions, ask me in the comment section. I will reply as soon as possible. Thanks.</p></p>
+</div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/docs/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

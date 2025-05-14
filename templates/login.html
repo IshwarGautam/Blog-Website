@@ -22,7 +22,7 @@
       required
     />
   </div>
-  <button type="submit" class="btn btn-primary" {% if not (current_user.is_authenticated and current_user.is_admin) %}disabled{% endif %}>Login</button>
+  <button type="submit" class="btn btn-primary" {% if is_build != 'no' %}disabled{% endif %}>Login</button>
 </form>
 
 <p class="mt-3">

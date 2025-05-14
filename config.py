@@ -3,6 +3,8 @@ import os
 
 class Config:
     ENVIRONMENT = os.getenv("ENVIRONMENT")
+    IS_BUILD = os.getenv("IS_BUILD")
+
     SECRET_KEY = os.getenv("SECRET_KEY")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 

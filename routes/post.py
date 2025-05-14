@@ -48,7 +48,7 @@ def get_featured_image(html):
     if img_tag and img_tag.get("src"):
         featured_image = img_tag["src"]
     else:
-        featured_image = url_for("static", filename="Images/blank.png")
+        featured_image = url_for("static", filename="images/blank.png")
     return featured_image
 
 

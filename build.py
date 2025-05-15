@@ -90,6 +90,63 @@ def patch_contact_form_for_emailjs(build_dir):
             f.write(content)
         print("✅ Patched contact.html with EmailJS fetch script.")
 
+def patch_post_pages_for_comments(build_dir):
+    for root, _, files in os.walk(build_dir):
+        for file in files:
+            if file.startswith("post-") and file.endswith(".html"):
+                file_path = os.path.join(root, file)
+                with open(file_path, "r", encoding="utf-8") as f:
+                    content = f.read()
+
+                post_id = file.split("-")[1].split(".")[0]  # Assuming file is like post-12.html
+
+                script = f"""
+                <script>
+                fetch("/.netlify/functions/get_comments?post_id={post_id}")
+                .then(res => res.json())
+                .then(comments => {{
+                    const container = document.getElementById("comments");
+                    const map = {{}};
+
+                    comments.forEach(c => {{
+                    c.children = [];
+                    map[c.id] = c;
+                    }});
+
+                    comments.forEach(c => {{
+                    if (c.parent_id) {{
+                        map[c.parent_id].children.push(c);
+                    }}
+                    }});
+
+                    const render = (comment) => {{
+                    const div = document.createElement("div");
+                    div.className = "border p-2 mb-2 rounded";
+                    div.innerHTML = `<strong>${{comment.name}}</strong> - ${{new Date(comment.timestamp).toLocaleString()}}<br>${{comment.content}}`;
+
+                    if (comment.children.length) {{
+                        const childContainer = document.createElement("div");
+                        childContainer.style.marginLeft = "20px";
+                        comment.children.forEach(child => childContainer.appendChild(render(child)));
+                        div.appendChild(childContainer);
+                    }}
+
+                    return div;
+                    }};
+
+                    comments.filter(c => !c.parent_id).forEach(top => {{
+                    container.appendChild(render(top));
+                    }});
+                }})
+                </script>
+                """
+
+                if '<div id="comments">' in content:
+                    content = content.replace("</body>", script + "</body>")
+                    with open(file_path, "w", encoding="utf-8") as f:
+                        f.write(content)
+                    print(f"✅ Injected comment loader in {file_path}")
+
 
 def build_static_site(destination, base_url):
     app = create_app()
@@ -113,6 +170,7 @@ def build_static_site(destination, base_url):
             f.write("www.ishwargautam1.com.np")
 
     replace_image_paths(destination)
+    patch_contact_form_for_emailjs(destination)
     patch_contact_form_for_emailjs(destination)
 
 

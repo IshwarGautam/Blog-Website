@@ -1,6 +1,7 @@
 import re
 from database.ext import db
 from bs4 import BeautifulSoup
+from database.models.comment import Comment
 from utils.slug import generate_unique_slug
 from database.models.post import Post, PostImage
 from flask_login import login_required, current_user
@@ -68,7 +69,22 @@ def index(page=1):
 @post_bp.route("/<slug>.html")
 def post(slug):
     post = get_post(slug)
-    return render_template("post.html", post=post)
+    
+    comments = (
+        Comment.query.filter_by(post_id=post.id, parent_id=None)
+        .order_by(Comment.timestamp.desc())
+        .all()
+    )
+
+    for comment in comments:
+        comment.replies = (
+            Comment.query.filter_by(parent_id=comment.id)
+            .order_by(Comment.timestamp.asc())
+            .all()
+        )
+
+    return render_template("post.html", post=post, comments=comments)
+
 
 
 @post_bp.route("/create", methods=["GET", "POST"])

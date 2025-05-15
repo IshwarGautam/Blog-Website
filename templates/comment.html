@@ -1,0 +1,117 @@
+<style>
+  .comment-container {
+    margin-left: 20px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .comment-header {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 0.3rem;
+  }
+
+  .comment-timestamp {
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: #777;
+    margin-left: 0.5rem;
+  }
+
+  .comment-content {
+    margin-bottom: 0.8rem;
+    white-space: pre-wrap;
+  }
+
+  .reply-link {
+    font-size: 0.85rem;
+    color: #1877f2;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .reply-link:hover {
+    text-decoration: underline;
+  }
+
+  .reply-form {
+    margin-top: 0.8rem;
+    display: none;
+  }
+
+  .reply-form input,
+  .reply-form textarea {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .reply-form button {
+    font-size: 0.85rem;
+  }
+
+  /* Nested replies indent */
+  .nested-replies {
+    margin-left: 30px;
+    margin-top: 1rem;
+  }
+</style>
+
+<div class="comment-container">
+  <div class="comment-header">
+    <strong>{{ comment.name }}</strong>
+    <span class="comment-timestamp">
+      - {{ comment.timestamp.strftime('%Y-%m-%d %H:%M') }}
+    </span>
+  </div>
+
+  <div class="comment-content">{{ comment.content }}</div>
+
+  <div>
+    <span class="reply-link" onclick="toggleReplyForm('reply-form-{{ comment.id }}')">Reply</span>
+  </div>
+
+  <!-- Reply Form -->
+  <form method="POST" class="reply-form" id="reply-form-{{ comment.id }}">
+    <input type="hidden" name="parent_id" value="{{ comment.id }}" />
+    <input
+      type="text"
+      name="name"
+      placeholder="Your Name"
+      class="form-control form-control-sm"
+      required
+    />
+    <textarea
+      name="content"
+      placeholder="Write a reply..."
+      class="form-control form-control-sm"
+      rows="2"
+      required
+    ></textarea>
+    <button type="submit" class="btn btn-sm btn-primary">Post Reply</button>
+  </form>
+
+  <!-- Render replies recursively -->
+  <div class="nested-replies">
+    {% for reply in comment.replies %}
+      {% set comment = reply %}
+      {% include 'comment.html' %}
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  function toggleReplyForm(id) {
+    const form = document.getElementById(id);
+    if (form.style.display === "block") {
+      form.style.display = "none";
+    } else {
+      form.style.display = "block";
+      form.querySelector('input[name="name"]').focus();
+    }
+  }
+</script>

@@ -55,11 +55,13 @@ def create_app():
     from routes.post import post_bp
     from routes.about import about_bp
     from routes.contact import contact_bp
+    from routes.comment import comment_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(post_bp)
     app.register_blueprint(contact_bp)
     app.register_blueprint(about_bp)
+    app.register_blueprint(comment_bp)
 
     # initialize migrate
     Migrate(app, db)

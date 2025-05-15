@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    Java Concepts: Inheritance, Interfaces, and Multithreading
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-21 09:14:50.117231
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><p>In this post, we will be focusing on the most important Java Concepts i.e. inheritance, interfaces, and multithreading. </p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#inheritance">Java Inheritance Simplified: Practical Examples and Explanation</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#multiple-inheritance">How multiple inheritance is possible in Java? Through class or interface</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#multithreading">Exploring Multithreading in Java: Benefits, Importance, and Thread Lifecycle"</a></li>
+<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="inheritance">Java Inheritance Simplified: Practical Examples and Explanation</h2><p><strong id="inheritance">Inheritance</strong> is a process of creating a new class (child class/derived class) built upon an existing class (parent class/base class). It is a mechanism that allows one object to inherit all of the properties and behaviors of its parent object. It is an essential part of OOPs (Object Oriented Programming). When we inherit from a parent class, we can use its methods and fields. Furthermore, we can extend the current class by adding additional methods and properties. The IS-A relationship, often known as a parent-child relationship, is represented by inheritance.</p><p><strong>Why use inheritance in Java?</strong></p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>For Method Overriding (to enable runtime polymorphism).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>For code reusability.</li>
+<!-- /wp:list-item --></ul><p>We have two methods to initialize the data: using the constructor and using the setter method.</p><p><strong>Using constructor</strong></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> javaProject;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> {
+	<span class="hljs-keyword">private</span> String name;
+	<span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+	<span class="hljs-keyword">private</span> String address;
+	
+	<span class="hljs-comment">// using constructor</span>
+	<span class="hljs-keyword">public</span> <span class="hljs-title function_">Person</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age, String address)</span> {
+        <span class="hljs-built_in">this</span>.name = name;
+        <span class="hljs-built_in">this</span>.age = age;
+        <span class="hljs-built_in">this</span>.address = address;
+ }
+
+ <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>{
+       <span class="hljs-type">Person</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">"Ishwar"</span>,<span class="hljs-number">26</span>,<span class="hljs-string">"Butwal"</span>);
+    }
+}</code></pre><p><strong>Using the setter method of getter/setter</strong></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> javaProject;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> {
+	<span class="hljs-keyword">private</span> String name;
+	<span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+	<span class="hljs-keyword">private</span> String address;
+	
+	<span class="hljs-comment">// using setter</span>
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setName</span><span class="hljs-params">(String name)</span> {
+		<span class="hljs-built_in">this</span>.name = name;
+	}
+
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setAge</span><span class="hljs-params">(<span class="hljs-type">int</span> age)</span> {
+		<span class="hljs-built_in">this</span>.age = age;
+	}
+
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setAddress</span><span class="hljs-params">(String address)</span> {
+		<span class="hljs-built_in">this</span>.address = address;
+	}
+ }
+
+ <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>{
+       <span class="hljs-type">Person</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();
+       p.setName(<span class="hljs-string">"Ishwar"</span>);
+       p.setAge(<span class="hljs-number">26</span>);
+       p.setAddress(<span class="hljs-string">"Butwal"</span>);
+    }
+}</code></pre><p>Now to inheritance from the base (parent class), we can use the extend keyword as below. Class Student inherits from the Parent class. I am using a constructor to initialize/set the value. You can replace it with a setter method if you like. Here is the complete code showing the inheritance mechanism.</p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> javaProject;
+
+<span class="hljs-comment">// parent class</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span>{
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+    <span class="hljs-keyword">private</span> String address;
+
+    <span class="hljs-comment">// using constructor</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Person</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age, String address)</span> {
+        <span class="hljs-built_in">this</span>.name = name;
+        <span class="hljs-built_in">this</span>.age = age;
+        <span class="hljs-built_in">this</span>.address = address;
+    }
+
+    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> name;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAge</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> age;
+    }
+
+    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getAddress</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> address;
+    }
+}
+
+<span class="hljs-comment">// child class; use extends to inherit property</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Students</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Person</span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> stuid;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Students</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age, String address, <span class="hljs-type">int</span> stuid)</span> {
+        <span class="hljs-built_in">super</span>(name, age, address);
+        <span class="hljs-built_in">this</span>.stuid = stuid;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getStuid</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> stuid;
+    }
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>{
+       <span class="hljs-type">Students</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Students</span>(<span class="hljs-string">"Ishwar"</span>,<span class="hljs-number">23</span>,<span class="hljs-string">"Butwal"</span>,<span class="hljs-number">6</span>);
+        System.out.println(s.getName());
+        System.out.println(s.getAge());
+        System.out.println(s.getAddress());
+        System.out.println(s.getStuid());
+    }
+}</code></pre><h2 class="wp-block-heading" id="multiple-inheritance">How multiple inheritance is possible in Java? Through class or interface</h2><ul class="wp-block-list wp-embed-aspect-16-9 wp-has-aspect-ratio"><!-- wp:list-item -->
+<li>The Interface method doesn't have a body part.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Multiple inheritances are not possible in Java through class because of ambiguity and to reduce complexity.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>However multiple inheritances are possible in Java through interface because there is no ambiguity as its implementation is provided by the implement keyword.</li>
+<!-- /wp:list-item --></ul><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/VezF8WeVj3A" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">An interface is a completely "abstract class" that can have methods and variables just like a class, but the methods defined in the interface have no body.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">The interface must be "implemented" (like an inheritance) by another class using the implements keyword (instead of extends) in order to access the interface methods. The body of the interface method is provided by the "implement" class.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><span style="text-decoration: underline">Through class:</span></em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-comment">/*
+Q. Discuss the use of interfaces to achieve multiple inheritance.
+Q. What is interface? How can you implement multiple inheritance using the interface concept? Discuss with suitable example.
+Q. How do you achieve multiple inheritance in java? Discuss.
+Q. Why concept of interface is important? How multiple-inheritance is supported 
+   by interface? Explain with suitable example.
+Q. Write short note on: Interface
+ */</span>
+
+<span class="hljs-keyword">package</span> myProgram;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Cricket</span> {
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">func</span><span class="hljs-params">()</span> {
+		System.out.println(<span class="hljs-string">"I play cricket"</span>);
+	}
+}
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Football</span> {
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">func</span><span class="hljs-params">()</span> {
+		System.out.println(<span class="hljs-string">"I play football"</span>);
+	}
+}
+
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Cricket</span>, Football { <span class="hljs-comment">//suppose if it were</span>
+	
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+		<span class="hljs-type">Student</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();
+		s.func(); <span class="hljs-comment">//which method has to be invoked?</span>
+
+	}
+}
+<span class="hljs-comment">//But we will get error with this</span>
+<span class="hljs-comment">//so, multiple inheritance is not achieved through class</span>
+<span class="hljs-comment">//solution: interface</span></code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="text-decoration: underline"><em>Through interface:</em></span></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> myProgram;
+
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">Cricket</span>{
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">func1</span><span class="hljs-params">()</span>; <span class="hljs-comment">//interface method (does not have a body)</span>
+}
+
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">Football</span>{
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">func2</span><span class="hljs-params">()</span>; <span class="hljs-comment">//interface method (does not have a body)</span>
+}
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Cricket</span>, Football {
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">func1</span><span class="hljs-params">()</span> {
+		System.out.println(<span class="hljs-string">"I play Cricket"</span>);
+	}
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">func2</span><span class="hljs-params">()</span> {
+		System.out.println(<span class="hljs-string">"I play Football"</span>);
+	}
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+		<span class="hljs-type">Student</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();
+		s.func1();
+		s.func2();
+	}
+}</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="text-decoration: underline"><em><br></em></span></p><h2 class="wp-block-heading" id="multithreading">Exploring Multithreading in Java: Benefits, Importance, and Thread Lifecycle"</h2><p>Multithreading involves executing multiple threads simultaneously. A multi-threaded program consists of two or more sections that can run concurrently. Each component can tackle a separate task at the same time, making the most use of available resources, which is especially important when our machine has multiple CPUs.</p><p><strong><u><em>Importance/benefits of multithreading:</em></u></strong></p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>Multithreading allows us to write efficient programs that make maximum use of the CPU.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Because of multithreading, animation loops can sleep for a second between frames without forcing the entire system to pause.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Multithreading requires less overhead than multitasking: In multitasking, processes run in their own different address space, and tasks involved in multithreading can share the same address space.</li>
+<!-- /wp:list-item --></ul><p><strong><u><em>Life cycle of thread:</em></u></strong></p><p>A thread's life cycle includes several stages. A thread, for example, gets born, starts, runs,&nbsp;and then dies. The graphic below illustrates a thread's whole life cycle.</p><p><img src="https://drive.google.com/thumbnail?id=1AAiseMtPpwAKZtEL6_NCTVKPPyju9Ys6&amp;sz=w1000" data-filename="thread-life-cycle.png" style="width: 472px;"></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> ishwar;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Multithreading</span> {
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+
+        <span class="hljs-type">JavaThread</span> <span class="hljs-variable">thread1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JavaThread</span>(<span class="hljs-string">"Thread1"</span>);
+        thread1.start();
+        <span class="hljs-type">JavaThread</span> <span class="hljs-variable">thread2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JavaThread</span>(<span class="hljs-string">"Thread2"</span>);
+        thread2.start();
+    }
+}
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">JavaThread</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> {
+    Thread mythread;
+    <span class="hljs-keyword">private</span> String myname;
+    JavaThread(String name) {
+        myname = name;
+    }
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">"Thread running: "</span> + myname);
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++) {
+            System.out.println(i);
+            System.out.println(myname);
+            <span class="hljs-keyword">try</span> {
+                Thread.sleep(<span class="hljs-number">1000</span>);
+            } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+                System.out.println(<span class="hljs-string">"Thread has been interrupted"</span>);
+            }
+        }
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">start</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">"Thread started"</span>);
+        <span class="hljs-keyword">if</span> (mythread == <span class="hljs-literal">null</span>) {
+            mythread = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<span class="hljs-built_in">this</span>, myname);
+            mythread.start();
+        }
+    }
+}</code></pre><h2 class="wp-block-heading">Conclusion:</h2><p>In this post, we've looked at some important Java Concepts: inheritance, multiple inheritance, and multithreading. By grasping these concepts, you can improve your understanding of Java and utilize its strong capabilities to create more efficient and effective programs.</p><p><!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"type":"video","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:list -->
+
+<!-- wp:embed {"url":"https://youtu.be/VezF8WeVj3A","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":1314,"sizeSlug":"large","linkDestination":"none"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph --></p><p>I hope this post is very helpful to you. If you have any questions, ask me in the comment section. I will reply as soon as possible. Thanks.</p></p>
+</div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

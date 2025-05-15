@@ -55,7 +55,7 @@
 
 <!-- Comment section -->
 <h3>Leave a Comment</h3>
-<form method="POST" class="p-3 bg-light rounded shadow">
+<form method="POST" action="{{ url_for('comment.comment', post_id=post.id) }}" class="p-3 bg-light rounded shadow">
   <input type="hidden" name="parent_id" value="" />
 
   <div class="form-group">
@@ -74,8 +74,14 @@
 <hr />
 
 <h4>Comments</h4>
-{% for comment in comments %} {% include 'comment.html' with context %} {%
-endfor %}
+
+{% if comments %}
+  {% for comment in comments %}
+    {% include 'comment.html' %}
+  {% endfor %}
+{% else %}
+  <p>No comments yet. Be the first to comment!</p>
+{% endif %}
 
 <!-- Post Footer -->
 <footer

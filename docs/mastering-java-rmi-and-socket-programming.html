@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    Mastering Java RMI and Socket Programming
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-23 02:55:45.673149
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><style>
+#fancy-table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#fancy-table td, tbody tr:first-child {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#fancy-table tr:nth-child(even){background-color: #f2f2f2;}
+
+#fancy-table tr:hover {background-color: #ddd;}
+
+#fancy-table tbody tr:first-child {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+
+<p>Let's deep dive into RMI and Socket.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#rmi-intro">RMI Introduction</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#rmi-architecture">RMI architecture</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#rmi-program">RMI program: How to program in Java?</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#socket-intro">Socket Introduction</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#tcp-udp">About TCP and UDP socket</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#socket-program">Socket program to communicate between client and server</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#tcp-vs-udp">TCP socket vs. UDP socket in table</a></li>
+<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="rmi-intro">RMI Introduction</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Remote Method Invocation (RMI) is a technique for establishing communication between Java applications.&nbsp;It provides a mechanism to provide distributed applications in Java.&nbsp;It includes the main package<code> java.rmi</code>.</p><h2 class="wp-block-heading" id="rmi-architecture">RMI architecture:</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">In an RMI application, we write two programs, a&nbsp;server program&nbsp;(resides on the server) and a&nbsp;client program&nbsp;(resides on the client). It includes stub, skeleton, Remote Reference Layer, and Transport Layer.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><img src="https://drive.google.com/thumbnail?id=18jkmEOxz2tWg_ylDwABoEzTfavA9tNV-&amp;sz=w1000" data-filename="rmi-architecture.png" style="width: 400px;"></p><figure class="wp-block-image size-large"><br></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"></p><h2 class="wp-block-heading" id="rmi-program">RMI Program: <strong><em><span style="text-decoration: underline">How to program in Java??</span></em></strong></h2><ol style="list-style-type:video" class="wp-block-list wp-embed-aspect-16-9 wp-has-aspect-ratio"><!-- wp:list-item -->
+<li>Defining a remote interface</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Implementing the remote interface</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Implement the server</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Implement the client</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Compile the source file</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Start the Java RMI registry</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Start the server</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Run the client</li>
+<!-- /wp:list-item --></ol><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/32IbmULK6tk" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em>Client.java</em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-comment">//client program</span>
+<span class="hljs-keyword">import</span> java.rmi.*;
+<span class="hljs-keyword">import</span> java.net.*;
+<span class="hljs-keyword">import</span> java.io.*;
+<span class="hljs-keyword">import</span> java.util.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Client</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String args[])</span> {
+        <span class="hljs-type">Scanner</span> <span class="hljs-variable">sc</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);
+        System.out.print(<span class="hljs-string">"Enter first number: "</span>);
+        <span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> sc.nextInt();
+        System.out.print(<span class="hljs-string">"Enter second number: "</span>);
+        <span class="hljs-type">int</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> sc.nextInt();
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-type">Rem</span> <span class="hljs-variable">remobj</span> <span class="hljs-operator">=</span> (Rem) Naming.lookup(<span class="hljs-string">"rmi://localhost/Rem"</span>);
+            System.out.println(<span class="hljs-string">"Sum = "</span> + remobj.addNum(a, b));
+            System.out.println(<span class="hljs-string">"Difference = "</span> + remobj.subNum(a, b));
+        } <span class="hljs-keyword">catch</span> (RemoteException re) {
+            System.out.println(re);
+        } <span class="hljs-keyword">catch</span> (NotBoundException nbe) {
+            System.out.println(nbe);
+        } <span class="hljs-keyword">catch</span> (MalformedURLException mfe) {
+            System.out.println(mfe);
+        }
+    }
+}</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em>Rem.java</em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-comment">//define remote interface</span>
+<span class="hljs-keyword">import</span> java.rmi.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Rem</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Remote</span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">addNum</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> <span class="hljs-keyword">throws</span> RemoteException;
+  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">subNum</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> <span class="hljs-keyword">throws</span> RemoteException;
+}</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em>Rem_impt.java</em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-comment">//implementation of interface</span>
+<span class="hljs-keyword">import</span> java.rmi.*;
+<span class="hljs-keyword">import</span> java.rmi.server.UnicastRemoteObject;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Rem_impt</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">UnicastRemoteObject</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Rem</span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-title function_">Rem_impt</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> RemoteException{}
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">addNum</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span>{
+    <span class="hljs-keyword">return</span>(a+b);
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">subNum</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span>{
+    <span class="hljs-keyword">return</span>(a-b);
+  }
+}</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em>Server.java</em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-comment">//implementation of interface</span>
+<span class="hljs-keyword">import</span> java.rmi.*;
+<span class="hljs-keyword">import</span> java.rmi.server.UnicastRemoteObject;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Rem_impt</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">UnicastRemoteObject</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Rem</span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-title function_">Rem_impt</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> RemoteException{}
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">addNum</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span>{
+    <span class="hljs-keyword">return</span>(a+b);
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">subNum</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span>{
+    <span class="hljs-keyword">return</span>(a-b);
+  }
+}</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><br></em></p><h2 class="wp-block-heading" id="socket">Socket programming in Java - Chatting between client and server | Difference between TCP socket and UDP socket</h2><h2 class="wp-block-heading" id="socket-intro">Socket Introduction</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">A&nbsp;socket in Java&nbsp;is one endpoint of a two-way collaboration between two programs (for example, client and server). A socket is connected to a port number so that the TCP layer may detect that one application wants to connect with another program that has the same port number configured.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Questions:</strong></p><ul class="wp-block-list wp-embed-aspect-16-9 wp-has-aspect-ratio"><!-- wp:list-item -->
+<li>What is a UDP socket? Differentiate it with a TCP socket.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>What is a socket? How can you communicate two programs in a network using TCP Socket?</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>What is a TCP socket? Differentiate it with a UDP socket.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>What is a socket? Differentiate TCP socket from UDP socket.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>What is a socket? How can Java programs communicate with one another over TCP sockets? Discuss with a suitable example.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Create a Java program that uses TCP to allow client and server communication.</li>
+<!-- /wp:list-item --></ul><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/ZXx0L7bvVPw" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading" id="tcp-udp">About TCP and UDP socket</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>TCP socket:</strong></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">TCP provides a secure, point-to-point communication channel for&nbsp;client-server applications to connect&nbsp;with one another on the Web. A client program and a server program&nbsp;establish a connection to interact over TCP. Each program associates a socket with the end of the connection. The client and server communicate by reading and writing to the socket linked to the connection.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>UDP socket:</strong></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">UDP socket uses user datagram protocol (UDP). The&nbsp;User Datagram Protocol (UDP)&nbsp;runs on top of the Internet Protocol (IP) and was developed for applications that do not require reliability, acknowledgment, or flow control features at the transport layer. This&nbsp;simple protocol&nbsp;provides transport layer addressing in the form of UDP ports and an optional checksum capability.</p><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="socket-program"><strong>Socket program to communicate between client and server:</strong></h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><span style="text-decoration: underline">client.java</span></em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> java.net.*;
+<span class="hljs-keyword">import</span> java.io.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">client</span>{
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException{
+		
+		<span class="hljs-comment">//1. make a socket connection to the server.</span>
+		<span class="hljs-type">Socket</span> <span class="hljs-variable">conn</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Socket</span>(<span class="hljs-string">"localhost"</span>,<span class="hljs-number">95</span>);
+
+		<span class="hljs-comment">//2. Get the socket I/O stream and perform the processing</span>
+		<span class="hljs-comment">//2.1 --&gt; InputStream; to receive information from server</span>
+		<span class="hljs-comment">//2.2 --&gt; OutputStream; to send information to the server</span>
+		<span class="hljs-type">PrintWriter</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrintWriter</span>(conn.getOutputStream());
+		out.println(<span class="hljs-string">"hello server"</span>);
+		out.flush();
+
+		<span class="hljs-type">BufferedReader</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(
+			<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(conn.getInputStream())
+			);
+
+		<span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> in.readLine();
+		System.out.println(<span class="hljs-string">"server: "</span>+str);
+
+		<span class="hljs-comment">//3. close the connection</span>
+		in.close();
+		out.close();
+		conn.close();
+
+	}
+}</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><span style="text-decoration: underline">server.java</span></em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> java.net.*;
+<span class="hljs-keyword">import</span> java.io.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">server</span>{
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException{
+		<span class="hljs-comment">//1. create a server socket</span>
+		<span class="hljs-type">ServerSocket</span> <span class="hljs-variable">server</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerSocket</span>(<span class="hljs-number">95</span>);
+
+		<span class="hljs-comment">//2. wait for a connection</span>
+		System.out.println(<span class="hljs-string">"Waiting for the client....."</span>);
+		<span class="hljs-type">Socket</span> <span class="hljs-variable">conn</span> <span class="hljs-operator">=</span> server.accept();
+		System.out.println(<span class="hljs-string">"client connected!!"</span>);
+
+
+		<span class="hljs-comment">//3. Get the socket I/O stream and perform the processing</span>
+		<span class="hljs-comment">//3.1 --&gt; InputStream; to receive information from client</span>
+		<span class="hljs-comment">//3.2 --&gt; OutputStream; to send information to the client</span>
+		<span class="hljs-type">BufferedReader</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(
+			<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(conn.getInputStream())
+			);
+
+		<span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> in.readLine();
+		System.out.println(<span class="hljs-string">"client: "</span>+str);
+
+		<span class="hljs-type">PrintWriter</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrintWriter</span>(conn.getOutputStream());
+		out.println(<span class="hljs-string">"hi client"</span>);
+		out.flush();
+
+		<span class="hljs-comment">//4. Close the connection</span>
+		in.close();
+		out.close();
+		conn.close();
+
+	}
+}</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><span style="text-decoration: underline"><br></span></em></p><h2 class="wp-block-heading" id="tcp-vs-udp"><strong>Differences between TCP and UDP:</strong></h2><figure class="wp-block-table wp-embed-aspect-16-9 wp-has-aspect-ratio"><table id="fancy-table"><tbody><tr><td>S.N.</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>TCP</strong></td><td><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UDP</strong></td></tr><tr><td>i.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>TCP is a connection-oriented protocol.&nbsp;</td><td>UDP is a connection-less protocol.&nbsp;</td></tr><tr><td>ii.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>TCP is reliable as it guarantees the delivery of data to the destination router.</td><td>The delivery of data to the destination cannot be guaranteed in UDP.</td></tr><tr><td>iii.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>TCP is comparatively slower than UDP.</td><td>UDP is faster, simpler, and more efficient than TCP.</td></tr><tr><td>iv.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Retransmission of lost packets is possible in TCP.</td><td>There is no retransmission of lost packets in User Datagram Protocol (UDP).</td></tr><tr><td>v.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>TCP is heavy-weight.</td><td>UDP is lightweight.</td></tr><tr><td>vi.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>TCP header size is 20 bytes.</td><td>UDP Header size is 8 bytes.</td></tr><tr><td>vii.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>TCP is used by HTTP, FTP, SMTP Telnet etc.</td><td>UDP is used by DNS, RIP (Routing information protocol), VoIP (voice over internet protocol), etc.</td></tr></tbody></table></figure><h2 class="wp-block-heading"><br></h2><h2 class="wp-block-heading">Conclusion:</h2><p>In this way, we can write an RMI program and socket program. Using RMI and Socket, we can communicate between client and server. I hope the given code (RMI program and Socket program) is very clear to you.</p><p><!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":1304,"sizeSlug":"large","linkDestination":"none"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true,"type":"video","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:list -->
+
+<!-- wp:embed {"url":"https://youtu.be/32IbmULK6tk","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"type":"video","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:list -->
+
+<!-- wp:embed {"url":"https://youtu.be/ZXx0L7bvVPw","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:table {"hasFixedLayout":false,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:table -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph --></p><p>I hope this post is very helpful to you. If you have any questions, don't hesitate to ask me in the comment section. I will reply as soon as possible. Thanks.</p></p>
+</div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

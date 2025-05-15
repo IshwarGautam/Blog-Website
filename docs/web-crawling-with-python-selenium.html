@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    Web crawling with Python Selenium
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-27 10:13:59.206333
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><p><img src="https://drive.google.com/thumbnail?id=1R_o8dr0TmwkLcuO59szrwYck-00Lltt6&sz=w1000" data-filename="selenium.jpg" style="width: 50%;"><br></p><p>Selenium is the most popular framework for automation.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#web-crawling">What is web crawling?</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#crawl-facebook">Crawl a Facebook website and perform some action on it.</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#explore-code">Explore each of the code</a><!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#import-packages">Import required packages</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#configure-driver">Configuring Chrome driver</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#headless-browser">Headless browser</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#window-size">Window size</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#wait">Implicit or Explicit Wait</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#fb-crawler">Facebook crawler</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item --></ol><p></p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/xe7iLj987Mk" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading" id="web-crawling">What is web crawling?</h2><p>Web crawling is a technique for automating certain web tasks with the help of an automated script. It crawls the web in order to index content for search engines. We can also call it a spider or search engine bot.</p><h2 class="wp-block-heading" id="crawl-facebook">Let's crawl a Facebook website and perform some action on it</h2><p>I'm going to crawl the Facebook website and perform a few actions. Please keep in mind that this post is purely for educational purposes. You must be familiar with the Facebook account. Crawling Facebook sites may be a good place to start. If you execute the script repeatedly, Facebook will recognize whether it is being done by a human or a bot and mark your request as Spam. So, execute this script periodically. The most important thing is to understand what this code is doing.</p><p><strong>Task:</strong></p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>Log in to the Facebook website with credentials username and password.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Go to the user profile.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Post something on Facebook.</li></ul><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver
+<span class="hljs-keyword">from</span> selenium.webdriver.common.by <span class="hljs-keyword">import</span> By
+<span class="hljs-keyword">from</span> selenium.webdriver.chrome.service <span class="hljs-keyword">import</span> Service
+
+options = webdriver.ChromeOptions()
+svc = Service(<span class="hljs-string">"./opt/chromedriver"</span>)
+
+options.binary_location = <span class="hljs-string">"./opt/chrome-linux/chrome"</span>
+<span class="hljs-comment"># options.add_argument("--headless")</span>
+options.add_experimental_option(<span class="hljs-string">"detach"</span>, <span class="hljs-literal">True</span>)
+options.add_argument(<span class="hljs-string">"--window-size=1520,800"</span>)
+options.add_argument(<span class="hljs-string">"--disable-notifications"</span>)
+
+driver = webdriver.Chrome(service=svc, options=options)
+driver.implicitly_wait(<span class="hljs-number">10</span>)
+
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">login</span>(<span class="hljs-params">username, passwd</span>):
+    <span class="hljs-keyword">try</span>:
+        driver.get(<span class="hljs-string">'https://www.facebook.com'</span>)
+
+        txtUsername = driver.find_element(By.ID, <span class="hljs-string">'email'</span>)
+        txtUsername.send_keys(username)
+
+        txtPasswd = driver.find_element(By.ID, <span class="hljs-string">'pass'</span>)
+        txtPasswd.send_keys(passwd)
+
+        btnLogin = driver.find_element(By.NAME, <span class="hljs-string">'login'</span>)
+        btnLogin.submit()
+
+        driver.get(<span class="hljs-string">f"https://www.facebook.com/<span class="hljs-subst">{username}</span>"</span>)
+
+        <span class="hljs-comment"># verify login</span>
+        <span class="hljs-comment"># there must be 'Add to story' button after login</span>
+        driver.find_element(
+            By.XPATH, <span class="hljs-string">"//a[@aria-label='Add to story']"</span>)
+
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"Unable to login. Please check your username or password once again."</span>)
+        <span class="hljs-built_in">print</span>(e)
+
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">post_on_facebook</span>(<span class="hljs-params">post_text</span>):
+    <span class="hljs-keyword">try</span>:
+        buttons = driver.find_elements(
+            By.XPATH, <span class="hljs-string">"//div[@role='button']"</span>)
+
+        <span class="hljs-keyword">for</span> button <span class="hljs-keyword">in</span> buttons:
+            <span class="hljs-keyword">if</span> button.text == <span class="hljs-string">"What's on your mind?"</span>:
+                button.click()
+
+        activepostarea = driver.switch_to.active_element
+        activepostarea.send_keys(
+            post_text)
+
+        postBtn = driver.find_element(
+            By.XPATH, <span class="hljs-string">"//div[@aria-label='Post']"</span>)
+        postBtn.click()
+
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"Successfully posted in Facebook."</span>)
+    <span class="hljs-keyword">except</span>:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"Something went wrong. Unable to post in Facebook."</span>)
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:
+    username = <span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter facebook username: "</span>)
+    passwd = <span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter facebook password: "</span>)
+
+    isLogin = login(username, passwd)
+
+    <span class="hljs-keyword">if</span> isLogin:
+        post_text = <span class="hljs-built_in">input</span>(<span class="hljs-string">"What you want to post: "</span>)
+        post_on_facebook(post_text)
+</code><div><br></div></pre><ul class="wp-block-list">
+<!-- /wp:list-item --></ul><pre class="wp-block-syntaxhighlighter-code"><em style="font-size: 2rem; color: rgb(0, 0, 0); font-family: sans-serif;">Let's explore the code mentioned above in more detail.</em></pre><h2 class="wp-block-heading" id="import-packages">Step 1: Import required packages</h2><p>Install selenium with Pip. Selenium is an open-source package for automating certain tasks.</p><p><code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-luminous-vivid-orange-color"><font color="#e76363">pip install selenium</font></mark></code></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver
+<span class="hljs-keyword">from</span> selenium.webdriver.common.by <span class="hljs-keyword">import</span> By
+<span class="hljs-keyword">from</span> selenium.webdriver.chrome.service <span class="hljs-keyword">import</span> Service</code></pre><p>The 'By' module is used to locate elements by class name, ID, tags, CSS selector, and so on. 'Service' is used to take selenium service like configuring chrome driver.</p><h2 class="wp-block-heading" id="configure-driver">Step 2: Configuring Chrome driver</h2><p>I will mention two ways to configure the Chrome driver.</p><ol class="wp-block-list"><!-- wp:list-item -->
+<li>Install chrome driver at run time.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Provide the Chrome driver path</li>
+<!-- /wp:list-item --></ol><p>The Chrome driver will be downloaded during <strong>runtime</strong> if it has not already been downloaded. However, if you wish to deploy your code somewhere where it will be difficult to download anything at run time, these are not viable solutions. However, configuring the Chrome driver with this option is straightforward. For this, you need to install webdriver-manager from pip.</p><p><code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-luminous-vivid-orange-color"><font color="#e76363">pip install webdriver-manager</font></mark></code></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> webdriver_manager.chrome <span class="hljs-keyword">import</span> ChromeDriverManager
+
+driver = webdriver.Chrome(service=Service(
+    ChromeDriverManager().install()), options=chrome_options)</code></pre><p>The second method is to provide the chrome driver path. I have provided a path in the above sample code. For this, you need to install Chromium and a Chrome driver manually. </p><p>To download <strong>Chromium</strong> specific to your Operating system:</p><p><a href="https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html">https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html</a></p><p>To download <strong>Chrome driver</strong> specific to your Operating system:</p><p><a href="https://chromedriver.storage.googleapis.com/index.html?path=114.0.5735.90/">https://chromedriver.storage.googleapis.com/index.html?path=114.0.5735.90/</a></p><p></p><h2 class="wp-block-heading" id="headless-browser">Step 3: Headless browser</h2><p>Now it's up to you to run your script headless or not. In a headless browser, there will be no graphical user interface.</p><p>To run a script in headless, add an option in Chrome options:</p><pre><code class="language-python hljs" contenteditable="true" style="">options.add_argument(<span class="hljs-string">"--headless"</span>)</code></pre><p>If you prefer a graphical user interface, simply remove or comment on this line, as I have done above.</p><p>And, if you also want to keep your browser open after the execution is completed, simply add the below option:</p><pre><code class="language-python hljs" contenteditable="true" style="">options.add_experimental_option(<span class="hljs-string">"detach"</span>, <span class="hljs-literal">True</span>)</code></pre><h2 class="wp-block-heading" id="window-size">Step 4: Window size</h2><p>It is compulsory to add window size even if you are executing your script in headless mode. It is because Selenium may sometimes consider your program to be for a mobile device.</p><pre><code class="language-python hljs" contenteditable="true" style="">options.add_argument(<span class="hljs-string">"--window-size=1520,800"</span>)</code></pre><p>In GUI, we can also maximize the window to its full size.</p><pre><code class="language-python hljs" contenteditable="true" style="">driver.maximize_window()</code></pre><h2 class="wp-block-heading" id="wait">Step 5: Implicit or Explicit wait</h2><p>The wait function in Selenium is important to ensure the&nbsp;uninterrupted operation of our program. It's important to give our driver some extra time to make sure everything is loaded properly. For this, there are primarily two approaches.</p><p>The implicit and explicit wait&nbsp;enable the selenium Webdriver to wait for a specific length of time before throwing an exception. They both serve the same function. The difference is that implicit wait is defined just once throughout the program, whereas explicit wait can be defined several times and it makes Webdriver wait until a certain condition is met.</p><p>I'm using implicit wait in the above program. As a result, if the driver is unable to locate any elements, it will always wait for a predefined&nbsp;amount&nbsp;of times.</p><pre><code class="language-python hljs" contenteditable="true" style="">driver.implicitly_wait(<span class="hljs-number">10</span>)</code></pre><p>Sample code for defining explicit wait:</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> selenium.webdriver.support.wait <span class="hljs-keyword">import</span> WebDriverWait
+<span class="hljs-keyword">from</span> selenium.webdriver.support <span class="hljs-keyword">import</span> expected_conditions <span class="hljs-keyword">as</span> EC
+
+wait = WebDriverWait(driver, <span class="hljs-number">10</span>)
+
+wait.until(EC.presence_of_element_located(
+    (By.ID, <span class="hljs-string">"datePicker"</span>)))</code></pre><p><strong>Which wait is better? </strong>Both of them are very useful. Both of them do not wait for the full amount of time if a given condition has already been met. In a basic application, I believe the&nbsp;implicit wait is preferable because we only need to define it once throughout the program. As a result, we can concentrate only on other parts of the code. </p><p>However, for complex programs or if your program may need to be extended later, an explicit wait is a better technique. It's because you don't always have to wait the same length of time throughout the program. You could also need to take action only when an exception occurs. So, in my opinion, implicit wait is better for a basic program while explicit wait is better for a large one. By the way, I am a software engineer and I am currently working on web crawling. It is completely up to you to make your choice.</p><h2 class="wp-block-heading" id="fb-crawler">Step 6: Facebook crawler</h2><p>I have already provided you with a basic and important concept in Selenium. Now, it's time to discuss our main project. </p><p>Here I am crawling the Facebook website. To locate an element, we must first determine how we can uniquely locate that element, such as by Id, class name, and so on.</p><pre><code class="language-python hljs" contenteditable="true" style="">driver.get(<span class="hljs-string">'https://www.facebook.com'</span>)
+
+txtUsername = driver.find_element(By.ID, <span class="hljs-string">'email'</span>)
+txtUsername.send_keys(username)
+
+txtPasswd = driver.find_element(By.ID, <span class="hljs-string">'pass'</span>)
+txtPasswd.send_keys(passwd)
+
+btnLogin = driver.find_element(By.NAME, <span class="hljs-string">'login'</span>)
+btnLogin.submit()</code></pre><p>After navigating to facebook.com, I send keys (username and password) to the required element and then I click the submit button.</p><p>Everything is clear in the code now. After executing the script, the bot will post on Facebook.</p><h2 class="wp-block-heading">Conclusion</h2><p>This is how you can automate a Selenium task. I've made it quite clear how you can log into Facebook automatically and post stuff there.</p><p><!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/xe7iLj987Mk","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":628,"sizeSlug":"large","linkDestination":"none"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph --></p><p>I hope this post is clear to you. Please leave feedback below if you have any queries. I will reply as soon as possible. Thanks mate.</p></p>
+</div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

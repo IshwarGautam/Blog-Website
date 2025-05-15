@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    Python Kivy Tutorial: Build a Mobile App
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-27 10:13:59.206333
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><p>Python Kivy is an open-source graphical user toolkit. This library allows us to make a desktop application or mobile application.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#first-app">Create a first app with kivy</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#grid-layout">Learn about Grid Layout</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#float-layout">Learn about Float Layout</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#page-layout">Learn about Page Layout</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#main-app">Build our main app</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#create-mobile-application">Creating Mobile (Android, IOS) applications with Python</a></li>
+<!-- /wp:list-item --></ol><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/EFCLm_zjKBg" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading" id="first-app">Create a first app with Kivy:</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> kivy.app <span class="hljs-keyword">import</span> App
+<span class="hljs-keyword">from</span> kivy.uix.label <span class="hljs-keyword">import</span> Label
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyFirstApp</span>(<span class="hljs-title class_ inherited__">App</span>):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">build</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-keyword">return</span> Label(text=<span class="hljs-string">"IG Tech Team"</span>)
+
+MyFirstApp().run()</code></pre><p><strong>Output:</strong></p><p><img src="https://drive.google.com/thumbnail?id=1vhq4mb8BF-R14331dAbQPHG6MQtbRHi5&amp;sz=w1000" data-filename="kivy-igtechteam.png" style="width: 800px;"><strong><br></strong></p><figure class="wp-block-image size-large"><br></figure><h2 class="wp-block-heading" id="grid-layout">GridLayout:</h2><p>Let's use GridLayout to create a container and then insert a label and a button inside of it.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> kivy.app <span class="hljs-keyword">import</span> App
+<span class="hljs-keyword">from</span> kivy.uix.gridlayout <span class="hljs-keyword">import</span> GridLayout
+<span class="hljs-keyword">from</span> kivy.uix.label <span class="hljs-keyword">import</span> Label
+<span class="hljs-keyword">from</span> kivy.uix.button <span class="hljs-keyword">import</span> Button
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyLayout</span>(<span class="hljs-title class_ inherited__">GridLayout</span>):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, **kwargs</span>):
+        <span class="hljs-built_in">super</span>().__init__(**kwargs)
+        self.rows = <span class="hljs-number">2</span>
+        self.cols = <span class="hljs-number">2</span>
+
+        self.lbl1 = Label(text = <span class="hljs-string">"IG Tech Team"</span>)
+        self.add_widget(self.lbl1)
+
+        self.b1 = Button(text=<span class="hljs-string">"Click me"</span>, background_color = (<span class="hljs-number">0</span>,<span class="hljs-number">128</span>,<span class="hljs-number">0</span>), color=(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>))
+        self.add_widget(self.b1)
+
+        self.lbl2 = Label(text = <span class="hljs-string">"Kivy tutorial"</span>)
+        self.add_widget(self.lbl2)
+
+        self.b2 = Button(text=<span class="hljs-string">"Learn more"</span>)
+        self.add_widget(self.b2)
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyApp</span>(<span class="hljs-title class_ inherited__">App</span>):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">build</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-keyword">return</span> MyLayout()
+
+MyApp().run()</code></pre><p><strong>Output:</strong></p><p><img selected="" src="https://drive.google.com/thumbnail?id=12aabNJg8GlsnqG4uZQ1t5cwbOl4x4IFR&amp;sz=w1000" data-filename="kivy-gridlayout.png" style="width: 799px;"><strong><br></strong></p><figure class="wp-block-image size-large"><br></figure><h2 class="wp-block-heading" id="float-layout">FloatLayout:</h2><p>In most cases, I go with this layout. This is because we can set the size of different widgets in this layout and we don't need to mention the number of rows and columns.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> kivy.app <span class="hljs-keyword">import</span> App
+<span class="hljs-keyword">from</span> kivy.uix.floatlayout <span class="hljs-keyword">import</span> FloatLayout
+<span class="hljs-keyword">from</span> kivy.uix.label <span class="hljs-keyword">import</span> Label
+<span class="hljs-keyword">from</span> kivy.uix.button <span class="hljs-keyword">import</span> Button
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyLayout</span>(<span class="hljs-title class_ inherited__">FloatLayout</span>):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, **kwargs</span>):
+        <span class="hljs-built_in">super</span>().__init__(**kwargs)
+
+        self.l1 = Label(
+            text = <span class="hljs-string">"IG Tech Team"</span>, 
+            size_hint = (<span class="hljs-number">0.2</span>,<span class="hljs-number">0.1</span>), 
+            pos_hint={<span class="hljs-string">"x"</span>:<span class="hljs-number">0.2</span>, <span class="hljs-string">"y"</span>:<span class="hljs-number">0.8</span>}
+            )
+        self.add_widget(self.l1)
+
+        self.b1 = Button(
+            text=<span class="hljs-string">"Click me"</span>, 
+            background_color = (<span class="hljs-number">0</span>,<span class="hljs-number">128</span>,<span class="hljs-number">0</span>), 
+            color=(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>),
+            size_hint = (<span class="hljs-number">0.2</span>,<span class="hljs-number">0.1</span>),
+            pos_hint={<span class="hljs-string">"x"</span>:<span class="hljs-number">0.4</span>, <span class="hljs-string">"y"</span>:<span class="hljs-number">0.8</span>}
+            )
+        self.add_widget(self.b1)
+
+        self.l2 = Label(
+            text = <span class="hljs-string">"Kivy tutorial"</span>, 
+            size_hint = (<span class="hljs-number">0.2</span>,<span class="hljs-number">0.1</span>),
+            pos_hint={<span class="hljs-string">"x"</span>:<span class="hljs-number">0.2</span>, <span class="hljs-string">"y"</span>:<span class="hljs-number">0.6</span>}
+            )
+        self.add_widget(self.l2)
+
+        self.b2 = Button(
+            text=<span class="hljs-string">"Learn more"</span>, 
+            size_hint = (<span class="hljs-number">0.2</span>,<span class="hljs-number">0.1</span>),
+            pos_hint={<span class="hljs-string">"x"</span>:<span class="hljs-number">0.4</span>, <span class="hljs-string">"y"</span>:<span class="hljs-number">0.6</span>}
+            )
+        self.add_widget(self.b2)
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyApp</span>(<span class="hljs-title class_ inherited__">App</span>):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">build</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-keyword">return</span> MyLayout()
+
+MyApp().run()</code></pre><p><strong>Output:</strong></p><p><img src="https://drive.google.com/thumbnail?id=1FPJ2Hq7fwDJwbT2FFZvV_Re7jIGgQs6s&amp;sz=w1000" data-filename="kivy-floatlayout.png" style="width: 799px;"><strong><br></strong></p><figure class="wp-block-image size-large"><br></figure><h2 class="wp-block-heading" id="page-layout">PageLayout:</h2><p>Each widget occupied a whole page.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> kivy.app <span class="hljs-keyword">import</span> App
+<span class="hljs-keyword">from</span> kivy.uix.pagelayout <span class="hljs-keyword">import</span> PageLayout
+<span class="hljs-keyword">from</span> kivy.uix.label <span class="hljs-keyword">import</span> Label
+<span class="hljs-keyword">from</span> kivy.uix.button <span class="hljs-keyword">import</span> Button
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyLayout</span>(<span class="hljs-title class_ inherited__">PageLayout</span>):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, **kwargs</span>):
+        <span class="hljs-built_in">super</span>().__init__(**kwargs)
+
+
+        self.b1 = Button(text=<span class="hljs-string">"Click me"</span>, background_color = (<span class="hljs-number">0</span>,<span class="hljs-number">128</span>,<span class="hljs-number">0</span>), color=(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>))
+        self.add_widget(self.b1)
+
+        self.b2 = Button(text=<span class="hljs-string">"Learn more"</span>)
+        self.add_widget(self.b2)
+
+        self.b3 = Button(text=<span class="hljs-string">"IG Tech Team"</span>)
+        self.add_widget(self.b3)
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyApp</span>(<span class="hljs-title class_ inherited__">App</span>):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">build</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-keyword">return</span> MyLayout()
+
+MyApp().run()</code></pre><h2 class="wp-block-heading" id="main-app">Let's build our main app:</h2><p>I am implementing the following things here:</p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>Using FlowLayout</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Change the title of my application</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Change the icon of my app</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>adding an image to my window</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>using a label, text input, and button</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>When a button is pressed, show a popup message.</li></ul><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> kivy.app <span class="hljs-keyword">import</span> App
+<span class="hljs-keyword">from</span> kivy.uix.floatlayout <span class="hljs-keyword">import</span> FloatLayout
+<span class="hljs-keyword">from</span> kivy.uix.label <span class="hljs-keyword">import</span> Label
+<span class="hljs-keyword">from</span> kivy.uix.button <span class="hljs-keyword">import</span> Button
+<span class="hljs-keyword">from</span> kivy.uix.image <span class="hljs-keyword">import</span> Image
+<span class="hljs-keyword">from</span> kivy.uix.textinput <span class="hljs-keyword">import</span> TextInput
+<span class="hljs-keyword">from</span> kivy.uix.popup <span class="hljs-keyword">import</span> Popup
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyLayout</span>(<span class="hljs-title class_ inherited__">FloatLayout</span>):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, **kwargs</span>):
+        <span class="hljs-built_in">super</span>().__init__(**kwargs)
+
+        self.img = Image(
+            source=<span class="hljs-string">"img.png"</span>,
+            pos_hint={<span class="hljs-string">"x"</span>:<span class="hljs-number">0.4</span>, <span class="hljs-string">"y"</span>:<span class="hljs-number">0.45</span>}
+        )
+        self.add_widget(self.img)
+
+        self.l1 = Label(
+            text = <span class="hljs-string">"Enter your name"</span>, 
+            size_hint = (<span class="hljs-number">0.2</span>,<span class="hljs-number">0.1</span>), 
+            pos_hint={<span class="hljs-string">"x"</span>:<span class="hljs-number">0.2</span>, <span class="hljs-string">"y"</span>:<span class="hljs-number">0.8</span>},
+            font_size=<span class="hljs-number">40</span>
+            )
+        self.add_widget(self.l1)
+
+        self.t1 = TextInput(
+            text=<span class="hljs-string">""</span>,
+            size_hint = (<span class="hljs-number">0.3</span>,<span class="hljs-number">0.1</span>),
+            pos_hint={<span class="hljs-string">"x"</span>:<span class="hljs-number">0.5</span>, <span class="hljs-string">"y"</span>:<span class="hljs-number">0.8</span>},
+            font_size=<span class="hljs-number">40</span>
+        )
+        self.add_widget(self.t1)
+
+        self.l2 = Label(
+            text = <span class="hljs-string">"Enter your age"</span>, 
+            size_hint = (<span class="hljs-number">0.2</span>,<span class="hljs-number">0.1</span>), 
+            pos_hint={<span class="hljs-string">"x"</span>:<span class="hljs-number">0.2</span>, <span class="hljs-string">"y"</span>:<span class="hljs-number">0.6</span>},
+            font_size=<span class="hljs-number">40</span>
+            )
+        self.add_widget(self.l2)
+
+        self.t2 = TextInput(
+            text=<span class="hljs-string">""</span>,
+            size_hint = (<span class="hljs-number">0.3</span>,<span class="hljs-number">0.1</span>),
+            pos_hint={<span class="hljs-string">"x"</span>:<span class="hljs-number">0.5</span>, <span class="hljs-string">"y"</span>:<span class="hljs-number">0.6</span>},
+            font_size=<span class="hljs-number">40</span>
+        )
+        self.add_widget(self.t2)
+
+        self.b1 = Button(
+            text=<span class="hljs-string">"Submit"</span>, 
+            size_hint = (<span class="hljs-number">0.2</span>,<span class="hljs-number">0.1</span>),
+            pos_hint={<span class="hljs-string">"x"</span>:<span class="hljs-number">0.35</span>, <span class="hljs-string">"y"</span>:<span class="hljs-number">0.45</span>},
+            font_size=<span class="hljs-number">40</span>
+            )
+        self.b1.bind(on_press = self.callback)
+        self.add_widget(self.b1)
+
+        self.pop = Popup(
+            title=<span class="hljs-string">"Message"</span>,
+            size_hint = (<span class="hljs-literal">None</span>, <span class="hljs-literal">None</span>),
+            size = (<span class="hljs-number">400</span>,<span class="hljs-number">400</span>),
+            content = Label(
+                text = <span class="hljs-string">""</span>
+            )
+        )
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">callback</span>(<span class="hljs-params">self, e</span>):
+        self.pop.content.text = <span class="hljs-string">"Welcome "</span> + self.t1.text
+        self.pop.<span class="hljs-built_in">open</span>()
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyApp</span>(<span class="hljs-title class_ inherited__">App</span>):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">build</span>(<span class="hljs-params">self</span>):
+        self.title=<span class="hljs-string">"My First App"</span>
+        self.icon = <span class="hljs-string">"icon.png"</span>
+        <span class="hljs-keyword">return</span> MyLayout()
+
+MyApp().run()</code></pre><h2 class="wp-block-heading" id="create-mobile-application">Creating Mobile (Android, IOS) applications with Python</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">With the Python programming language, creating applications is quite simple. Of course, using Python code alone is insufficient.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">To make an app, the following things need to be done:</p><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">Make GUI App using Python Kivy:</h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/EFCLm_zjKBg" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">Convert into Android application using Buildozer:</h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/gFjmkPBVJK0" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Run these codes in Google colaboratory.<br>First of all, upload all the files (i.e. python file and all its dependencies)</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> google.colab <span class="hljs-keyword">import</span> files
+uploaded = files.upload()</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">Install the required package i.e. buildozer.</h2><pre><code class="language-python hljs" contenteditable="true" style="">!pip install buildozer</code></pre><pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="font-size: 2rem; color: rgb(0, 0, 0); font-family: sans-serif;">Then, install all the dependencies of buildozer:</span></pre><pre><code class="language-python hljs" contenteditable="true" style="">!pip install cython==<span class="hljs-number">0.29</span><span class="hljs-number">.19</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style="">!sudo apt-get install -y \
+    python3-pip \
+    build-essential \
+    git \
+    python3 \
+    python3-dev \
+    ffmpeg \
+    libsdl2-dev \
+    libsdl2-image-dev \
+    libsdl2-mixer-dev \
+    libsdl2-ttf-dev \
+    libportmidi-dev \
+    libswscale-dev \
+    libavformat-dev \
+    libavcodec-dev \
+    zlib1g-dev</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">!sudo apt-get install -y \
+    libgstreamer1<span class="hljs-number">.0</span> \
+    gstreamer1<span class="hljs-number">.0</span>-plugins-base \
+    gstreamer1<span class="hljs-number">.0</span>-plugins-good</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">!sudo apt-get install -y \
+    libgstreamer1<span class="hljs-number">.0</span> \
+    gstreamer1<span class="hljs-number">.0</span>-plugins-base \
+    gstreamer1<span class="hljs-number">.0</span>-plugins-good</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">!sudo apt-get install libffi-dev</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">This step is essential. When you run the below cell, <code>buildozer.spec</code> file is created from where you can set the title, icon, version, and all other important information.</p><pre><code class="language-python hljs" contenteditable="true" style="">!buildozer init</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">This is the final step. This may take about 10-15 minutes to complete execution. So, be patient and wait.</p><pre><code class="language-python hljs" contenteditable="true" style="">!buildozer -v android debug</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Your apk file is stored in the bin directory at last.</p><h2 class="wp-block-heading">Conclusion</h2><p>In this way, we can make a GUI application with Kivy Framework. We have learned how to convert our project into a mobile/Android application. For this, buildozer dependency is required.</p><p><!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:embed {"url":"https://youtu.be/EFCLm_zjKBg","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":1250,"sizeSlug":"large","linkDestination":"none"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":1252,"sizeSlug":"large","linkDestination":"none"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":1253,"sizeSlug":"large","linkDestination":"none"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:embed {"url":"https://youtu.be/EFCLm_zjKBg","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:embed {"url":"https://youtu.be/gFjmkPBVJK0","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph --></p><p>I hope this post is very helpful to you. If you have any doubt, ask me in the comment section. I will reply as soon as possible. Thanks.</p></p>
+</div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

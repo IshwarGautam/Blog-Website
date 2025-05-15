@@ -18,6 +18,10 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
+    @app.context_processor
+    def inject_is_build():
+        return {"is_build": app.config["IS_BUILD"]}
+
     db.init_app(app)
     mail.init_app(app)
     login_manager.init_app(app)
@@ -65,7 +69,7 @@ def create_app():
     return app
 
 
-app = create_app()
+if os.getenv("ENVIRONMENT") == "dev" and os.getenv("IS_BUILD") != "yes":
+    app = create_app()
 
-if os.getenv("ENVIRONMENT") == "dev":
     app.run(debug=True)

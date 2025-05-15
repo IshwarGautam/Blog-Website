@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    Data Structure and Algorithm Interview Questions 2025
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-27 10:13:59.206333
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><div class="wp-block-buttons has-custom-font-size has-small-font-size" style="display: flex; gap: 10px; flex-wrap: wrap;">
+    <a href="/python-interview-questions-2025-python-programming-language" target="_blank" style="padding: 10px 20px; background-color: rgb(0, 115, 170); color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer;" onmouseover="this.style.backgroundColor='#005177';" onmouseout="this.style.backgroundColor='#0073aa';">
+        Python
+    </a>
+
+    <a href="/machine-learning-most-important-interview-questions-2025-ml-full-course" target="_blank" style="padding: 10px 20px; background-color: #0073aa; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer;" onmouseover="this.style.backgroundColor='#005177';" onmouseout="this.style.backgroundColor='#0073aa';">
+        Machine Learning
+    </a>
+
+    <a href="/deep-learning-most-important-interview-questions-2025" target="_blank" style="padding: 10px 20px; background-color: #0073aa; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer;" onmouseover="this.style.backgroundColor='#005177';" onmouseout="this.style.backgroundColor='#0073aa';">
+        Deep Learning
+    </a>
+
+    <a href="/data-structure-and-algorithm-interview-questions-2025" target="_blank" style="padding: 10px 20px; background-color: #0073aa; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer;" onmouseover="this.style.backgroundColor='#005177';" onmouseout="this.style.backgroundColor='#0073aa';">
+        Data Structure
+    </a>
+</div>
+
+<!-- /wp:button --><p><br></p><p>Here are the most popular and usually askable questions about Data Structure during a job interview or an internship program. I have written each answer in very simple language so that it will be easy for you to get all.</p><h2 class="wp-block-heading"><strong>1. What is data structure?</strong></h2><p>A data structure is a method of organizing data in order for it to be used effectively. It is important to choose the right data structure for our project.&nbsp;For example, we can store a list of items having the same data types in an array data structure.</p><h2 class="wp-block-heading"><strong>2. What are the types of data structures?</strong></h2><p>The two basic categories of data structures are:</p><p><strong>Linear Data Structure:</strong></p><p>Linear data structure arrange the element in the sequence one after the other. Examples: Array, Linked List, Stack, and Queue.&nbsp;</p><p><br><strong>Non-Linear Data Structure:</strong></p><p>In a non-linear data structure, the elements don't follow any sequence. One element may be connected to one or more elements i.e. the traversal of a node is non-linear in nature. Example: Graph and Trees.</p><h2 class="wp-block-heading"><strong>3. What is a stack?</strong></h2><p>Stack is a linear data structure. It arranges the element in LIFO (Last-in-First-out) order. The basic operations of the stack are Push and Pop.</p><h2 class="wp-block-heading"><strong>4. What is a queue?</strong></h2><p>A queue is also a linear data structure. It arranges the elements in FIFO (First-in-First-out) order. The basic operation of the queue are Enqueue and Dequeue.</p><h2 class="wp-block-heading"><strong>5. What are built-in and user-defined data structures?</strong></h2><p>In Python programming language, the built-in data structure are List, Tuple, Dictionary, and Set.</p><p>And user-defined data types are:</p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>Stack: LIFO (use in recursive programming)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Queue: FIFO (use for network purposes of traffic congestion management)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Trees: has roots and nodes (used to create HTML pages)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Linked List: linked using pointer (use in image viewing application and music playing application)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Graphs: has vertices and edges (use in Google Maps)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>HashMaps: same as a dictionary (used in the phone book)</li>
+<!-- /wp:list-item --></ul><h2 class="wp-block-heading"><strong>6. </strong>What are the different operations that can be performed on&nbsp;Data Structures?</h2><p>The various operations that can be performed on different Data Structure are:&nbsp;</p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>Insertion</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Deletion</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Traversal</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Searching</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Sorting</li>
+<!-- /wp:list-item --></ul><h2 class="wp-block-heading"><strong>7. What is an algorithm?</strong></h2><p>An algorithm is any set of rules or instructions to solve a problem. It provides a pseudocode to solve particular problems.</p><p>The different classes of algorithms are:</p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>Divide and Conquer: divides the problem into sub-parts and solve each one separately.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Dynamic Programming: divides a problem into smaller components, remembers the outcomes of the smaller components, and then applies it to similar problems.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Greedy Algorithm: includes tackling a problem in the simplest possible way without worrying about how difficult the next step will be.</li>
+<!-- /wp:list-item --></ul><h2 class="wp-block-heading"><strong>8. What is an array?</strong></h2><p>An array is a collection of similar data elements stored as contiguous (next or together in sequence) memory locations. Each data element in an array can be accessed randomly just by using its index number.</p><h2 class="wp-block-heading"><strong>9. What do you mean by multidimensional array?</strong></h2><p>Multidimensional arrays are collections of arrays (array of arrays). In a multidimensional array, each element is associated with multiple indexes. The most commonly used multidimensional array is a two-dimensional array. A multidimensional array is also known as a table or matrix.</p><h2 class="wp-block-heading"><strong>10. Explain some of the sorting algorithms.</strong></h2><p><strong><em>Merge Sort:</em></strong></p><p>This algorithm follows the divide and conquer rule. It divides the input array into two halves, calls itself the two halves, and then merges the two sorted halves.</p><p><br><strong><em>Quick Sort:</em></strong></p><p>Quick sort is based on the dividing and conquer algorithm. It selects an element as a pivot and partitions the other elements around it.</p><p>The steps are:</p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>Choose a pivot element from the list.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Reorder the list such that all the elements which are less than the pivot, comes before the pivot and all the elements greater than the pivot, comes after the pivot. Equal values can go either way. The pivot is in its final position after this partitioning. We can call it as partition operation.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>The sub-list of greater elements and the sub-list of smaller elements have to be sorted recursively.</li>
+<!-- /wp:list-item --></ul><p></p><p><strong><em>Bubble Sort:</em></strong></p><p>It is a comparison algorithm that first compares and then sorts adjacent elements if they are not in the specified order.</p><p><br><strong><em>Insertion Sort:</em></strong></p><p>This algorithm selects one element from a given list at a time and positions it precisely where it belongs.</p><p><br><strong>Selection Sort</strong>:</p><p>This algorithm sorts an array by repeatedly selecting and inserting the smallest element from the unsorted segment (taking into account the ascending order). This algorithm maintains two sub-array:</p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>sorted subarray</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>remaining unsorted subarray</li>
+<!-- /wp:list-item --></ul><p></p><p><strong>Shell Sort:</strong></p><p>This algorithm sorts the elements far apart from each other and successively reduces the interval between the elements to be sorted. It is a generalized version of Insertion Sort.</p><h2 class="wp-block-heading"><strong>11. </strong>What distinguishes binary search from linear search algorithms?</h2><p>A <strong>linear</strong> search algorithm is a process of searching an item one by one. Each item is compared with the key (item that we want to search) and if it is found, return the key; otherwise search for all items until the end of an array is reached.</p><p>In the <strong>binary</strong> search algorithm, we have to compare the key with the middle element and then divide the array in half. Then search the left half if the element to be searched is smaller than the middle element and vice versa. Repeat the entire process until the key is located.</p><h2 class="wp-block-heading"><strong>12. What is a linked list?</strong></h2><p>A linked list is a collection of data elements called nodes that are randomly stored in memory. Each node includes a link to the next node i.e. store the elements in adjacent memory locations and join together to form a chain using pointers. Each node element has two parts:</p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>a data field</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>pointer to the next node</li>
+<!-- /wp:list-item --></ul><h2 class="wp-block-heading"><strong>13. What do </strong>you know about the <strong>tree traversal technique?</strong></h2><p>A tree is a non-linear data structure consisting of root nodes and zero or more sub-trees. There are three tree traversal techniques:</p><p><strong><em>Pre-order traversal:</em></strong></p><p>Visit the root node first, then the left subtree, and finally the right subtree.</p><p><br><strong><em>Post-order traversal:</em></strong></p><p>Visit the left subtree first, then the right subtree, and finally the root node.</p><p><br><strong>In-order traversal:</strong></p><p>Visit the left subtree first, then the root node, and finally the right subtree.</p><h2 class="wp-block-heading"><strong>14. What do you mean by Breadth First Search (BFS) and Depth First Search (DFS)?</strong></h2><p><strong>Breadth First Search:</strong></p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>BFS starts from the root node, explores the neighboring nodes first, and moves towards the next level neighbors.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>We can implement this using a FIFO queue data structure.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>BFS is slower than DFS.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>This algorithm works in a single stage i.e. remove the visited vertices from the queue and displayed all at once.</li>
+<!-- /wp:list-item --></ul><p><strong>Depth First Search:</strong></p><p>DFS begins the traversal from the root node and analyzes the search in a depth-first manner, away from the root node. We can done this with the help of stack i.e. LIFO implementations. This algorithm works in two stages-&nbsp;</p><ul class="wp-block-list"><p><!-- wp:list-item -->
+</p><li>in the first stage, push the visited vertices onto the stack and&nbsp;</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>when there is no more vertex to visit, pop those.</li>
+<!-- /wp:list-item --><p></p><p><img src="https://drive.google.com/thumbnail?id=1HQks8R0k9sSw0Tg0Ef1JHDI0asItVNpe&amp;sz=w1000" data-filename="bfs-vs-dfs.png" style="width: 400px;"><!-- /wp:list-item --></p></ul><figure class="wp-block-image aligncenter"><br></figure><h2 class="wp-block-heading">Conclusion</h2><p>This is the most important interview questions you should know beforehand. Data structure and algorithm concepts is huge. This will be the key for the learners.</p><p><!-- wp:buttons {"fontSize":"small"} -->
+
+<!-- /wp:buttons -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:image {"linkDestination":"custom","align":"center"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list --></p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>We have covered arrays, linked lists, stacks, queues, trees and many more.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>We have also deep dive into different traversal algorithm: BFS and DFS.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>We have also deep dive into how to sort and search elements.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>For more advanced topics, you can look for dynamic programming, greedy algorithms, and algorithm analysis and complexity.</li>
+<!-- /wp:list-item --></ul></p>
+</div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

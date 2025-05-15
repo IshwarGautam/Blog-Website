@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    Tkinter: Multiple page Login window and images
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-21 09:14:50.117231
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#introduction">Tkinter introduction and sample code.</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#typing-speed">Make typing speed application using Python.</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#multiple-page">Multiple page GUI window with login page and image.</a></li>
+<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="introduction">Tkinter Introduction and sample code</h2><p>Tkinter is one of the famous GUI (Graphical User Interface) toolkits that are used in creating GUI applications. </p><p>These are the following steps used while creating a GUI application using Tkinter:</p><div class="wp-block-group"><!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Import the Tkinter module.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Create a main window of the GUI application.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Add widgets inside a window like a label, text field, button, scroll box, etc.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Display the window using Mainloop.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>To place any of these widgets inside the window, we have three methods.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>pack() method: put the widget in blocks.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>grid() method: put the widget in a table-like structure.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>place() method: put the widget in a specific position using x and y coordinates.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>I use the place() method in most cases because I can put any widget in any location using this method.</p>
+<!-- /wp:paragraph --></div><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/FclrlobIOXM" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
+
+window=tk.Tk()
+window.title(<span class="hljs-string">"Face Recognition System"</span>)
+
+<span class="hljs-comment">#Label and text field</span>
+l1 = tk.Label(window, text=<span class="hljs-string">"Name: "</span>, font=(<span class="hljs-string">"Arial"</span>,<span class="hljs-number">15</span>))
+l1.place(x=<span class="hljs-number">0</span>,y=<span class="hljs-number">0</span>)
+t1 = tk.Entry(window, bd=<span class="hljs-number">5</span>, width=<span class="hljs-number">20</span>)
+t1.place(x=<span class="hljs-number">180</span>, y=<span class="hljs-number">0</span>)
+
+l2 = tk.Label(window, text=<span class="hljs-string">"Age: "</span>, font=(<span class="hljs-string">"Arial"</span>,<span class="hljs-number">15</span>))
+l2.place(x=<span class="hljs-number">0</span>,y=<span class="hljs-number">60</span>)
+t2 = tk.Entry(window, bd=<span class="hljs-number">5</span>, width=<span class="hljs-number">20</span>, show=<span class="hljs-string">'*'</span>)
+t2.place(x=<span class="hljs-number">180</span>, y=<span class="hljs-number">60</span>)
+
+l3 = tk.Label(window, text=<span class="hljs-string">"Address: "</span>, font=(<span class="hljs-string">"Arial"</span>,<span class="hljs-number">15</span>))
+l3.place(x=<span class="hljs-number">0</span>,y=<span class="hljs-number">120</span>)
+t3 = tk.Entry(window, bd=<span class="hljs-number">5</span>, width=<span class="hljs-number">20</span>, show=<span class="hljs-string">'*'</span>)
+t3.place(x=<span class="hljs-number">180</span>, y=<span class="hljs-number">120</span>)
+
+
+<span class="hljs-comment">#Combobox (drop down menu)</span>
+l4 = tk.Label(window, text=<span class="hljs-string">"Drop down menu: "</span>, font=(<span class="hljs-string">"Arial"</span>,<span class="hljs-number">15</span>))
+l4.place(x=<span class="hljs-number">0</span>,y=<span class="hljs-number">180</span>)
+
+<span class="hljs-keyword">from</span> tkinter.ttk <span class="hljs-keyword">import</span> *
+c1 = Combobox(window)
+c1[<span class="hljs-string">'values'</span>] = (<span class="hljs-string">"Nepal"</span>,<span class="hljs-string">"India"</span>,<span class="hljs-string">"Pakistan"</span>,<span class="hljs-string">"USA"</span>,<span class="hljs-string">"Bangladesh"</span>,<span class="hljs-string">"Australia"</span>)
+c1.current(<span class="hljs-number">0</span>)
+c1.place(x=<span class="hljs-number">180</span>, y=<span class="hljs-number">180</span>)
+
+
+<span class="hljs-comment">#Check button</span>
+<span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> *
+l5 = tk.Label(window, text=<span class="hljs-string">"Languages: "</span>, font=(<span class="hljs-string">"Arial"</span>,<span class="hljs-number">15</span>))
+l5.place(x=<span class="hljs-number">0</span>,y=<span class="hljs-number">240</span>)
+var1 = IntVar()
+cb1 = Checkbutton(window,text=<span class="hljs-string">"C"</span>,font=(<span class="hljs-string">'Arial'</span>,<span class="hljs-number">10</span>),var=var1)
+cb1.place(x=<span class="hljs-number">180</span>, y=<span class="hljs-number">240</span>)
+var2 = IntVar()
+cb2 = Checkbutton(window,text=<span class="hljs-string">"C++"</span>,font=(<span class="hljs-string">'Arial'</span>,<span class="hljs-number">10</span>),var=var2)
+cb2.place(x=<span class="hljs-number">280</span>, y=<span class="hljs-number">240</span>)
+var3 = IntVar()
+cb3 = Checkbutton(window,text=<span class="hljs-string">"Python"</span>,font=(<span class="hljs-string">'Arial'</span>,<span class="hljs-number">10</span>),var=var3)
+cb3.place(x=<span class="hljs-number">180</span>, y=<span class="hljs-number">280</span>)
+var4 = IntVar()
+cb4 = Checkbutton(window,text=<span class="hljs-string">"Java"</span>,font=(<span class="hljs-string">'Arial'</span>,<span class="hljs-number">10</span>),var=var4)
+cb4.place(x=<span class="hljs-number">280</span>, y=<span class="hljs-number">280</span>)
+
+<span class="hljs-comment">#Radio button</span>
+l6 = tk.Label(window, text=<span class="hljs-string">"Sex: "</span>, font=(<span class="hljs-string">"Arial"</span>,<span class="hljs-number">15</span>))
+l6.place(x=<span class="hljs-number">0</span>,y=<span class="hljs-number">320</span>)
+var = IntVar()
+r1 = tk.Radiobutton(window, text=<span class="hljs-string">'Male'</span>, var=var, value=<span class="hljs-number">1</span>)
+r1.place(x=<span class="hljs-number">180</span>, y=<span class="hljs-number">320</span>)
+r2 = tk.Radiobutton(window, text=<span class="hljs-string">'Female'</span>, var=var, value=<span class="hljs-number">2</span>)
+r2.place(x=<span class="hljs-number">260</span>, y=<span class="hljs-number">320</span>)
+r3 = tk.Radiobutton(window, text=<span class="hljs-string">'Other'</span>, var=var, value=<span class="hljs-number">3</span>)
+r3.place(x=<span class="hljs-number">340</span>, y=<span class="hljs-number">320</span>)
+
+<span class="hljs-comment">#Scrolled text</span>
+l7 = tk.Label(window, text=<span class="hljs-string">"Comment: "</span>, font=(<span class="hljs-string">"Arial"</span>,<span class="hljs-number">15</span>))
+l7.place(x=<span class="hljs-number">0</span>,y=<span class="hljs-number">380</span>)
+<span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> scrolledtext
+txt = scrolledtext.ScrolledText(window, width=<span class="hljs-number">20</span>, height=<span class="hljs-number">1</span>)
+txt.place(x=<span class="hljs-number">180</span>,y=<span class="hljs-number">380</span>)
+txt.insert(tk.INSERT, <span class="hljs-string">'write some comment'</span>)
+
+<span class="hljs-comment">#Spinbox</span>
+l8 = tk.Label(window, text=<span class="hljs-string">"Number: "</span>, font=(<span class="hljs-string">"Arial"</span>,<span class="hljs-number">15</span>))
+l8.place(x=<span class="hljs-number">0</span>,y=<span class="hljs-number">440</span>)
+spin = tk.Spinbox(window, from_=<span class="hljs-number">0</span>, to=<span class="hljs-number">10</span>, width=<span class="hljs-number">5</span>)
+spin.place(x=<span class="hljs-number">180</span>, y=<span class="hljs-number">440</span>)
+
+<span class="hljs-comment">#Button</span>
+b1 = tk.Button(window, text=<span class="hljs-string">"Submit "</span>, font=(<span class="hljs-string">"Arial"</span>,<span class="hljs-number">10</span>))
+b1.place(x=<span class="hljs-number">140</span>,y=<span class="hljs-number">480</span>)
+
+
+window.geometry(<span class="hljs-string">"400x550"</span>)
+window.mainloop()</code></pre><pre class="wp-block-syntaxhighlighter-code"></pre><h2 class="wp-block-heading" id="typing-speed">Typing Speed Application Using Python</h2><p>Let us build a typing speed app with Python and Tkinter.</p><p>I'll go over each code step by step.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/GR7ocwfwprg" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 1: Import required packages:</strong></h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">We require a number of packages, including a tkinter, a keyboard, and time.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># importing all libraries</span>
+<span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
+<span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> *
+<span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> messagebox
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> keyboard
+<span class="hljs-keyword">import</span> time</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 2: Create a window</strong></h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">To create a window, we can use tkinter which is a Python GUI toolkit. <code>window.title</code> will define the title of the GUI window and <code>window.resizable(0,0)</code> will remove the maximize option from the window. We will not be able to maximize our window.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># creating window using gui</span>
+window = tk.Tk()
+window.title(<span class="hljs-string">'Typing Speed'</span>)
+window.resizable(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>)
+
+<span class="hljs-comment"># define size of window</span>
+window.geometry(<span class="hljs-string">"470x200"</span>)</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 3: Create a label and button</strong></h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">To create a label, we can use <code>tk.Label</code> and to create a button, we can use<code> tk.Button</code>.</p><pre><code class="language-python hljs" contenteditable="true" style="">x1 = tk.Label(window, text=<span class="hljs-string">"Lets check your typing speed...."</span>, font=<span class="hljs-string">"Arial 20"</span>)
+x1.place(x=<span class="hljs-number">10</span>, y=<span class="hljs-number">50</span>)
+
+b1 = tk.Button(window, text=<span class="hljs-string">"Start"</span>, width=<span class="hljs-number">12</span>, bg=<span class="hljs-string">'white'</span>, fg=<span class="hljs-string">"tomato"</span>, font=<span class="hljs-string">"Algerian,10"</span>)
+b1.place(x=<span class="hljs-number">150</span>, y=<span class="hljs-number">100</span>)</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 4: When space is pressed</strong></h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">When the space key is pressed from the keyboard, we have to check whether we typed correctly or not.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">if</span> keyboard.is_pressed(<span class="hljs-string">'space'</span>):
+    a = txt.get().split()[-<span class="hljs-number">1</span>]
+    b = words[word].split()[i]
+    
+    <span class="hljs-keyword">if</span> a==b:
+        count+=<span class="hljs-number">1</span>
+
+    <span class="hljs-keyword">else</span>:
+        icount+=<span class="hljs-number">1</span></code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 5: When we typed correctly</strong> vs when we typed incorrectly</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">When we typed correct, we had to increase the number of correct words by 1 and we had to highlight that text with orange color, and in the opposite case, when we typed incorrect, increased the number of incorrect words and highlighted with red color. Another extra code here is to get the index and the length of the typed word so that we can highlight specific parts of the sentence.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">if</span> a==b:
+    count+=<span class="hljs-number">1</span>
+    new_str = new_str + b + <span class="hljs-string">' '</span>
+    c = new_str+<span class="hljs-string">' '</span>.join(words[word].split()[i+<span class="hljs-number">1</span>:])
+
+    <span class="hljs-comment"># get index to know which part to be highlighted</span>
+    idx = words[word].index(b,idx+ln)
+    ln = <span class="hljs-built_in">len</span>(<span class="hljs-built_in">str</span>(b))
+
+    text.delete(<span class="hljs-string">"0."</span>+<span class="hljs-built_in">str</span>(idx), END)
+    text.insert(END, c)
+
+    text.tag_add(<span class="hljs-string">"start"</span>, <span class="hljs-string">"1."</span>+<span class="hljs-built_in">str</span>(idx), <span class="hljs-string">"1."</span>+<span class="hljs-built_in">str</span>(idx+ln))
+    text.tag_config(<span class="hljs-string">"start"</span>,  foreground=<span class="hljs-string">"orange"</span>)
+
+<span class="hljs-keyword">else</span>:
+    icount+=<span class="hljs-number">1</span>
+    new_str = new_str + b + <span class="hljs-string">' '</span>
+    c = new_str+<span class="hljs-string">' '</span>.join(words[word].split()[i+<span class="hljs-number">1</span>:])
+
+    <span class="hljs-comment"># get index to know which part to be highlighted</span>
+    idx = words[word].index(b,idx+ln)
+    ln = <span class="hljs-built_in">len</span>(<span class="hljs-built_in">str</span>(b))
+
+    text.delete(<span class="hljs-string">"0."</span>+<span class="hljs-built_in">str</span>(idx), END)
+    text.insert(END, c)
+
+    text.tag_add(<span class="hljs-string">"start"</span>, <span class="hljs-string">"1."</span>+<span class="hljs-built_in">str</span>(idx), <span class="hljs-string">"1."</span>+<span class="hljs-built_in">str</span>(idx+ln))
+    text.tag_config(<span class="hljs-string">"start"</span>,  foreground=<span class="hljs-string">"red"</span>)</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 6: Calculate Typing speed</strong></h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">To calculate typing speed, we have the following formula:</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><img src="https://drive.google.com/thumbnail?id=1N63CRe_UN7o4kdUx9TncidihW_fF2V4z&sz=w1000" data-filename="typing-speed-formula.png" style="width: 320px;"></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">All typed entries refer to a number of characters typed including a single space (between each word) and special symbols. I am taking each 5 characters as one word.&nbsp;<br>Note: The join function converts the list to a string. I am using the join function to remove multiple spaces between words.</p><pre><code class="language-python hljs" contenteditable="true" style="">start= time.time()
+
+<span class="hljs-string">'''
+our code
+
+'''</span>
+
+end = time.time()
+
+typed_entries = <span class="hljs-built_in">len</span>(<span class="hljs-string">' '</span>.join(txt.get().split()))
+time_in_min = (end-start)/<span class="hljs-number">60</span>
+result = <span class="hljs-built_in">int</span>((typed_entries/<span class="hljs-number">5</span>)/time_in_min)
+
+<span class="hljs-comment"># Display result in messagebox</span>
+messagebox.showinfo(<span class="hljs-string">'Result'</span>, <span class="hljs-string">"Your Typing Speed= "</span>+<span class="hljs-built_in">str</span>(result)+<span class="hljs-string">" wpm"</span>)</code></pre><h2 class="wp-block-heading" id="multiple-page">Multiple page GUI window with login page and image | Tkinter - Python GUI Toolkit</h2><p>Tkinter is a simple and useful GUI (Graphical user interface) tool. We can use Tkinter to turn our project into a GUI. I have covered the basics of tkinter:&nbsp;</p><p><strong><span style="text-decoration: underline"><em>1.&nbsp;Learn tkinter in 30 minutes:&nbsp;</em></span></strong></p><p><iframe frameborder="0" src="//www.youtube.com/embed/FclrlobIOXM" width="640" height="360" class="note-video-clip"></iframe><strong><span style="text-decoration: underline"><em><br></em></span></strong></p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><strong style="font-size: 1rem;"><span style="text-decoration-line: underline;"><em>2. Tkinter canvas widget in Python:&nbsp;</em></span></strong></div></figure><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/GQu8xepMj4Q" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p><strong><span style="text-decoration: underline"><em>3. Multiple page Tkinter window:&nbsp;</em></span></strong></p><p>In this course, I have made three windows, The first window is the login page. We must register first to enter the next page. </p><p>The username and password will be stored in the text file so that when you open the window the next time, your username and password will still be valid.</p><p>To learn step by step, I recommend you to watch the below video carefully. The source code is attached below.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/tpGjHRDEjCE" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
+<span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> messagebox
+<span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image, ImageTk  <span class="hljs-comment"># install pillow with pip: pip install pillow</span>
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">FirstPage</span>(tk.Frame):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, parent, controller</span>):
+        tk.Frame.__init__(self, parent)
+
+        load = Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">"img1.jpg"</span>)
+        photo = ImageTk.PhotoImage(load)
+        label = tk.Label(self, image=photo)
+        label.image = photo
+        label.place(x=<span class="hljs-number">0</span>, y=<span class="hljs-number">0</span>)
+
+        border = tk.LabelFrame(
+            self, text=<span class="hljs-string">'Login'</span>, bg=<span class="hljs-string">'ivory'</span>, bd=<span class="hljs-number">10</span>, font=(<span class="hljs-string">"Arial"</span>, <span class="hljs-number">20</span>))
+        border.pack(fill=<span class="hljs-string">"both"</span>, expand=<span class="hljs-string">"yes"</span>, padx=<span class="hljs-number">150</span>, pady=<span class="hljs-number">150</span>)
+
+        Label1 = tk.Label(border, text=<span class="hljs-string">"Username"</span>,
+                          font=(<span class="hljs-string">"Arial Bold"</span>, <span class="hljs-number">15</span>), bg=<span class="hljs-string">'ivory'</span>)
+        Label1.place(x=<span class="hljs-number">50</span>, y=<span class="hljs-number">20</span>)
+        Txt1 = tk.Entry(border, width=<span class="hljs-number">30</span>, bd=<span class="hljs-number">5</span>)
+        Txt1.place(x=<span class="hljs-number">180</span>, y=<span class="hljs-number">20</span>)
+
+        Label2 = tk.Label(border, text=<span class="hljs-string">"Password"</span>,
+                          font=(<span class="hljs-string">"Arial Bold"</span>, <span class="hljs-number">15</span>), bg=<span class="hljs-string">'ivory'</span>)
+        Label2.place(x=<span class="hljs-number">50</span>, y=<span class="hljs-number">80</span>)
+        TXT2 = tk.Entry(border, width=<span class="hljs-number">30</span>, show=<span class="hljs-string">'*'</span>, bd=<span class="hljs-number">5</span>)
+        TXT2.place(x=<span class="hljs-number">180</span>, y=<span class="hljs-number">80</span>)
+
+        <span class="hljs-keyword">def</span> <span class="hljs-title function_">verify</span>():
+            <span class="hljs-keyword">try</span>:
+                <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">"credential.txt"</span>, <span class="hljs-string">"r"</span>) <span class="hljs-keyword">as</span> f:
+                    info = f.readlines()
+                    i = <span class="hljs-number">0</span>
+                    <span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> info:
+                        u, p = e.split(<span class="hljs-string">","</span>)
+                        <span class="hljs-keyword">if</span> u.strip() == Txt1.get() <span class="hljs-keyword">and</span> p.strip() == TXT2.get():
+                            controller.show_frame(SecondPage)
+                            i = <span class="hljs-number">1</span>
+                            <span class="hljs-keyword">break</span>
+                    <span class="hljs-keyword">if</span> i == <span class="hljs-number">0</span>:
+                        messagebox.showinfo(
+                            <span class="hljs-string">"Error"</span>, <span class="hljs-string">"Please provide correct username and password!!"</span>)
+            <span class="hljs-keyword">except</span>:
+                messagebox.showinfo(
+                    <span class="hljs-string">"Error"</span>, <span class="hljs-string">"Please provide correct username and password!!"</span>)
+
+        BTN1 = tk.Button(border, text=<span class="hljs-string">"Submit"</span>,
+                         font=(<span class="hljs-string">"Arial"</span>, <span class="hljs-number">15</span>), command=verify)
+        BTN1.place(x=<span class="hljs-number">320</span>, y=<span class="hljs-number">115</span>)
+
+        <span class="hljs-keyword">def</span> <span class="hljs-title function_">register</span>():
+            window = tk.Tk()
+            window.resizable(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
+            window.configure(bg=<span class="hljs-string">"deep sky blue"</span>)
+            window.title(<span class="hljs-string">"Register"</span>)
+            Label1 = tk.Label(window, text=<span class="hljs-string">"Username:"</span>, font=(
+                <span class="hljs-string">"Arial"</span>, <span class="hljs-number">15</span>), bg=<span class="hljs-string">"deep sky blue"</span>)
+            Label1.place(x=<span class="hljs-number">10</span>, y=<span class="hljs-number">10</span>)
+            txt1 = tk.Entry(window, width=<span class="hljs-number">30</span>, bd=<span class="hljs-number">5</span>)
+            txt1.place(x=<span class="hljs-number">200</span>, y=<span class="hljs-number">10</span>)
+
+            lbl2 = tk.Label(window, text=<span class="hljs-string">"Password:"</span>, font=(
+                <span class="hljs-string">"Arial"</span>, <span class="hljs-number">15</span>), bg=<span class="hljs-string">"deep sky blue"</span>)
+            lbl2.place(x=<span class="hljs-number">10</span>, y=<span class="hljs-number">60</span>)
+            txt2 = tk.Entry(window, width=<span class="hljs-number">30</span>, show=<span class="hljs-string">"*"</span>, bd=<span class="hljs-number">5</span>)
+            txt2.place(x=<span class="hljs-number">200</span>, y=<span class="hljs-number">60</span>)
+
+            lbl3 = tk.Label(window, text=<span class="hljs-string">"Confirm Password:"</span>,
+                            font=(<span class="hljs-string">"Arial"</span>, <span class="hljs-number">15</span>), bg=<span class="hljs-string">"deep sky blue"</span>)
+            lbl3.place(x=<span class="hljs-number">10</span>, y=<span class="hljs-number">110</span>)
+            txt3 = tk.Entry(window, width=<span class="hljs-number">30</span>, show=<span class="hljs-string">"*"</span>, bd=<span class="hljs-number">5</span>)
+            txt3.place(x=<span class="hljs-number">200</span>, y=<span class="hljs-number">110</span>)
+
+            <span class="hljs-keyword">def</span> <span class="hljs-title function_">check</span>():
+                <span class="hljs-keyword">if</span> txt1.get() != <span class="hljs-string">""</span> <span class="hljs-keyword">or</span> txt2.get() != <span class="hljs-string">""</span> <span class="hljs-keyword">or</span> txt3.get() != <span class="hljs-string">""</span>:
+                    <span class="hljs-keyword">if</span> txt2.get() == txt3.get():
+                        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">"credential.txt"</span>, <span class="hljs-string">"a"</span>) <span class="hljs-keyword">as</span> f:
+                            f.write(txt1.get()+<span class="hljs-string">","</span>+txt2.get()+<span class="hljs-string">"\n"</span>)
+                            messagebox.showinfo(
+                                <span class="hljs-string">"Welcome"</span>, <span class="hljs-string">"You are registered successfully!!"</span>)
+                    <span class="hljs-keyword">else</span>:
+                        messagebox.showinfo(
+                            <span class="hljs-string">"Error"</span>, <span class="hljs-string">"Your password didn't get match!!"</span>)
+                <span class="hljs-keyword">else</span>:
+                    messagebox.showinfo(
+                        <span class="hljs-string">"Error"</span>, <span class="hljs-string">"Please fill the complete field!!"</span>)
+
+            btn1 = tk.Button(window, text=<span class="hljs-string">"Sign in"</span>, font=(
+                <span class="hljs-string">"Arial"</span>, <span class="hljs-number">15</span>), bg=<span class="hljs-string">"#ffc22a"</span>, command=check)
+            btn1.place(x=<span class="hljs-number">170</span>, y=<span class="hljs-number">150</span>)
+
+            window.geometry(<span class="hljs-string">"470x220"</span>)
+            window.mainloop()
+
+        BTN2 = tk.Button(self, text=<span class="hljs-string">"Register"</span>, bg=<span class="hljs-string">"dark orange"</span>,
+                         font=(<span class="hljs-string">"Arial"</span>, <span class="hljs-number">15</span>), command=register)
+        BTN2.place(x=<span class="hljs-number">650</span>, y=<span class="hljs-number">20</span>)
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">SecondPage</span>(tk.Frame):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, parent, controller</span>):
+        tk.Frame.__init__(self, parent)
+
+        load = Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">"img2.jpg"</span>)
+        photo = ImageTk.PhotoImage(load)
+        label = tk.Label(self, image=photo)
+        label.image = photo
+        label.place(x=<span class="hljs-number">0</span>, y=<span class="hljs-number">0</span>)
+
+        Button = tk.Button(self, text=<span class="hljs-string">"Next"</span>, font=(
+            <span class="hljs-string">"Arial"</span>, <span class="hljs-number">15</span>), command=<span class="hljs-keyword">lambda</span>: controller.show_frame(ThirdPage))
+        Button.place(x=<span class="hljs-number">650</span>, y=<span class="hljs-number">450</span>)
+
+        Button = tk.Button(self, text=<span class="hljs-string">"Back"</span>, font=(
+            <span class="hljs-string">"Arial"</span>, <span class="hljs-number">15</span>), command=<span class="hljs-keyword">lambda</span>: controller.show_frame(FirstPage))
+        Button.place(x=<span class="hljs-number">100</span>, y=<span class="hljs-number">450</span>)
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ThirdPage</span>(tk.Frame):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, parent, controller</span>):
+        tk.Frame.__init__(self, parent)
+
+        self.configure(bg=<span class="hljs-string">'Tomato'</span>)
+
+        Label = tk.Label(self, text=<span class="hljs-string">"Store some content related to your \n project or what your application made for. \n All the best!!"</span>,
+                         bg=<span class="hljs-string">"orange"</span>, font=(<span class="hljs-string">"Arial Bold"</span>, <span class="hljs-number">25</span>))
+        Label.place(x=<span class="hljs-number">40</span>, y=<span class="hljs-number">150</span>)
+
+        Button = tk.Button(self, text=<span class="hljs-string">"Home"</span>, font=(
+            <span class="hljs-string">"Arial"</span>, <span class="hljs-number">15</span>), command=<span class="hljs-keyword">lambda</span>: controller.show_frame(FirstPage))
+        Button.place(x=<span class="hljs-number">650</span>, y=<span class="hljs-number">450</span>)
+
+        Button = tk.Button(self, text=<span class="hljs-string">"Back"</span>, font=(
+            <span class="hljs-string">"Arial"</span>, <span class="hljs-number">15</span>), command=<span class="hljs-keyword">lambda</span>: controller.show_frame(SecondPage))
+        Button.place(x=<span class="hljs-number">100</span>, y=<span class="hljs-number">450</span>)
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Application</span>(tk.Tk):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, *args, **kwargs</span>):
+        tk.Tk.__init__(self, *args, **kwargs)
+
+        <span class="hljs-comment"># creating a window</span>
+        window = tk.Frame(self)
+        window.pack()
+
+        window.grid_rowconfigure(<span class="hljs-number">0</span>, minsize=<span class="hljs-number">500</span>)
+        window.grid_columnconfigure(<span class="hljs-number">0</span>, minsize=<span class="hljs-number">800</span>)
+
+        self.frames = {}
+        <span class="hljs-keyword">for</span> F <span class="hljs-keyword">in</span> (FirstPage, SecondPage, ThirdPage):
+            frame = F(window, self)
+            self.frames[F] = frame
+            frame.grid(row=<span class="hljs-number">0</span>, column=<span class="hljs-number">0</span>, sticky=<span class="hljs-string">"nsew"</span>)
+
+        self.show_frame(FirstPage)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">show_frame</span>(<span class="hljs-params">self, page</span>):
+        frame = self.frames[page]
+        frame.tkraise()
+        self.title(<span class="hljs-string">"Application"</span>)
+
+
+app = Application()
+app.maxsize(<span class="hljs-number">800</span>, <span class="hljs-number">500</span>)
+app.mainloop()</code></pre><h2 class="wp-block-heading">Conclusion:</h2><p>In this way, we can utilize the Tkinter toolkit to make your GUI application. You can use Tkinter Canvas to make a separate layer in the application. You can also add a sign-in and sign-up page in the Tkinter window.</p><p><!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+
+<!-- /wp:group -->
+
+<!-- wp:embed {"url":"https://youtu.be/FclrlobIOXM","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/GR7ocwfwprg","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":1317,"sizeSlug":"large","linkDestination":"none","align":"center"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/FclrlobIOXM?list=PLiWNvnK7PSPFUAyqK0PhNvsKQcGANhp69 ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/GQu8xepMj4Q?list=PLiWNvnK7PSPFUAyqK0PhNvsKQcGANhp69 ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/tpGjHRDEjCE","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph --></p><p>I hope this post is very helpful to you. If you have any questions, ask me in the comment section. I will reply as soon as possible. Thanks.</p></p>
+</div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

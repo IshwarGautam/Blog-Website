@@ -48,13 +48,13 @@ def get_featured_image(html):
     if img_tag and img_tag.get("src"):
         featured_image = img_tag["src"]
     else:
-        featured_image = url_for("static", filename="Images/blank.png")
+        featured_image = url_for("static", filename="images/blank.png")
     return featured_image
 
 
 @post_bp.route("/")
-def index():
-    page = request.args.get("page", 1, type=int)
+@post_bp.route("/page/<int:page>.html")
+def index(page=1):
     query = Post.query.order_by(Post.id.desc())
 
     posts = db.paginate(query, page=page, per_page=10, error_out=False)
@@ -65,7 +65,7 @@ def index():
     return render_template("index.html", posts=posts)
 
 
-@post_bp.route("/<slug>")
+@post_bp.route("/<slug>.html")
 def post(slug):
     post = get_post(slug)
     return render_template("post.html", post=post)

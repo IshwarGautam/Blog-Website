@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    Python Advanced course with notes and source code
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-27 10:13:59.206333
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><p><img selected="" src="https://drive.google.com/thumbnail?id=1CLO5PHXcLp0SYfFKOcUdD_HsY0lpyd55&amp;sz=w1000" data-filename="python-featured-img.png" style="width: 50%;"><br></p><p>Python is a popular programming language created by Guido van Rossum and released in 1991. It is a platform-independent, high-level, object-oriented language. Python requires less code than other programming languages to solve the same problems. It is widely used in machine learning, deep learning, data science, and artificial intelligence domains. This programming language has straightforward syntax.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#class-object">Classes and Objects</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#garbage-collection">Destroying objects (Garbage collection)</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#inheritance">Class inheritance</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#overridden-method">Overridden Method</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#overloading-operator">Overloading operators</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#data-hiding">Data hiding</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#regular-expression">Regular Expression</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#generators">Generators</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#generator-comprehension">Generator Comprehension</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#multiple-function-args">Multiple function arguments</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#sets">Sets</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#serialization">Serialization</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#partial-function">Partial Function</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#closure">Closures</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#decorator">Decorators</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#multithreading">Multithreading Concept</a></li>
+<!-- /wp:list-item --></ol><p>If you are a complete beginner in Python, I recommend you visit this link first:</p><p><a href="/python-programming-easy-learning-notes-and-interactive-tic-tac-toe-code" target="_blank" rel="noreferrer noopener">Python course for beginners in an easy way</a></p><p>In this course, we will cover some advanced courses in Python Programming Language.</p><h2 class="wp-block-heading" id="class-object"><strong>Classes and Objects:</strong></h2><p>A class is a blueprint for creating objects. We can create a class using the keyword "class".</p><p><strong>Syntax</strong>:</p><p>class class_name</p><p>An object is simply a collection of data (variables) and methods (function). To create an object of a class, we can use the same class name for which the object of a class is created.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">class</span> <span class="hljs-title class_">Employee</span>:
+    <span class="hljs-string">'Common base class for all employees'</span>
+    empCount = <span class="hljs-number">0</span>
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, name, salary</span>): 
+        self.name = name
+        self.salary = salary
+        Employee.empCount += <span class="hljs-number">1</span>
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">displayEmployee</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">print</span> (<span class="hljs-string">"Name : "</span>, self.name,  <span class="hljs-string">", Salary: "</span>, self.salary)
+
+
+<span class="hljs-comment">#Create first object</span>
+emp1 = Employee(<span class="hljs-string">"Ishwar"</span>, <span class="hljs-number">7000</span>)
+
+<span class="hljs-comment">#Create second object</span>
+emp2 = Employee(<span class="hljs-string">"Amit"</span>, <span class="hljs-number">8000</span>)
+
+emp1.displayEmployee()
+emp2.displayEmployee()
+
+<span class="hljs-built_in">print</span> (<span class="hljs-string">"Total Employee = "</span>, Employee.empCount)</code></pre><pre class="wp-block-preformatted">Output:
+Name :  Ishwar , Salary:  7000
+Name :  Amit , Salary:  8000
+Total Employee =  2</pre><p>__init__ is a reserved method in Python classes. It is similar to the constructor. When an object is created, this method is invoked. Constructors are used to initialize or assign value to the data member of the class when an object of a class is created.&nbsp;</p><p>Self represents an instance of a class. By using the self keyword, we can access the attribute and method of a class. In simple terms, self refers to a current object.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">print</span> (<span class="hljs-string">"Employee.__doc__:"</span>, Employee.__doc__)
+<span class="hljs-built_in">print</span> (<span class="hljs-string">"Employee.__name__:"</span>, Employee.__name__)
+<span class="hljs-built_in">print</span> (<span class="hljs-string">"Employee.__module__:"</span>, Employee.__module__)
+<span class="hljs-built_in">print</span> (<span class="hljs-string">"Employee.__bases__:"</span>, Employee.__bases__)
+<span class="hljs-built_in">print</span> (<span class="hljs-string">"Employee.__dict__:"</span>, Employee.__dict__)</code></pre><pre class="wp-block-preformatted">Employee.__doc__: Common base class for all employees
+Employee.__name__: Employee
+Employee.__module__: __main__
+Employee.__bases__: (&lt;class 'object'&gt;,)
+Employee.__dict__: {'__module__': '__main__', '__doc__': 'Common base class for all employees', 'empCount': 2, '__init__': &lt;function Employee.__init__ at 0x000001D6EBED6678&gt;, 'displayEmployee': &lt;function Employee.displayEmployee at 0x000001D6EBED63A8&gt;, '__dict__': &lt;attribute '__dict__' of 'Employee' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'Employee' objects&gt;}</pre><h2 class="wp-block-heading" id="garbage-collection"><strong>Destroying objects (Garbage Collection):</strong></h2><p>The destructor __del__ prints the class name of an instance that is about to be deleted or destroyed.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">class</span> <span class="hljs-title class_">my_class</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params"> self, x=<span class="hljs-number">0</span>, y=<span class="hljs-number">0</span></span>):
+        self.x = x
+        self.y = y
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__del__</span>(<span class="hljs-params">self</span>): 
+        class_name = self.__class__.__name__
+        <span class="hljs-built_in">print</span> (class_name, <span class="hljs-string">"destroyed"</span>)
+
+pt1 = my_class()
+pt2 = pt1
+pt3 = pt1
+<span class="hljs-built_in">print</span> (<span class="hljs-built_in">id</span>(pt1), <span class="hljs-built_in">id</span>(pt2), <span class="hljs-built_in">id</span>(pt3)) <span class="hljs-comment"># prints the ids of the obejcts</span>
+<span class="hljs-keyword">del</span> pt1
+<span class="hljs-keyword">del</span> pt2
+<span class="hljs-keyword">del</span> pt3</code></pre><pre class="wp-block-preformatted">2429250819592 2429250819592 2429250819592
+my_class destroyed</pre><h2 class="wp-block-heading" id="inheritance"><strong>Class inheritance:</strong></h2><p>Inheritance allows us to define a class that inherits all methods and properties from another class. In other words, the inheritance method allows a child or derived class to inherit all methods and properties from the parent or base class.</p><p>Syntax:</p><p>Class parent_class_name:</p><p>// methods and attributes</p><p>Class derived_class_name(parent_class_name):</p><p>// other additional methods and attributes</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span>:        <span class="hljs-comment"># define parent class</span>
+    parentAttr = <span class="hljs-number">500</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">print</span> (<span class="hljs-string">"Calling parent constructor"</span>)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">parentMethod</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">print</span> (<span class="hljs-string">'Calling parent method'</span>)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">setAttr</span>(<span class="hljs-params">self, attr</span>):
+        Parent.parentAttr = attr
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">getAttr</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">print</span> (<span class="hljs-string">"Parent attribute :"</span>, Parent.parentAttr)
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span>(<span class="hljs-title class_ inherited__">Parent</span>): <span class="hljs-comment"># define child class </span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">print</span> (<span class="hljs-string">"Calling child constructor"</span>)
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">childMethod</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">print</span> (<span class="hljs-string">'Calling child method'</span>)
+
+c = Child()          <span class="hljs-comment"># instance of child</span>
+c.childMethod()      <span class="hljs-comment"># child calls its method</span>
+c.parentMethod()     <span class="hljs-comment"># calls parent's method</span>
+c.setAttr(<span class="hljs-number">200</span>)       <span class="hljs-comment"># again call parent's method</span>
+c.getAttr()          <span class="hljs-comment"># again call parent's method</span></code></pre><pre class="wp-block-preformatted">Calling child constructor
+Calling child method
+Calling parent method
+Parent attribute : 200</pre><h2 class="wp-block-heading" id="overridden-method"><strong>Overridden Method:</strong></h2><p>Overriding is the Property of Class or an ability of OOP (Object Oriented Programming) to change the implementation of a method provided by one of its base classes.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span>:        <span class="hljs-comment"># define parent class or base class</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">myMethod</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">print</span> (<span class="hljs-string">'Calling parent method'</span>)
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span>(<span class="hljs-title class_ inherited__">Parent</span>): <span class="hljs-comment"># define child class or derived class</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">myMethod</span>(<span class="hljs-params">self</span>): <span class="hljs-comment"># same method defined in child class also</span>
+        <span class="hljs-built_in">print</span> (<span class="hljs-string">'Calling child method'</span>)
+
+c = Child()          <span class="hljs-comment"># instance of child</span>
+c.myMethod()         <span class="hljs-comment"># child calls overridden method</span></code></pre><p>Output:</p><p>Calling child method</p><h2 class="wp-block-heading" id="overloading-operator"><strong>Overloading operators:</strong></h2><p>Overloading refers to a function's or operator's capacity to work differently based on the parameters provided to the function.</p><p>The below program shows how to overload the binary + operator using the OperatorMagic Method.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">class</span> <span class="hljs-title class_">my_class</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, a, b</span>):
+        self.a = a
+        self.b = b
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__str__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'my_class (%d, %d)'</span> % (self.a, self.b)
+   
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__add__</span>(<span class="hljs-params">self,other</span>):
+        <span class="hljs-keyword">return</span> my_class(self.a + other.a, self.b + other.b)
+
+v1 = my_class(<span class="hljs-number">16</span>,<span class="hljs-number">15</span>)
+v2 = my_class(<span class="hljs-number">2</span>,-<span class="hljs-number">2</span>)
+<span class="hljs-built_in">print</span> (v1 + v2)</code></pre><p>Output:</p><p>my_class (18,13)</p><h2 class="wp-block-heading" id="data-hiding"><strong>Data hiding:</strong></h2><p>Data hiding is a method of making the data private so that it will not be accessible to the other class members. That is, an object attribute may not be visible outside the class definition. We must name attributes with a double underscore prefix, and those attributes are then hidden from outsiders.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">class</span> <span class="hljs-title class_">CounterClass</span>:
+    __secretCount = <span class="hljs-number">0</span>
+  
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">count</span>(<span class="hljs-params">self</span>):
+        self.__secretCount += <span class="hljs-number">1</span>
+        <span class="hljs-built_in">print</span> (self.__secretCount)
+
+counter = CounterClass()
+counter.count() <span class="hljs-comment"># count=1</span>
+counter.count() <span class="hljs-comment"># count=2</span>
+<span class="hljs-built_in">print</span>(counter.__secretCount) <span class="hljs-comment"># we are not able to print secretcount as we have apply hidden property</span></code></pre><p>Output:</p><p><img src="https://drive.google.com/thumbnail?id=1ypdmjdJG_sLL12lrTMiz7T0QwlPwkHrF&amp;sz=w1000" data-filename="data-hidden-python.png" style="width: 746px;"><br></p><figure class="wp-block-image"><br></figure><p>To print private attributes:</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">print</span> (counter._CounterClass__secretCount)</code></pre><p>Output:</p><p>2</p><h2 class="wp-block-heading" id="regular-expression"><strong>Regular Expression:</strong></h2><p>A Regular Expression or RegEx is a special sequence of characters that uses a search pattern to find a particular character, string, or set of strings.</p><p>To import RegEx:</p><p><code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-luminous-vivid-orange-color">import re</mark></code></p><p><strong>Match function:</strong></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> re
+
+line = <span class="hljs-string">"Cats are smarter than dogs"</span>
+substr1 = <span class="hljs-string">"cats"</span>
+substr2 = <span class="hljs-string">"Smarter"</span>
+
+matchObj1 = re.<span class="hljs-keyword">match</span>( substr1, line, re.I) <span class="hljs-comment">#syntax: re.match(pattern, string, flags=0)</span>
+<span class="hljs-comment">#re.I performs case-insensitive matching</span>
+matchObj2 = re.<span class="hljs-keyword">match</span>( substr2, line, re.I)
+
+<span class="hljs-built_in">print</span>(matchObj1)
+<span class="hljs-built_in">print</span>(matchObj2)</code></pre><p>Output:</p><pre class="wp-block-preformatted">&lt;re.Match object; span=(0, 4), match='Cats'&gt;
+None</pre><p>None means the particular string is not found. In our program, 'Smarter' is there but the match function only checks at the beginning of the string. When it encounters space, further text in the line doesn't get checked.</p><p><strong>Search function:</strong></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> re
+
+line = <span class="hljs-string">"Cats are smarter than dogs"</span>
+substr1 = <span class="hljs-string">"cats"</span>
+substr2 = <span class="hljs-string">"Smarter"</span>
+
+searchObj1 = re.search( substr1, line, re.I) <span class="hljs-comment">#syntax: re.match(pattern, string, flags=0)</span>
+<span class="hljs-comment">#re.I performs case-insensitive matching</span>
+searchObj2 = re.search( substr2, line, re.I)
+
+<span class="hljs-built_in">print</span>(searchObj1)
+<span class="hljs-built_in">print</span>(searchObj2)</code></pre><p>Output:</p><pre class="wp-block-preformatted">&lt;re.Match object; span=(0, 4), match='Cats'&gt;
+&lt;re.Match object; span=(9, 16), match='smarter'&gt;</pre><p>The search function checks over all the words in the string. So, it successfully finds 'cats' and 'Smarter'.</p><p><strong>Search and replace:</strong></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> re
+
+phone = <span class="hljs-string">"20020-943-257 # This is Phone Number"</span>
+
+<span class="hljs-comment"># Delete Python-style comments</span>
+num = re.sub(<span class="hljs-string">r'#.*$'</span>, <span class="hljs-string">""</span>, phone)
+<span class="hljs-built_in">print</span> (<span class="hljs-string">"Phone Num : "</span>, num)
+
+<span class="hljs-comment"># Remove anything other than digits</span>
+num = re.sub(<span class="hljs-string">r'\D'</span>, <span class="hljs-string">""</span>, phone)    <span class="hljs-comment">#\D is anything other than digits</span>
+<span class="hljs-built_in">print</span> (<span class="hljs-string">"Phone Num : "</span>, num)</code></pre><p>Output:</p><pre class="wp-block-preformatted">Phone Num :  20020-943-257 
+Phone Num :  20020943257</pre><h2 class="wp-block-heading" id="generators"><strong>Generators:</strong></h2><p>Generator functions allow us to declare a function that behaves like an iterator, i.e. It is applicable to 'for' loops. When iterators are instantiated, they do not compute the value of each item. They only compute it when we ask for it. For this, we use the 'yield' keyword. It requires less memory i.e. no memory is wastage and thus increases performance with generators.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">nums</span>(<span class="hljs-params">n</span>):
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,n+<span class="hljs-number">1</span>):
+        <span class="hljs-keyword">yield</span> i
+<span class="hljs-keyword">for</span> number <span class="hljs-keyword">in</span> nums(<span class="hljs-number">10</span>):
+    <span class="hljs-built_in">print</span>(number)</code></pre><p>Output:</p><p>1</p><p>2</p><p>3</p><p>4</p><p>5</p><p>6</p><p>7</p><p>8</p><p>9</p><p>10</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">even_generator</span>(<span class="hljs-params">n</span>):
+    <span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>,n+<span class="hljs-number">1</span>,<span class="hljs-number">2</span>):
+        <span class="hljs-keyword">yield</span> num
+<span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> even_generator(<span class="hljs-number">10</span>):
+    <span class="hljs-built_in">print</span> (num)</code></pre><p>Output:</p><p>2</p><p>4</p><p>6</p><p>8</p><p>10</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">lottery</span>():
+    <span class="hljs-comment"># returns 10 numbers between 1 and 500</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):
+        <span class="hljs-keyword">yield</span> random.randint(<span class="hljs-number">1</span>, <span class="hljs-number">500</span>)
+
+    <span class="hljs-comment"># returns a 11th number between 1 and 90</span>
+    <span class="hljs-keyword">yield</span> random.randint(<span class="hljs-number">1</span>,<span class="hljs-number">90</span>)
+
+<span class="hljs-keyword">for</span> random_number <span class="hljs-keyword">in</span> lottery():
+       <span class="hljs-built_in">print</span>(<span class="hljs-string">"User having serial number %d is assigned 10 kitta IPO"</span> %(random_number))</code></pre><p>Output:</p><pre class="wp-block-preformatted">User having serial number 401 is assigned 10 kitta IPO
+User having serial number 188 is assigned 10 kitta IPO
+User having serial number 463 is assigned 10 kitta IPO
+User having serial number 116 is assigned 10 kitta IPO
+User having serial number 223 is assigned 10 kitta IPO
+User having serial number 438 is assigned 10 kitta IPO
+User having serial number 460 is assigned 10 kitta IPO
+User having serial number 366 is assigned 10 kitta IPO
+User having serial number 57 is assigned 10 kitta IPO
+User having serial number 467 is assigned 10 kitta IPO
+User having serial number 65 is assigned 10 kitta IPO</pre><h2 class="wp-block-heading" id="generator-comprehension"><strong>Generator Comprehension:</strong></h2><p>Comprehension provides a short and concise (brief but comprehensive) way to create a new sequence using a previously defined sequence. They are generally one-line code.</p><pre><code class="language-python hljs" contenteditable="true" style="">square = (i**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">11</span>)) 
+<span class="hljs-comment">#In python 3, range function is a generator</span>
+<span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> square:
+    <span class="hljs-built_in">print</span> (num)</code></pre><h2 class="wp-block-heading" id="multiple-function-args"><strong>Multiple function arguments:</strong></h2><p>If the number of arguments to be passed in a function is not known, we can use the * symbol which indicates a variable number of arguments to a function.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">my_func</span>(<span class="hljs-params">first, second, third, *other</span>):
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"First: %s"</span> %(first))
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Second: %s"</span> %(second))
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Third: %s"</span> %(third))
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"And all the rest... %s"</span> %(<span class="hljs-built_in">list</span>(other)))
+my_func(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>)</code></pre><p>Output:</p><pre class="wp-block-preformatted">First: 1
+Second: 2
+Third: 3
+And all the rest... [4, 5]</pre><p>Another we have keyword arguments (kwargs), symbolized by **.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">my_func</span>(<span class="hljs-params">first, second, third, **options</span>):
+    <span class="hljs-keyword">if</span> options.get(<span class="hljs-string">"action"</span>) == <span class="hljs-string">"sum"</span>:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Sum= <span class="hljs-subst">{first + second + third}</span>"</span>)
+    <span class="hljs-keyword">if</span> options.get(<span class="hljs-string">"number"</span>) == <span class="hljs-string">"first"</span>:
+        <span class="hljs-keyword">return</span> first
+result = my_func(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, action = <span class="hljs-string">"sum"</span>, number = <span class="hljs-string">"first"</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Result: %d"</span> %(result))</code></pre><p>Output:</p><pre class="wp-block-preformatted">The sum is: 6
+Result: 1</pre><h2 class="wp-block-heading" id="sets"><strong>Sets:</strong></h2><p>A set is an unordered collection of data types that is iterable, mutable and contains&nbsp;<strong>unique</strong>&nbsp;elements.</p><p>We use parenthesis to represent sets just like a dictionary. The difference is that a dictionary has <code>key:value </code>pair whereas a set has only keys.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">print</span>(<span class="hljs-built_in">set</span>(<span class="hljs-string">"my name is Ishwar and Ishwar is my name"</span>.split()))</code></pre><pre class="wp-block-syntaxhighlighter-code"><span style="color: rgb(0, 0, 0); font-family: sans-serif; font-size: 1rem;">Output:</span></pre><pre class="wp-block-preformatted">{'my', 'Ishwar', 'is', 'name', 'and'}</pre><p>You can clearly see, the duplicate element gets removed.</p><pre><code class="language-python hljs" contenteditable="true" style="">a = <span class="hljs-built_in">set</span>([<span class="hljs-string">"Dhoni"</span>, <span class="hljs-string">"Virat"</span>, <span class="hljs-string">"Rohit"</span>])
+<span class="hljs-built_in">print</span>(a)
+b = <span class="hljs-built_in">set</span>([<span class="hljs-string">"Virat"</span>, <span class="hljs-string">"De villers"</span>])
+<span class="hljs-built_in">print</span>(b)</code></pre><p>Output:</p><pre class="wp-block-preformatted">{'Virat', 'Dhoni', 'Rohit'}
+{'De villers', 'Virat'}</pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># To find out which members attended both events</span>
+<span class="hljs-built_in">print</span>(a.intersection(b))
+<span class="hljs-built_in">print</span>(b.intersection(a))</code></pre><p>Output:</p><pre class="wp-block-preformatted">{'Virat'}
+{'Virat'}</pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># To find out which members attended only one of the events</span>
+<span class="hljs-built_in">print</span>(a.symmetric_difference(b))
+<span class="hljs-built_in">print</span>(b.symmetric_difference(a))</code></pre><pre class="wp-block-preformatted">{'De villers', 'Dhoni', 'Rohit'}
+{'De villers', 'Dhoni', 'Rohit'}</pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># To find out which members attended only one event and not the other</span>
+<span class="hljs-built_in">print</span>(a.difference(b))
+<span class="hljs-built_in">print</span>(b.difference(a))</code></pre><pre class="wp-block-preformatted">{'Dhoni', 'Rohit'}
+{'De villers'}</pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># To receive a list of all participants</span>
+a.union(b)</code></pre><pre class="wp-block-preformatted">{'De villers', 'Dhoni', 'Rohit', 'Virat'}</pre><h2 class="wp-block-heading" id="serialization"><strong>Serialization:</strong></h2><p>Serialization is the process of converting a structured object into a sequence of bytes which can be stored in a file system or database or sent through the network. An item is serialized when it is converted into a format that can be stored in order to de-serialize it later and rebuild the original object from the serialized format.</p><p><code>json.dump() </code>method can be used for writing JSON files.</p><p><code>json.dumps()</code> method can be used to convert a Python object into a JSON string.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> json
+<span class="hljs-comment">#json --&gt; javascript object notation</span>
+data = {
+    <span class="hljs-string">"channel"</span>: {
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"Ishwar Gautam"</span>,
+        <span class="hljs-string">"rating"</span>: <span class="hljs-number">10</span>,
+        <span class="hljs-string">"Location"</span>: <span class="hljs-string">"Nepal"</span>,
+        <span class="hljs-string">"Content"</span>: <span class="hljs-string">"Technology related"</span>
+    }
+}
+<span class="hljs-comment"># Serializing json and writing json file</span>
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>( <span class="hljs-string">"data_file.json"</span> , <span class="hljs-string">"w"</span> ) <span class="hljs-keyword">as</span> myJsonFile:
+    json.dump( data , myJsonFile, indent=<span class="hljs-number">4</span>) <span class="hljs-comment"># create json file</span>
+<span class="hljs-comment"># indent=4 added space of 4 so that a file doesn't display output in same line</span>
+json_str = json.dumps(data, indent=<span class="hljs-number">4</span>) <span class="hljs-comment"># Get json string</span>
+<span class="hljs-built_in">print</span>(json_str)</code></pre><p>When you execute this code, the datafile.json file will be created in the same directory which looks like this:</p><p><img selected="" src="https://drive.google.com/thumbnail?id=1vM-mhOp_kacORf4u-BV8Aj0S6T8BmlY7&amp;sz=w1000" data-filename="serialization.png" style="width: 459px;"><br></p><figure class="wp-block-image"><br></figure><p>And also your JSON string gets printed in the terminal which is the same as the JSON file.</p><p>Next, the Python&nbsp;pickle&nbsp;module is an object-oriented way to store objects directly in a special storage format.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> pickle
+<span class="hljs-built_in">print</span>(pickle.dumps([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>, <span class="hljs-string">"c"</span>])) <span class="hljs-comment"># generate pickled string</span></code></pre><pre class="wp-block-preformatted">b'\x80\x03]q\x00(K\x01K\x02K\x03X\x01\x00\x00\x00aq\x01X\x01\x00\x00\x00bq\x02X\x01\x00\x00\x00cq\x03e.'</pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># To print a actual string</span>
+<span class="hljs-built_in">print</span>(pickle.loads(pickled_string))</code></pre><pre class="wp-block-syntaxhighlighter-code">[1, 2, 3, 'a', 'b', 'c']</pre><h2 class="wp-block-heading" id="partial-function"><strong>Partial function:</strong></h2><p>In partial functions, we can fix a specific number of arguments in a function and create a new function.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> functools <span class="hljs-keyword">import</span> partial
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">multiply</span>(<span class="hljs-params">x,y</span>):
+        <span class="hljs-keyword">return</span> x * y
+
+<span class="hljs-comment"># create a new partial function</span>
+p = partial(multiply,<span class="hljs-number">2</span>)
+<span class="hljs-built_in">print</span>(p(<span class="hljs-number">4</span>))
+<span class="hljs-built_in">print</span>(p(<span class="hljs-number">8</span>))
+<span class="hljs-built_in">print</span>(p(<span class="hljs-number">10</span>))</code></pre><p>8</p><p>16</p><p>20</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># A normal function </span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">f</span>(<span class="hljs-params">z, y, x, t</span>): 
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1000</span>*z + <span class="hljs-number">100</span>*y + <span class="hljs-number">10</span>*x + t 
+  
+<span class="hljs-comment"># A partial function that calls f (above function) with  a as 3, b as 1 and c as 4. </span>
+g = partial(f, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>) 
+  
+<span class="hljs-comment"># Calling g() </span>
+<span class="hljs-built_in">print</span>(g(<span class="hljs-number">5</span>)) <span class="hljs-comment"># here, we pass the value of x</span></code></pre><p>3145</p><h2 class="wp-block-heading" id="closure"><strong>Closures:</strong></h2><p>A closure is a nested function that has access to a free variable from an enclosing function. Closures offer some kind of data protection (data hiding).</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">outer_func</span>(<span class="hljs-params">message</span>): 
+    message = message 
+  
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">inner_func</span>(): 
+        <span class="hljs-built_in">print</span>(message) 
+  
+    <span class="hljs-keyword">return</span> inner_func <span class="hljs-comment"># Note we are returning function without parenthesis </span>
+  
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>: 
+    myfunc = outer_func(<span class="hljs-string">'Test message!'</span>) 
+    myfunc() </code></pre><pre class="wp-block-preformatted">Test message!</pre><p>Even though the execution of the "outer_func()" was completed, the message was rather preserved (in <code>myfunc</code> at the last line of code; when calling <code>myfunc</code>, the message is preserved). Thus, closures are a Python mechanism for attaching data to code even after the other original functions have finished.</p><h2 class="wp-block-heading" id="decorator"><strong>Decorators:</strong></h2><p>Decorators allow programmers to change how a function or class behaves. It enables us to wrap another function in order to boost the behavior of the wrapped function without affecting it permanently.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">decorator_func</span>(<span class="hljs-params">func</span>): <span class="hljs-comment"># decorator function take function as parameter</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">inner_func</span>(<span class="hljs-params">a,b</span>):
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"I am going to divide"</span>,a,<span class="hljs-string">"and"</span>,b)
+        <span class="hljs-keyword">if</span> b == <span class="hljs-number">0</span>:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"cannot divide these numbers"</span>)
+            <span class="hljs-keyword">return</span>
+        <span class="hljs-keyword">return</span> func(a,b) <span class="hljs-comment"># this func is divide function in this case</span>
+    <span class="hljs-keyword">return</span> inner_func
+
+<span class="hljs-meta">@decorator_func  </span><span class="hljs-comment"># this line pass divide function to decorator function</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">divide</span>(<span class="hljs-params">a,b</span>):
+    <span class="hljs-keyword">return</span> a/b
+
+<span class="hljs-built_in">print</span>(divide(<span class="hljs-number">10</span>,<span class="hljs-number">2</span>))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"--------------------------------"</span>)
+<span class="hljs-built_in">print</span>(divide(<span class="hljs-number">10</span>,<span class="hljs-number">0</span>))</code></pre><pre class="wp-block-preformatted">I am going to divide 10 and 2
+5.0
+--------------------------------
+I am going to divide 10 and 0
+cannot divide these numbers
+None</pre><p><strong>Note</strong>: divide() function gets executed from the decorator function. When we call the divide() function, this function doesn't get executed. Instead, this divide() function gets passed to the decorator_func() as a parameter.</p><h2 class="wp-block-heading" id="multithreading">Multithreading in Python | Calculate square and cube at the same time with Multithreading</h2><p>Multithreading is a way to execute many threads at the same time. A thread is a tiny program that can be scheduled for execution. That means multithreading is a process of executing several parts of a program simultaneously or one after another without the completion of the previous one.&nbsp;</p><p>In Python programming language, we have to import the 'threading' library to achieve this task. Another system library i.e., 'time' is used to sleep one part of the program so that we can execute another part.</p><hr class="wp-block-separator has-alpha-channel-opacity"><p>Let us see an example:</p><p>Suppose we have two functions: one function returns the square of a number whereas another function returns the cube of a number. Let's see how these two functions execute simultaneously with threading.</p><h2 class="wp-block-heading"><strong>1: Import threading and time</strong></h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> threading
+<span class="hljs-keyword">import</span> time</code></pre><h2 class="wp-block-heading"><strong>2: Define two functions (one for finding a </strong>square and another for a <strong>cube)</strong></h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">find_square</span>(<span class="hljs-params">num</span>):
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num):
+        time.sleep(<span class="hljs-number">2</span>)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Square: <span class="hljs-subst">{i*i}</span> "</span>)
+        <span class="hljs-built_in">print</span>(time.ctime())</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">find_cube</span>(<span class="hljs-params">num</span>):
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num):
+        time.sleep(<span class="hljs-number">3</span>)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Cube: <span class="hljs-subst">{i**<span class="hljs-number">3</span>}</span> "</span>)
+        <span class="hljs-built_in">print</span>(time.ctime())</code></pre><h2 class="wp-block-heading">3: Create threads t1 and t2</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># create thread</span>
+t1 = threading.Thread(target=find_square,args=(<span class="hljs-number">5</span>,))
+t2 = threading.Thread(target=find_cube,args=(<span class="hljs-number">5</span>,))</code></pre><p>As our function takes one parameter, we have to pass one value inside args as shown above.</p><h2 class="wp-block-heading"><strong>4: Start the thread</strong></h2><pre><code class="language-python hljs" contenteditable="true" style="">t1.start()
+t2.start()
+
+<span class="hljs-comment"># join method waits for threads to terminate</span>
+t1.join()
+t2.join()
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Thread successfully executed!!!"</span>)</code></pre><p>Square: 0&nbsp;</p><p>Wed Oct 20 19:18:58 2021&nbsp;</p><p>Cube: 0&nbsp;</p><p>Wed Oct 20 19:18:59 2021</p><p>Square: 1&nbsp;</p><p>Wed Oct 20 19:19:00 2021</p><p><mark style="background-color:#fcb900" class="has-inline-color">Cube: 1 Square: 4&nbsp;</mark></p><p><mark style="background-color:#fcb900" class="has-inline-color">Wed Oct 20 19:19:02 2021&nbsp;</mark></p><p><mark style="background-color:#fcb900" class="has-inline-color">Wed Oct 20 19:19:02 2021&nbsp;</mark></p><p>Square: 9&nbsp;</p><p>Wed Oct 20 19:19:04 2021&nbsp;</p><p>Cube: 8&nbsp;</p><p>Wed Oct 20 19:19:05 2021&nbsp;</p><p>Square: 16&nbsp;</p><p>Wed Oct 20 19:19:06 2021&nbsp;</p><p>Cube: 27&nbsp;</p><p>Wed Oct 20 19:19:08 2021&nbsp;</p><p>Cube: 64&nbsp;</p><p>Wed Oct 20 19:19:11 2021&nbsp;</p><p>Thread successfully executed!!!</p><p>You can clearly see, the function is executed one after another as we have used the time function. Sometimes, it also executes at the same time as highlighted above.</p><p><!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"linkDestination":"custom"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"linkDestination":"custom"} -->
+
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:preformatted -->
+
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:syntaxhighlighter/code {"language":"python"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph --></p><p>This is how multithreading is created in Python Programming language. I hope this is clear to you.</p></p>
+</div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

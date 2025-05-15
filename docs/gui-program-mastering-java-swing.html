@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    GUI Program: Mastering Java Swing
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-23 05:40:43.193235
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><p>Let's deep dive into GUI program: Java Swing for creating window based application.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#gui-form"><strong>GUI program with Java Swing</strong>: Check Palindrome, Reverse the String, and find vowel characters in a string</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#jmenubar-jpanel">JMenuBar and JPanel in Java with programming example</a></li>
+<!-- /wp:list-item --></ol><h2 class="wp-block-heading"><strong id="gui-form">GUI Form with Java Swing</strong>: Check Palindrome, Reverse the String, and find vowel characters in a string</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Create a GUI program with a swing that includes a text field, a text label with the input message "Input any String," and three buttons with the captionCheckPalindrome, Reverse, and FindVowels. Write a complete program for the above scenario and for checking the palindrome in the first button, reverse it after clicking the second button, and extract the vowels from it after clicking the third button.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/NuG4dQZXhhA" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Palindrome String</strong>: A string is said to be a palindrome if it is the same when we are reading either from forward or backward. Madam, for example, is a palindrome string.<br>Reverse: A reverse of the word 'java' is 'avaj'<br><strong>Vowels</strong>: a, e, i, o, u are vowel characters in the alphabet</p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> Ishwar;
+
+<span class="hljs-keyword">import</span> java.awt.GridLayout;
+<span class="hljs-keyword">import</span> java.awt.event.ActionEvent;
+<span class="hljs-keyword">import</span> java.awt.event.ActionListener;
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-keyword">import</span> javax.swing.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GUI_Form</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ActionListener</span>{
+
+	JLabel l1;
+	JTextField t1;
+	JButton b1,b2,b3;
+	<span class="hljs-type">JFrame</span> <span class="hljs-variable">f</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JFrame</span>();
+	GUI_Form(){
+		l1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JLabel</span>(<span class="hljs-string">"Input any string"</span>);
+		t1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JTextField</span>();
+		
+		b1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JButton</span>(<span class="hljs-string">"CheckPalindrome"</span>);
+		b2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JButton</span>(<span class="hljs-string">"Reverse"</span>);
+		b3 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JButton</span>(<span class="hljs-string">"FindVowels"</span>);
+		
+		b1.addActionListener(<span class="hljs-built_in">this</span>);
+		b2.addActionListener(<span class="hljs-built_in">this</span>);
+		b3.addActionListener(<span class="hljs-built_in">this</span>);
+		
+		f.add(l1);f.add(t1);
+		f.add(b1);f.add(b2);f.add(b3);
+		
+		f.setSize(<span class="hljs-number">300</span>,<span class="hljs-number">150</span>);
+		f.setLayout(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GridLayout</span>(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>));
+		f.setVisible(<span class="hljs-literal">true</span>);
+		f.setLocationRelativeTo(<span class="hljs-literal">null</span>);
+		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
+	}
+	
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">actionPerformed</span><span class="hljs-params">(ActionEvent e)</span> { <span class="hljs-comment">//Madam #rev = madaM</span>
+		<span class="hljs-keyword">if</span>(e.getSource()==b1) {
+			<span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> t1.getText().toLowerCase(); <span class="hljs-comment">//Madam --&gt; madam</span>
+			<span class="hljs-type">String</span> <span class="hljs-variable">rev</span> <span class="hljs-operator">=</span> <span class="hljs-string">""</span>;
+			
+			<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=s.length()-<span class="hljs-number">1</span>;i&gt;=<span class="hljs-number">0</span>;i--) {
+				rev = rev+s.charAt(i);
+			}
+			<span class="hljs-keyword">if</span>(s.equals(rev)) {
+				JOptionPane.showMessageDialog(f, s+<span class="hljs-string">" is a palindrome"</span>);
+			}
+			<span class="hljs-keyword">else</span> {
+				JOptionPane.showMessageDialog(f, s+<span class="hljs-string">" is not a palindrome"</span>);
+			}
+			
+		}
+		
+		<span class="hljs-keyword">if</span>(e.getSource()==b2) {
+			<span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> t1.getText(); <span class="hljs-comment">//Madam --&gt; madaM</span>
+			<span class="hljs-type">String</span> <span class="hljs-variable">rev</span> <span class="hljs-operator">=</span> <span class="hljs-string">""</span>;
+			
+			<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=s.length()-<span class="hljs-number">1</span>;i&gt;=<span class="hljs-number">0</span>;i--) {
+				rev = rev+s.charAt(i);
+			}
+			JOptionPane.showMessageDialog(f, <span class="hljs-string">"The reverse string is "</span>+rev);
+			
+		}
+		
+		<span class="hljs-keyword">if</span>(e.getSource()==b3) {
+			<span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> t1.getText().toLowerCase();
+			List&lt;Character&gt; lst = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;Character&gt;();
+			<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;s.length();i++) {
+				<span class="hljs-keyword">if</span>(s.charAt(i)==<span class="hljs-string">'a'</span> || s.charAt(i)==<span class="hljs-string">'e'</span> || s.charAt(i)==<span class="hljs-string">'i'</span> ||
+						s.charAt(i)==<span class="hljs-string">'o'</span> || s.charAt(i)==<span class="hljs-string">'u'</span>) {
+					lst.add(s.charAt(i));
+				} 
+			}
+			JOptionPane.showMessageDialog(f, <span class="hljs-string">"The vowel character in your string: "</span>+lst);
+		}
+	}
+	
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+		<span class="hljs-keyword">new</span> <span class="hljs-title class_">GUI_Form</span>();
+	}
+}</code></pre><h2 class="wp-block-heading" id="jmenubar-jpanel">JMenuBar and JPanel in Java with programming example</h2><p><strong><em>How can we create a menu bar (file menu, edit menu, view menu) and panel with Java?<br></em>JMenuBar:</strong> JMenuBar is provided by the Java Swing package. We can create a menu bar easily with JMenuBar.&nbsp;There are several constructors related to this term:</p><ol class="wp-block-list"><!-- wp:list-item -->
+<li>JMenuBar(): It creates a new MenuBar.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>JMenu(): It creates a new Menu with no text.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>JMenu(String name): It creates a new Menu with a given name.</li>
+<!-- /wp:list-item --></ol><p><br><strong>JPanel:</strong> JPanel is also provided by the Java Swing package. This panel represents a container that can store a group of components. For example, we can store labels, text fields, buttons, etc. in this container.&nbsp;There are several constructors related to this term:</p><ol class="wp-block-list"><!-- wp:list-item -->
+<li>JPanel(): It creates a new panel with the default layout manager i.e., flow layout.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>JPanel(LayoutManager l): It creates a new panel with the given layout manager.</li>
+<!-- /wp:list-item --></ol><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/jGGto_Iopak" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><pre><code class="language-java hljs" contenteditable="true" style=""><span style="text-wrap-mode: wrap;">package Ishwar;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Main extends JFrame {
+
+    public Main(){
+        setJMenuBar(getMyMenu());
+        add(getPanel());
+        setVisible(true);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //setMinimumSize(new Dimension(200,200));
+        setResizable(false);
+        pack();
+    }
+
+    public JMenuBar getMyMenu(){
+        JMenuBar menuBar = new JMenuBar();
+        JMenu fileMenu = new JMenu("File");
+        JMenu editMenu = new JMenu("Edit");
+        JMenu viewMenu = new JMenu("View");
+
+        JMenu newItem = new JMenu("New");
+        JMenuItem openFile = new JMenuItem("Open");
+        JMenuItem recentFile = new JMenuItem("Open Recent");
+
+        JMenuItem project = new JMenuItem("Project");
+        JMenuItem existing = new JMenuItem("Project from Existing Sources");
+        JMenuItem version = new JMenuItem("Project from Version Control");
+
+        menuBar.add(fileMenu);
+        menuBar.add(editMenu);
+        menuBar.add(viewMenu);
+
+        fileMenu.add(newItem);
+        fileMenu.add(openFile);
+        fileMenu.add(recentFile);
+
+        newItem.add(project);
+        newItem.add(existing);
+        newItem.add(version);
+
+        return menuBar;
+
+    }
+
+    public JPanel getPanel(){
+        JPanel myPanel = new JPanel();
+
+        myPanel.setBorder(BorderFactory.createTitledBorder("Sign in"));
+        //two method: GridLayout and GridBagLayout
+        myPanel.setLayout(new GridLayout (3,2));
+
+//        myPanel.add(new JLabel("Username: "));
+//        myPanel.add(new JTextField(20));
+//
+//        myPanel.add(new JLabel("Password: "));
+//        myPanel.add(new JPasswordField(20));
+//
+//        myPanel.add(new JButton("Submit"));
+
+        myPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        myPanel.add(new JLabel("Username"),gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        myPanel.add(new JTextField(20),gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        myPanel.add(new JLabel("Password"),gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        myPanel.add(new JPasswordField(20),gbc);
+
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        myPanel.add(new JButton("submit"),gbc);
+
+
+        // 0,0     1,0
+        // 0,1     1,1    2,1
+        return myPanel;
+    }
+
+
+    public static void main(String[] args) {
+	// write your code here
+        new Main();
+    }
+}</span><span style="white-space: pre-wrap;">
+</span></code><div><br></div></pre><h2 class="wp-block-heading">Conclusion:</h2><p>In this way, you can write a complete GUI program in Java with swing components. JMenuBar and JPanel are other swing packages that you can use to create a Java swing program.</p><p><!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://youtu.be/NuG4dQZXhhA","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:embed {"url":"https://youtu.be/jGGto_Iopak","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+
+<!-- /wp:embed -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+</p><p></p>
+<!-- /wp:paragraph --><p></p><p>I hope this post is very clear to you. Don't hesitate to ask me in the comment section if you have any questions. I will reply as soon as possible. Thanks.</p></p>
+</div>
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
+</html>

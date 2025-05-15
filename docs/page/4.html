@@ -10,7 +10,7 @@
     <link
       rel="icon"
       type="image/png"
-      href="{{ url_for('static', filename='images/favicon.png') }}"
+      href="/static/images/favicon.png"
     />
 
     <!-- Bootstrap CSS -->
@@ -193,7 +193,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-light sticky-top">
       <div class="container">
-        <a class="navbar-brand" href="{{ url_for('post.index') }}">
+        <a class="navbar-brand" href="/">
           IGTechTeam
         </a>
 
@@ -212,33 +212,22 @@
 
         <div class="collapse navbar-collapse" id="navbarContent">
           <div class="navbar-nav mr-auto">
-            {% if current_user.is_authenticated and current_user.is_admin %}
-            <a class="nav-link" href="{{ url_for('post.create') }}">
-              Create Post
-            </a>
-            {% endif %}
-            <a class="nav-link" href="{{ url_for('contact.contact') }}"
+            
+            <a class="nav-link" href="/contact.html"
               >Contact</a
             >
-            <a class="nav-link" href="{{ url_for('about.about') }}">About me</a>
+            <a class="nav-link" href="/about.html">About me</a>
           </div>
 
           <div class="navbar-nav ml-auto d-flex align-items-center">
             <a
               class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
-              href="{{ url_for('auth.login') }}"
+              href="/login.html"
             >
               Login
             </a>
 
-            {% if current_user.is_authenticated and current_user.is_admin %}
-            <a
-              class="btn btn-outline-light px-4 py-2 fw-semibold shadow-sm"
-              href="{{ url_for('auth.logout') }}"
-            >
-              Logout
-            </a>
-            {% endif %}
+            
           </div>
         </div>
       </div>
@@ -253,16 +242,140 @@
 
     <!-- Flash Messages -->
     <div class="container">
-      {% for message in get_flashed_messages() %}
-      <div class="alert alert-danger">{{ message }}</div>
-      {% endfor %}
+      
     </div>
 
     <!-- Page Content -->
-    <div class="container page-content">{% block content %} {% endblock %}</div>
+    <div class="container page-content">
+<h1> Latest Posts </h1>
+
+ 
+<div class="row mb-4">
+  <div class="col-md-8">
+    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
+      <a href="/face-recognition-system-complete-code-with-a-full-demonstration.html" class="text-dark">
+        <h2 class="post-title">Face Recognition System Complete Code with a full demonstration</h2>
+      </a>
+      <div class="d-flex align-items-center mb-3">
+        <span class="badge badge-primary">2025-04-21 09:14:50.117231</span>
+        
+      </div>
+      <p>Face Recognition System is one of the most popular Python, Machine Learning, and Deep Learning projects. What will you learn? Watch the demo video to get an idea of a...</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <div class="featured-image-container">
+      <img
+        src="https://drive.google.com/thumbnail?id=17BXt2EdIxovW2CLRpwO1Cc-Yl9Gs4cux&amp;sz=w1000"
+        alt="Featured Image"
+        class="img-fluid rounded featured-img"
+      />
+    </div>
+  </div>
+</div>
+<hr />
+
+<div class="row mb-4">
+  <div class="col-md-8">
+    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
+      <a href="/face-recognition-system-using-deep-learning-complete-project.html" class="text-dark">
+        <h2 class="post-title">Face Recognition System using deep learning | Complete Project</h2>
+      </a>
+      <div class="d-flex align-items-center mb-3">
+        <span class="badge badge-primary">2025-04-21 09:14:50.117231</span>
+        
+      </div>
+      <p>Face Recognition System using Deep Learning/Convolutional Neural Network. You have to first collect data, then train your model and the final step is to make a prediction. What will you...</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <div class="featured-image-container">
+      <img
+        src="https://drive.google.com/thumbnail?id=1NnJbCF0O0Iqe-ONsmBsVwzpDyYuEqvMJ&amp;sz=w1000"
+        alt="Featured Image"
+        class="img-fluid rounded featured-img"
+      />
+    </div>
+  </div>
+</div>
+<hr />
+
+<div class="row mb-4">
+  <div class="col-md-8">
+    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
+      <a href="/java-for-absolute-beginners-simplified-learning-with-notes-and-code-examples.html" class="text-dark">
+        <h2 class="post-title">Java for Absolute Beginners: Simplified Learning with Notes and Code Examples</h2>
+      </a>
+      <div class="d-flex align-items-center mb-3">
+        <span class="badge badge-primary">2025-04-16 14:49:14.093102</span>
+        
+      </div>
+      <p>This is an introduction to Java programming for newcomers. The fundamental syntax is quite simple to understand. What will you learn? Introduction to Java Programming Language How to print in...</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <div class="featured-image-container">
+      <img
+        src="https://drive.google.com/thumbnail?id=1NDaMAbhQCBTcQyZXU4Sqo8chK-K-Tq_U&amp;sz=w1000"
+        alt="Featured Image"
+        class="img-fluid rounded featured-img"
+      />
+    </div>
+  </div>
+</div>
+<hr />
+
+
+<!-- Pagination controls -->
+
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="/page/3.html"
+        >Previous</a
+      >
+    </li>
+     
+    <li class="page-item ">
+      <a class="page-link" href="/page/1.html"
+        >1</a
+      >
+    </li>
+    
+    <li class="page-item ">
+      <a class="page-link" href="/page/2.html"
+        >2</a
+      >
+    </li>
+    
+    <li class="page-item ">
+      <a class="page-link" href="/page/3.html"
+        >3</a
+      >
+    </li>
+    
+    <li class="page-item active">
+      <a class="page-link" href="/page/4.html"
+        >4</a
+      >
+    </li>
+     
+    <li class="page-item disabled">
+      <span class="page-link">Next</span>
+    </li>
+    
+  </ul>
+</nav>
+ </div>
 
     <!-- Footer -->
-    {% block footer %}
+    
     <footer class="bg-dark text-white py-4 mt-5">
       <div class="container">
         <div class="row">
@@ -313,7 +426,7 @@
         </div>
       </div>
     </footer>
-    {% endblock %}
+    
 
     <!-- Summernote Initialization -->
     <script>

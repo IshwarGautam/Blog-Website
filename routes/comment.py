@@ -7,7 +7,7 @@ from flask import request, redirect, url_for, render_template, Blueprint
 comment_bp = Blueprint("comment", __name__)
 
 
-@comment_bp.route("/post/<int:post_id>", methods=["GET", "POST"])
+@comment_bp.route("/post/<int:post_id>/comment", methods=["GET", "POST"])
 def comment(post_id):
     post = Post.query.get_or_404(post_id)
 
@@ -22,11 +22,13 @@ def comment(post_id):
             )
             db.session.add(comment)
             db.session.commit()
-            return redirect(url_for("comment", post_id=post_id))
+            return redirect(url_for("comment.comment", post_id=post_id))
 
     comments = (
         Comment.query.filter_by(post_id=post.id, parent_id=None)
         .order_by(Comment.timestamp.desc())
         .all()
     )
-    return render_template("comment.html", post=post, comments=comments)
+    for comment in comments:
+        comment.replies = comment.replies.order_by(Comment.timestamp.asc()).all()
+    return render_template("post.html", post=post, comments=comments)

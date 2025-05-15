@@ -12,6 +12,85 @@ class CustomFreezer(Freezer):
         return filepath
 
 
+def patch_contact_form_for_emailjs(build_dir):
+    contact_path = os.path.join(build_dir, "contact.html")
+    if not os.path.exists(contact_path):
+        print("No contact.html found to patch.")
+        return
+
+    with open(contact_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    js_script = """
+    <script type="text/javascript">
+    (function() {
+        const form = document.querySelector("form");
+        const submitBtn = form.querySelector("button[type='submit']");
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            submitBtn.disabled = true;
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = "Sending...";
+
+            fetch("/.netlify/functions/get_emailjs_keys")
+                .then(res => res.json())
+                .then(keys => {
+                    const formData = new FormData(form);
+                    const sentAt = new Date().toLocaleString();
+
+                    const params = {
+                        name: formData.get("name"),
+                        reply_to: formData.get("email"),
+                        message: formData.get("message"),
+                        time: sentAt,
+                        subject: "Contact Form Submission [IG Tech Team]"
+                    };
+
+                    return fetch("https://api.emailjs.com/api/v1.0/email/send", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            service_id: keys.service_id,
+                            template_id: keys.template_id,
+                            user_id: keys.public_key,
+                            template_params: params
+                        })
+                    });
+                })
+                .then(response => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+
+                    if (response.ok) {
+                        alert("Message sent successfully!");
+                        form.reset();
+                    } else {
+                        return response.text().then(text => {
+                            alert("Email failed: " + text);
+                        });
+                    }
+                })
+                .catch(error => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                    alert("Error sending email: " + error);
+                });
+        });
+    })();
+    </script>
+    """
+
+    if "</form>" in content:
+        content = content.replace("</form>", "</form>" + js_script)
+        with open(contact_path, "w", encoding="utf-8") as f:
+            f.write(content)
+        print("✅ Patched contact.html with EmailJS fetch script.")
+
+
 def build_static_site(destination, base_url):
     app = create_app()
     app.config["FREEZER_DESTINATION"] = destination
@@ -34,6 +113,7 @@ def build_static_site(destination, base_url):
             f.write("www.ishwargautam1.com.np")
 
     replace_image_paths(destination)
+    patch_contact_form_for_emailjs(destination)
 
 
 def replace_image_paths(directory):

@@ -1,42 +1,1320 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IGTechTeam - Comments</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      max-width: 700px;
-    }
-    form {
-      margin-bottom: 30px;
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    input[type="text"], textarea {
-      width: 100%;
-      padding: 8px;
-      box-sizing: border-box;
-      font-size: 14px;
-    }
-    button {
-      padding: 8px 16px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-    #comments .border {
-      border: 1px solid #ccc;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-    }
-  </style>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <title>IGTechTeam</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/static/images/favicon.png"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Highlight.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          IGTechTeam
+        </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="navbar-nav mr-auto">
+            
+            <a class="nav-link" href="/contact.html"
+              >Contact</a
+            >
+            <a class="nav-link" href="/about.html">About me</a>
+          </div>
+
+          <div class="navbar-nav ml-auto d-flex align-items-center">
+            <a
+              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
+              href="/login.html"
+            >
+              Login
+            </a>
+
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Site Notice -->
+    <div class="container text-center">
+      <div class="alert alert-warning" role="alert">
+        🚧 Website construction is going on! Please check back later. 🚧
+      </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <div class="container">
+      
+    </div>
+
+    <!-- Page Content -->
+    <div class="container page-content">
+
+<!-- Post Header -->
+<header
+  class="post-header"
+  style="
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  "
+>
+  <h1
+    style="
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: white;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1rem;
+    "
+  >
+    Java for Absolute Beginners: Simplified Learning with Notes and Code Examples
+  </h1>
+
+  <span
+    style="
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    "
+  >
+    🕒 2025-04-16 14:49:14.093102
+  </span>
+</header>
+
+<!-- Post Body -->
+<div
+  class="post-content"
+  style="
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    margin-top: -1px;
+  "
+>
+  <p><p style="font-style:normal;font-weight:500"><img src="https://drive.google.com/thumbnail?id=1NDaMAbhQCBTcQyZXU4Sqo8chK-K-Tq_U&sz=w1000" data-filename="java-featured-img.png" style="width: 50%;"><br></p><p style="font-style:normal;font-weight:500">This is an introduction to Java programming for newcomers. The fundamental syntax is quite simple to understand.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+<li><a href="#introduction">Introduction to Java Programming Language</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#print">How to print in Java?</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#declare-variables">Declare Variables and increment/decrement operator</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#take-input">Take input from the user</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#operations">String and Math Operations</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#if-else">Conditional Statement (if-else)</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#loop">Loop (for, while, do-while)</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#switch">Switch Statement</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#arrays">Arrays and how to iterate them?</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#try-catch">Exception Handling (try-catch)</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#function">Function: Defining and Calling</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#java-oop">OOP program to find the area and perimeter of a rectangle</a></li>
+<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="introduction">Introduction to Java Programming Language</h2><p class="has-text-align-left"><strong><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-luminous-vivid-amber-color">Java</mark></strong> is the most popular programming language. The Java Programming Language makes it very simple to create mobile applications, online applications, desktop programs, and other games.</p><p class="has-text-align-left">We can use Java on different platforms like Windows, Mac, Linux, Raspberry Pi, etc.). It is an object-oriented programming language in which a program is divided into objects. If you are familiar with C++ or C#, it will be very easy for you to get all the syntax of Java. If not, don't worry, we will start with a basic course.</p><p class="has-text-align-left">To start with Java, you need to first install <a href="https://www.oracle.com/java/technologies/downloads/" target="_blank" rel="noreferrer noopener">JDK (Java Development Kit)</a> and then you can choose any editor like <a href="https://www.jetbrains.com/idea/" target="_blank" rel="noreferrer noopener">IntelliJ Idea</a> or <a href="https://www.eclipse.org/downloads/" target="_blank" rel="noreferrer noopener">Eclipse</a>. Both editors have their own features. But for beginners, you don't need to worry about this as both of the editors contain features that we want and the easiness is almost the same in both the editor.</p><h2 class="wp-block-heading" id="print">How to print in Java?</h2><p>It is very simple to print in Java. You can use <code>System.out.print</code>. You can write like <code>sysout</code> and then click enter to generate a statement <code>System.out.println</code>. It is based on what editor you used.</p><p>This is a very general structure of your code. The package indicates your folder name where your class is located. In this example, Basics is a class name (Basics.java) and it is located in a folder JavaFile.</p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> JavaFile;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Basics</span> {
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+    <span class="hljs-comment">//To print in Java</span>
+    System.out.println(<span class="hljs-string">"Ishwar Gautam"</span>);
+
+    <span class="hljs-comment">//To print in the same line</span>
+    System.out.print(<span class="hljs-string">"My name is "</span>);
+    System.out.println(<span class="hljs-string">"IG "</span>);
+
+  }
+}</code></pre><pre class="wp-block-syntaxhighlighter-code"></pre><p><strong>Output:</strong></p><p>Ishwar Gautam</p><p>My name is IG</p><h2 class="wp-block-heading" id="declare-variables">Declare Variables and increment/decrement operator</h2><p>Just like other programming languages, you can easily declare variables. While declaring variables, you have to give proper types like int, float, String, and boolean.</p><p>The increment and decrement operator is a very useful way to increase/decrease the value of a variable. For increment, ++ operator can be used and for decrement, -- operator can be used. i++ is same like i=i+1 or i+=1. All of these work as same.</p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> JavaFile;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">declareVariables</span> {
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+    <span class="hljs-comment">//To declare variable</span>
+    <span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+
+    System.out.println(num); <span class="hljs-comment">//print 10</span>
+    System.out.println(num++); <span class="hljs-comment">//print 10 and then increment by 1</span>
+    System.out.println(++num); <span class="hljs-comment">//First increment by 1 and then print</span>
+    System.out.println(num--); <span class="hljs-comment">//print 12 and then decrement by 1</span>
+    System.out.println(--num); <span class="hljs-comment">//First decrement by 1 and then print</span>
+
+    <span class="hljs-comment">//Declare float value and then print them</span>
+    <span class="hljs-type">float</span> <span class="hljs-variable">num2</span> <span class="hljs-operator">=</span> <span class="hljs-number">20.2</span> f;
+    System.out.println(num2);
+
+    <span class="hljs-comment">//Declare double value and then print them</span>
+    <span class="hljs-type">double</span> <span class="hljs-variable">num3</span> <span class="hljs-operator">=</span> <span class="hljs-number">20.2</span>;
+    System.out.println(num3);
+  }
+}</code></pre><p><strong>Output:</strong></p><pre class="wp-block-syntaxhighlighter-code">10
+
+10
+
+12
+
+12
+
+10
+
+20.2
+
+20.2</pre><h2 class="wp-block-heading" id="take-input">Take input from the user</h2><p>To take input from the user, Scanner util can be used. We need to create a Scanner object and using that object, input can be taken from the user.</p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> JavaFile;
+<span class="hljs-keyword">import</span> java.util.Scanner;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">userInput</span> {
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+    <span class="hljs-comment">//Taking input from user </span>
+    <span class="hljs-type">Scanner</span> <span class="hljs-variable">scan</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);
+    System.out.print(<span class="hljs-string">"Enter your name: "</span>);
+    <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> scan.nextLine();
+    System.out.println(<span class="hljs-string">"Your name is "</span> + name);
+
+    System.out.print(<span class="hljs-string">"Enter your age: "</span>);
+    <span class="hljs-type">int</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> scan.nextInt();
+    System.out.println(<span class="hljs-string">"Your age is "</span> + age);
+  }
+}</code></pre><p><strong>Output:</strong></p><p>Enter your name: Ishwar</p><p>Your name is Ishwar</p><p>Enter your age: 26</p><p>Your age is 26</p><h2 class="wp-block-heading" id="operations">String and Math Operations</h2><p>Several string and math operations can be performed like calculating the length of a string and getting a random number.</p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> JavaFile;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StringAndMathOperation</span> {
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+    <span class="hljs-type">String</span> <span class="hljs-variable">name1</span> <span class="hljs-operator">=</span> <span class="hljs-string">"Ishwar"</span>;
+    System.out.println(name1); <span class="hljs-comment">// Ishwar</span>
+    System.out.println(name1.length()); <span class="hljs-comment">// 6</span>
+    System.out.println(name1.toUpperCase()); <span class="hljs-comment">// ISHWAR</span>
+    System.out.println(name1.toLowerCase()); <span class="hljs-comment">// ishwar</span>
+    System.out.println(name1 + <span class="hljs-string">" from\" "</span> + <span class="hljs-string">"Nepal --&gt; Escape sequence"</span>); <span class="hljs-comment">// Ishwar from" Nepal --&gt; Escape sequence</span>
+
+    <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> <span class="hljs-string">"Ishwar"</span>;
+    System.out.println(name.contains(<span class="hljs-string">"ar"</span>)); <span class="hljs-comment">// true</span>
+    System.out.println(name.startsWith(<span class="hljs-string">"bi"</span>)); <span class="hljs-comment">// false</span>
+    System.out.println(name.endsWith(<span class="hljs-string">"ar"</span>)); <span class="hljs-comment">// true</span>
+    System.out.println(name.indexOf(<span class="hljs-string">"sh"</span>)); <span class="hljs-comment">// 1</span>
+    System.out.println(name.charAt(<span class="hljs-number">5</span>)); <span class="hljs-comment">// r</span>
+
+    System.out.println(Math.max(<span class="hljs-number">10</span>, <span class="hljs-number">3</span>)); <span class="hljs-comment">// 10</span>
+    System.out.println(Math.min(<span class="hljs-number">10</span>, <span class="hljs-number">3</span>)); <span class="hljs-comment">// 3</span>
+    System.out.println(Math.sqrt(<span class="hljs-number">81</span>)); <span class="hljs-comment">// 9.0</span>
+    System.out.println(Math.abs(-<span class="hljs-number">6</span>)); <span class="hljs-comment">// 6</span>
+    System.out.println(Math.random()); <span class="hljs-comment">//generate random number between 0 and 1</span>
+    System.out.println(<span class="hljs-number">4</span> + (<span class="hljs-number">8</span> - <span class="hljs-number">4</span>) * Math.random()); <span class="hljs-comment">//generate random number between any two numbers like 4 and 8</span>
+  }
+}</code></pre><h2 class="wp-block-heading" id="if-else">Conditional Statement (if-else)</h2><p>A conditional statement is used to check the condition and perform specific operations. If you are familiar with C/C++, you must be familiar with the if-else block. The syntax is very easy.</p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> JavaFile;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ConditionalStatement</span> {
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+    <span class="hljs-comment">//If-else condition:</span>
+    <span class="hljs-type">int</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> <span class="hljs-number">25</span>;
+    <span class="hljs-keyword">if</span> (age &gt; <span class="hljs-number">25</span>) {
+      System.out.println(<span class="hljs-string">"greater than 25"</span>);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (age &lt; <span class="hljs-number">25</span>) {
+      System.out.println(<span class="hljs-string">"less than 25"</span>);
+    } <span class="hljs-keyword">else</span> {
+      System.out.println(<span class="hljs-string">"equal to 25"</span>);
+    }
+  }
+}</code></pre><p><strong>Output:</strong></p><p>equal to 25</p><h2 class="wp-block-heading" id="loop">Loop (for, while, do-while)</h2><p>A loop is used to iterate an element. We have for loop, while loop, and do-while loop in Java.</p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> JavaFile;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Loop</span> {
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+    <span class="hljs-comment">// for loop</span>
+    System.out.println(<span class="hljs-string">"FOR LOOP"</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) {
+      System.out.println(i);
+    }
+
+    <span class="hljs-comment">// while loop</span>
+    System.out.println(<span class="hljs-string">"WHILE LOOP"</span>);
+    <span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> (j &lt; <span class="hljs-number">5</span>) {
+      System.out.println(j);
+      j++;
+    }
+
+    <span class="hljs-comment">// do while loop</span>
+    System.out.println(<span class="hljs-string">"DO WHILE LOOP"</span>);
+    <span class="hljs-type">int</span> <span class="hljs-variable">k</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">do</span> {
+      System.out.println(k);
+      k++;
+    } <span class="hljs-keyword">while</span> (k &lt; <span class="hljs-number">5</span>);
+  }
+}</code></pre><h2 class="wp-block-heading" id="switch">Switch Statement</h2><p>A switch is also another conditional statement. If a certain condition is met, a specific block will be executed.</p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> JavaFile;
+<span class="hljs-keyword">import</span> java.util.Scanner;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SwitchStatement</span> {
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+    <span class="hljs-comment">//switch statement</span>
+    <span class="hljs-type">int</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> <span class="hljs-number">26</span>;
+    <span class="hljs-keyword">switch</span> (age) {
+    <span class="hljs-keyword">case</span> <span class="hljs-number">12</span>:
+      System.out.println(<span class="hljs-string">"you are 12 years old"</span>);
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">60</span>:
+      System.out.println(<span class="hljs-string">"you are 60 years old"</span>);
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>:
+      System.out.println(<span class="hljs-string">"your age do not match any of the cases"</span>);
+    }
+
+    <span class="hljs-type">Scanner</span> <span class="hljs-variable">scan</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);
+    System.out.println(<span class="hljs-string">"Press any key from 1 to 7 to generate day from Sunday to Saturday:"</span>);
+    <span class="hljs-type">int</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> scan.nextInt();
+    <span class="hljs-keyword">switch</span> (key) {
+    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+      System.out.println(<span class="hljs-string">"Sunday"</span>);
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+      System.out.println(<span class="hljs-string">"Monday"</span>);
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+      System.out.println(<span class="hljs-string">"Tuesday"</span>);
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:
+      System.out.println(<span class="hljs-string">"Wednesday"</span>);
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:
+      System.out.println(<span class="hljs-string">"Thursday"</span>);
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:
+      System.out.println(<span class="hljs-string">"Friday"</span>);
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">7</span>:
+      System.out.println(<span class="hljs-string">"Saturday"</span>);
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>:
+      System.out.println(<span class="hljs-string">"You pressed number out of range"</span>);
+    }
+  }
+}</code></pre><p><strong>Output:</strong></p><p>your age does not match any of the cases</p><p>Press any key from 1 to 7 to generate the day from Sunday to Saturday:</p><p>7</p><p>Saturday</p><h2 class="wp-block-heading" id="arrays">Arrays and how to iterate them?</h2><p>An array is a way to store data/elements. It stores data in a list. We can iterate an array with for loop.</p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> JavaFile;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Array</span> {
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+    <span class="hljs-comment">//Arrays</span>
+    <span class="hljs-type">int</span>[] marks = {
+      <span class="hljs-number">1</span>,
+      <span class="hljs-number">5</span>,
+      <span class="hljs-number">6</span>,
+      <span class="hljs-number">7</span>
+    };
+    <span class="hljs-type">int</span>[][] marks2 = {
+      {
+        <span class="hljs-number">1</span>,
+        <span class="hljs-number">2</span>,
+        <span class="hljs-number">3</span>
+      },
+      {
+        <span class="hljs-number">4</span>,
+        <span class="hljs-number">5</span>,
+        <span class="hljs-number">6</span>
+      }
+    }; <span class="hljs-comment">//two dimensional array</span>
+
+    System.out.println(marks[<span class="hljs-number">0</span>]); <span class="hljs-comment">// 1</span>
+    System.out.println(marks.length); <span class="hljs-comment">//length of array 4</span>
+    <span class="hljs-type">String</span> <span class="hljs-variable">name2</span> <span class="hljs-operator">=</span> <span class="hljs-string">"Ishwar"</span>;
+    System.out.println(name2.length()); <span class="hljs-comment">//length of string 6</span>
+
+    <span class="hljs-comment">//classical way to iterate array</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; marks.length; i++) {
+      System.out.println(marks[i]);
+    }
+
+    <span class="hljs-comment">//modern way to iterate array</span>
+    <span class="hljs-comment">//For each loop</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> val: marks) {
+      System.out.println(val);
+    }
+  }
+}</code></pre><h2 class="wp-block-heading" id="try-catch">Exception Handling (try-catch)</h2><p>Exception handling helps prevent program crashes. It involves using a try-catch block. We place our code in the try block. If everything runs smoothly, the catch block won't execute. However, if any errors occur, the catch block steps in to manage those exceptions.</p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> JavaFile;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ExceptionHandling</span> {
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+    <span class="hljs-type">int</span>[] marks = {
+      <span class="hljs-number">22</span>,
+      <span class="hljs-number">57</span>,
+      <span class="hljs-number">81</span>
+    };
+
+    <span class="hljs-comment">//try catch</span>
+    <span class="hljs-keyword">try</span> {
+      System.out.println(marks[<span class="hljs-number">4</span>]);
+    } <span class="hljs-keyword">catch</span> (Exception ex) {
+      System.out.println(<span class="hljs-string">"Exception occur: "</span> + ex);
+    }
+  }
+}</code></pre><p><strong>Output:</strong></p><pre class="wp-block-syntaxhighlighter-code">Exception occur: java.lang.ArrayIndexOutOfBoundsException: Index 4 out of bounds for length 3</pre><h2 class="wp-block-heading" id="function">Function: Defining and Calling</h2><p>The function is a block of code that can be reusable. We need to call a function to execute it.</p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> JavaFile;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Function</span> {
+  <span class="hljs-comment">// Define function outside main function</span>
+  <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> firstNum, <span class="hljs-type">int</span> secondNum)</span> {
+    <span class="hljs-keyword">return</span> firstNum + secondNum;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+    System.out.println(sum(<span class="hljs-number">5</span>, <span class="hljs-number">10</span>)); <span class="hljs-comment">// 15</span>
+  }
+}</code></pre><h2 class="wp-block-heading" id="java-oop">Object-oriented programming | Write an OOP program to find the area and perimeter of a rectangle.</h2><p>OOP to find the area of a circle/perimeter of a rectangle</p><p>Java is an Object-Oriented Programming Language, so keep that in mind.</p><ul class="wp-block-list"><!-- wp:list-item -->
+<li>In object-oriented programming, objects divide the program into individual parts.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>OOP follows a bottom-up approach.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Adding new data and functions is easy.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Object-oriented programming offers data hiding, enhancing its security.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>OOP is based on the real world.</li>
+<!-- /wp:list-item --></ul><p>To find the area and perimeter of a rectangle, we first have to know about the formula to calculate the area and perimeter of a rectangle:</p><p>Area of rectangle = length * breadth</p><p>Perimeter of rectangle = 2 * (length + breadth)</p><p>This shows object-oriented programming because we made a rectangle object from the Area_perimeter class and then used it to run our function and get the result.</p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> rectangle;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Area_Perimeter</span> {
+
+  <span class="hljs-keyword">private</span> <span class="hljs-type">double</span> l, b;
+  <span class="hljs-keyword">public</span> <span class="hljs-title function_">Area_Perimeter</span><span class="hljs-params">(<span class="hljs-type">double</span> l, <span class="hljs-type">double</span> b)</span> {
+    <span class="hljs-built_in">this</span>.l = l;
+    <span class="hljs-built_in">this</span>.b = b;
+  }
+  <span class="hljs-keyword">public</span> <span class="hljs-type">double</span> <span class="hljs-title function_">area</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">return</span> l * b;
+  }
+  <span class="hljs-keyword">public</span> <span class="hljs-type">double</span> <span class="hljs-title function_">perimeter</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * (l + b);
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+    <span class="hljs-type">Area_Perimeter</span> <span class="hljs-variable">rectangle</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Area_Perimeter</span>(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>);
+    <span class="hljs-type">double</span> <span class="hljs-variable">Area_of_rectangle</span> <span class="hljs-operator">=</span> rectangle.area();
+    <span class="hljs-type">double</span> <span class="hljs-variable">Perimeter_of_rectangle</span> <span class="hljs-operator">=</span> rectangle.perimeter();
+    System.out.println(<span class="hljs-string">"Area: "</span> + Area_of_rectangle);
+    System.out.println(<span class="hljs-string">"Perimeter: "</span> + Perimeter_of_rectangle);
+  }
+}</code></pre><p><!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"500"}}} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"align":"left"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"align":"left"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"align":"left"} -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:heading -->
+
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph -->
+
+<!-- wp:syntaxhighlighter/code {"language":"java"} -->
+
+<!-- /wp:syntaxhighlighter/code -->
+
+<!-- wp:paragraph -->
+
+<!-- /wp:paragraph --></p><p>Thank you for taking the time to read my content. I hope you found this information useful. If you have any questions, please leave them in the comments section. I'll get back to you as soon as possible. For more similar content, you can visit my YouTube channel <a href="https://youtube.com/@IGTechTeam" target="_blank" rel="noreferrer noopener">IG Tech Team</a>. Thanks.</p></p>
+</div>
+
+<!-- Comment section -->
+<h3>Leave a Comment</h3>
+<form method="POST" action="/java-for-absolute-beginners-simplified-learning-with-notes-and-code-examples/comment.html" class="p-3 bg-light rounded shadow">
+  <input type="hidden" name="parent_id" value="" />
+
+  <div class="form-group">
+    <label>Your Name</label>
+    <input type="text" name="name" class="form-control" required />
+  </div>
+
+  <div class="form-group">
+    <label>Your Comment</label>
+    <textarea name="content" class="form-control" rows="3" required></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Post Comment</button>
+</form>
+
+<hr />
+
+<h4>Comments</h4>
+
+
+  
+    <style>
+  .comment-container {
+    margin-left: 20px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .comment-header {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 0.3rem;
+  }
+
+  .comment-timestamp {
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: #777;
+    margin-left: 0.5rem;
+  }
+
+  .comment-content {
+    margin-bottom: 0.8rem;
+    white-space: pre-wrap;
+  }
+
+  .reply-link {
+    font-size: 0.85rem;
+    color: #1877f2;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .reply-link:hover {
+    text-decoration: underline;
+  }
+
+  .reply-form {
+    margin-top: 0.8rem;
+    display: none;
+  }
+
+  .reply-form input,
+  .reply-form textarea {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .reply-form button {
+    font-size: 0.85rem;
+  }
+
+  /* Nested replies indent */
+  .nested-replies {
+    margin-left: 30px;
+    margin-top: 1rem;
+  }
+</style>
+
+<div class="comment-container">
+  <div class="comment-header">
+    <strong>I am IG</strong>
+    <span class="comment-timestamp">
+      - 2025-05-16 13:34
+    </span>
+  </div>
+
+  <div class="comment-content">IG Tech Team</div>
+
+  <div>
+    <span class="reply-link" onclick="toggleReplyForm('reply-form-35')">Reply</span>
+  </div>
+
+  <!-- Reply Form -->
+  <form method="POST" action="/java-for-absolute-beginners-simplified-learning-with-notes-and-code-examples/comment.html" class="reply-form" id="reply-form-35">
+    <input type="hidden" name="parent_id" value="35" />
+    <input
+      type="text"
+      name="name"
+      placeholder="Your Name"
+      class="form-control form-control-sm"
+      required
+    />
+    <textarea
+      name="content"
+      placeholder="Write a reply..."
+      class="form-control form-control-sm"
+      rows="2"
+      required
+    ></textarea>
+    <button type="submit" class="btn btn-sm btn-primary">Post Reply</button>
+  </form>
+
+  <!-- Render replies recursively -->
+  <div class="nested-replies">
+    
+  </div>
+</div>
+
+<script>
+  function toggleReplyForm(id) {
+    const form = document.getElementById(id);
+    if (form.style.display === "block") {
+      form.style.display = "none";
+    } else {
+      form.style.display = "block";
+      form.querySelector('input[name="name"]').focus();
+    }
+  }
+</script>
+  
+    <style>
+  .comment-container {
+    margin-left: 20px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .comment-header {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 0.3rem;
+  }
+
+  .comment-timestamp {
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: #777;
+    margin-left: 0.5rem;
+  }
+
+  .comment-content {
+    margin-bottom: 0.8rem;
+    white-space: pre-wrap;
+  }
+
+  .reply-link {
+    font-size: 0.85rem;
+    color: #1877f2;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .reply-link:hover {
+    text-decoration: underline;
+  }
+
+  .reply-form {
+    margin-top: 0.8rem;
+    display: none;
+  }
+
+  .reply-form input,
+  .reply-form textarea {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .reply-form button {
+    font-size: 0.85rem;
+  }
+
+  /* Nested replies indent */
+  .nested-replies {
+    margin-left: 30px;
+    margin-top: 1rem;
+  }
+</style>
+
+<div class="comment-container">
+  <div class="comment-header">
+    <strong>Me</strong>
+    <span class="comment-timestamp">
+      - 2025-05-16 13:34
+    </span>
+  </div>
+
+  <div class="comment-content">It&#39;s me brother</div>
+
+  <div>
+    <span class="reply-link" onclick="toggleReplyForm('reply-form-34')">Reply</span>
+  </div>
+
+  <!-- Reply Form -->
+  <form method="POST" action="/java-for-absolute-beginners-simplified-learning-with-notes-and-code-examples/comment.html" class="reply-form" id="reply-form-34">
+    <input type="hidden" name="parent_id" value="34" />
+    <input
+      type="text"
+      name="name"
+      placeholder="Your Name"
+      class="form-control form-control-sm"
+      required
+    />
+    <textarea
+      name="content"
+      placeholder="Write a reply..."
+      class="form-control form-control-sm"
+      rows="2"
+      required
+    ></textarea>
+    <button type="submit" class="btn btn-sm btn-primary">Post Reply</button>
+  </form>
+
+  <!-- Render replies recursively -->
+  <div class="nested-replies">
+    
+  </div>
+</div>
+
+<script>
+  function toggleReplyForm(id) {
+    const form = document.getElementById(id);
+    if (form.style.display === "block") {
+      form.style.display = "none";
+    } else {
+      form.style.display = "block";
+      form.querySelector('input[name="name"]').focus();
+    }
+  }
+</script>
+  
+
+
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  
 <h2>Leave a Comment</h2>
 
 <form method="POST" class="p-3 bg-light rounded shadow">
@@ -68,7 +1346,6 @@
   const commentsContainer = document.getElementById("comments");
   if (!form || !commentsContainer) return;
 
-  // Change slug to your post slug or dynamic value if needed
   const slug = "java-for-absolute-beginners-simplified-learning-with-notes-and-code-examples";
   const submitBtn = form.querySelector("button[type='submit']");
 
@@ -85,7 +1362,6 @@
       parent_id: form.parent_id.value || null,
     };
 
-    // Validate inputs lightly
     if (!data.name || !data.content) {
       alert("Please fill in your name and comment.");
       submitBtn.disabled = false;
@@ -165,7 +1441,6 @@
       });
   }
 
-  // Simple escape to avoid XSS in comments rendering
   function escapeHtml(text) {
     return text
       .replace(/&/g, "&amp;")

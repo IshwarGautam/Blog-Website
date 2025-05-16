@@ -1,4 +1,5 @@
 import os
+import re
 import shutil
 from app import create_app
 from flask_frozen import Freezer
@@ -106,61 +107,67 @@ def patch_post_pages_for_comments(build_dir):
                 continue
 
             file_path = os.path.join(root, file)
-
-            # Derive slug from filename (e.g., learn-python-code.html -> learn-python-code)
             slug = os.path.splitext(file)[0]
 
             with open(file_path, "r", encoding="utf-8") as f:
                 content = f.read()
 
-            # Inject script to load comments via slug
-            script = f"""
-            <script>
-            fetch("/.netlify/functions/get_comments?slug={slug}")
-              .then(res => res.json())
-              .then(comments => {{
-                const container = document.getElementById("comments");
-                if (!container) return;
+            # ✅ Patch form action to use Netlify function
+            content, form_count = re.subn(
+                r'<form([^>]*?)action="[^"]*comment[^"]*"',
+                rf'<form\1action="/.netlify/functions/submit-comment"',
+                content,
+            )
 
-                const map = {{}};
-                comments.forEach(c => {{
-                  c.children = [];
-                  map[c.id] = c;
-                }});
-
-                comments.forEach(c => {{
-                  if (c.parent_id && map[c.parent_id]) {{
-                    map[c.parent_id].children.push(c);
-                  }}
-                }});
-
-                const render = (comment) => {{
-                  const div = document.createElement("div");
-                  div.className = "border p-2 mb-2 rounded";
-                  div.innerHTML = <strong>${{comment.name}}</strong> - ${{new Date(comment.timestamp).toLocaleString()}}<br>${{comment.content}};
-
-                  if (comment.children.length) {{
-                    const childContainer = document.createElement("div");
-                    childContainer.style.marginLeft = "20px";
-                    comment.children.forEach(child => childContainer.appendChild(render(child)));
-                    div.appendChild(childContainer);
-                  }}
-
-                  return div;
-                }};
-
-                comments.filter(c => !c.parent_id).forEach(top => {{
-                  container.appendChild(render(top));
-                }});
-              }});
-            </script>
-            """
-
+            # ✅ Inject script to load comments dynamically from Netlify
             if '<div id="comments">' in content:
+                script = f"""
+                <script>
+                fetch("/.netlify/functions/get_comments?slug={slug}")
+                  .then(res => res.json())
+                  .then(comments => {{
+                    const container = document.getElementById("comments");
+                    if (!container) return;
+
+                    const map = {{}};
+                    comments.forEach(c => {{
+                      c.children = [];
+                      map[c.id] = c;
+                    }});
+
+                    comments.forEach(c => {{
+                      if (c.parent_id && map[c.parent_id]) {{
+                        map[c.parent_id].children.push(c);
+                      }}
+                    }});
+
+                    const render = (comment) => {{
+                      const div = document.createElement("div");
+                      div.className = "border p-2 mb-2 rounded";
+                      div.innerHTML = `<strong>${{comment.name}}</strong> - ${{new Date(comment.timestamp).toLocaleString()}}<br>${{comment.content}}`;
+
+                      if (comment.children.length) {{
+                        const childContainer = document.createElement("div");
+                        childContainer.style.marginLeft = "20px";
+                        comment.children.forEach(child => childContainer.appendChild(render(child)));
+                        div.appendChild(childContainer);
+                      }}
+
+                      return div;
+                    }};
+
+                    comments.filter(c => !c.parent_id).forEach(top => {{
+                      container.appendChild(render(top));
+                    }});
+                  }});
+                </script>
+                """
                 content = content.replace("</body>", script + "\n</body>")
+
+            if form_count > 0 or '<div id="comments">' in content:
                 with open(file_path, "w", encoding="utf-8") as f:
                     f.write(content)
-                print(f"✅ Injected comment loader in {file_path}")
+                print(f"✅ Patched {file_path} (form x{form_count})")
 
 
 def build_static_site(destination, base_url):

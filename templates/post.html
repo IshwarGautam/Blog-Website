@@ -55,7 +55,7 @@
 
 <!-- Comment section -->
 <h3>Leave a Comment</h3>
-<form method="POST" action="{{ url_for('comment.comment', post_id=post.id) }}" class="p-3 bg-light rounded shadow">
+<form method="POST" action="{{ url_for('comment.comment', slug=post.slug) }}" class="p-3 bg-light rounded shadow">
   <input type="hidden" name="parent_id" value="" />
 
   <div class="form-group">

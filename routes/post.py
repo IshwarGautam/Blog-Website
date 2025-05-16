@@ -69,7 +69,7 @@ def index(page=1):
 @post_bp.route("/<slug>.html")
 def post(slug):
     post = get_post(slug)
-    
+
     comments = (
         Comment.query.filter_by(post_id=post.id, parent_id=None)
         .order_by(Comment.timestamp.desc())
@@ -84,7 +84,6 @@ def post(slug):
         )
 
     return render_template("post.html", post=post, comments=comments)
-
 
 
 @post_bp.route("/create", methods=["GET", "POST"])

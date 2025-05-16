@@ -1,15 +1,15 @@
 from database.ext import db
 from database.models.post import Post
 from database.models.comment import Comment
-from flask import request, redirect, url_for, render_template, Blueprint
+from flask import request, redirect, url_for, Blueprint, abort
 
 
 comment_bp = Blueprint("comment", __name__)
 
 
-@comment_bp.route("/post/<int:post_id>/comment", methods=["GET", "POST"])
-def comment(post_id):
-    post = Post.query.get_or_404(post_id)
+@comment_bp.route("/<slug>/comment", methods=["POST"])
+def comment(slug):
+    post = Post.query.filter_by(slug=slug).first_or_404()
 
     if request.method == "POST":
         name = request.form.get("name")
@@ -22,13 +22,6 @@ def comment(post_id):
             )
             db.session.add(comment)
             db.session.commit()
-            return redirect(url_for("comment.comment", post_id=post_id))
+            return redirect(url_for("post.post", slug=slug))
 
-    comments = (
-        Comment.query.filter_by(post_id=post.id, parent_id=None)
-        .order_by(Comment.timestamp.desc())
-        .all()
-    )
-    for comment in comments:
-        comment.replies = comment.replies.order_by(Comment.timestamp.asc()).all()
-    return render_template("post.html", post=post, comments=comments)
+    abort(405)

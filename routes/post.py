@@ -86,7 +86,7 @@ def post(slug):
     return render_template("post.html", post=post, comments=comments)
 
 
-@post_bp.route("/create", methods=["GET", "POST"])
+@post_bp.route("/create.html", methods=["GET", "POST"])
 @login_required
 def create():
     if not current_user.is_admin:

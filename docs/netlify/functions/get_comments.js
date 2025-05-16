@@ -1,12 +1,12 @@
 const { Client } = require('pg');
 
 exports.handler = async function(event, context) {
-  const post_id = event.queryStringParameters?.post_id;
+  const slug = event.queryStringParameters?.slug;
 
-  if (!post_id) {
+  if (!slug) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: 'Missing post_id' }),
+      body: JSON.stringify({ error: 'Missing slug' }),
     };
   }
 
@@ -22,12 +22,13 @@ exports.handler = async function(event, context) {
 
     const res = await client.query(
       `
-      SELECT id, name, content, timestamp, parent_id
-      FROM comments
-      WHERE post_id = $1
-      ORDER BY timestamp
-    `,
-      [post_id]
+      SELECT c.id, c.name, c.content, c.timestamp, c.parent_id
+      FROM comments c
+      JOIN posts p ON c.post_id = p.id
+      WHERE p.slug = $1
+      ORDER BY c.timestamp
+      `,
+      [slug]
     );
 
     const comments = res.rows.map((row) => ({

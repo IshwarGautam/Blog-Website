@@ -32,7 +32,7 @@ def login():
     return render_template("login.html")
 
 
-@auth_bp.route("/verify-otp", methods=["GET", "POST"])
+@auth_bp.route("/verify-otp.html", methods=["GET", "POST"])
 def verify_otp():
     if request.method == "POST":
         user_input = request.form["otp"]
@@ -47,7 +47,7 @@ def verify_otp():
     return render_template("verify_otp.html")
 
 
-@auth_bp.route("/logout")
+@auth_bp.route("/logout.html")
 @login_required
 def logout():
     logout_user()

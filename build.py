@@ -1,7 +1,15 @@
 import os
+import shutil
 from app import create_app
 from flask_frozen import Freezer
 from database.models.post import Post
+
+
+def delete_comment_folders(destination):
+    for root, dirs, files in os.walk(destination):
+        if "comment.html" in files:
+            print(f"Removing folder: {root}")
+            shutil.rmtree(root)
 
 
 class CustomFreezer(Freezer):
@@ -90,69 +98,77 @@ def patch_contact_form_for_emailjs(build_dir):
             f.write(content)
         print("✅ Patched contact.html with EmailJS fetch script.")
 
+
 def patch_post_pages_for_comments(build_dir):
     for root, _, files in os.walk(build_dir):
         for file in files:
-            if file.startswith("post-") and file.endswith(".html"):
-                file_path = os.path.join(root, file)
-                with open(file_path, "r", encoding="utf-8") as f:
-                    content = f.read()
+            if not file.endswith(".html"):
+                continue
 
-                post_id = file.split("-")[1].split(".")[0]  # Assuming file is like post-12.html
+            file_path = os.path.join(root, file)
 
-                script = f"""
-                <script>
-                fetch("/.netlify/functions/get_comments?post_id={post_id}")
-                .then(res => res.json())
-                .then(comments => {{
-                    const container = document.getElementById("comments");
-                    const map = {{}};
+            # Derive slug from filename (e.g., learn-python-code.html -> learn-python-code)
+            slug = os.path.splitext(file)[0]
 
-                    comments.forEach(c => {{
-                    c.children = [];
-                    map[c.id] = c;
-                    }});
+            with open(file_path, "r", encoding="utf-8") as f:
+                content = f.read()
 
-                    comments.forEach(c => {{
-                    if (c.parent_id) {{
-                        map[c.parent_id].children.push(c);
-                    }}
-                    }});
+            # Inject script to load comments via slug
+            script = f"""
+            <script>
+            fetch("/.netlify/functions/get_comments?slug={slug}")
+              .then(res => res.json())
+              .then(comments => {{
+                const container = document.getElementById("comments");
+                if (!container) return;
 
-                    const render = (comment) => {{
-                    const div = document.createElement("div");
-                    div.className = "border p-2 mb-2 rounded";
-                    div.innerHTML = `<strong>${{comment.name}}</strong> - ${{new Date(comment.timestamp).toLocaleString()}}<br>${{comment.content}}`;
+                const map = {{}};
+                comments.forEach(c => {{
+                  c.children = [];
+                  map[c.id] = c;
+                }});
 
-                    if (comment.children.length) {{
-                        const childContainer = document.createElement("div");
-                        childContainer.style.marginLeft = "20px";
-                        comment.children.forEach(child => childContainer.appendChild(render(child)));
-                        div.appendChild(childContainer);
-                    }}
+                comments.forEach(c => {{
+                  if (c.parent_id && map[c.parent_id]) {{
+                    map[c.parent_id].children.push(c);
+                  }}
+                }});
 
-                    return div;
-                    }};
+                const render = (comment) => {{
+                  const div = document.createElement("div");
+                  div.className = "border p-2 mb-2 rounded";
+                  div.innerHTML = <strong>${{comment.name}}</strong> - ${{new Date(comment.timestamp).toLocaleString()}}<br>${{comment.content}};
 
-                    comments.filter(c => !c.parent_id).forEach(top => {{
-                    container.appendChild(render(top));
-                    }});
-                }})
-                </script>
-                """
+                  if (comment.children.length) {{
+                    const childContainer = document.createElement("div");
+                    childContainer.style.marginLeft = "20px";
+                    comment.children.forEach(child => childContainer.appendChild(render(child)));
+                    div.appendChild(childContainer);
+                  }}
 
-                if '<div id="comments">' in content:
-                    content = content.replace("</body>", script + "</body>")
-                    with open(file_path, "w", encoding="utf-8") as f:
-                        f.write(content)
-                    print(f"✅ Injected comment loader in {file_path}")
+                  return div;
+                }};
+
+                comments.filter(c => !c.parent_id).forEach(top => {{
+                  container.appendChild(render(top));
+                }});
+              }});
+            </script>
+            """
+
+            if '<div id="comments">' in content:
+                content = content.replace("</body>", script + "\n</body>")
+                with open(file_path, "w", encoding="utf-8") as f:
+                    f.write(content)
+                print(f"✅ Injected comment loader in {file_path}")
 
 
 def build_static_site(destination, base_url):
     app = create_app()
     app.config["FREEZER_DESTINATION"] = destination
     app.config["FREEZER_BASE_URL"] = base_url
-    freezer = CustomFreezer(app)
+
+    freezer = Freezer(app)
 
     @freezer.register_generator
     def index():
@@ -163,6 +179,7 @@ def build_static_site(destination, base_url):
             yield ("post.index", {"page": page})
 
     freezer.freeze()
+    delete_comment_folders(destination)
 
     if destination == "docs":
         cname_path = os.path.join(destination, "CNAME")
@@ -171,7 +188,7 @@ def build_static_site(destination, base_url):
 
     replace_image_paths(destination)
     patch_contact_form_for_emailjs(destination)
-    patch_contact_form_for_emailjs(destination)
+    patch_post_pages_for_comments(destination)
 
 
 def replace_image_paths(directory):

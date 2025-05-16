@@ -7,7 +7,7 @@ from flask import request, redirect, url_for, Blueprint, abort
 comment_bp = Blueprint("comment", __name__)
 
 
-@comment_bp.route("/<slug>/comment", methods=["POST"])
+@comment_bp.route("/<slug>/comment.html", methods=["GET", "POST"])
 def comment(slug):
     post = Post.query.filter_by(slug=slug).first_or_404()
 
@@ -24,4 +24,4 @@ def comment(slug):
             db.session.commit()
             return redirect(url_for("post.post", slug=slug))
 
-    abort(405)
+    return "Comment endpoint - no content during freezing", 200

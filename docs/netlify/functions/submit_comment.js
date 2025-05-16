@@ -1,77 +1,56 @@
-const { Client } = require("pg");
+const { Pool } = require("pg");
 
-exports.handler = async function (event, context) {
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
+});
+
+exports.handler = async function (event) {
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      body: JSON.stringify({ error: "Method not allowed" }),
+      body: "Method Not Allowed",
     };
   }
-
-  let data;
-  try {
-    data = JSON.parse(event.body);
-  } catch {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ error: "Invalid JSON" }),
-    };
-  }
-
-  const { slug, name, content, parent_id } = data;
-
-  if (!slug || !name || !content) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ error: "Missing required fields" }),
-    };
-  }
-
-  const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: false,
-    },
-  });
 
   try {
-    await client.connect();
+    const data = JSON.parse(event.body);
+    const { slug, name, content, parent_id } = data;
 
-    // Get post ID from slug
-    const postRes = await client.query(
-      `SELECT id FROM posts WHERE slug = $1`,
-      [slug]
-    );
-
-    if (postRes.rowCount === 0) {
+    if (!slug || !name || !content) {
       return {
-        statusCode: 404,
-        body: JSON.stringify({ error: "Post not found" }),
+        statusCode: 400,
+        body: "Missing required fields",
       };
     }
 
-    const post_id = postRes.rows[0].id;
+    // Get post_id from slug
+    const postRes = await pool.query("SELECT id FROM posts WHERE slug = $1", [slug]);
+
+    if (postRes.rows.length === 0) {
+      return {
+        statusCode: 404,
+        body: "Post not found"
+      };
+    }
+
+    const postId = postRes.rows[0].id;
 
     // Insert comment
-    await client.query(
-      `
-      INSERT INTO comments (post_id, name, content, timestamp, parent_id)
-      VALUES ($1, $2, $3, NOW(), $4)
-    `,
-      [post_id, name, content, parent_id || null]
+    await pool.query(
+      "INSERT INTO comment (post_id, name, content, parent_id, timestamp) VALUES ($1, $2, $3, $4, NOW())",
+      [postId, name, content, parent_id || null]
     );
-
-    await client.end();
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: "Comment posted successfully" }),
+      body: "Comment submitted successfully",
     };
-  } catch (err) {
-    console.error("DB error:", err);
+  } catch (error) {
+    console.error("Error submitting comment:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Internal server error" }),
+      body: "Internal Server Error",
     };
   }
 };

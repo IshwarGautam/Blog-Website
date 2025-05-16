@@ -1,56 +1,48 @@
-const { Client } = require('pg');
+const { Pool } = require("pg");
 
-exports.handler = async function(event, context) {
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
+});
+
+exports.handler = async function (event) {
   const slug = event.queryStringParameters?.slug;
 
   if (!slug) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: 'Missing slug' }),
+      body: "Missing slug",
     };
   }
 
-  const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: false,
-    },
-  });
-
   try {
-    await client.connect();
+    // First get post_id from slug
+    const postRes = await pool.query("SELECT id FROM posts WHERE slug = $1", [slug]);
 
-    const res = await client.query(
-      `
-      SELECT c.id, c.name, c.content, c.timestamp, c.parent_id
-      FROM comments c
-      JOIN posts p ON c.post_id = p.id
-      WHERE p.slug = $1
-      ORDER BY c.timestamp
-      `,
-      [slug]
+    if (postRes.rows.length === 0) {
+      return {
+        statusCode: 404,
+        body: "Post not found"
+      };
+    }
+
+    const postId = postRes.rows[0].id;
+
+    // Then get comments by post_id
+    const commentRes = await pool.query(
+      "SELECT * FROM comment WHERE post_id = $1 ORDER BY timestamp ASC",
+      [postId]
     );
-
-    const comments = res.rows.map((row) => ({
-      id: row.id,
-      name: row.name,
-      content: row.content,
-      timestamp: row.timestamp.toISOString(),
-      parent_id: row.parent_id,
-    }));
-
-    await client.end();
 
     return {
       statusCode: 200,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(comments),
+      body: JSON.stringify(commentRes.rows),
     };
-  } catch (err) {
-    console.error('DB error:', err);
+  } catch (error) {
+    console.error("Error fetching comments:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Internal server error' }),
+      body: "Internal Server Error",
     };
   }
 };

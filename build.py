@@ -1,5 +1,4 @@
 import os
-import re
 import shutil
 from app import create_app
 from flask_frozen import Freezer
@@ -112,62 +111,105 @@ def patch_post_pages_for_comments(build_dir):
             with open(file_path, "r", encoding="utf-8") as f:
                 content = f.read()
 
-            # ✅ Patch form action to use Netlify function
-            content, form_count = re.subn(
-                r'<form([^>]*?)action="[^"]*comment[^"]*"',
-                rf'<form\1action="/.netlify/functions/submit-comment"',
-                content,
-            )
+            # Skip if there's no comment form
+            if 'action="/' not in content or "comment.html" not in content:
+                continue
 
-            # ✅ Inject script to load comments dynamically from Netlify
-            if '<div id="comments">' in content:
-                script = f"""
-                <script>
-                fetch("/.netlify/functions/get_comments?slug={slug}")
-                  .then(res => res.json())
-                  .then(comments => {{
-                    const container = document.getElementById("comments");
-                    if (!container) return;
+            # Replace placeholder comment section with a dynamic container
+            if "<p>No comments yet. Be the first to comment!</p>" in content:
+                content = content.replace(
+                    "<p>No comments yet. Be the first to comment!</p>",
+                    '<div id="comments">Loading comments...</div>',
+                )
 
-                    const map = {{}};
-                    comments.forEach(c => {{
-                      c.children = [];
-                      map[c.id] = c;
-                    }});
+            # JS to be injected with dynamic slug
+            js_script = f"""
+<script>
+(function() {{
+  const form = document.querySelector("form[action*='comment.html']");
+  const commentsContainer = document.getElementById("comments");
+  if (!form || !commentsContainer) return;
 
-                    comments.forEach(c => {{
-                      if (c.parent_id && map[c.parent_id]) {{
-                        map[c.parent_id].children.push(c);
-                      }}
-                    }});
+  const submitBtn = form.querySelector("button[type='submit']");
+  form.addEventListener("submit", function(e) {{
+    e.preventDefault();
+    submitBtn.disabled = true;
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = "Posting...";
 
-                    const render = (comment) => {{
-                      const div = document.createElement("div");
-                      div.className = "border p-2 mb-2 rounded";
-                      div.innerHTML = `<strong>${{comment.name}}</strong> - ${{new Date(comment.timestamp).toLocaleString()}}<br>${{comment.content}}`;
+    const formData = new FormData(form);
+    formData.append("slug", "{slug}");
 
-                      if (comment.children.length) {{
-                        const childContainer = document.createElement("div");
-                        childContainer.style.marginLeft = "20px";
-                        comment.children.forEach(child => childContainer.appendChild(render(child)));
-                        div.appendChild(childContainer);
-                      }}
+    fetch("/.netlify/functions/submit_comment", {{
+      method: "POST",
+      body: formData
+    }})
+    .then(res => {{
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      if (res.ok) {{
+        alert("Comment submitted!");
+        form.reset();
+        loadComments();
+      }} else {{
+        return res.text().then(text => alert("Failed: " + text));
+      }}
+    }})
+    .catch(err => {{
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      alert("Error: " + err);
+    }});
+  }});
 
-                      return div;
-                    }};
+  function loadComments() {{
+    fetch("/.netlify/functions/get_comments?slug={slug}")
+      .then(res => res.json())
+      .then(comments => {{
+        commentsContainer.innerHTML = "";
+        const map = {{}};
+        comments.forEach(c => {{
+          c.children = [];
+          map[c.id] = c;
+        }});
+        comments.forEach(c => {{
+          if (c.parent_id && map[c.parent_id]) {{
+            map[c.parent_id].children.push(c);
+          }}
+        }});
 
-                    comments.filter(c => !c.parent_id).forEach(top => {{
-                      container.appendChild(render(top));
-                    }});
-                  }});
-                </script>
-                """
-                content = content.replace("</body>", script + "\n</body>")
+        const render = (comment) => {{
+          const div = document.createElement("div");
+          div.className = "border p-2 mb-2 rounded";
+          div.innerHTML = `<strong>${{comment.name}}</strong> - ${{new Date(comment.timestamp).toLocaleString()}}<br>${{comment.content}}`;
+          if (comment.children.length) {{
+            const childContainer = document.createElement("div");
+            childContainer.style.marginLeft = "20px";
+            comment.children.forEach(child => childContainer.appendChild(render(child)));
+            div.appendChild(childContainer);
+          }}
+          return div;
+        }};
 
-            if form_count > 0 or '<div id="comments">' in content:
+        comments.filter(c => !c.parent_id).forEach(top => {{
+          commentsContainer.appendChild(render(top));
+        }});
+      }});
+  }}
+
+  loadComments();
+}})();
+</script>
+"""
+
+            # Inject the script before </body>
+            if "</body>" in content:
+                content = content.replace("</body>", js_script + "\n</body>")
+
                 with open(file_path, "w", encoding="utf-8") as f:
                     f.write(content)
-                print(f"✅ Patched {file_path} (form x{form_count})")
+
+                print(f"✅ Patched {file_path} with dynamic comment system")
 
 
 def build_static_site(destination, base_url):

@@ -564,7 +564,7 @@ plt.show()</code></pre><h2 class="wp-block-heading"><strong>Final output:</stron
 
 <!-- Comment section -->
 <h3>Leave a Comment</h3>
-<form method="POST" action="/.netlify/functions/submit-comment" class="p-3 bg-light rounded shadow">
+<form method="POST" action="/handwritten-digit-recognition-using-cnn-deep-learning-project/comment.html" class="p-3 bg-light rounded shadow">
   <input type="hidden" name="parent_id" value="" />
 
   <div class="form-group">
@@ -585,7 +585,7 @@ plt.show()</code></pre><h2 class="wp-block-heading"><strong>Final output:</stron
 <h4>Comments</h4>
 
 
-  <p>No comments yet. Be the first to comment!</p>
+  <div id="comments">Loading comments...</div>
 
 
 <!-- Post Footer -->
@@ -740,5 +740,83 @@ plt.show()</code></pre><h2 class="wp-block-heading"><strong>Final output:</stron
         hljs.highlightAll();
       });
     </script>
-  </body>
+  
+<script>
+(function() {
+  const form = document.querySelector("form[action*='comment.html']");
+  const commentsContainer = document.getElementById("comments");
+  if (!form || !commentsContainer) return;
+
+  const submitBtn = form.querySelector("button[type='submit']");
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = "Posting...";
+
+    const formData = new FormData(form);
+    formData.append("slug", "handwritten-digit-recognition-using-cnn-deep-learning-project");
+
+    fetch("/.netlify/functions/submit_comment", {
+      method: "POST",
+      body: formData
+    })
+    .then(res => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      if (res.ok) {
+        alert("Comment submitted!");
+        form.reset();
+        loadComments();
+      } else {
+        return res.text().then(text => alert("Failed: " + text));
+      }
+    })
+    .catch(err => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      alert("Error: " + err);
+    });
+  });
+
+  function loadComments() {
+    fetch("/.netlify/functions/get_comments?slug=handwritten-digit-recognition-using-cnn-deep-learning-project")
+      .then(res => res.json())
+      .then(comments => {
+        commentsContainer.innerHTML = "";
+        const map = {};
+        comments.forEach(c => {
+          c.children = [];
+          map[c.id] = c;
+        });
+        comments.forEach(c => {
+          if (c.parent_id && map[c.parent_id]) {
+            map[c.parent_id].children.push(c);
+          }
+        });
+
+        const render = (comment) => {
+          const div = document.createElement("div");
+          div.className = "border p-2 mb-2 rounded";
+          div.innerHTML = `<strong>${comment.name}</strong> - ${new Date(comment.timestamp).toLocaleString()}<br>${comment.content}`;
+          if (comment.children.length) {
+            const childContainer = document.createElement("div");
+            childContainer.style.marginLeft = "20px";
+            comment.children.forEach(child => childContainer.appendChild(render(child)));
+            div.appendChild(childContainer);
+          }
+          return div;
+        };
+
+        comments.filter(c => !c.parent_id).forEach(top => {
+          commentsContainer.appendChild(render(top));
+        });
+      });
+  }
+
+  loadComments();
+})();
+</script>
+
+</body>
 </html>

@@ -697,11 +697,13 @@ vocab, w2v = read_data(<span class="hljs-string">"glove.6B/glove.6B.50d.txt"</sp
 
 <hr />
 
+<!--
 <h4>Comments</h4>
 
 
   <p>No comments yet. Be the first to comment!</p>
 
+-->
 
 <!-- Post Footer -->
 <footer
@@ -856,144 +858,201 @@ vocab, w2v = read_data(<span class="hljs-string">"glove.6B/glove.6B.50d.txt"</sp
       });
     </script>
   
-<h2>Leave a Comment</h2>
+        <h4>Comments</h4>
+        <div class="comment-container">
+            <p>Loading comments...</p>
+        </div>
 
-<form method="POST" class="p-3 bg-light rounded shadow">
-  <input type="hidden" name="parent_id" value="" />
+        <script>
+        (function () {
+          const form = document.querySelector("form");
+          const commentsContainer = document.querySelector(".comment-container");
+          if (!form || !commentsContainer) return;
 
-  <div class="form-group">
-    <label>Your Name</label>
-    <input type="text" name="name" class="form-control" required />
-  </div>
+          const slug = "nlp-essentials-embedding-layer-word2vec-and-glove";
+          const submitBtn = form.querySelector("button[type='submit']");
 
-  <div class="form-group">
-    <label>Your Comment</label>
-    <textarea name="content" class="form-control" rows="3" required></textarea>
-  </div>
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const data = {
+              slug,
+              name: form.name.value.trim(),
+              content: form.content.value.trim(),
+              parent_id: form.parent_id.value || null,
+            };
 
-  <button type="submit" class="btn btn-primary">Post Comment</button>
-</form>
+            if (!data.name || !data.content) {
+              alert("Please fill in your name and comment.");
+              return;
+            }
 
-<hr />
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Posting...";
 
-<h3>Comments</h3>
-<div id="comments">
-  <p>Loading comments...</p>
-</div>
-
-<script>
-(function () {
-  const form = document.querySelector("form");
-  const commentsContainer = document.getElementById("comments");
-  if (!form || !commentsContainer) return;
-
-  const slug = "nlp-essentials-embedding-layer-word2vec-and-glove";
-  const submitBtn = form.querySelector("button[type='submit']");
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = "Posting...";
-
-    const data = {
-      slug,
-      name: form.name.value.trim(),
-      content: form.content.value.trim(),
-      parent_id: form.parent_id.value || null,
-    };
-
-    if (!data.name || !data.content) {
-      alert("Please fill in your name and comment.");
-      submitBtn.disabled = false;
-      submitBtn.textContent = originalText;
-      return;
-    }
-
-    fetch("/.netlify/functions/submit_comment", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then(res => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-        if (res.ok) {
-          alert("Comment submitted!");
-          form.reset();
-          loadComments();
-        } else {
-          return res.text().then(text => alert("Failed: " + text));
-        }
-      })
-      .catch(err => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-        alert("Error: " + err.message);
-      });
-  });
-
-  function loadComments() {
-    fetch(`/.netlify/functions/get_comments?slug=${encodeURIComponent(slug)}`)
-      .then(res => {
-        if (!res.ok) throw new Error("Failed to load comments");
-        return res.json();
-      })
-      .then(comments => {
-        commentsContainer.innerHTML = "";
-        const map = {};
-        comments.forEach(c => {
-          c.children = [];
-          map[c.id] = c;
-        });
-        comments.forEach(c => {
-          if (c.parent_id && map[c.parent_id]) {
-            map[c.parent_id].children.push(c);
-          }
-        });
-
-        const render = (comment) => {
-          const div = document.createElement("div");
-          div.className = "border";
-          div.innerHTML = `<strong>${escapeHtml(comment.name)}</strong> - ${new Date(comment.timestamp).toLocaleString()}<br>${escapeHtml(comment.content)}`;
-          if (comment.children.length) {
-            const childContainer = document.createElement("div");
-            childContainer.style.marginLeft = "20px";
-            comment.children.forEach(child => childContainer.appendChild(render(child)));
-            div.appendChild(childContainer);
-          }
-          return div;
-        };
-
-        const topLevel = comments.filter(c => !c.parent_id);
-        if (topLevel.length === 0) {
-          commentsContainer.innerHTML = "<p>No comments yet. Be the first to comment!</p>";
-        } else {
-          topLevel.forEach(top => {
-            commentsContainer.appendChild(render(top));
+            fetch("/.netlify/functions/submit_comment", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            })
+            .then(res => {
+              submitBtn.disabled = false;
+              submitBtn.textContent = originalText;
+              if (res.ok) {
+                alert("Comment submitted!");
+                form.reset();
+                loadComments();
+              } else {
+                return res.text().then(text => alert("Failed: " + text));
+              }
+            })
+            .catch(err => {
+              submitBtn.disabled = false;
+              submitBtn.textContent = originalText;
+              alert("Error: " + err.message);
+            });
           });
-        }
-      })
-      .catch(err => {
-        commentsContainer.innerHTML = "<p>Failed to load comments.</p>";
-        console.error(err);
-      });
-  }
 
-  function escapeHtml(text) {
-    return text
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
+          function loadComments() {
+            fetch(`/.netlify/functions/get_comments?slug=${encodeURIComponent(slug)}`)
+              .then(res => {
+                if (!res.ok) throw new Error("Failed to load comments");
+                return res.json();
+              })
+              .then(comments => {
+                commentsContainer.innerHTML = "";
+                const map = {};
+                comments.forEach(c => {
+                  c.children = [];
+                  map[c.id] = c;
+                });
+                comments.forEach(c => {
+                  if (c.parent_id && map[c.parent_id]) {
+                    map[c.parent_id].children.push(c);
+                  }
+                });
 
-  loadComments();
-})();
-</script>
+                const render = (comment) => {
+                  const wrapper = document.createElement("div");
+                  wrapper.className = "comment-container";
 
+                  const header = document.createElement("div");
+                  header.className = "comment-header";
+                  header.innerHTML = `<strong>${escapeHtml(comment.name)}</strong><span class="comment-timestamp"> - ${new Date(comment.timestamp).toLocaleString()}</span>`;
+                  wrapper.appendChild(header);
+
+                  const content = document.createElement("div");
+                  content.className = "comment-content";
+                  content.textContent = comment.content;
+                  wrapper.appendChild(content);
+
+                  const replyLink = document.createElement("span");
+                  replyLink.className = "reply-link";
+                  replyLink.textContent = "Reply";
+                  replyLink.onclick = () => toggleReplyForm(`reply-form-${comment.id}`);
+                  wrapper.appendChild(replyLink);
+
+                  const replyForm = document.createElement("form");
+                  replyForm.method = "POST";
+                  replyForm.className = "reply-form";
+                  replyForm.id = `reply-form-${comment.id}`;
+                  replyForm.innerHTML = `
+                    <input type="hidden" name="parent_id" value="${comment.id}" />
+                    <input type="text" name="name" placeholder="Your Name" class="form-control form-control-sm" required />
+                    <textarea name="content" placeholder="Write a reply..." class="form-control form-control-sm" rows="2" required></textarea>
+                    <button type="submit" class="btn btn-sm btn-primary">Post Reply</button>
+                  `;
+                  replyForm.addEventListener("submit", function (e) {
+                    e.preventDefault();
+                    const replyData = {
+                      slug,
+                      name: replyForm.name.value.trim(),
+                      content: replyForm.content.value.trim(),
+                      parent_id: comment.id,
+                    };
+
+                    if (!replyData.name || !replyData.content) {
+                      alert("Please fill in your name and reply.");
+                      return;
+                    }
+
+                    const replyBtn = replyForm.querySelector("button");
+                    const originalText = replyBtn.textContent;
+                    replyBtn.disabled = true;
+                    replyBtn.textContent = "Posting...";
+
+                    fetch("/.netlify/functions/submit_comment", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify(replyData),
+                    })
+                      .then(res => {
+                        replyBtn.disabled = false;
+                        replyBtn.textContent = originalText;
+                        if (res.ok) {
+                          alert("Reply submitted!");
+                          replyForm.reset();
+                          replyForm.style.display = "none";
+                          loadComments();
+                        } else {
+                          return res.text().then(text => alert("Failed: " + text));
+                        }
+                      })
+                      .catch(err => {
+                        replyBtn.disabled = false;
+                        replyBtn.textContent = originalText;
+                        alert("Error: " + err.message);
+                      });
+                  });
+                  wrapper.appendChild(replyForm);
+
+                  if (comment.children.length) {
+                    const nested = document.createElement("div");
+                    nested.className = "nested-replies";
+                    comment.children.forEach(child => nested.appendChild(render(child)));
+                    wrapper.appendChild(nested);
+                  }
+
+                  return wrapper;
+                };
+
+                const topLevel = comments.filter(c => !c.parent_id);
+                if (topLevel.length === 0) {
+                  commentsContainer.innerHTML = "<p>No comments yet. Be the first to comment!</p>";
+                } else {
+                  topLevel.forEach(c => commentsContainer.appendChild(render(c)));
+                }
+              })
+              .catch(err => {
+                commentsContainer.innerHTML = "<p>Failed to load comments.</p>";
+                console.error(err);
+              });
+          }
+
+          function toggleReplyForm(id) {
+            const form = document.getElementById(id);
+            if (form) {
+              const isHidden = window.getComputedStyle(form).display === "none";
+              form.style.display = isHidden ? "block" : "none";
+            }
+          }
+
+          function escapeHtml(text) {
+            return text
+              .replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;")
+              .replace(/"/g, "&quot;")
+              .replace(/'/g, "&#039;");
+          }
+
+          loadComments();
+        })();
+        </script>
+        
 </body>
 </html>

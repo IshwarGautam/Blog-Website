@@ -863,242 +863,13 @@
 
 <hr />
 
+<!--
 <h4>Comments</h4>
 
 
-  
-    <style>
-  .comment-container {
-    margin-left: 20px;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #fafafa;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
+  <p>No comments yet. Be the first to comment!</p>
 
-  .comment-header {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: #333;
-    margin-bottom: 0.3rem;
-  }
-
-  .comment-timestamp {
-    font-weight: 400;
-    font-size: 0.8rem;
-    color: #777;
-    margin-left: 0.5rem;
-  }
-
-  .comment-content {
-    margin-bottom: 0.8rem;
-    white-space: pre-wrap;
-  }
-
-  .reply-link {
-    font-size: 0.85rem;
-    color: #1877f2;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .reply-link:hover {
-    text-decoration: underline;
-  }
-
-  .reply-form {
-    margin-top: 0.8rem;
-    display: none;
-  }
-
-  .reply-form input,
-  .reply-form textarea {
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .reply-form button {
-    font-size: 0.85rem;
-  }
-
-  /* Nested replies indent */
-  .nested-replies {
-    margin-left: 30px;
-    margin-top: 1rem;
-  }
-</style>
-
-<div class="comment-container">
-  <div class="comment-header">
-    <strong>Ishwar</strong>
-    <span class="comment-timestamp">
-      - 2025-05-15 13:15
-    </span>
-  </div>
-
-  <div class="comment-content">I am the owner</div>
-
-  <div>
-    <span class="reply-link" onclick="toggleReplyForm('reply-form-17')">Reply</span>
-  </div>
-
-  <!-- Reply Form -->
-  <form method="POST" action="/react-native-create-ludo-board-for-mobile-phone/comment.html" class="reply-form" id="reply-form-17">
-    <input type="hidden" name="parent_id" value="17" />
-    <input
-      type="text"
-      name="name"
-      placeholder="Your Name"
-      class="form-control form-control-sm"
-      required
-    />
-    <textarea
-      name="content"
-      placeholder="Write a reply..."
-      class="form-control form-control-sm"
-      rows="2"
-      required
-    ></textarea>
-    <button type="submit" class="btn btn-sm btn-primary">Post Reply</button>
-  </form>
-
-  <!-- Render replies recursively -->
-  <div class="nested-replies">
-    
-      
-      <style>
-  .comment-container {
-    margin-left: 20px;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #fafafa;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-
-  .comment-header {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: #333;
-    margin-bottom: 0.3rem;
-  }
-
-  .comment-timestamp {
-    font-weight: 400;
-    font-size: 0.8rem;
-    color: #777;
-    margin-left: 0.5rem;
-  }
-
-  .comment-content {
-    margin-bottom: 0.8rem;
-    white-space: pre-wrap;
-  }
-
-  .reply-link {
-    font-size: 0.85rem;
-    color: #1877f2;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .reply-link:hover {
-    text-decoration: underline;
-  }
-
-  .reply-form {
-    margin-top: 0.8rem;
-    display: none;
-  }
-
-  .reply-form input,
-  .reply-form textarea {
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .reply-form button {
-    font-size: 0.85rem;
-  }
-
-  /* Nested replies indent */
-  .nested-replies {
-    margin-left: 30px;
-    margin-top: 1rem;
-  }
-</style>
-
-<div class="comment-container">
-  <div class="comment-header">
-    <strong>Manish</strong>
-    <span class="comment-timestamp">
-      - 2025-05-15 13:15
-    </span>
-  </div>
-
-  <div class="comment-content">Great to know you.</div>
-
-  <div>
-    <span class="reply-link" onclick="toggleReplyForm('reply-form-18')">Reply</span>
-  </div>
-
-  <!-- Reply Form -->
-  <form method="POST" action="/react-native-create-ludo-board-for-mobile-phone/comment.html" class="reply-form" id="reply-form-18">
-    <input type="hidden" name="parent_id" value="18" />
-    <input
-      type="text"
-      name="name"
-      placeholder="Your Name"
-      class="form-control form-control-sm"
-      required
-    />
-    <textarea
-      name="content"
-      placeholder="Write a reply..."
-      class="form-control form-control-sm"
-      rows="2"
-      required
-    ></textarea>
-    <button type="submit" class="btn btn-sm btn-primary">Post Reply</button>
-  </form>
-
-  <!-- Render replies recursively -->
-  <div class="nested-replies">
-    
-  </div>
-</div>
-
-<script>
-  function toggleReplyForm(id) {
-    const form = document.getElementById(id);
-    if (form.style.display === "block") {
-      form.style.display = "none";
-    } else {
-      form.style.display = "block";
-      form.querySelector('input[name="name"]').focus();
-    }
-  }
-</script>
-    
-  </div>
-</div>
-
-<script>
-  function toggleReplyForm(id) {
-    const form = document.getElementById(id);
-    if (form.style.display === "block") {
-      form.style.display = "none";
-    } else {
-      form.style.display = "block";
-      form.querySelector('input[name="name"]').focus();
-    }
-  }
-</script>
-  
-
+-->
 
 <!-- Post Footer -->
 <footer
@@ -1253,144 +1024,201 @@
       });
     </script>
   
-<h2>Leave a Comment</h2>
+        <h4>Comments</h4>
+        <div class="comment-container">
+            <p>Loading comments...</p>
+        </div>
 
-<form method="POST" class="p-3 bg-light rounded shadow">
-  <input type="hidden" name="parent_id" value="" />
+        <script>
+        (function () {
+          const form = document.querySelector("form");
+          const commentsContainer = document.querySelector(".comment-container");
+          if (!form || !commentsContainer) return;
 
-  <div class="form-group">
-    <label>Your Name</label>
-    <input type="text" name="name" class="form-control" required />
-  </div>
+          const slug = "react-native-create-ludo-board-for-mobile-phone";
+          const submitBtn = form.querySelector("button[type='submit']");
 
-  <div class="form-group">
-    <label>Your Comment</label>
-    <textarea name="content" class="form-control" rows="3" required></textarea>
-  </div>
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const data = {
+              slug,
+              name: form.name.value.trim(),
+              content: form.content.value.trim(),
+              parent_id: form.parent_id.value || null,
+            };
 
-  <button type="submit" class="btn btn-primary">Post Comment</button>
-</form>
+            if (!data.name || !data.content) {
+              alert("Please fill in your name and comment.");
+              return;
+            }
 
-<hr />
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Posting...";
 
-<h3>Comments</h3>
-<div id="comments">
-  <p>Loading comments...</p>
-</div>
-
-<script>
-(function () {
-  const form = document.querySelector("form");
-  const commentsContainer = document.getElementById("comments");
-  if (!form || !commentsContainer) return;
-
-  const slug = "react-native-create-ludo-board-for-mobile-phone";
-  const submitBtn = form.querySelector("button[type='submit']");
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = "Posting...";
-
-    const data = {
-      slug,
-      name: form.name.value.trim(),
-      content: form.content.value.trim(),
-      parent_id: form.parent_id.value || null,
-    };
-
-    if (!data.name || !data.content) {
-      alert("Please fill in your name and comment.");
-      submitBtn.disabled = false;
-      submitBtn.textContent = originalText;
-      return;
-    }
-
-    fetch("/.netlify/functions/submit_comment", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then(res => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-        if (res.ok) {
-          alert("Comment submitted!");
-          form.reset();
-          loadComments();
-        } else {
-          return res.text().then(text => alert("Failed: " + text));
-        }
-      })
-      .catch(err => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-        alert("Error: " + err.message);
-      });
-  });
-
-  function loadComments() {
-    fetch(`/.netlify/functions/get_comments?slug=${encodeURIComponent(slug)}`)
-      .then(res => {
-        if (!res.ok) throw new Error("Failed to load comments");
-        return res.json();
-      })
-      .then(comments => {
-        commentsContainer.innerHTML = "";
-        const map = {};
-        comments.forEach(c => {
-          c.children = [];
-          map[c.id] = c;
-        });
-        comments.forEach(c => {
-          if (c.parent_id && map[c.parent_id]) {
-            map[c.parent_id].children.push(c);
-          }
-        });
-
-        const render = (comment) => {
-          const div = document.createElement("div");
-          div.className = "border";
-          div.innerHTML = `<strong>${escapeHtml(comment.name)}</strong> - ${new Date(comment.timestamp).toLocaleString()}<br>${escapeHtml(comment.content)}`;
-          if (comment.children.length) {
-            const childContainer = document.createElement("div");
-            childContainer.style.marginLeft = "20px";
-            comment.children.forEach(child => childContainer.appendChild(render(child)));
-            div.appendChild(childContainer);
-          }
-          return div;
-        };
-
-        const topLevel = comments.filter(c => !c.parent_id);
-        if (topLevel.length === 0) {
-          commentsContainer.innerHTML = "<p>No comments yet. Be the first to comment!</p>";
-        } else {
-          topLevel.forEach(top => {
-            commentsContainer.appendChild(render(top));
+            fetch("/.netlify/functions/submit_comment", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            })
+            .then(res => {
+              submitBtn.disabled = false;
+              submitBtn.textContent = originalText;
+              if (res.ok) {
+                alert("Comment submitted!");
+                form.reset();
+                loadComments();
+              } else {
+                return res.text().then(text => alert("Failed: " + text));
+              }
+            })
+            .catch(err => {
+              submitBtn.disabled = false;
+              submitBtn.textContent = originalText;
+              alert("Error: " + err.message);
+            });
           });
-        }
-      })
-      .catch(err => {
-        commentsContainer.innerHTML = "<p>Failed to load comments.</p>";
-        console.error(err);
-      });
-  }
 
-  function escapeHtml(text) {
-    return text
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
+          function loadComments() {
+            fetch(`/.netlify/functions/get_comments?slug=${encodeURIComponent(slug)}`)
+              .then(res => {
+                if (!res.ok) throw new Error("Failed to load comments");
+                return res.json();
+              })
+              .then(comments => {
+                commentsContainer.innerHTML = "";
+                const map = {};
+                comments.forEach(c => {
+                  c.children = [];
+                  map[c.id] = c;
+                });
+                comments.forEach(c => {
+                  if (c.parent_id && map[c.parent_id]) {
+                    map[c.parent_id].children.push(c);
+                  }
+                });
 
-  loadComments();
-})();
-</script>
+                const render = (comment) => {
+                  const wrapper = document.createElement("div");
+                  wrapper.className = "comment-container";
 
+                  const header = document.createElement("div");
+                  header.className = "comment-header";
+                  header.innerHTML = `<strong>${escapeHtml(comment.name)}</strong><span class="comment-timestamp"> - ${new Date(comment.timestamp).toLocaleString()}</span>`;
+                  wrapper.appendChild(header);
+
+                  const content = document.createElement("div");
+                  content.className = "comment-content";
+                  content.textContent = comment.content;
+                  wrapper.appendChild(content);
+
+                  const replyLink = document.createElement("span");
+                  replyLink.className = "reply-link";
+                  replyLink.textContent = "Reply";
+                  replyLink.onclick = () => toggleReplyForm(`reply-form-${comment.id}`);
+                  wrapper.appendChild(replyLink);
+
+                  const replyForm = document.createElement("form");
+                  replyForm.method = "POST";
+                  replyForm.className = "reply-form";
+                  replyForm.id = `reply-form-${comment.id}`;
+                  replyForm.innerHTML = `
+                    <input type="hidden" name="parent_id" value="${comment.id}" />
+                    <input type="text" name="name" placeholder="Your Name" class="form-control form-control-sm" required />
+                    <textarea name="content" placeholder="Write a reply..." class="form-control form-control-sm" rows="2" required></textarea>
+                    <button type="submit" class="btn btn-sm btn-primary">Post Reply</button>
+                  `;
+                  replyForm.addEventListener("submit", function (e) {
+                    e.preventDefault();
+                    const replyData = {
+                      slug,
+                      name: replyForm.name.value.trim(),
+                      content: replyForm.content.value.trim(),
+                      parent_id: comment.id,
+                    };
+
+                    if (!replyData.name || !replyData.content) {
+                      alert("Please fill in your name and reply.");
+                      return;
+                    }
+
+                    const replyBtn = replyForm.querySelector("button");
+                    const originalText = replyBtn.textContent;
+                    replyBtn.disabled = true;
+                    replyBtn.textContent = "Posting...";
+
+                    fetch("/.netlify/functions/submit_comment", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify(replyData),
+                    })
+                      .then(res => {
+                        replyBtn.disabled = false;
+                        replyBtn.textContent = originalText;
+                        if (res.ok) {
+                          alert("Reply submitted!");
+                          replyForm.reset();
+                          replyForm.style.display = "none";
+                          loadComments();
+                        } else {
+                          return res.text().then(text => alert("Failed: " + text));
+                        }
+                      })
+                      .catch(err => {
+                        replyBtn.disabled = false;
+                        replyBtn.textContent = originalText;
+                        alert("Error: " + err.message);
+                      });
+                  });
+                  wrapper.appendChild(replyForm);
+
+                  if (comment.children.length) {
+                    const nested = document.createElement("div");
+                    nested.className = "nested-replies";
+                    comment.children.forEach(child => nested.appendChild(render(child)));
+                    wrapper.appendChild(nested);
+                  }
+
+                  return wrapper;
+                };
+
+                const topLevel = comments.filter(c => !c.parent_id);
+                if (topLevel.length === 0) {
+                  commentsContainer.innerHTML = "<p>No comments yet. Be the first to comment!</p>";
+                } else {
+                  topLevel.forEach(c => commentsContainer.appendChild(render(c)));
+                }
+              })
+              .catch(err => {
+                commentsContainer.innerHTML = "<p>Failed to load comments.</p>";
+                console.error(err);
+              });
+          }
+
+          function toggleReplyForm(id) {
+            const form = document.getElementById(id);
+            if (form) {
+              const isHidden = window.getComputedStyle(form).display === "none";
+              form.style.display = isHidden ? "block" : "none";
+            }
+          }
+
+          function escapeHtml(text) {
+            return text
+              .replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;")
+              .replace(/"/g, "&quot;")
+              .replace(/'/g, "&#039;");
+          }
+
+          loadComments();
+        })();
+        </script>
+        
 </body>
 </html>

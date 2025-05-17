@@ -76,7 +76,7 @@
   </div>
 
   <!-- Reply Form -->
-  <form method="POST" action="{{ url_for('comment.comment', slug=post.slug) }}" class="reply-form" id="reply-form-{{ comment.id }}">
+  <form method="POST" class="reply-form" id="reply-form-{{ comment.id }}">
     <input type="hidden" name="parent_id" value="{{ comment.id }}" />
     <input
       type="text"

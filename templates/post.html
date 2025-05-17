@@ -54,36 +54,26 @@
 </div>
 
 <!-- Comment section -->
-<h3>Leave a Comment</h3>
-<form method="POST" action="{{ url_for('comment.comment', slug=post.slug) }}" class="p-3 bg-light rounded shadow">
-  <input type="hidden" name="parent_id" value="" />
+<div class="comments-wrapper">
+  <h4>Leave a Comment</h4>
+  <form method="POST" class="p-3 bg-light rounded shadow">
+    <input type="hidden" name="parent_id" value="" />
 
-  <div class="form-group">
-    <label>Your Name</label>
-    <input type="text" name="name" class="form-control" required />
-  </div>
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" name="name" class="form-control" required />
+    </div>
 
-  <div class="form-group">
-    <label>Your Comment</label>
-    <textarea name="content" class="form-control" rows="3" required></textarea>
-  </div>
+    <div class="form-group">
+      <label>Your Comment</label>
+      <textarea name="content" class="form-control" rows="3" required></textarea>
+    </div>
 
-  <button type="submit" class="btn btn-primary">Post Comment</button>
-</form>
-
+    <button type="submit" class="btn btn-primary">Post Comment</button>
+  </form>
+</div>
 <hr />
 
-<!--
-<h4>Comments</h4>
-
-{% if comments %}
-  {% for comment in comments %}
-    {% include 'comment.html' %}
-  {% endfor %}
-{% else %}
-  <p>No comments yet. Be the first to comment!</p>
-{% endif %}
--->
 
 <!-- Post Footer -->
 <footer

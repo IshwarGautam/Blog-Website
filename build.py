@@ -125,9 +125,92 @@ def patch_post_pages_for_comments(build_dir):
         slug = filename.replace(".html", "")
 
         comment_section = f"""
+        <style>
+        .comment-container {{
+            margin-left: 20px;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #fafafa;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }}
+
+        .comment-header {{
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #333;
+            margin-bottom: 0.3rem;
+        }}
+
+        .comment-timestamp {{
+            font-weight: 400;
+            font-size: 0.8rem;
+            color: #777;
+            margin-left: 0.5rem;
+        }}
+
+        .comment-content {{
+            margin-bottom: 0.8rem;
+            white-space: pre-wrap;
+        }}
+
+        .reply-link {{
+            font-size: 0.85rem;
+            color: #1877f2;
+            cursor: pointer;
+            user-select: none;
+        }}
+
+        .reply-link:hover {{
+            text-decoration: underline;
+        }}
+
+        .reply-form {{
+            margin-top: 0.8rem;
+            display: none;
+        }}
+
+        .reply-form input,
+        .reply-form textarea {{
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }}
+
+        .reply-form button {{
+            font-size: 0.85rem;
+        }}
+
+        /* Nested replies indent */
+        .nested-replies {{
+            margin-left: 30px;
+            margin-top: 1rem;
+        }}
+
+        .comments-wrapper {{
+            margin: 20px auto;
+            padding: 15px 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+        }}
+
+        .comments-wrapper h4 {{
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: 600;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 5px;
+        }}
+        </style>
+
+      <div class="comments-wrapper">
         <h4>Comments</h4>
         <div class="comment-container">
             <p>Loading comments...</p>
+        </div>
         </div>
 
         <script>
@@ -322,8 +405,10 @@ def patch_post_pages_for_comments(build_dir):
         </script>
         """
 
-        if "</body>" in content:
-            content = content.replace("</body>", comment_section + "\n</body>")
+        if "<!-- Post Footer -->" in content:
+            content = content.replace(
+                "<!-- Post Footer -->", comment_section + "\n<!-- Post Footer -->"
+            )
             with open(filepath, "w", encoding="utf-8") as f:
                 f.write(content)
             print(f"✅ Patched {filename} with comment section.")

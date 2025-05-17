@@ -1030,189 +1030,114 @@ _, _ , _ , _, ans  = bert_question_answer( question, passage)
 </div>
 
 <!-- Comment section -->
-<h3>Leave a Comment</h3>
-<form method="POST" action="/nlp-projects-next-word-prediction-and-question-answering/comment.html" class="p-3 bg-light rounded shadow">
-  <input type="hidden" name="parent_id" value="" />
+<div class="comments-wrapper">
+  <h4>Leave a Comment</h4>
+  <form method="POST" class="p-3 bg-light rounded shadow">
+    <input type="hidden" name="parent_id" value="" />
 
-  <div class="form-group">
-    <label>Your Name</label>
-    <input type="text" name="name" class="form-control" required />
-  </div>
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" name="name" class="form-control" required />
+    </div>
 
-  <div class="form-group">
-    <label>Your Comment</label>
-    <textarea name="content" class="form-control" rows="3" required></textarea>
-  </div>
+    <div class="form-group">
+      <label>Your Comment</label>
+      <textarea name="content" class="form-control" rows="3" required></textarea>
+    </div>
 
-  <button type="submit" class="btn btn-primary">Post Comment</button>
-</form>
-
+    <button type="submit" class="btn btn-primary">Post Comment</button>
+  </form>
+</div>
 <hr />
 
-<!--
-<h4>Comments</h4>
 
 
-  <p>No comments yet. Be the first to comment!</p>
+        <style>
+        .comment-container {
+            margin-left: 20px;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #fafafa;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
 
--->
+        .comment-header {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #333;
+            margin-bottom: 0.3rem;
+        }
 
-<!-- Post Footer -->
-<footer
-  class="post-footer"
-  style="
-    margin-top: 2rem;
-    background: #f1f3f6;
-    padding: 2rem;
-    border-radius: 16px;
-    text-align: center;
-    font-size: 0.95rem;
-    color: #444;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
-  "
->
-  <p><strong>Author:</strong> Ishwar Gautam</p>
+        .comment-timestamp {
+            font-weight: 400;
+            font-size: 0.8rem;
+            color: #777;
+            margin-left: 0.5rem;
+        }
 
-  <!-- Buttons -->
-  <div style="margin: 1rem 0">
-    <a
-      href="/"
-      class="btn btn-outline-primary"
-      style="margin-right: 1rem"
-      >← Back to Home</a
-    >
-    <a
-      href="#"
-      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
-      class="btn btn-primary"
-      >↑ Back to Top</a
-    >
-  </div>
+        .comment-content {
+            margin-bottom: 0.8rem;
+            white-space: pre-wrap;
+        }
 
-  <!-- Social Icons -->
-  <div class="social-icons" style="margin-top: 1.5rem">
-    <a
-      href="https://www.facebook.com/igtechteam/"
-      target="_blank"
-      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
-      ><i class="fab fa-facebook"></i
-    ></a>
-    <a
-      href="https://www.instagram.com/ishwar_gautam1/"
-      target="_blank"
-      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
-      ><i class="fab fa-instagram"></i
-    ></a>
-    <a
-      href="https://github.com/ishwargautam"
-      target="_blank"
-      style="margin: 0 10px; font-size: 1.5rem; color: #333"
-      ><i class="fab fa-github"></i
-    ></a>
-    <a
-      href="https://www.linkedin.com/in/ishwargautam1"
-      target="_blank"
-      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
-      ><i class="fab fa-linkedin"></i
-    ></a>
-    <a
-      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
-      target="_blank"
-      style="margin: 0 10px; font-size: 1.5rem; color: #000"
-      ><i class="fab fa-tiktok"></i
-    ></a>
-  </div>
+        .reply-link {
+            font-size: 0.85rem;
+            color: #1877f2;
+            cursor: pointer;
+            user-select: none;
+        }
 
-  <!-- YouTube Subscribe -->
-  <div style="margin-top: 1.5rem">
-    <a
-      class="youtube-btn"
-      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
-      target="_blank"
-      style="
-        background: #ff0000;
-        color: white;
-        padding: 0.6rem 1.2rem;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: background 0.3s ease;
-      "
-    >
-      🔔 Subscribe on YouTube
-    </a>
-  </div>
-</footer>
+        .reply-link:hover {
+            text-decoration: underline;
+        }
 
-</div>
+        .reply-form {
+            margin-top: 0.8rem;
+            display: none;
+        }
 
-    <!-- Footer -->
-    
-<!-- Leaving this empty so to skip base.html footer-->
+        .reply-form input,
+        .reply-form textarea {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
 
+        .reply-form button {
+            font-size: 0.85rem;
+        }
 
-    <!-- Summernote Initialization -->
-    <script>
-      $(document).ready(function () {
-        $("#summernote").summernote({
-          height: 300,
-          toolbar: [
-            ["style", ["style"]],
-            ["font", ["bold", "italic", "underline", "clear"]],
-            ["fontname", ["fontname"]],
-            ["fontsize", ["fontsize"]],
-            ["color", ["color"]],
-            ["para", ["ul", "ol", "paragraph"]],
-            ["insert", ["link", "picture", "video", "table", "hr"]],
-            ["view", ["fullscreen", "codeview", "help"]],
-            ["custom", ["codeblock"]],
-          ],
-          buttons: {
-            codeblock: function (context) {
-              var ui = $.summernote.ui;
-              var button = ui.button({
-                contents: '<i class="fa fa-code"></i> Code Block',
-                tooltip: "Insert Code Block",
-                click: function () {
-                  let lang = prompt(
-                    "Enter language (e.g. python, javascript, java, html, css):",
-                    "python"
-                  );
-                  if (!lang) lang = "plaintext";
+        /* Nested replies indent */
+        .nested-replies {
+            margin-left: 30px;
+            margin-top: 1rem;
+        }
 
-                  var codeBlock = `
-                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
-              `;
-                  context.invoke("editor.pasteHTML", codeBlock);
-                  hljs.highlightAll();
-                  var codeBlockNode =
-                    context.invoke("editor.getBody").lastChild;
-                  $(codeBlockNode).find("code").focus();
-                },
-              });
-              return button.render();
-            },
-          },
-        });
+        .comments-wrapper {
+            margin: 20px auto;
+            padding: 15px 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+        }
 
-        // Auto-highlight on Enter inside code blocks
-        $(".note-editable").on("keyup", function (e) {
-          if (e.key === "Enter") {
-            $(this)
-              .find("pre code")
-              .each(function () {
-                hljs.highlightElement(this);
-              });
-          }
-        });
+        .comments-wrapper h4 {
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: 600;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 5px;
+        }
+        </style>
 
-        hljs.highlightAll();
-      });
-    </script>
-  
+      <div class="comments-wrapper">
         <h4>Comments</h4>
         <div class="comment-container">
             <p>Loading comments...</p>
+        </div>
         </div>
 
         <script>
@@ -1406,5 +1331,157 @@ _, _ , _ , _, ans  = bert_question_answer( question, passage)
         })();
         </script>
         
-</body>
+<!-- Post Footer -->
+<footer
+  class="post-footer"
+  style="
+    margin-top: 2rem;
+    background: #f1f3f6;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #444;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  "
+>
+  <p><strong>Author:</strong> Ishwar Gautam</p>
+
+  <!-- Buttons -->
+  <div style="margin: 1rem 0">
+    <a
+      href="/"
+      class="btn btn-outline-primary"
+      style="margin-right: 1rem"
+      >← Back to Home</a
+    >
+    <a
+      href="#"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      class="btn btn-primary"
+      >↑ Back to Top</a
+    >
+  </div>
+
+  <!-- Social Icons -->
+  <div class="social-icons" style="margin-top: 1.5rem">
+    <a
+      href="https://www.facebook.com/igtechteam/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #3b5998"
+      ><i class="fab fa-facebook"></i
+    ></a>
+    <a
+      href="https://www.instagram.com/ishwar_gautam1/"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #e4405f"
+      ><i class="fab fa-instagram"></i
+    ></a>
+    <a
+      href="https://github.com/ishwargautam"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #333"
+      ><i class="fab fa-github"></i
+    ></a>
+    <a
+      href="https://www.linkedin.com/in/ishwargautam1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #0077b5"
+      ><i class="fab fa-linkedin"></i
+    ></a>
+    <a
+      href="https://www.tiktok.com/@ishwar.gautam1?_t=8pdEalQ0Nn7&_r=1"
+      target="_blank"
+      style="margin: 0 10px; font-size: 1.5rem; color: #000"
+      ><i class="fab fa-tiktok"></i
+    ></a>
+  </div>
+
+  <!-- YouTube Subscribe -->
+  <div style="margin-top: 1.5rem">
+    <a
+      class="youtube-btn"
+      href="https://www.youtube.com/channel/UC4Wf9XNPsbXwQqfKlUZfmtw?sub_confirmation=1"
+      target="_blank"
+      style="
+        background: #ff0000;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      "
+    >
+      🔔 Subscribe on YouTube
+    </a>
+  </div>
+</footer>
+
+</div>
+
+    <!-- Footer -->
+    
+<!-- Leaving this empty so to skip base.html footer-->
+
+
+    <!-- Summernote Initialization -->
+    <script>
+      $(document).ready(function () {
+        $("#summernote").summernote({
+          height: 300,
+          toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "italic", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["fontsize", ["fontsize"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video", "table", "hr"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+            ["custom", ["codeblock"]],
+          ],
+          buttons: {
+            codeblock: function (context) {
+              var ui = $.summernote.ui;
+              var button = ui.button({
+                contents: '<i class="fa fa-code"></i> Code Block',
+                tooltip: "Insert Code Block",
+                click: function () {
+                  let lang = prompt(
+                    "Enter language (e.g. python, javascript, java, html, css):",
+                    "python"
+                  );
+                  if (!lang) lang = "plaintext";
+
+                  var codeBlock = `
+                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
+              `;
+                  context.invoke("editor.pasteHTML", codeBlock);
+                  hljs.highlightAll();
+                  var codeBlockNode =
+                    context.invoke("editor.getBody").lastChild;
+                  $(codeBlockNode).find("code").focus();
+                },
+              });
+              return button.render();
+            },
+          },
+        });
+
+        // Auto-highlight on Enter inside code blocks
+        $(".note-editable").on("keyup", function (e) {
+          if (e.key === "Enter") {
+            $(this)
+              .find("pre code")
+              .each(function () {
+                hljs.highlightElement(this);
+              });
+          }
+        });
+
+        hljs.highlightAll();
+      });
+    </script>
+  </body>
 </html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IGTechTeam</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- jQuery & Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <!-- Bootstrap JS (for navbar toggle) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        background-color: #e6f0f7;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f2c39;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #f8f9fa !important;
+        font-weight: 500;
+        padding: 8px 16px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: #485768;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar-nav .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .alert-warning {
+        margin-top: 1rem;
+        font-weight: 500;
+        border-left: 6px solid #ffc107;
+        background-color: #fff8e1;
+      }
+
+      .alert-danger {
+        margin-top: 1rem;
+      }
+
+      .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 1rem;
+      }
+
+      .post-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+
+      /* Images in post content - full width only on mobile */
+      @media (max-width: 1024px) {
+        .post-content img[style] {
+          width: 100% !important;
+        }
+      }
+
+      .featured-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .featured-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 5px 10px;
+      }
+
+      .text-dark {
+        text-decoration: none;
+      }
+
+      /* Fix maximize fullscreen issue in Summernote */
+      .note-editor.fullscreen {
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background: white !important;
+        overflow: auto;
+      }
+
+      body.note-editor-fullscreen {
+        overflow: hidden;
+      }
+
+      .social-icons {
+        padding-bottom: 10px;
+      }
+
+      .social-icons a {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #007bff;
+        transform: scale(1.2);
+      }
+
+      .page-content{
+        flex: 1;
+      }
+
+    .comment-container {
+        margin-left: 20px;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background: #fafafa;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .comment-header {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: #333;
+        margin-bottom: 0.3rem;
+    }
+
+    .comment-timestamp {
+        font-weight: 400;
+        font-size: 0.8rem;
+        color: #777;
+        margin-left: 0.5rem;
+    }
+
+    .comment-content {
+        margin-bottom: 0.8rem;
+        white-space: pre-wrap;
+    }
+
+    .reply-link {
+        font-size: 0.85rem;
+        color: #1877f2;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .reply-link:hover {
+        text-decoration: underline;
+    }
+
+    .reply-form {
+        margin-top: 0.8rem;
+        display: none;
+    }
+
+    .reply-form input,
+    .reply-form textarea {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .reply-form button {
+        font-size: 0.85rem;
+    }
+
+    /* Nested replies indent */
+    .nested-replies {
+        margin-left: 30px;
+        margin-top: 1rem;
+    }
+    </style>
+  </head>
+  <body>
+
+<!-- Comment section -->
+<h3>Leave a Comment</h3>
+<form method="POST" action="/test-title/comment.html" class="p-3 bg-light rounded shadow">
+  <input type="hidden" name="parent_id" value="" />
+
+  <div class="form-group">
+    <label>Your Name</label>
+    <input type="text" name="name" class="form-control" required />
+  </div>
+
+  <div class="form-group">
+    <label>Your Comment</label>
+    <textarea name="content" class="form-control" rows="3" required></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Post Comment</button>
+</form>
+
+<hr />
+</div>
+
+<h4>Comments</h4>
+<div class="comment-container">
+    <p>Loading comments...</p>
+</div>
+
+<script>
+(function () {
+  const form = document.querySelector("form");
+  const commentsContainer = document.querySelector(".comment-container");
+  if (!form || !commentsContainer) return;
+
+  const slug = "test-title";
+  const submitBtn = form.querySelector("button[type='submit']");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = form.querySelector("button[type='submit']");
+    const originalText = submitBtn.textContent;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Posting...";
+
+    const data = {
+        slug,
+        name: form.name.value.trim(),
+        content: form.content.value.trim(),
+        parent_id: form.parent_id.value || null,
+    };
+
+    if (!data.name || !data.content) {
+        alert("Please fill in your name and comment.");
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+        return;
+    }
+
+    fetch("/.netlify/functions/submit_comment", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+        .then((res) => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+
+        if (res.ok) {
+            alert("Comment submitted!");
+            form.reset();
+
+            // If this is a reply form, hide it after submit
+            if (form.classList.contains("reply-form")) {
+            form.style.display = "none";
+            }
+
+            loadComments(); // Refresh comment list
+        } else {
+            return res.text().then((text) => alert("Failed: " + text));
+        }
+        })
+        .catch((err) => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+        alert("Error: " + err.message);
+        });
+    });
+
+
+  function loadComments() {
+    fetch(`/.netlify/functions/get_comments?slug=${encodeURIComponent(slug)}`)
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to load comments");
+        return res.json();
+      })
+      .then(comments => {
+        commentsContainer.innerHTML = "";
+        const map = {};
+        comments.forEach(c => {
+          c.children = [];
+          map[c.id] = c;
+        });
+        comments.forEach(c => {
+          if (c.parent_id && map[c.parent_id]) {
+            map[c.parent_id].children.push(c);
+          }
+        });
+
+        const render = (comment) => {
+          const wrapper = document.createElement("div");
+          wrapper.className = "comment-container";
+
+          // Header
+          const header = document.createElement("div");
+          header.className = "comment-header";
+          header.innerHTML = `<strong>${escapeHtml(comment.name)}</strong><span class="comment-timestamp"> - ${new Date(comment.timestamp).toLocaleString()}</span>`;
+          wrapper.appendChild(header);
+
+          // Content
+          const content = document.createElement("div");
+          content.className = "comment-content";
+          content.textContent = comment.content;
+          wrapper.appendChild(content);
+
+          // Reply Link
+          const replyLink = document.createElement("span");
+          replyLink.className = "reply-link";
+          replyLink.textContent = "Reply";
+          replyLink.onclick = () => toggleReplyForm(`reply-form-${comment.id}`);
+          wrapper.appendChild(replyLink);
+
+          // Reply Form
+          const replyForm = document.createElement("form");
+          replyForm.method = "POST";
+          replyForm.className = "reply-form";
+          replyForm.id = `reply-form-${comment.id}`;
+          replyForm.innerHTML = `
+            <input type="hidden" name="parent_id" value="${comment.id}" />
+            <input type="text" name="name" placeholder="Your Name" class="form-control form-control-sm" required />
+            <textarea name="content" placeholder="Write a reply..." class="form-control form-control-sm" rows="2" required></textarea>
+            <button type="submit" class="btn btn-sm btn-primary">Post Reply</button>
+          `;
+          replyForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const replyData = {
+              slug,
+              name: replyForm.name.value.trim(),
+              content: replyForm.content.value.trim(),
+              parent_id: comment.id,
+            };
+
+            if (!replyData.name || !replyData.content) {
+              alert("Please fill in your name and reply.");
+              return;
+            }
+
+            const replyBtn = replyForm.querySelector("button");
+            const originalText = replyBtn.textContent;
+            replyBtn.disabled = true;
+            replyBtn.textContent = "Posting...";
+
+            fetch("/.netlify/functions/submit_comment", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(replyData),
+            })
+              .then(res => {
+                replyBtn.disabled = false;
+                replyBtn.textContent = originalText;
+                if (res.ok) {
+                  alert("Reply submitted!");
+                  loadComments();
+                } else {
+                  return res.text().then(text => alert("Failed: " + text));
+                }
+              })
+              .catch(err => {
+                replyBtn.disabled = false;
+                replyBtn.textContent = originalText;
+                alert("Error: " + err.message);
+              });
+          });
+          wrapper.appendChild(replyForm);
+
+          // Nested Replies
+          if (comment.children.length) {
+            const nested = document.createElement("div");
+            nested.className = "nested-replies";
+            comment.children.forEach(child => nested.appendChild(render(child)));
+            wrapper.appendChild(nested);
+          }
+
+          return wrapper;
+        };
+
+        const topLevel = comments.filter(c => !c.parent_id);
+        if (topLevel.length === 0) {
+          commentsContainer.innerHTML = "<p>No comments yet. Be the first to comment!</p>";
+        } else {
+          topLevel.forEach(top => {
+            commentsContainer.appendChild(render(top));
+          });
+        }
+      })
+      .catch(err => {
+        commentsContainer.innerHTML = "<p>Failed to load comments.</p>";
+        console.error(err);
+      });
+  }
+
+    function toggleReplyForm(id) {
+        const form = document.getElementById(id);
+        if (form) {
+            const isHidden = window.getComputedStyle(form).display === "none";
+            form.style.display = isHidden ? "block" : "none";
+        }
+    }
+
+
+  function escapeHtml(text) {
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  loadComments();
+})();
+</script>
+
+
+
+</body>
+</html>

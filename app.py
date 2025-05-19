@@ -53,6 +53,7 @@ def create_app():
     # Register Blueprints
     from routes.auth import auth_bp
     from routes.post import post_bp
+    from routes.game import game_bp
     from routes.about import about_bp
     from routes.contact import contact_bp
     from routes.comment import comment_bp
@@ -62,6 +63,7 @@ def create_app():
     app.register_blueprint(contact_bp)
     app.register_blueprint(about_bp)
     app.register_blueprint(comment_bp)
+    app.register_blueprint(game_bp)
 
     # initialize migrate
     Migrate(app, db)

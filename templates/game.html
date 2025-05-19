@@ -1,0 +1,227 @@
+{% extends 'base.html' %} {% block content %}
+<div class="game-container">
+  <div id="game">
+    <div id="gameOver">GAME OVER</div>
+    <button id="controlBtn">Play Game</button>
+    <button id="muteBtn">🔊</button>
+    <audio id="soundCrash" src="static/sound/car-crash.wav"></audio>
+    <audio id="soundDriving" src="static/sound/car-driving.wav" loop></audio>
+  </div>
+
+  <div id="scoreContainer">
+    <h2>Score</h2>
+    <div id="score">0</div>
+  </div>
+
+  <script>
+    const game = document.getElementById("game");
+    const controlBtn = document.getElementById("controlBtn");
+    const gameOverText = document.getElementById("gameOver");
+    const soundCrash = document.getElementById("soundCrash");
+    const soundDriving = document.getElementById("soundDriving");
+    const muteBtn = document.getElementById("muteBtn");
+    const scoreDisplay = document.getElementById("score");
+
+    const lanes = [40, 130, 220];
+    let currentLane = 1;
+    let playerCar;
+    let enemyIntervals = [];
+    let enemySpawnInterval;
+    let speedIncreaseInterval;
+    let scoreInterval;
+    let gameRunning = false;
+    let isMuted = false;
+
+    const roadLines = [];
+    const roadLineHeight = 60;
+    const roadLineCount = 15;
+
+    let speed = 6;
+    let score = 0;
+    let lastEnemyLanes = [];
+
+    function createRoadLines() {
+      document.querySelectorAll(".road-line").forEach((line) => line.remove());
+      roadLines.length = 0;
+      for (let i = 0; i < roadLineCount; i++) {
+        let line1 = document.createElement("div");
+        line1.className = "road-line lane1";
+        line1.style.top = i * roadLineHeight + "px";
+        game.appendChild(line1);
+        roadLines.push(line1);
+
+        let line2 = document.createElement("div");
+        line2.className = "road-line lane2";
+        line2.style.top = i * roadLineHeight + "px";
+        game.appendChild(line2);
+        roadLines.push(line2);
+      }
+    }
+
+    function animateRoad() {
+      if (!gameRunning) return;
+      roadLines.forEach((line) => {
+        let top = parseFloat(line.style.top);
+        top += speed;
+        if (top > 500) top = top - roadLineCount * roadLineHeight;
+        line.style.top = top + "px";
+      });
+      requestAnimationFrame(animateRoad);
+    }
+
+    function createPlayer() {
+      playerCar = document.createElement("div");
+      playerCar.classList.add("car");
+      playerCar.innerText = "🚙";
+      currentLane = 1;
+      playerCar.style.left = lanes[currentLane] + "px";
+      playerCar.style.bottom = "30px";
+      game.appendChild(playerCar);
+    }
+
+    function movePlayer(newLane) {
+      if (newLane >= 0 && newLane < lanes.length) {
+        currentLane = newLane;
+        playerCar.style.left = lanes[currentLane] + "px";
+      }
+    }
+
+    function isCollide(a, b) {
+      const aRect = a.getBoundingClientRect();
+      const bRect = b.getBoundingClientRect();
+      return !(
+        aRect.top > bRect.bottom ||
+        aRect.bottom < bRect.top ||
+        aRect.left > bRect.right ||
+        aRect.right < bRect.left
+      );
+    }
+
+    function getAvailableLanes() {
+      let counts = [0, 0, 0];
+      lastEnemyLanes.forEach((lane) => counts[lane]++);
+      let available = [];
+      for (let i = 0; i < lanes.length; i++) {
+        if (counts[i] < 2) available.push(i);
+      }
+      return available.length ? available : [0, 1, 2];
+    }
+
+    function spawnEnemy() {
+      const enemy = document.createElement("div");
+      enemy.classList.add("enemy");
+      enemy.innerText = "🚓";
+
+      const availableLanes = getAvailableLanes();
+      const laneIndex =
+        availableLanes[Math.floor(Math.random() * availableLanes.length)];
+      enemy.style.left = lanes[laneIndex] + "px";
+      enemy.style.bottom = "500px";
+      game.appendChild(enemy);
+      lastEnemyLanes.push(laneIndex);
+      if (lastEnemyLanes.length > 10) lastEnemyLanes.shift();
+
+      let enemyInterval = setInterval(() => {
+        if (!gameRunning) {
+          clearInterval(enemyInterval);
+          enemy.remove();
+          return;
+        }
+        let currentBottom = parseFloat(enemy.style.bottom);
+        if (currentBottom < -100) {
+          clearInterval(enemyInterval);
+          enemy.remove();
+          return;
+        }
+        enemy.style.bottom = currentBottom - speed + "px";
+
+        // Check collision with player
+        if (playerCar && isCollide(enemy, playerCar)) {
+          gameOver();
+        }
+      }, 20);
+
+      enemyIntervals.push(enemyInterval);
+    }
+
+    function gameOver() {
+      gameRunning = false;
+      gameOverText.style.display = "block";
+      controlBtn.style.display = "block";
+      soundDriving.pause();
+      soundCrash.play();
+      clearInterval(speedIncreaseInterval);
+      clearInterval(scoreInterval);
+      enemyIntervals.forEach((i) => clearInterval(i));
+      enemyIntervals = [];
+      enemySpawnInterval && clearInterval(enemySpawnInterval);
+    }
+
+    function resetGame() {
+      // Remove existing player car if any
+      if (playerCar) {
+        playerCar.remove();
+        playerCar = null;
+      }
+
+      // Remove enemies if any remain
+      document.querySelectorAll(".enemy").forEach((e) => e.remove());
+      lastEnemyLanes = [];
+      speed = 6;
+      score = 0;
+      scoreDisplay.textContent = "0";
+      gameOverText.style.display = "none";
+      createPlayer();
+    }
+
+    function startGame() {
+      if (gameRunning) return;
+      resetGame();
+      gameRunning = true;
+      controlBtn.style.display = "none";
+      soundDriving.play();
+      animateRoad();
+
+      // Spawn enemies every 1500 ms
+      enemySpawnInterval = setInterval(() => {
+        if (gameRunning) spawnEnemy();
+      }, 1500);
+
+      // Increase speed every 5 seconds
+      speedIncreaseInterval = setInterval(() => {
+        if (speed < 15) speed += 0.5;
+      }, 5000);
+
+      // Increase score every 100ms
+      scoreInterval = setInterval(() => {
+        if (gameRunning) {
+          score++;
+          scoreDisplay.textContent = score;
+        }
+      }, 100);
+    }
+
+    controlBtn.addEventListener("click", () => {
+      startGame();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (!gameRunning) return;
+      if (e.key === "ArrowLeft") {
+        movePlayer(currentLane - 1);
+      } else if (e.key === "ArrowRight") {
+        movePlayer(currentLane + 1);
+      }
+    });
+
+    muteBtn.addEventListener("click", () => {
+      isMuted = !isMuted;
+      soundDriving.muted = isMuted;
+      soundCrash.muted = isMuted;
+      muteBtn.textContent = isMuted ? "🔇" : "🔊";
+    });
+
+    createRoadLines();
+  </script>
+</div>
+{% endblock %}

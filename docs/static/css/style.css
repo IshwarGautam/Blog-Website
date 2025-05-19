@@ -1,6 +1,329 @@
-h1 {
-    border: 2px #eee solid;
-    color: brown;
-    text-align: center;
-    padding: 10px;
+body {
+  background-color: #e6f0f7;
+  font-family: "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.navbar {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #1f2c39;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: #fff !important;
+}
+
+.navbar-nav .nav-link {
+  color: #f8f9fa !important;
+  font-weight: 500;
+  padding: 8px 16px;
+}
+
+.navbar-nav .nav-link:hover {
+  background-color: #485768;
+  border-radius: 5px;
+}
+
+.navbar-nav .btn {
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.navbar-nav .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.alert-warning {
+  margin-top: 1rem;
+  font-weight: 500;
+  border-left: 6px solid #ffc107;
+  background-color: #fff8e1;
+}
+
+.alert-danger {
+  margin-top: 1rem;
+}
+
+.post-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 1rem;
+}
+
+.post-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #343a40;
+}
+
+/* Images in post content - full width only on mobile */
+@media (max-width: 1024px) {
+  .post-content img[style] {
+    width: 100% !important;
+  }
+}
+
+.featured-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  aspect-ratio: 3 / 2;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.featured-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.badge {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 5px 10px;
+}
+
+.text-dark {
+  text-decoration: none;
+}
+
+/* Fix maximize fullscreen issue in Summernote */
+.note-editor.fullscreen {
+  z-index: 9999 !important;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  background: white !important;
+  overflow: auto;
+}
+
+body.note-editor-fullscreen {
+  overflow: hidden;
+}
+
+.social-icons {
+  padding-bottom: 10px;
+}
+
+.social-icons a {
+  color: #f8f9fa;
+  font-size: 1.5rem;
+  margin: 0 10px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #007bff;
+  transform: scale(1.2);
+}
+
+.page-content {
+  flex: 1;
+  margin-top: 16px;
+}
+
+.style-h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+  padding-bottom: 12px;
+  position: relative;
+  display: inline-block;
+
+  /* Fancy border */
+  border-bottom: 3px double #4caf50;
+  border-radius: 4px;
+
+  /* Shadow & transition for polish */
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+}
+
+.style-h1:hover {
+  color: #2e7d32;
+  text-shadow: 1px 1px 5px rgba(76, 175, 80, 0.3);
+  transform: scale(1.05);
+}
+
+/* Style for game */
+.game-container {
+  display: flex;
+  justify-content: center;
+}
+
+#game {
+  position: relative;
+  margin: 20px 0;
+  width: 300px;
+  height: 500px;
+  background: #555;
+  overflow: hidden;
+  border: 3px solid #aaa;
+  border-radius: 10px;
+  font-size: 0;
+}
+.road-line {
+  position: absolute;
+  width: 6px;
+  height: 30px;
+  background: white;
+  border-radius: 3px;
+  user-select: none;
+}
+.road-line.lane1 {
+  left: 100px;
+}
+.road-line.lane2 {
+  left: 190px;
+}
+
+.car {
+  position: absolute;
+  bottom: 30px;
+  width: 50px;
+  height: 80px;
+  background: linear-gradient(135deg, #ff4d4d 0%, #b30000 100%);
+  border-radius: 15px 15px 12px 12px;
+  text-align: center;
+  font-size: 48px;
+  line-height: 80px;
+  color: white;
+  transition: left 0.1s ease;
+  box-shadow: 0 0 10px #ff4d4d, inset 0 0 20px #ff9999;
+  user-select: none;
+  filter: drop-shadow(0 0 4px #ff0000);
+}
+
+.enemy {
+  position: absolute;
+  width: 50px;
+  height: 80px;
+  background: linear-gradient(135deg, #444 0%, #111 100%);
+  border-radius: 12px;
+  text-align: center;
+  font-size: 48px;
+  line-height: 80px;
+  color: #ccc;
+  user-select: none;
+  box-shadow: 0 0 10px #666 inset;
+}
+
+#game::before,
+#game::after {
+  content: "|";
+  position: absolute;
+  top: 0;
+  width: 10px;
+  font-size: 40px;
+  color: white;
+  user-select: none;
+  pointer-events: none;
+}
+#game::before {
+  left: 0;
+}
+#game::after {
+  right: 0;
+}
+
+#controlBtn {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 28px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: #4caf50;
+  color: white;
+  box-shadow: 0 4px #357a38;
+  transition: background 0.3s ease;
+  user-select: none;
+  z-index: 100;
+}
+#controlBtn:hover {
+  background: #45a049;
+}
+
+#gameOver {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  color: #f00;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px black;
+  display: none;
+  user-select: none;
+  z-index: 90;
+}
+
+#muteBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #333;
+  color: white;
+  border: none;
+  font-size: 22px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+/* Score container */
+#scoreContainer {
+  width: 100px;
+  height: 180px;
+  background: #444;
+  border-radius: 10px;
+  border: 3px solid #aaa;
+  box-shadow: 0 0 10px #4caf50 inset;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #4caf50;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+}
+#scoreContainer h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  user-select: none;
+}
+#score {
+  font-size: 48px;
+  font-weight: bold;
+  user-select: none;
 }

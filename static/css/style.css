@@ -141,7 +141,7 @@ body.note-editor-fullscreen {
   margin-top: 16px;
 }
 
-h1 {
+.style-h1 {
   font-family: "Cormorant Garamond", serif;
   font-size: 3rem;
   font-weight: 700;
@@ -162,7 +162,7 @@ h1 {
   transition: all 0.3s ease-in-out;
 }
 
-h1:hover {
+.style-h1:hover {
   color: #2e7d32;
   text-shadow: 1px 1px 5px rgba(76, 175, 80, 0.3);
   transform: scale(1.05);

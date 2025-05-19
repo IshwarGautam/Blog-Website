@@ -45,149 +45,7 @@
     <!-- Bootstrap JS (for navbar toggle) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <style>
-      body {
-        background-color: #e6f0f7;
-        font-family: "Segoe UI", sans-serif;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-
-      .navbar {
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        background-color: #1f2c39;
-      }
-
-      .navbar-brand {
-        font-weight: bold;
-        font-size: 1.4rem;
-        color: #fff !important;
-      }
-
-      .navbar-nav .nav-link {
-        color: #f8f9fa !important;
-        font-weight: 500;
-        padding: 8px 16px;
-      }
-
-      .navbar-nav .nav-link:hover {
-        background-color: #485768;
-        border-radius: 5px;
-      }
-
-      .navbar-nav .btn {
-        border-radius: 8px;
-        transition: all 0.2s ease;
-      }
-
-      .navbar-nav .btn:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      }
-
-      .alert-warning {
-        margin-top: 1rem;
-        font-weight: 500;
-        border-left: 6px solid #ffc107;
-        background-color: #fff8e1;
-      }
-
-      .alert-danger {
-        margin-top: 1rem;
-      }
-
-      .post-card {
-        background-color: #ffffff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
-        padding: 1rem;
-      }
-
-      .post-title {
-        font-size: 1.75rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        color: #343a40;
-      }
-
-      /* Images in post content - full width only on mobile */
-      @media (max-width: 1024px) {
-        .post-content img[style] {
-          width: 100% !important;
-        }
-      }
-
-      .featured-image-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        max-width: 100%;
-        aspect-ratio: 3 / 2;
-        border-radius: 8px;
-        overflow: hidden;
-      }
-
-      .featured-img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-
-      .badge {
-        font-size: 0.875rem;
-        font-weight: 600;
-        padding: 5px 10px;
-      }
-
-      .text-dark {
-        text-decoration: none;
-      }
-
-      /* Fix maximize fullscreen issue in Summernote */
-      .note-editor.fullscreen {
-        z-index: 9999 !important;
-        position: fixed !important;
-        top: 0;
-        left: 0;
-        width: 100% !important;
-        height: 100% !important;
-        background: white !important;
-        overflow: auto;
-      }
-
-      body.note-editor-fullscreen {
-        overflow: hidden;
-      }
-
-      .social-icons {
-        padding-bottom: 10px;
-      }
-
-      .social-icons a {
-        color: #f8f9fa;
-        font-size: 1.5rem;
-        margin: 0 10px;
-        transition: all 0.3s ease;
-      }
-
-      .social-icons a:hover {
-        color: #007bff;
-        transform: scale(1.2);
-      }
-
-      .page-content{
-        flex: 1;
-      }
-    </style>
+    <link rel="stylesheet" href="/static/css/style.css">
   </head>
   <body>
     <!-- Navbar -->
@@ -218,6 +76,9 @@
             >
             <a class="nav-link" href="/about.html">About me</a>
           </div>
+          <div class="navbar-nav">
+            <a class="nav-link" href="/game.html">Play Game</a>
+          </div>
 
           <div class="navbar-nav ml-auto d-flex align-items-center">
             <a
@@ -234,11 +95,9 @@
     </nav>
 
     <!-- Site Notice -->
-    <div class="container text-center">
-      <div class="alert alert-warning" role="alert">
-        🚧 Website construction is going on! Please check back later. 🚧
-      </div>
-    </div>
+    
+    
+
 
     <!-- Flash Messages -->
     <div class="container">
@@ -247,7 +106,7 @@
 
     <!-- Page Content -->
     <div class="container page-content">
-<h1> Latest Posts </h1>
+<div class="style-h1"> Latest Posts </div>
 
  
 <div class="row mb-4">

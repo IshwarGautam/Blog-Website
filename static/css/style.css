@@ -6,41 +6,6 @@ body {
   min-height: 100vh;
 }
 
-.navbar {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: #1f2c39;
-}
-
-.navbar-brand {
-  font-weight: bold;
-  font-size: 1.4rem;
-  color: #fff !important;
-}
-
-.navbar-nav .nav-link {
-  color: #f8f9fa !important;
-  font-weight: 500;
-  padding: 8px 16px;
-}
-
-.navbar-nav .nav-link:hover {
-  background-color: #485768;
-  border-radius: 5px;
-}
-
-.navbar-nav .btn {
-  border-radius: 8px;
-  transition: all 0.2s ease;
-}
-
-.navbar-nav .btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
 .alert-warning {
   margin-top: 1rem;
   font-weight: 500;
@@ -64,13 +29,6 @@ body {
   padding: 1rem;
 }
 
-.post-title {
-  font-size: 1.75rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: #343a40;
-}
-
 /* Images in post content - full width only on mobile */
 @media (max-width: 1024px) {
   .post-content img[style] {
@@ -86,12 +44,6 @@ body {
   aspect-ratio: 3 / 2;
   border-radius: 8px;
   overflow: hidden;
-}
-
-.featured-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
 }
 
 .badge {
@@ -142,31 +94,222 @@ body.note-editor-fullscreen {
 }
 
 .style-h1 {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 3rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  text-transform: capitalize;
-  letter-spacing: 1px;
-  margin-bottom: 25px;
-  padding-bottom: 12px;
-  position: relative;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #d4af37; /* Rich gold */
+  background-color: #ffffff;
+  padding: 10px 20px;
   display: inline-block;
+  border-radius: 6px;
 
-  /* Fancy border */
-  border-bottom: 3px double #4caf50;
-  border-radius: 4px;
+  text-shadow:
+    1px 1px 0 #000,
+    2px 2px 4px rgba(0, 0, 0, 0.3);
 
-  /* Shadow & transition for polish */
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease-in-out;
+  position: relative;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #d4af37;
+
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
 }
 
 .style-h1:hover {
-  color: #2e7d32;
-  text-shadow: 1px 1px 5px rgba(76, 175, 80, 0.3);
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px 0;
+}
+
+.post-card-upgraded {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.post-card-upgraded:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.post-image-container {
+  height: 200px;
+  overflow: hidden;
+}
+
+.post-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+.post-card-upgraded:hover .post-image {
+  transform: scale(1.08);
+}
+
+.post-content {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.post-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1f1f1f;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.post-link:hover .post-title {
+  color: #4caf50;
+}
+
+.post-date {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #666;
+  background: #e8f5e9;
+  padding: 5px 10px;
+  border-radius: 50px;
+}
+
+.edit-btn {
+  font-size: 0.75rem;
+  background: #ffe0b2;
+  color: #bf360c;
+  padding: 5px 10px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.edit-btn:hover {
+  background: #ffcc80;
+}
+
+.post-excerpt {
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+.glass-nav {
+  background: rgba(25, 40, 30, 0.85);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 1050;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-brand {
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 2px;
+  color: #e0f2f1;
+  text-shadow: 0 0 8px #4caf50;
+  white-space: nowrap;
+}
+
+.navbar-brand:hover {
+  color: #81c784;
+  text-shadow: 0 0 12px #81c784;
+}
+
+.navbar-nav .nav-link {
+  font-weight: 600;
+  color: #c8e6c9;
+  padding: 8px 12px;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  color: #a5d6a7;
+  text-decoration: underline;
+}
+
+.play-game-link {
+  font-weight: 800;
+  color: #66bb6a !important;
+  border: 2px solid #66bb6a;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
+}
+
+.play-game-link:hover {
+  background-color: #66bb6a;
+  color: #1b262c !important;
+  text-decoration: none;
+  box-shadow: 0 0 15px #66bb6a;
+}
+
+.btn-success {
+  background-color: #4caf50;
+  border-color: #4caf50;
+  color: white;
+  font-weight: 600;
+}
+
+.btn-success:hover {
+  background-color: #388e3c;
+  border-color: #2e7d32;
+  color: white;
+}
+
+.btn-outline-light {
+  border-color: #81c784;
+  color: #81c784;
+}
+
+.btn-outline-light:hover {
+  background-color: #81c784;
+  color: #1b262c;
+}
+
+.navbar-toggler {
+  border-color: #81c784;
+}
+
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* Responsive tweaks */
+@media (max-width: 991.98px) {
+  .container {
+    flex-wrap: wrap !important;
+  }
+  
+  .navbar-collapse {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .navbar-nav {
+    justify-content: center !important;
+  }
+
+  .d-flex.align-items-center.gap-2 {
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center !important;
+  }
+}
+
+
 
 /* Style for game */
 .game-container {

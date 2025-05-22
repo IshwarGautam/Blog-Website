@@ -58,7 +58,7 @@ def get_featured_image(html):
 def index(page=1):
     query = Post.query.order_by(Post.id.desc())
 
-    posts = db.paginate(query, page=page, per_page=10, error_out=False)
+    posts = db.paginate(query, page=page, per_page=9, error_out=False)
 
     for post in posts.items:
         post.excerpt = generate_excerpt(post.content)

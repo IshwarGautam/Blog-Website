@@ -37,6 +37,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
 
     <!-- jQuery & Summernote JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -49,59 +51,59 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-md navbar-light sticky-top">
-      <div class="container">
-        <a class="navbar-brand" href="{{ url_for('post.index') }}">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top glass-nav">
+      <div class="container d-flex align-items-center justify-content-between">
+        <!-- Left: Logo -->
+        <a class="navbar-brand fw-bold fs-3" href="{{ url_for('post.index') }}">
           IGTechTeam
         </a>
 
-        <!-- Mobile toggle button -->
+        <!-- Center: Nav links -->
+        <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+          <ul class="navbar-nav align-items-center">
+            {% if current_user.is_authenticated and current_user.is_admin %}
+            <li class="nav-item mx-2">
+              <a class="nav-link fw-semibold" href="{{ url_for('post.create') }}">Create Post</a>
+            </li>
+            {% endif %}
+            <li class="nav-item mx-2">
+              <a class="nav-link fw-semibold" href="{{ url_for('contact.contact') }}">Contact</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link fw-semibold" href="{{ url_for('about.about') }}">About Me</a>
+            </li>
+            <!-- Play Game separated with margin -->
+            <li class="nav-item mx-4 ms-5">
+              <a class="nav-link fw-bold play-game-link" href="{{ url_for('game.game') }}">Play Game</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right: Login/Logout buttons -->
+        <div class="d-flex align-items-center gap-2">
+          {% if current_user.is_authenticated and current_user.is_admin %}
+          <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-light btn-sm px-4 py-2 fw-semibold shadow-sm">
+            <i class="bi bi-box-arrow-right me-1"></i> Logout
+          </a>
+          {% else %}
+          <a href="{{ url_for('auth.login') }}" class="btn btn-success btn-sm px-4 py-2 fw-semibold shadow-sm">
+            <i class="bi bi-box-arrow-in-right me-1"></i> Login
+          </a>
+          {% endif %}
+        </div>
+
+        <!-- Toggler button for small screens -->
         <button
-          class="navbar-toggler"
+          class="navbar-toggler ms-3"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarContent"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
           aria-controls="navbarContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarContent">
-          <div class="navbar-nav mr-auto">
-            {% if current_user.is_authenticated and current_user.is_admin %}
-            <a class="nav-link" href="{{ url_for('post.create') }}">
-              Create Post
-            </a>
-            {% endif %}
-            <a class="nav-link" href="{{ url_for('contact.contact') }}"
-              >Contact</a
-            >
-            <a class="nav-link" href="{{ url_for('about.about') }}">About me</a>
-          </div>
-          <div class="navbar-nav">
-            <a class="nav-link" href="{{ url_for('game.game')}}">Play Game</a>
-          </div>
-
-          <div class="navbar-nav ml-auto d-flex align-items-center">
-            <a
-              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
-              href="{{ url_for('auth.login') }}"
-            >
-              Login
-            </a>
-
-            {% if current_user.is_authenticated and current_user.is_admin %}
-            <a
-              class="btn btn-outline-light px-4 py-2 fw-semibold shadow-sm"
-              href="{{ url_for('auth.logout') }}"
-            >
-              Logout
-            </a>
-            {% endif %}
-          </div>
-        </div>
       </div>
     </nav>
 

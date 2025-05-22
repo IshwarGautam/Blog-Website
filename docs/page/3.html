@@ -37,6 +37,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
 
     <!-- jQuery & Summernote JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -49,48 +51,51 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-md navbar-light sticky-top">
-      <div class="container">
-        <a class="navbar-brand" href="/">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top glass-nav">
+      <div class="container d-flex align-items-center justify-content-between">
+        <!-- Left: Logo -->
+        <a class="navbar-brand fw-bold fs-3" href="/">
           IGTechTeam
         </a>
 
-        <!-- Mobile toggle button -->
+        <!-- Center: Nav links -->
+        <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+          <ul class="navbar-nav align-items-center">
+            
+            <li class="nav-item mx-2">
+              <a class="nav-link fw-semibold" href="/contact.html">Contact</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link fw-semibold" href="/about.html">About Me</a>
+            </li>
+            <!-- Play Game separated with margin -->
+            <li class="nav-item mx-4 ms-5">
+              <a class="nav-link fw-bold play-game-link" href="/game.html">Play Game</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right: Login/Logout buttons -->
+        <div class="d-flex align-items-center gap-2">
+          
+          <a href="/login.html" class="btn btn-success btn-sm px-4 py-2 fw-semibold shadow-sm">
+            <i class="bi bi-box-arrow-in-right me-1"></i> Login
+          </a>
+          
+        </div>
+
+        <!-- Toggler button for small screens -->
         <button
-          class="navbar-toggler"
+          class="navbar-toggler ms-3"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarContent"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
           aria-controls="navbarContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarContent">
-          <div class="navbar-nav mr-auto">
-            
-            <a class="nav-link" href="/contact.html"
-              >Contact</a
-            >
-            <a class="nav-link" href="/about.html">About me</a>
-          </div>
-          <div class="navbar-nav">
-            <a class="nav-link" href="/game.html">Play Game</a>
-          </div>
-
-          <div class="navbar-nav ml-auto d-flex align-items-center">
-            <a
-              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
-              href="/login.html"
-            >
-              Login
-            </a>
-
-            
-          </div>
-        </div>
       </div>
     </nav>
 
@@ -108,267 +113,155 @@
     <div class="container page-content">
 <div class="style-h1"> Latest Posts </div>
 
- 
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/mastering-java-rmi-and-socket-programming.html" class="text-dark">
-        <h2 class="post-title">Mastering Java RMI and Socket Programming</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-23 02:55:45.673149</span>
-        
-      </div>
-      <p>Let&#39;s deep dive into RMI and Socket. What will you learn? RMI Introduction RMI architecture RMI program: How to program in Java? Socket Introduction About TCP and UDP socket Socket...</p>
-    </div>
-  </div>
 
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="https://drive.google.com/thumbnail?id=18jkmEOxz2tWg_ylDwABoEzTfavA9tNV-&amp;sz=w1000"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
+<div class="post-grid">
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="/static/images/blank.png" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/alphabet-recognition-system-drew-in-motion-in-air-complete-project-python-project.html" class="post-link">
+          <h2 class="post-title">Alphabet Recognition System drew in motion in air complete project | Python project</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-23 05:40:43.193235</span>
+          
+        </div>
+        <p class="post-excerpt">What will you learn? Know about the project: Demo Part 1: Building model and calculating accuracy Part 2: Alphabet Recognizer Part 3: Final Prediction of alphabets Alphabet (Character) Recognition System...</p>
+      </div>
     </div>
-  </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="/static/images/blank.png" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/gui-program-mastering-java-swing.html" class="post-link">
+          <h2 class="post-title">GUI Program: Mastering Java Swing</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-23 05:40:43.193235</span>
+          
+        </div>
+        <p class="post-excerpt">Let&#39;s deep dive into GUI program: Java Swing for creating window based application. What will you learn? GUI program with Java Swing : Check Palindrome, Reverse the String, and find...</p>
+      </div>
+    </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="https://drive.google.com/thumbnail?id=18jkmEOxz2tWg_ylDwABoEzTfavA9tNV-&amp;sz=w1000" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/mastering-java-rmi-and-socket-programming.html" class="post-link">
+          <h2 class="post-title">Mastering Java RMI and Socket Programming</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-23 02:55:45.673149</span>
+          
+        </div>
+        <p class="post-excerpt">Let&#39;s deep dive into RMI and Socket. What will you learn? RMI Introduction RMI architecture RMI program: How to program in Java? Socket Introduction About TCP and UDP socket Socket...</p>
+      </div>
+    </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="/static/images/blank.png" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/deep-dive-into-java-beans-and-jdbc-sql-execution.html" class="post-link">
+          <h2 class="post-title">Deep Dive into Java Beans and JDBC SQL Execution</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-23 02:55:45.673149</span>
+          
+        </div>
+        <p class="post-excerpt">Java&#39;s most important concepts include Java beans and JDBC (Java Database Connectivity). We will see a Java Beans code example that uses all the properties. What will you learn? Introduction...</p>
+      </div>
+    </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="/static/images/blank.png" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/java-file-handling-reading-and-writing-with-mysql.html" class="post-link">
+          <h2 class="post-title">Java File Handling: Reading and Writing with MySQL</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-23 02:55:45.673149</span>
+          
+        </div>
+        <p class="post-excerpt">Java File Handling: How to read and write to a file with MySQL and how to handle BLOB data? What will you learn? Write a program to read data from...</p>
+      </div>
+    </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="/static/images/blank.png" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/exploring-jsp-vs-servlet-code-examples-for-printing-tribhuvan-university-and-calculating-simple-interest.html" class="post-link">
+          <h2 class="post-title">Exploring JSP vs Servlet: Code Examples for printing &#39;Tribhuvan University&#39; and calculating &#39;Simple Interest&#39;</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-21 09:14:50.117231</span>
+          
+        </div>
+        <p class="post-excerpt">JSP and Servlet are server-side technology used for creating web applications and to create dynamic web content. We will see JSP vs Servlet later as we proceed further. What will...</p>
+      </div>
+    </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="https://drive.google.com/thumbnail?id=1AAiseMtPpwAKZtEL6_NCTVKPPyju9Ys6&amp;sz=w1000" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/java-concepts-inheritance-interfaces-and-multithreading.html" class="post-link">
+          <h2 class="post-title">Java Concepts: Inheritance, Interfaces, and Multithreading</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-21 09:14:50.117231</span>
+          
+        </div>
+        <p class="post-excerpt">In this post, we will be focusing on the most important Java Concepts i.e. inheritance, interfaces, and multithreading. What will you learn? Java Inheritance Simplified: Practical Examples and Explanation How...</p>
+      </div>
+    </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="https://drive.google.com/thumbnail?id=1N63CRe_UN7o4kdUx9TncidihW_fF2V4z&amp;sz=w1000" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/tkinter-multiple-page-login-window-and-images.html" class="post-link">
+          <h2 class="post-title">Tkinter: Multiple page Login window and images</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-21 09:14:50.117231</span>
+          
+        </div>
+        <p class="post-excerpt">What will you learn? Tkinter introduction and sample code. Make typing speed application using Python. Multiple page GUI window with login page and image. Tkinter Introduction and sample code Tkinter...</p>
+      </div>
+    </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="https://igtechteam.wordpress.com/wp-content/uploads/2023/06/image-25.png?w=402" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/handwritten-digit-recognition-part-by-part-complete-project-with-a-full-explanation.html" class="post-link">
+          <h2 class="post-title">Handwritten Digit recognition part-by-part complete project with a full explanation</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-21 09:14:50.117231</span>
+          
+        </div>
+        <p class="post-excerpt">Handwritten digit recognition is a very simple project that takes a digit as input and predicts that digit as output. What will you learn? Part 1: Collect the images of...</p>
+      </div>
+    </div>
+  
 </div>
 <hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/deep-dive-into-java-beans-and-jdbc-sql-execution.html" class="text-dark">
-        <h2 class="post-title">Deep Dive into Java Beans and JDBC SQL Execution</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-23 02:55:45.673149</span>
-        
-      </div>
-      <p>Java&#39;s most important concepts include Java beans and JDBC (Java Database Connectivity). We will see a Java Beans code example that uses all the properties. What will you learn? Introduction...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="/static/images/blank.png"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/java-file-handling-reading-and-writing-with-mysql.html" class="text-dark">
-        <h2 class="post-title">Java File Handling: Reading and Writing with MySQL</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-23 02:55:45.673149</span>
-        
-      </div>
-      <p>Java File Handling: How to read and write to a file with MySQL and how to handle BLOB data? What will you learn? Write a program to read data from...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="/static/images/blank.png"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/exploring-jsp-vs-servlet-code-examples-for-printing-tribhuvan-university-and-calculating-simple-interest.html" class="text-dark">
-        <h2 class="post-title">Exploring JSP vs Servlet: Code Examples for printing &#39;Tribhuvan University&#39; and calculating &#39;Simple Interest&#39;</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-21 09:14:50.117231</span>
-        
-      </div>
-      <p>JSP and Servlet are server-side technology used for creating web applications and to create dynamic web content. We will see JSP vs Servlet later as we proceed further. What will...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="/static/images/blank.png"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/java-concepts-inheritance-interfaces-and-multithreading.html" class="text-dark">
-        <h2 class="post-title">Java Concepts: Inheritance, Interfaces, and Multithreading</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-21 09:14:50.117231</span>
-        
-      </div>
-      <p>In this post, we will be focusing on the most important Java Concepts i.e. inheritance, interfaces, and multithreading. What will you learn? Java Inheritance Simplified: Practical Examples and Explanation How...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="https://drive.google.com/thumbnail?id=1AAiseMtPpwAKZtEL6_NCTVKPPyju9Ys6&amp;sz=w1000"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/tkinter-multiple-page-login-window-and-images.html" class="text-dark">
-        <h2 class="post-title">Tkinter: Multiple page Login window and images</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-21 09:14:50.117231</span>
-        
-      </div>
-      <p>What will you learn? Tkinter introduction and sample code. Make typing speed application using Python. Multiple page GUI window with login page and image. Tkinter Introduction and sample code Tkinter...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="https://drive.google.com/thumbnail?id=1N63CRe_UN7o4kdUx9TncidihW_fF2V4z&amp;sz=w1000"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/handwritten-digit-recognition-part-by-part-complete-project-with-a-full-explanation.html" class="text-dark">
-        <h2 class="post-title">Handwritten Digit recognition part-by-part complete project with a full explanation</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-21 09:14:50.117231</span>
-        
-      </div>
-      <p>Handwritten digit recognition is a very simple project that takes a digit as input and predicts that digit as output. What will you learn? Part 1: Collect the images of...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="https://igtechteam.wordpress.com/wp-content/uploads/2023/06/image-25.png?w=402"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/java-project-using-java-swing.html" class="text-dark">
-        <h2 class="post-title">Java project using Java Swing</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-21 09:14:50.117231</span>
-        
-      </div>
-      <p>Java Swing is one of the popular tools in Java that is useful to create window-based applications. What will you learn? Java Swing and Java Frame to insert, update, and...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="/static/images/blank.png"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/java-mysql-tutorial-crud-operations.html" class="text-dark">
-        <h2 class="post-title">Java MySQL Tutorial: CRUD Operations</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-21 09:14:50.117231</span>
-        
-      </div>
-      <p>Connect your Java console with a database so that you can perform several operations like creating, deleting, inserting, and updating records. What will you learn? Download the MySQL connector jar...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="/static/images/blank.png"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/handwritten-digit-recognition-using-cnn-deep-learning-project.html" class="text-dark">
-        <h2 class="post-title">Handwritten digit recognition using CNN | Deep Learning Project</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-21 09:14:50.117231</span>
-        
-      </div>
-      <p>Handwritten digit recognition is a simple project that should help you learn how a convolutional neural network works. In this lesson, I built a model with TensorFlow and Tflearn. What...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="https://drive.google.com/thumbnail?id=16a2gKp5EixBKd6MWBE6S5xbHvSoXDTfS&amp;sz=w1000"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
 
 <!-- Pagination controls -->
 

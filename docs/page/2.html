@@ -37,6 +37,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
 
     <!-- jQuery & Summernote JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -49,48 +51,51 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-md navbar-light sticky-top">
-      <div class="container">
-        <a class="navbar-brand" href="/">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top glass-nav">
+      <div class="container d-flex align-items-center justify-content-between">
+        <!-- Left: Logo -->
+        <a class="navbar-brand fw-bold fs-3" href="/">
           IGTechTeam
         </a>
 
-        <!-- Mobile toggle button -->
+        <!-- Center: Nav links -->
+        <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+          <ul class="navbar-nav align-items-center">
+            
+            <li class="nav-item mx-2">
+              <a class="nav-link fw-semibold" href="/contact.html">Contact</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link fw-semibold" href="/about.html">About Me</a>
+            </li>
+            <!-- Play Game separated with margin -->
+            <li class="nav-item mx-4 ms-5">
+              <a class="nav-link fw-bold play-game-link" href="/game.html">Play Game</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right: Login/Logout buttons -->
+        <div class="d-flex align-items-center gap-2">
+          
+          <a href="/login.html" class="btn btn-success btn-sm px-4 py-2 fw-semibold shadow-sm">
+            <i class="bi bi-box-arrow-in-right me-1"></i> Login
+          </a>
+          
+        </div>
+
+        <!-- Toggler button for small screens -->
         <button
-          class="navbar-toggler"
+          class="navbar-toggler ms-3"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarContent"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
           aria-controls="navbarContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarContent">
-          <div class="navbar-nav mr-auto">
-            
-            <a class="nav-link" href="/contact.html"
-              >Contact</a
-            >
-            <a class="nav-link" href="/about.html">About me</a>
-          </div>
-          <div class="navbar-nav">
-            <a class="nav-link" href="/game.html">Play Game</a>
-          </div>
-
-          <div class="navbar-nav ml-auto d-flex align-items-center">
-            <a
-              class="btn btn-light px-4 py-2 fw-semibold shadow-sm mr-2"
-              href="/login.html"
-            >
-              Login
-            </a>
-
-            
-          </div>
-        </div>
       </div>
     </nav>
 
@@ -108,267 +113,155 @@
     <div class="container page-content">
 <div class="style-h1"> Latest Posts </div>
 
- 
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/python-kivy-tutorial-build-a-mobile-app.html" class="text-dark">
-        <h2 class="post-title">Python Kivy Tutorial: Build a Mobile App</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-27 10:13:59.206333</span>
-        
-      </div>
-      <p>Python Kivy is an open-source graphical user toolkit. This library allows us to make a desktop application or mobile application. What will you learn? Create a first app with kivy...</p>
-    </div>
-  </div>
 
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="https://drive.google.com/thumbnail?id=12aabNJg8GlsnqG4uZQ1t5cwbOl4x4IFR&amp;sz=w1000"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
+<div class="post-grid">
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="https://drive.google.com/thumbnail?id=1J81zm0rTuENn1fVvqB2se5CcTF9VPKv5&amp;sz=w1000" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/python-interview-questions-2025-python-programming-language.html" class="post-link">
+          <h2 class="post-title">Python Interview Questions 2025 | Python Programming Language</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-27 10:13:59.206333</span>
+          
+        </div>
+        <p class="post-excerpt">Python Machine Learning Deep Learning Data Structure Here are the most common and often asked Python Programming Language questions during job interviews or internships. Each question&#39;s answer is written in...</p>
+      </div>
     </div>
-  </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="https://drive.google.com/thumbnail?id=12aabNJg8GlsnqG4uZQ1t5cwbOl4x4IFR&amp;sz=w1000" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/python-kivy-tutorial-build-a-mobile-app.html" class="post-link">
+          <h2 class="post-title">Python Kivy Tutorial: Build a Mobile App</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-27 10:13:59.206333</span>
+          
+        </div>
+        <p class="post-excerpt">Python Kivy is an open-source graphical user toolkit. This library allows us to make a desktop application or mobile application. What will you learn? Create a first app with kivy...</p>
+      </div>
+    </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="https://drive.google.com/thumbnail?id=1hNWLwb0u1TZ5LVeaTLfJVG2WVf0nhSRb&amp;sz=w1000" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/face-recognition-system-complete-documentation.html" class="post-link">
+          <h2 class="post-title">Face Recognition System Complete Documentation</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-27 10:13:59.206333</span>
+          
+        </div>
+        <p class="post-excerpt">This is the finalized report on the Face Recognition System project. I have started from the Abstract to the final chapter. I have written this post so that it will...</p>
+      </div>
+    </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="https://drive.google.com/thumbnail?id=1CAvnjaMyFcp4KGCJiWgJSodE3ghNlyG1&amp;sz=w1000" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/python-programming-easy-learning-notes-and-interactive-tic-tac-toe-code.html" class="post-link">
+          <h2 class="post-title">Python Programming: Easy Learning, Notes, and Interactive Tic Tac Toe Code</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-27 09:29:35.155731</span>
+          
+        </div>
+        <p class="post-excerpt">What will you learn? Introduction to Python programming language and how to set up Jupyter Notebook How to print in Python? Comment in Python How to take input from the...</p>
+      </div>
+    </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="https://drive.google.com/thumbnail?id=1NqsQRuO0UtDNQJobhN6tDH15IRv5-2bP&amp;sz=w1000" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/nlp-projects-next-word-prediction-and-question-answering.html" class="post-link">
+          <h2 class="post-title">NLP Projects: Next Word Prediction and Question Answering</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-23 05:40:43.193235</span>
+          
+        </div>
+        <p class="post-excerpt">Let&#39;s make NLP Projects. What will you learn? Next word prediction using LSTM What is Bert? Question Answering application using BERT Next word prediction: If given the three words of...</p>
+      </div>
+    </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="https://drive.google.com/thumbnail?id=1q7pFiTILckTescpVzYFw57WCieWGVra9&amp;sz=w1000" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/nlp-essentials-embedding-layer-word2vec-and-glove.html" class="post-link">
+          <h2 class="post-title">NLP Essentials: Embedding Layer, Word2Vec, and GloVe</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-23 05:40:43.193235</span>
+          
+        </div>
+        <p class="post-excerpt">What will you learn [NLP Essentials]? Embedding Layer Word2Vec in NLP Glove (Global Vectors for Word Representation) Embedding layer An embedding layer is a word embedding technique used in natural...</p>
+      </div>
+    </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="https://drive.google.com/thumbnail?id=1ZCfVBMffE59zGsysQLNmcLGxgWzmW4CJ&amp;sz=w1000" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/bag-of-words-and-tf-idf-make-a-powerful-movie-recommendation-system.html" class="post-link">
+          <h2 class="post-title">Bag of Words and TF-IDF: Make a Powerful Movie Recommendation System</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-23 05:40:43.193235</span>
+          
+        </div>
+        <p class="post-excerpt">Main content : Movie Recommendation System What will you learn? Bag of Words model TF-IDF model Movie Recommendation System using TF-IDF model Bag of Words model The bag of Words...</p>
+      </div>
+    </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="https://drive.google.com/thumbnail?id=10bDtvu6Oi1PeGl8LPiNcdj25At5NTLSh&amp;sz=w1000" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/nlp-deep-dive-complete-course-on-tokenization-stop-words-stemming-and-lemmatization.html" class="post-link">
+          <h2 class="post-title">NLP Deep Dive: Complete Course on Tokenization, Stop Words, Stemming and Lemmatization</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-23 05:40:43.193235</span>
+          
+        </div>
+        <p class="post-excerpt">What will you learn? Get all the NLP courses with video tutorials (start to end with projects) Tokenization in Natural Language Processing Stop Words in NLP Stemming and Lemmatization What...</p>
+      </div>
+    </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
+        <img src="https://drive.google.com/thumbnail?id=1ibb-gBlqXyC5zSjboNthNPxvLD4Tkqy3&amp;sz=w1000" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/getting-started-with-flask-python-framework.html" class="post-link">
+          <h2 class="post-title">Getting Started with Flask: Python Framework</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-23 05:40:43.193235</span>
+          
+        </div>
+        <p class="post-excerpt">What will you learn? Flask Introduction: Definition and how to install Get started with Flask: print Hello World Flask: Write HTML code Add multiple routes Add a login and a...</p>
+      </div>
+    </div>
+  
 </div>
 <hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/face-recognition-system-complete-documentation.html" class="text-dark">
-        <h2 class="post-title">Face Recognition System Complete Documentation</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-27 10:13:59.206333</span>
-        
-      </div>
-      <p>This is the finalized report on the Face Recognition System project. I have started from the Abstract to the final chapter. I have written this post so that it will...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="https://drive.google.com/thumbnail?id=1hNWLwb0u1TZ5LVeaTLfJVG2WVf0nhSRb&amp;sz=w1000"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/python-programming-easy-learning-notes-and-interactive-tic-tac-toe-code.html" class="text-dark">
-        <h2 class="post-title">Python Programming: Easy Learning, Notes, and Interactive Tic Tac Toe Code</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-27 09:29:35.155731</span>
-        
-      </div>
-      <p>What will you learn? Introduction to Python programming language and how to set up Jupyter Notebook How to print in Python? Comment in Python How to take input from the...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="https://drive.google.com/thumbnail?id=1CAvnjaMyFcp4KGCJiWgJSodE3ghNlyG1&amp;sz=w1000"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/nlp-projects-next-word-prediction-and-question-answering.html" class="text-dark">
-        <h2 class="post-title">NLP Projects: Next Word Prediction and Question Answering</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-23 05:40:43.193235</span>
-        
-      </div>
-      <p>Let&#39;s make NLP Projects. What will you learn? Next word prediction using LSTM What is Bert? Question Answering application using BERT Next word prediction: If given the three words of...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="https://drive.google.com/thumbnail?id=1NqsQRuO0UtDNQJobhN6tDH15IRv5-2bP&amp;sz=w1000"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/nlp-essentials-embedding-layer-word2vec-and-glove.html" class="text-dark">
-        <h2 class="post-title">NLP Essentials: Embedding Layer, Word2Vec, and GloVe</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-23 05:40:43.193235</span>
-        
-      </div>
-      <p>What will you learn [NLP Essentials]? Embedding Layer Word2Vec in NLP Glove (Global Vectors for Word Representation) Embedding layer An embedding layer is a word embedding technique used in natural...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="https://drive.google.com/thumbnail?id=1q7pFiTILckTescpVzYFw57WCieWGVra9&amp;sz=w1000"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/bag-of-words-and-tf-idf-make-a-powerful-movie-recommendation-system.html" class="text-dark">
-        <h2 class="post-title">Bag of Words and TF-IDF: Make a Powerful Movie Recommendation System</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-23 05:40:43.193235</span>
-        
-      </div>
-      <p>Main content : Movie Recommendation System What will you learn? Bag of Words model TF-IDF model Movie Recommendation System using TF-IDF model Bag of Words model The bag of Words...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="https://drive.google.com/thumbnail?id=1ZCfVBMffE59zGsysQLNmcLGxgWzmW4CJ&amp;sz=w1000"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/nlp-deep-dive-complete-course-on-tokenization-stop-words-stemming-and-lemmatization.html" class="text-dark">
-        <h2 class="post-title">NLP Deep Dive: Complete Course on Tokenization, Stop Words, Stemming and Lemmatization</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-23 05:40:43.193235</span>
-        
-      </div>
-      <p>What will you learn? Get all the NLP courses with video tutorials (start to end with projects) Tokenization in Natural Language Processing Stop Words in NLP Stemming and Lemmatization What...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="https://drive.google.com/thumbnail?id=10bDtvu6Oi1PeGl8LPiNcdj25At5NTLSh&amp;sz=w1000"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/getting-started-with-flask-python-framework.html" class="text-dark">
-        <h2 class="post-title">Getting Started with Flask: Python Framework</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-23 05:40:43.193235</span>
-        
-      </div>
-      <p>What will you learn? Flask Introduction: Definition and how to install Get started with Flask: print Hello World Flask: Write HTML code Add multiple routes Add a login and a...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="https://drive.google.com/thumbnail?id=1ibb-gBlqXyC5zSjboNthNPxvLD4Tkqy3&amp;sz=w1000"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/alphabet-recognition-system-drew-in-motion-in-air-complete-project-python-project.html" class="text-dark">
-        <h2 class="post-title">Alphabet Recognition System drew in motion in air complete project | Python project</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-23 05:40:43.193235</span>
-        
-      </div>
-      <p>What will you learn? Know about the project: Demo Part 1: Building model and calculating accuracy Part 2: Alphabet Recognizer Part 3: Final Prediction of alphabets Alphabet (Character) Recognition System...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="/static/images/blank.png"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="post-card p-4 bg-white shadow rounded d-flex flex-column">
-      <a href="/gui-program-mastering-java-swing.html" class="text-dark">
-        <h2 class="post-title">GUI Program: Mastering Java Swing</h2>
-      </a>
-      <div class="d-flex align-items-center mb-3">
-        <span class="badge badge-primary">2025-04-23 05:40:43.193235</span>
-        
-      </div>
-      <p>Let&#39;s deep dive into GUI program: Java Swing for creating window based application. What will you learn? GUI program with Java Swing : Check Palindrome, Reverse the String, and find...</p>
-    </div>
-  </div>
-
-  <div class="col-md-4 text-center">
-    <div class="featured-image-container">
-      <img
-        src="/static/images/blank.png"
-        alt="Featured Image"
-        class="img-fluid rounded featured-img"
-      />
-    </div>
-  </div>
-</div>
-<hr />
-
 
 <!-- Pagination controls -->
 

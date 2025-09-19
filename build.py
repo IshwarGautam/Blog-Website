@@ -421,6 +421,23 @@ def build_static_site(destination, base_url):
     app.config["FREEZER_DESTINATION"] = destination
     app.config["FREEZER_BASE_URL"] = base_url
 
+    # Backup netlify folder and package.json for docs destination
+    if destination == "docs":
+        # Clean up any existing backups
+        if os.path.exists("temp_netlify_backup"):
+            shutil.rmtree("temp_netlify_backup")
+        if os.path.exists("temp_package_backup.json"):
+            os.remove("temp_package_backup.json")
+            
+        netlify_path = os.path.join(destination, "netlify")
+        package_path = os.path.join(destination, "package.json")
+        
+        if os.path.exists(netlify_path):
+            shutil.copytree(netlify_path, "temp_netlify_backup")
+            
+        if os.path.exists(package_path):
+            shutil.copy2(package_path, "temp_package_backup.json")
+
     freezer = Freezer(app)
 
     @freezer.register_generator
@@ -432,7 +449,20 @@ def build_static_site(destination, base_url):
             yield ("post.index", {"page": page})
 
     freezer.freeze()
-    delete_comment_folders(destination)
+    
+    # Restore backed up files for docs destination
+    if destination == "docs":
+        if os.path.exists("temp_netlify_backup"):
+            netlify_dest = os.path.join(destination, "netlify")
+            if os.path.exists(netlify_dest):
+                shutil.rmtree(netlify_dest)
+            shutil.copytree("temp_netlify_backup", netlify_dest)
+            shutil.rmtree("temp_netlify_backup")
+            
+        if os.path.exists("temp_package_backup.json"):
+            shutil.move("temp_package_backup.json", os.path.join(destination, "package.json"))
+    else:
+        delete_comment_folders(destination)
 
     if destination == "docs":
         cname_path = os.path.join(destination, "CNAME")

@@ -1,4 +1,19 @@
 {% extends 'base.html' %} {% block content %}
+<style>
+.car, .enemy {
+  position: absolute;
+  width: 50px;
+  height: 75px;
+  background-image: url('static/images/car.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+</style>
 <div class="game-container">
   <div id="game">
     <div id="gameOver">GAME OVER</div>
@@ -72,7 +87,6 @@
     function createPlayer() {
       playerCar = document.createElement("div");
       playerCar.classList.add("car");
-      playerCar.innerText = "🚙";
       currentLane = 1;
       playerCar.style.left = lanes[currentLane] + "px";
       playerCar.style.bottom = "30px";
@@ -110,7 +124,10 @@
     function spawnEnemy() {
       const enemy = document.createElement("div");
       enemy.classList.add("enemy");
-      enemy.innerText = "🚓";
+      
+      // Random color for enemy car
+      const randomHue = Math.floor(Math.random() * 360);
+      enemy.style.filter = `hue-rotate(${randomHue}deg) saturate(2) brightness(1.1) contrast(1.3)`;
 
       const availableLanes = getAvailableLanes();
       const laneIndex =

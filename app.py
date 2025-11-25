@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 from flask import Flask
 from dotenv import load_dotenv
@@ -75,7 +76,9 @@ def create_app():
     return app
 
 
-if os.getenv("ENVIRONMENT") == "dev" and os.getenv("IS_BUILD") != "yes":
-    app = create_app()
 
-    app.run(debug=True)
+# Run dev server if --build flag is present
+if __name__ == "__main__":
+    if "--dev" in sys.argv:
+        app = create_app()
+        app.run(debug=True)

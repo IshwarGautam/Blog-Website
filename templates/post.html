@@ -50,7 +50,13 @@
     margin-top: -1px;
   "
 >
-  <p>{{ post['content'] | safe }}</p>
+  <div class="post-body">{{ post['content'] | safe }}</div>
+
+<script>
+  if (window.hljs) {
+    hljs.highlightAll();
+  }
+</script>
 </div>
 
 <!-- Comment section -->

@@ -2,6 +2,7 @@ import os
 
 
 class Config:
+    TINY_MCE_API_KEY = os.getenv("TINY_MCE_API_KEY")
     ENVIRONMENT = os.getenv("ENVIRONMENT")
     IS_BUILD = os.getenv("IS_BUILD")
 

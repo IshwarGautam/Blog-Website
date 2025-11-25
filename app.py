@@ -21,6 +21,10 @@ def create_app():
     @app.context_processor
     def inject_is_build():
         return {"is_build": app.config["IS_BUILD"]}
+    
+    @app.context_processor
+    def inject_tinymce_key():
+        return {"TINY_MCE_API_KEY": app.config.get("TINY_MCE_API_KEY")}
 
     db.init_app(app)
     mail.init_app(app)

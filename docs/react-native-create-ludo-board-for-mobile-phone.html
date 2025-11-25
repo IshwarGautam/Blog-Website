@@ -24,11 +24,8 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
 
-    <!-- Summernote CSS -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
-      rel="stylesheet"
-    />
+    <!-- TinyMCE CDN (v8, with API key) -->
+    <script src="https://cdn.tiny.cloud/1/cu5386mwdbw5uvluas7htq32hn0uibngcmaylurs3dl7xhc9/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
 
     <!-- Highlight.js -->
     <link
@@ -45,9 +42,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
 
-    <!-- jQuery & Summernote JS -->
+    <!-- jQuery (required for Bootstrap, not TinyMCE) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
 
     <!-- Bootstrap JS (for navbar toggle) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -167,7 +163,7 @@
     margin-top: -1px;
   "
 >
-  <p><p><img src="https://drive.google.com/thumbnail?id=1fYVDJxtjDVPAKg593SfaVeMy549egnuK&sz=w1000" data-filename="ludo.png" style="width: 50%;"><br></p><p><b>React Native</b> is a popular open-source library for mobile phones for building user interfaces with JavaScript, and it runs on React. You may have come across several tutorials on React Native. But this time, let's do different. Let's learn through a project. I have made a Ludo Board with React Native for mobile phones. Let's deep dive into that.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/w559fHJvLKE" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading">Steps</h2><p>1. The first step is to install React Native and create an app</p><pre class="wp-block-syntaxhighlighter-code"><font color="#ce0000"><b>npx create-expo-app ludoBoard</b></font></pre><p>When you run this command, the default folder structure will be created. </p><p>2. Second, download <a href="https://developer.android.com/studio" target="_blank" rel="noreferrer noopener">Android Studio</a>, create a new device and start an emulator. Take a look at the video above for more information.</p><h2 class="wp-block-heading">Initial setup in your device</h2><p>Run the program with the below command:</p><pre class="wp-block-syntaxhighlighter-code"><b><font color="#ce0000">npm start</font></b></pre><p>You can download Expo Go in your Android application from a Play Store and visualize the output there or download a specified emulator based on your device. You can download an emulator on your OS or your mobile phone (Android or IOS).</p><h2 class="wp-block-heading">Start with the default basic application</h2><p>Let's try this basic code.</p><pre><code class="language-javascript hljs" contenteditable="true" style=""><span class="hljs-comment">//app.js</span>
+  <div class="post-body"><p><img src="https://drive.google.com/thumbnail?id=1fYVDJxtjDVPAKg593SfaVeMy549egnuK&sz=w1000" data-filename="ludo.png" style="width: 50%;"><br></p><p><b>React Native</b> is a popular open-source library for mobile phones for building user interfaces with JavaScript, and it runs on React. You may have come across several tutorials on React Native. But this time, let's do different. Let's learn through a project. I have made a Ludo Board with React Native for mobile phones. Let's deep dive into that.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/w559fHJvLKE" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading">Steps</h2><p>1. The first step is to install React Native and create an app</p><pre class="wp-block-syntaxhighlighter-code"><font color="#ce0000"><b>npx create-expo-app ludoBoard</b></font></pre><p>When you run this command, the default folder structure will be created. </p><p>2. Second, download <a href="https://developer.android.com/studio" target="_blank" rel="noreferrer noopener">Android Studio</a>, create a new device and start an emulator. Take a look at the video above for more information.</p><h2 class="wp-block-heading">Initial setup in your device</h2><p>Run the program with the below command:</p><pre class="wp-block-syntaxhighlighter-code"><b><font color="#ce0000">npm start</font></b></pre><p>You can download Expo Go in your Android application from a Play Store and visualize the output there or download a specified emulator based on your device. You can download an emulator on your OS or your mobile phone (Android or IOS).</p><h2 class="wp-block-heading">Start with the default basic application</h2><p>Let's try this basic code.</p><pre><code class="language-javascript hljs" contenteditable="true" style=""><span class="hljs-comment">//app.js</span>
 <span class="hljs-keyword">import</span> {
   <span class="hljs-title class_">Text</span>,
   <span class="hljs-title class_">Platform</span>,
@@ -709,7 +705,13 @@
 
 <!-- wp:paragraph -->
 
-<!-- /wp:paragraph --></p><p>This is how you can implement Ludo Board with React Native. I hope this tutorial will be helpful to you. If you find it difficult to get all those structures and code, you can find complete source code on GitHub. Here is the <a href="https://github.com/IshwarGautam/ludoGame" target="_blank" rel="noreferrer noopener">link</a>. You can ask me in the comment section if you have any queries. Keep Learning.</p></p>
+<!-- /wp:paragraph --></p><p>This is how you can implement Ludo Board with React Native. I hope this tutorial will be helpful to you. If you find it difficult to get all those structures and code, you can find complete source code on GitHub. Here is the <a href="https://github.com/IshwarGautam/ludoGame" target="_blank" rel="noreferrer noopener">link</a>. You can ask me in the comment section if you have any queries. Keep Learning.</p></div>
+
+<script>
+  if (window.hljs) {
+    hljs.highlightAll();
+  }
+</script>
 </div>
 
 <!-- Comment section -->
@@ -1108,62 +1110,29 @@
 <!-- Leaving this empty so to skip base.html footer-->
 
 
-    <!-- Summernote Initialization -->
+    <!-- TinyMCE Initialization (official example, all features) -->
     <script>
-      $(document).ready(function () {
-        $("#summernote").summernote({
-          height: 300,
-          toolbar: [
-            ["style", ["style"]],
-            ["font", ["bold", "italic", "underline", "clear"]],
-            ["fontname", ["fontname"]],
-            ["fontsize", ["fontsize"]],
-            ["color", ["color"]],
-            ["para", ["ul", "ol", "paragraph"]],
-            ["insert", ["link", "picture", "video", "table", "hr"]],
-            ["view", ["fullscreen", "codeview", "help"]],
-            ["custom", ["codeblock"]],
-          ],
-          buttons: {
-            codeblock: function (context) {
-              var ui = $.summernote.ui;
-              var button = ui.button({
-                contents: '<i class="fa fa-code"></i> Code Block',
-                tooltip: "Insert Code Block",
-                click: function () {
-                  let lang = prompt(
-                    "Enter language (e.g. python, javascript, java, html, css):",
-                    "python"
-                  );
-                  if (!lang) lang = "plaintext";
-
-                  var codeBlock = `
-                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
-              `;
-                  context.invoke("editor.pasteHTML", codeBlock);
-                  hljs.highlightAll();
-                  var codeBlockNode =
-                    context.invoke("editor.getBody").lastChild;
-                  $(codeBlockNode).find("code").focus();
-                },
-              });
-              return button.render();
-            },
-          },
-        });
-
-        // Auto-highlight on Enter inside code blocks
-        $(".note-editable").on("keyup", function (e) {
-          if (e.key === "Enter") {
-            $(this)
-              .find("pre code")
-              .each(function () {
-                hljs.highlightElement(this);
-              });
-          }
-        });
-
-        hljs.highlightAll();
+      tinymce.init({
+        selector: 'textarea.tinymce-editor',
+        plugins: [
+          // Core editing features
+          'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount', 'fullscreen',
+          // Free trial premium features (if available for your key)
+          'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown', 'importword', 'exportword', 'exportpdf'
+        ],
+        toolbar: 'fullscreen | undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+          { value: 'First.Name', title: 'First Name' },
+          { value: 'Email', title: 'Email' },
+        ],
+        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+        uploadcare_public_key: 'd857dd4d5adbe5038f25',
+        height: 300,
+        menubar: true,
+        branding: false,
+        content_style: 'body { font-family: Segoe UI,Arial,sans-serif; font-size:14px }',
       });
     </script>
   </body>

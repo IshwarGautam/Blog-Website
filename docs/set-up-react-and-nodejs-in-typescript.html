@@ -24,11 +24,8 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
 
-    <!-- Summernote CSS -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
-      rel="stylesheet"
-    />
+    <!-- TinyMCE CDN (v8, with API key) -->
+    <script src="https://cdn.tiny.cloud/1/cu5386mwdbw5uvluas7htq32hn0uibngcmaylurs3dl7xhc9/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
 
     <!-- Highlight.js -->
     <link
@@ -45,9 +42,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
 
-    <!-- jQuery & Summernote JS -->
+    <!-- jQuery (required for Bootstrap, not TinyMCE) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
 
     <!-- Bootstrap JS (for navbar toggle) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -167,7 +163,7 @@
     margin-top: -1px;
   "
 >
-  <p><p><img src="https://drive.google.com/thumbnail?id=1Yz1d7Abw1J0GOfh68KUeiLDM0VA80LZy&sz=w1000" data-filename="react-node-connect.png" style="width: 50%;"><br></p><p>This post will go from scratch to set up React and NodeJS in TypeScript. We will send a response from the server to the client.</p><h2 class="wp-block-heading">Step 1: Decide a project folder</h2><p>Open the command prompt where you want to place your project. Right now, I am opening the command prompt on my desktop. I will put my project on a Desktop. I will rename my project folder as React-Node-TypeScript for now. You can choose the project folder name by yourself.</p><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">mkdir React-Node-TypeScript</font></b></pre><h2 class="wp-block-heading">Step 2: Change the directory to that folder</h2><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">cd React-Node-TypeScript</font></b></pre><h2 class="wp-block-heading">Step 3: Open Visual Studio Code</h2><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">code .</font></b></pre><p>Now you can use the VS code terminal to write the command. Open terminal with Ctrl + backtick (`)</p><h2 class="wp-block-heading">Step 4: Make two directories for client and server</h2><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">mkdir client, server</font></b></pre><h2 class="wp-block-heading">Step 5: Set up Server </h2><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">cd server
+  <div class="post-body"><p><img src="https://drive.google.com/thumbnail?id=1Yz1d7Abw1J0GOfh68KUeiLDM0VA80LZy&sz=w1000" data-filename="react-node-connect.png" style="width: 50%;"><br></p><p>This post will go from scratch to set up React and NodeJS in TypeScript. We will send a response from the server to the client.</p><h2 class="wp-block-heading">Step 1: Decide a project folder</h2><p>Open the command prompt where you want to place your project. Right now, I am opening the command prompt on my desktop. I will put my project on a Desktop. I will rename my project folder as React-Node-TypeScript for now. You can choose the project folder name by yourself.</p><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">mkdir React-Node-TypeScript</font></b></pre><h2 class="wp-block-heading">Step 2: Change the directory to that folder</h2><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">cd React-Node-TypeScript</font></b></pre><h2 class="wp-block-heading">Step 3: Open Visual Studio Code</h2><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">code .</font></b></pre><p>Now you can use the VS code terminal to write the command. Open terminal with Ctrl + backtick (`)</p><h2 class="wp-block-heading">Step 4: Make two directories for client and server</h2><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">mkdir client, server</font></b></pre><h2 class="wp-block-heading">Step 5: Set up Server </h2><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">cd server
 npm init -y</font></b></pre><p>This will create a package.json file in a server directory.</p><p><strong><em>Install required packages:</em></strong></p><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">npm install express @types/express typescript ts-node-dev nodemon cors @types/cors  </font></b></pre><p>Now create the src directory; inside the src, create the index.ts file below.</p><pre class="wp-block-syntaxhighlighter-code"><b><font color="#9c0000">mkdir src</font></b></pre><p>Create an index.ts file in the src directory and write the initial code as below:</p><pre><code class="language-javascript hljs" contenteditable="true" style=""><span class="hljs-comment">// index.ts</span>
 <span class="hljs-keyword">import</span> cors <span class="hljs-keyword">from</span> <span class="hljs-string">"cors"</span>;
 <span class="hljs-keyword">import</span> express <span class="hljs-keyword">from</span> <span class="hljs-string">"express"</span>;
@@ -250,7 +246,13 @@ npx create-react-app . --template typescript</font></b></pre><p>It may take a li
 │   │   └── ...
 │   ├── package.json
 │   ├── tsconfig.json
-│   └── ...</code></pre></p>
+│   └── ...</code></pre></div>
+
+<script>
+  if (window.hljs) {
+    hljs.highlightAll();
+  }
+</script>
 </div>
 
 <!-- Comment section -->
@@ -649,62 +651,29 @@ npx create-react-app . --template typescript</font></b></pre><p>It may take a li
 <!-- Leaving this empty so to skip base.html footer-->
 
 
-    <!-- Summernote Initialization -->
+    <!-- TinyMCE Initialization (official example, all features) -->
     <script>
-      $(document).ready(function () {
-        $("#summernote").summernote({
-          height: 300,
-          toolbar: [
-            ["style", ["style"]],
-            ["font", ["bold", "italic", "underline", "clear"]],
-            ["fontname", ["fontname"]],
-            ["fontsize", ["fontsize"]],
-            ["color", ["color"]],
-            ["para", ["ul", "ol", "paragraph"]],
-            ["insert", ["link", "picture", "video", "table", "hr"]],
-            ["view", ["fullscreen", "codeview", "help"]],
-            ["custom", ["codeblock"]],
-          ],
-          buttons: {
-            codeblock: function (context) {
-              var ui = $.summernote.ui;
-              var button = ui.button({
-                contents: '<i class="fa fa-code"></i> Code Block',
-                tooltip: "Insert Code Block",
-                click: function () {
-                  let lang = prompt(
-                    "Enter language (e.g. python, javascript, java, html, css):",
-                    "python"
-                  );
-                  if (!lang) lang = "plaintext";
-
-                  var codeBlock = `
-                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
-              `;
-                  context.invoke("editor.pasteHTML", codeBlock);
-                  hljs.highlightAll();
-                  var codeBlockNode =
-                    context.invoke("editor.getBody").lastChild;
-                  $(codeBlockNode).find("code").focus();
-                },
-              });
-              return button.render();
-            },
-          },
-        });
-
-        // Auto-highlight on Enter inside code blocks
-        $(".note-editable").on("keyup", function (e) {
-          if (e.key === "Enter") {
-            $(this)
-              .find("pre code")
-              .each(function () {
-                hljs.highlightElement(this);
-              });
-          }
-        });
-
-        hljs.highlightAll();
+      tinymce.init({
+        selector: 'textarea.tinymce-editor',
+        plugins: [
+          // Core editing features
+          'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount', 'fullscreen',
+          // Free trial premium features (if available for your key)
+          'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown', 'importword', 'exportword', 'exportpdf'
+        ],
+        toolbar: 'fullscreen | undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+          { value: 'First.Name', title: 'First Name' },
+          { value: 'Email', title: 'Email' },
+        ],
+        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+        uploadcare_public_key: 'd857dd4d5adbe5038f25',
+        height: 300,
+        menubar: true,
+        branding: false,
+        content_style: 'body { font-family: Segoe UI,Arial,sans-serif; font-size:14px }',
       });
     </script>
   </body>

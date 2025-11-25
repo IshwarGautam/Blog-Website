@@ -1,3 +1,21 @@
+/* Comments Wrapper Styling (from build.html) */
+.comments-wrapper {
+  margin: 20px auto;
+  padding: 15px 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.comments-wrapper h4 {
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 600;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #4CAF50;
+  padding-bottom: 5px;
+}
 body {
   background-color: #e6f0f7;
   font-family: "Segoe UI", sans-serif;
@@ -56,21 +74,7 @@ body {
   text-decoration: none;
 }
 
-/* Fix maximize fullscreen issue in Summernote */
-.note-editor.fullscreen {
-  z-index: 9999 !important;
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
-  background: white !important;
-  overflow: auto;
-}
 
-body.note-editor-fullscreen {
-  overflow: hidden;
-}
 
 .social-icons {
   padding-bottom: 10px;

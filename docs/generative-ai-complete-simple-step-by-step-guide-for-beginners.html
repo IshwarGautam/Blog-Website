@@ -137,7 +137,7 @@
       margin-bottom: 1rem;
     "
   >
-    Deep Learning most important Interview Questions 2025
+    Generative AI — Complete, simple, step-by-step guide (for beginners)
   </h1>
 
   <span
@@ -148,7 +148,7 @@
       font-size: 0.95rem;
     "
   >
-    🕒 2025-04-27 10:13:59.206333
+    🕒 2025-11-23 11:59:36.234654
   </span>
 </header>
 
@@ -163,311 +163,326 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><div class="wp-block-buttons has-custom-font-size has-small-font-size" style="display: flex; gap: 10px; flex-wrap: wrap;">
-    <a href="/python-interview-questions-2025-python-programming-language" target="_blank" style="padding: 10px 20px; background-color: #0073aa; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer;" onmouseover="this.style.backgroundColor='#005177';" onmouseout="this.style.backgroundColor='#0073aa';">
-        Python
-    </a>
+  <div class="post-body"><h1><img style="width: 640px;" src="https://drive.google.com/thumbnail?id=1fdxVQdeVUAWvL7qoHusnzgV7ORKqd5bu&amp;sz=w1000" data-filename="artificial-intelligence-6767502_640.jpg"></h1>
+<h1>Generative AI - ALL IN ONE</h1>
+<h2>1. What is Generative AI (Gen AI)?</h2>
+<p>Generative AI is a type of artificial intelligence that creates new content.&nbsp;<span style="font-size: 1rem;">Instead of only analyzing data, it can produce text, images, audio, code, or even videos.&nbsp;</span><span style="font-size: 1rem;">The most powerful form of Generative AI today is the Large Language Model (LLM).&nbsp;</span><span style="font-size: 1rem;">An LLM is trained on massive amounts of text from books, websites, and code. Because of this training, it can:</span></p>
+<ul>
+<li><span style="font-size: 1rem;">understand human language,</span></li>
+<li>answer questions,</li>
+<li>write stories or articles,</li>
+<li>solve coding tasks,</li>
+<li>summarise information,</li>
+<li>chat like a human.</li>
+</ul>
+<p><strong>Why Generative AI Matters</strong></p>
+<p>Generative AI is important because it allows people to build powerful tools such as:</p>
+<ul>
+<li><strong>Chatbots</strong>: Customer support, personal assistants</li>
+<li><strong>Writing helpers</strong>: Blog writers, email writers, grammar fixers</li>
+<li><strong>Code assistants</strong>: Debugging, writing functions, explaining errors</li>
+<li><strong>Content creation tools</strong>: Images, videos, music, designs</li>
+</ul>
+<p>It saves time, reduces effort, and improves productivity.</p>
+<p><strong>But It Has Limitations (Hallucinations)</strong></p>
+<p>Sometimes, Generative AI gives confident but incorrect answers.&nbsp;<span style="font-size: 1rem;">This is called a hallucination.</span></p>
+<p><strong>Example:</strong></p>
+<p>If the model does not know something exactly, it may guess or create a wrong answer.</p>
+<p><span style="font-size: 1rem;">We will later learn ways to reduce hallucinations using:</span></p>
+<ul>
+<li><span style="font-size: 1rem;">Prompt engineering</span></li>
+<li>Retrieval-Augmented Generation (RAG)</li>
+<li>Using external tools and APIs</li>
+<li>Better model instructions</li>
+</ul>
+<p>&nbsp;</p>
+<h2>2. Key building blocks</h2>
+<p><strong>a. LLM (Large Language Model)</strong></p>
+<p>The core engine that writes, answers, explains, and reasons.<br>Examples: GPT, Claude, Llama.<br>You send text &rarr; it gives a response.</p>
+<p>&nbsp;</p>
+<p><strong>b. Prompt</strong></p>
+<p>A message or instruction you give to the model.<br>It tells the AI what you want.<br>Example: &ldquo;Write a short email to my boss.&rdquo;</p>
+<p>&nbsp;</p>
+<p><strong>c. Prompt Engineering</strong></p>
+<p>The skill of designing better prompts so the AI gives accurate, useful answers.<br>This includes adding examples, structure, or clear instructions.</p>
+<p>&nbsp;</p>
+<p><strong>d. Embeddings</strong></p>
+<p>A way to turn text into numbers (vectors) so that computers can understand meaning.<br>If two texts are similar, their embeddings will also be similar.<br>Used for search, clustering, similarity checks, etc.</p>
+<p>&nbsp;</p>
+<p><strong>e. Vector Store</strong></p>
+<p>A special database that stores embeddings.<br>It lets you quickly search for similar text.<br>Popular options: FAISS, Chroma, Pinecone, Weaviate.</p>
+<p>&nbsp;</p>
+<p><strong>f. RAG (Retrieval-Augmented Generation)</strong></p>
+<p>A technique where you:</p>
+<ul>
+<li>Search your knowledge base using embeddings.</li>
+<li>Retrieve useful documents.</li>
+<li>Pass them to the LLM to get a correct answer.</li>
+</ul>
+<p>This makes answers more accurate and reduces hallucinations.</p>
+<p>&nbsp;</p>
+<p><strong>g. LangChain</strong></p>
+<p>A Python/JavaScript library that helps you build AI apps.<br>It provides:</p>
+<ul>
+<li>Chains (multi-step logic)</li>
+<li>RAG pipelines</li>
+<li>Memory</li>
+<li>Tool calling</li>
+<li>Integrations with models and vector stores</li>
+</ul>
+<p>It's like a framework for building LLM applications quickly.</p>
+<h5>&nbsp;</h5>
+<p><strong>h. Agents &amp; Tools</strong></p>
+<p>Agents let the model call functions or APIs automatically.<br>Example:</p>
+<ul>
+<li>AI checks weather by calling a weather API</li>
+<li>AI fetches data from a database</li>
+<li>AI runs Python code</li>
+</ul>
+<p>This makes models act more like smart assistants.</p>
+<p>&nbsp;</p>
+<p><strong>i. MCP Server (Model Context Protocol / Model Control Plane)</strong></p>
+<p>A standard that lets AI models securely access external tools, databases, and services.<br>It works like a bridge between the model and your system.<br>For example, with MCP:</p>
+<ul>
+<li>AI can fetch data from your database</li>
+<li>AI can read files or run local tools</li>
+<li>AI can call APIs using a controlled and safe method</li>
+</ul>
+<p>Modern tools like OpenAI&rsquo;s GPTs use MCP directly.</p>
+<p>&nbsp;</p>
+<h2>3.&nbsp;Prompts: how to speak to the model</h2>
+<p>A prompt is just text. Clear, simple prompts give better results.</p>
+<p><strong>Good prompt tips:</strong></p>
+<ul>
+<li>Be specific. Don&rsquo;t assume the model knows context.</li>
+<li>Show examples (few-shot) for pattern learning.</li>
+<li>Give format instructions (e.g., &ldquo;Return JSON with fields: title, summary&rdquo;).</li>
+<li>Limit creativity if you need facts: add &ldquo;Be concise and factual.&rdquo;</li>
+</ul>
+<p><strong>Example: Simple prompt</strong></p>
+<div>
+<pre class="language-python"><code>You are a helpful assistant.
+Task: Summarize the text below in one sentence.
 
-    <a href="/machine-learning-most-important-interview-questions-2025-ml-full-course" target="_blank" style="padding: 10px 20px; background-color: #0073aa; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer;" onmouseover="this.style.backgroundColor='#005177';" onmouseout="this.style.backgroundColor='#0073aa';">
-        Machine Learning
-    </a>
+Text: "LangChain helps developers build apps that combine LLMs with external tools."
 
-    <a href="/deep-learning-most-important-interview-questions-2025" target="_blank" style="padding: 10px 20px; background-color: #0073aa; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer;" onmouseover="this.style.backgroundColor='#005177';" onmouseout="this.style.backgroundColor='#0073aa';">
-        Deep Learning
-    </a>
-
-    <a href="/data-structure-and-algorithm-interview-questions-2025" target="_blank" style="padding: 10px 20px; background-color: #0073aa; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer;" onmouseover="this.style.backgroundColor='#005177';" onmouseout="this.style.backgroundColor='#0073aa';">
-        Data Structure
-    </a>
+Answer:</code></pre>
 </div>
-
-
-
-<!-- /wp:button --><p><br></p><p>Here are the most popular and usually askable questions about Deep Learning during a job interview or an internship program. I have written each answer in simple language to ensure clarity and ease of understanding.</p><h2 class="wp-block-heading"><strong>1. What is Deep Learning?</strong></h2><p>Deep learning is a subclass of Machine Learning that employs the Neural Network concept. The idea behind deep learning is to build learning algorithms that mimic the human brain. The 'deep' in deep learning refers to the layers of layers in the network.</p><h2 class="wp-block-heading"><strong>2. What is Neural Network?</strong></h2><p>A neural network is a circuit of neurons. Neural Networks are classified into two categories. They are:</p><ul class="wp-block-list"><!-- wp:list-item -->
-<li>Biological Neural Network</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Artificial Neural Network</li>
-<!-- /wp:list-item --></ul><p><strong>Biological Neural Network:</strong></p><p><img src="https://drive.google.com/thumbnail?id=1QfVA-DGI4cvP_B6sV6lZjEw5ACDkc0eI&amp;sz=w1000" data-filename="biological-neural-network.png" style="width: 627.205px; height: 220.425px;"><strong><br></strong></p><figure class="wp-block-image"><br></figure><p>In a biological neural network, the input signals are transferred to the cell body through dendrites. The cell body processes the information that they have received from dendrites. And Axon is like a cable through which neurons send information. Finally, synapses allow the nerve cell to pass an electrical and chemical signal to another neuron. This is how biological neuron works.</p><p><strong>Artificial Neural Network:</strong></p><p>With Neural Networks, obviously, we want to talk about Artificial One. An artificial neural network (ANN) is a collection of artificial neurons, modeled loosely after the human brain, that are designed to recognize patterns.</p><p>ANN mainly consists of three layers:</p><ul class="wp-block-list"><p><!-- wp:list-item -->
-</p><li>input layer</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>one or more hidden layer</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>output layer</li>
-<!-- /wp:list-item --><p></p><p><img src="https://drive.google.com/thumbnail?id=1Xcwn36MMrXWJa9TQmXboba8_NjV5F21Z&amp;sz=w1000" data-filename="artificial-neural-network.png" style="width: 299px;"><!-- /wp:list-item --></p></ul><figure class="wp-block-image aligncenter"><br></figure><h2 class="wp-block-heading"><strong>3. What is the role of the </strong>activation function in the <strong>Neural Network?</strong></h2><p>An activation function decides whether a neuron should be activated (fired) or not at the most basic level. The process involves calculating the weighted sum and further adding bias to it on the input before sending it to the next layer.</p><p>Some of the activation functions are Linear, Sigmoid, SoftMax, ReLU, etc.</p><p><img src="https://drive.google.com/thumbnail?id=1r2hOP_TKGI3plp2NFoqTSZayRL6Ty6Qi&amp;sz=w1000" data-filename="activation-function-neural-network.png" style="width: 526px;"><br></p><figure class="wp-block-image"><br></figure><h2 class="wp-block-heading"><strong>4. What is a </strong>convolutional Neural Network? How it is different from a <strong>fully connected Neural Network?</strong></h2><p>Convolutional Neural Networks are a type of artificial neural network that is frequently used for analyzing visual information. Convolutional Neural Network includes the following four stages:</p><ul class="wp-block-list"><!-- wp:list-item -->
-<li>Convolution Layer</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Normalization</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Pooling</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Fully Connected</li>
-<!-- /wp:list-item --></ul><p>When it comes to large-dimension images, the number of neurons to process an entire complex image set will be very high. This leads to overfitting because all of the hidden layers are connected in a feed-forward neural network. This is not practical. The solution is Convolutional Neural Network (CNN).</p><p>In CNNs, every neuron in a layer connects only to a small portion of the preceding layer, rather than to all of its neurons.</p><p><img src="https://drive.google.com/thumbnail?id=1szQQbj1ouL6xbN-JX3o6LqmmTtE-8YXC&amp;sz=w1000" data-filename="fully-connected-vs-convolutional.png" style="width: 703.2px; height: 291.717px;"><br></p><figure class="wp-block-image"><br></figure><p>So, in convolution neural networks, only the region which is significant are connected to each other.</p><h2 class="wp-block-heading"><strong>5. What is Recurrent Neural Network?</strong></h2><p>A recurrent neural network (RNN) is a sort of artificial neural network (ANN) that makes use of time series or sequential data to learn. The previous step's output is provided as input to the next phase in RNN.</p><p>For example, while predicting the next word of a sentence, the previous words are necessary, and so the previous words must be remembered. As a result, RNN was created, which solved the problem with the help of a Hidden Layer.</p><p><img src="https://drive.google.com/thumbnail?id=1vVe-bWXWMMscq0JNKsQdOQhdWU_btUOn&amp;sz=w1000" data-filename="rnn-block-diagram.png" style="width: 971.2px; height: 546.3px;"><br></p><figure class="wp-block-image"><br></figure><p>The evolution of RNN:</p><p><img src="https://drive.google.com/thumbnail?id=1z7jnKwZeUskeJWvB23r5-OFbQYa2Y2Ge&amp;sz=w1000" data-filename="rnn-evolution.png" style="width: 972.2px; height: 546.862px;"><br></p><figure class="wp-block-image"><br></figure><p><strong><em>For more details, watch this video:</em></strong></p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/M1Kk1rqCkbU" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading"><strong>6. What is gradient descent? What are its type?</strong></h2><p>A gradient measures how much the output of a function changes if we change the input a little bit.&nbsp;Gradient descent is an iterative optimization algorithm for finding the local minimum of a function. This algorithm&nbsp;tries to minimize the error by taking small steps toward the minimum value. These steps involve updating the weights and biases in a neural network.</p><p>There are three types of gradient descent. They are:</p><ul class="wp-block-list"><!-- wp:list-item -->
-<li>Batch Gradient Descent</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Stochastic Gradient Descent</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Mini-Batch Gradient Descent</li>
-<!-- /wp:list-item --></ul><p><strong>Batch Gradient Descent:</strong></p><p>In batch gradient descent, we go through all training samples and calculate cumulative error and then we backpropagate to adjust the weight. This technique works well with small training sets. Batch Gradient Descent is often referred to as Vanilla Gradient Descent.</p><p><strong>Stochastic Gradient Descent (SGD):</strong></p><p>This method uses one (randomly picked) sample for a forward pass and then adjusts weight. It is good when the training set is very big and we don't want too much computation.</p><p><strong>Mini batch gradient descent:</strong></p><p>It is a combination of batch gradient descent and SGD. In this method, instead of choosing one randomly picked training sample, we will use a batch of randomly picked training samples.</p><h2 class="wp-block-heading"><strong>7. Difference between the loss function and cost function?</strong></h2><p>The cost function is the average of the loss functions for all training sets, whereas the loss function computes the error for a single training set.</p><h2 class="wp-block-heading"><strong>8. What is the role of Adam Optimizer?</strong></h2><p>Basically, the optimizer updates network weights iteratively based on the training data. Adam is a stochastic gradient descent replacement optimization technique for deep learning model training.&nbsp;It is a combination of gradient descent with the momentum algorithm and the RMSP (Root Mean Square Propagation) algorithm.</p><h2 class="wp-block-heading"><strong>9. What is the </strong>learning rate in neural networks<strong>?</strong></h2><p>The step size or learning rate determines how often the weights are adjusted during training. It's a hyperparameter that governs the extent of model changes in response to estimated errors whenever the model weights are updated.</p><h2 class="wp-block-heading"><strong>10. </strong>What is categorical cross-entropy<strong>? When to use it?</strong></h2><p>Cross entropy measures the efficiency of a classification model whose final result is a probability that varies from 0 to 1.</p><p>Categorical cross-entropy is a loss function that is used in multi-class classification tasks. This method is appropriate when an example can only belong to one out of many possible categories, and the model must decide which one.</p><h2 class="wp-block-heading"><strong>11. What is overfitting and underfitting?</strong></h2><p>A model is said to be&nbsp;<strong>overfitted</strong>&nbsp;when the model is fitted to training data too well. A model begins to learn from the noise and wrong information when it is trained with such a large amount of data. To solve this, we need to resample the data and estimate the model accuracy using techniques like k-fold cross-validation.</p><p>A model is said to be&nbsp;<strong>underfitted</strong>&nbsp;when the model is unable to understand or extract patterns from the data. It happens when the algorithm used to extract patterns is inappropriate or the data to train the model is very less.</p><h2 class="wp-block-heading"><strong>12. What is backpropagation?</strong></h2><p><!-- wp:buttons {"fontSize":"small"} -->
-
-<!-- /wp:buttons -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-
-<!-- /wp:list -->
-
-<!-- wp:image {"linkDestination":"custom","align":"center"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"linkDestination":"custom"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"linkDestination":"custom"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"linkDestination":"custom"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"linkDestination":"custom"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/M1Kk1rqCkbU","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list -->
-
-<!-- /wp:list --></p><ul class="wp-block-list"><!-- wp:list-item -->
-<li>Backpropagation is a supervised learning method used to train neural networks.&nbsp;</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>It transfers the error information from the output node to the inner node. It makes it possible to calculate the gradient effectively.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>It is most useful for feed-forward networks (networks that have no feedback, or simply, have no connections that loop).</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Backpropagation requires that the activation function used by artificial neurons is differentiable.</li>
-<!-- /wp:list-item --></ul></div>
+<p><strong>Prompt + instruction + constraints (stronger)</strong></p>
+<pre class="language-python"><code>You are a helpful assistant. Return only JSON.
+
+Task: From the text, return {"summary": "...", "keywords": ["a","b"]}
+
+Text: "LangChain helps developers build apps that combine LLMs with external tools."</code></pre>
+<pre>&nbsp;</pre>
+<h2>4.&nbsp;Basic code: calling an LLM (Python, OpenAI style)</h2>
+<p>(Install <span style="background-color: #cedee7;">openai</span> or use your provider's SDK and set <span style="background-color: #cedee7;">OPENAI_API_KEY</span>)</p>
+<pre class="language-python"><code># pip install openai
+import os
+import openai
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+def ask(prompt):
+    resp = openai.ChatCompletion.create(
+        model="gpt-4o-mini",  # example model name
+        messages=[{"role":"user","content": prompt}],
+        max_tokens=200
+    )
+    return resp["choices"][0]["message"]["content"]
+
+print(ask("Write a 2-line summary of 'RAG' in simple words."))</code></pre>
+<p>Replace model name with whatever your provider offers. Keep tokens and costs in mind.</p>
+<p>&nbsp;</p>
+<h2>5. Embeddings: turning text into numbers (for search)</h2>
+<p>Embeddings let you compare meaning. Steps:</p>
+<ol>
+<li>Break text into chunks.</li>
+<li>Call embedding model on each chunk.</li>
+<li>Store vectors in a vector store.</li>
+<li>For a user query, embed it, then find nearest vectors.</li>
+</ol>
+<p>Example using OpenAI embeddings (conceptual)</p>
+<pre class="language-python"><code># pip install openai numpy
+import openai
+import numpy as np
+
+def get_embedding(text):
+    resp = openai.Embedding.create(
+        model="text-embedding-3-small",
+        input=text
+    )
+    return np.array(resp["data"][0]["embedding"])</code></pre>
+<p>You usually store these vectors in FAISS, Chroma, Pinecone, etc.</p>
+<p><span style="color: #000000; font-family: sans-serif; font-size: 16px; white-space: normal;">&nbsp;</span></p>
+<h2>6.&nbsp;What is RAG (Retrieval-Augmented Generation)?</h2>
+<p><strong>RAG </strong>= Retrieval-Augmented Generation.</p>
+<p><strong>Idea</strong>: before asking the model to answer, fetch relevant documents (from your files, manuals, website) and give those to the model as context. This reduces hallucinations and lets the model use up-to-date or private data. Many cloud providers and docs explain this pattern.&nbsp;</p>
+<p><strong>Simple RAG flow: </strong></p>
+<ol>
+<li>Ingest docs &rarr; split into chunks &rarr; embed &rarr; store.</li>
+<li>On user question: embed query &rarr; retrieve top-k chunks.</li>
+<li>Build a prompt with those chunks and the question &rarr; send to LLM.</li>
+<li>Return answer (optionally include sources).</li>
+</ol>
+<p>&nbsp;</p>
+<h2>7.&nbsp;LangChain: glue to build LLM apps</h2>
+<p>LangChain is a popular library that helps build chains, agents, RAG pipelines, and connects LLMs to tools. It has loaders for documents, wrappers for models, and helpers for vector stores. Use it when you want a structured app instead of raw API calls.&nbsp;</p>
+<p><strong>Short LangChain RAG example (Python)</strong></p>
+<pre class="language-python"><code> # pip install langchain openai chroma-client
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import Chroma
+from langchain.chat_models import ChatOpenAI
+from langchain.chains import RetrievalQA
+from langchain.document_loaders import TextLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+# 1. load docs
+loader = TextLoader("docs/manual.txt", encoding="utf-8")
+docs = loader.load()
+
+# 2. split
+splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=100)
+chunks = splitter.split_documents(docs)
+
+# 3. embeddings + vector store
+emb = OpenAIEmbeddings()
+vectordb = Chroma.from_documents(chunks, emb, collection_name="manuals")
+
+# 4. create retriever and QA chain
+retriever = vectordb.as_retriever(search_kwargs={"k": 4})
+llm = ChatOpenAI(temperature=0, model_name="gpt-4o-mini")
+qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever)
+
+# 5. ask
+print(qa.run("How do I reset the device?")
+</code></pre>
+<pre><strong>Notes:</strong></pre>
+<ul>
+<li><span style="background-color: #cee7f7;">chain_type="stuff"</span> is one way (puts all contexts into prompt). There are other chain types (map-reduce, refine) for long contexts.</li>
+<li>Replace Chroma with FAISS, Pinecone, etc., as needed.</li>
+</ul>
+<p>&nbsp;</p>
+<h2>8.&nbsp;Vector stores quick guide</h2>
+<p>Common vector stores:</p>
+<ul>
+<li><strong>FAISS </strong>&mdash; offline, local, fast (Facebook/Meta).</li>
+<li><strong>Chroma </strong>&mdash; simple local store with helpful features.</li>
+<li><strong>Pinecone / Weaviate / Milvus</strong> &mdash; hosted and scalable.</li>
+</ul>
+<p>Pick local FAISS for prototypes, hosted for production.</p>
+<p>&nbsp;</p>
+<h2>9.&nbsp;Agents and tools (models calling actions)</h2>
+<p>Agents let models call tools (like calculators, search, or your APIs). This is powerful: model decides which tool to use. But it needs careful guardrails.</p>
+<p><strong>LangChain Agents example</strong></p>
+<pre class="language-python"><code>from langchain.agents import initialize_agent, Tool
+from langchain.tools import BaseTool
+from langchain.llms import OpenAI
+
+def search_web(query):
+    # your search code here
+    return "search results for: " + query
+
+tools = [Tool(name="web_search", func=search_web, description="Search the web")]
+
+llm = OpenAI(temperature=0)
+agent = initialize_agent(tools, llm, agent="zero-shot-react-description")
+print(agent.run("Find latest release of Python and summarize."))</code></pre>
+<p>Agents + MCP (next section) is how models call real system tools securely.<br><br></p>
+<h2>10.&nbsp;MCP servers: what and why</h2>
+<p><strong>MCP</strong> stands for Model Context Protocol (often called Model Context Protocol or Model Control Plane in different contexts). It is an open protocol and ecosystem that standardizes how LLMs (or hosts) connect to external tools, data, and services via a client-server style interface. An MCP server exposes tool endpoints and data to the model in a standardized way so many models and tools can interoperate. This makes building connected AI easier and reduces custom glue code.</p>
+<p><strong>Key points:</strong></p>
+<ul>
+<li><span style="font-size: 1rem;">MCP servers provide a JSON-RPC API or similar interface models can call.</span></li>
+<li>They expose tools with schema (what inputs they need, what they return).</li>
+<li>MCP reduces the N&times;M problem: many models &times; many tools.</li>
+</ul>
+<p><em>Security note</em>: MCP servers have high privileges and can access sensitive data. There have been real security incidents where a malicious MCP server exfiltrated email data. Always verify MCP server code and use least-privilege access.</p>
+<p>&nbsp;</p>
+<h2>11.&nbsp;Example: simple MCP-like tool (conceptual)</h2>
+<p>This is a toy HTTP server that exposes a tool "get_time". Real MCP is a spec; production MCP servers follow the protocol</p>
+<pre class="language-python"><code># Very simple Flask server exposing a tool
+# pip install flask
+from flask import Flask, request, jsonify
+import datetime
+
+app = Flask(__name__)
+
+@app.route("/tool/get_time", methods=["POST"])
+def get_time():
+    payload = request.json or {}
+    tz = payload.get("tz", "UTC")
+    now = datetime.datetime.utcnow().isoformat() + "Z"
+    return jsonify({"result": f"Current time (UTC): {now}"})
+LLM (Large Language Model)
+if __name__ == "__main__":
+    app.run(port=8080)</code></pre>
+<p>In real MCP, the model or client would call a standard RPC endpoint and the server would return structured data. Use authentication, logging, and permission checks.<br><br></p>
+<h2>12.&nbsp;Reducing hallucination &amp; improving reliability</h2>
+<p><strong>Common techniques:</strong></p>
+<ul>
+<li><strong>Use RAG</strong>: give the model real documents to base answers on.</li>
+<li><span style="font-size: 1rem;"><strong>Provide system instructions</strong> (role + constraints).</span></li>
+<li><strong>Chain-of-thought control</strong>: prefer concise reasoning, avoid verbose internal chains when you want short answers.</li>
+<li><strong>Verify</strong>: ask the model to cite sources. Build a check that compares returned facts with the source texts.</li>
+<li><strong>Limit model temperature</strong> (0&ndash;0.3) for factual answers.</li>
+<li><strong>Human-in-the-loop</strong>: for critical outputs, require human review.</li>
+</ul>
+<p>&nbsp;</p>
+<h2>13.&nbsp;Evaluation &amp; testing</h2>
+<p>Always measure:</p>
+<ul>
+<li><strong>Accuracy </strong>(is the answer correct?)</li>
+<li><strong>Recall </strong>(does it find needed info?)</li>
+<li><strong>Latency </strong>(how fast?)</li>
+<li><strong>Cost </strong>(API tokens, compute)</li>
+<li><strong>Safety </strong>(PII leakage, prompt injection)</li>
+</ul>
+<p>Unit test flows: write test cases (question &rarr; expected answer or expected doc id). Use LangChain/LangSmith or your own logging to trace failures.</p>
+<p>&nbsp;</p>
+<h2>14.&nbsp;Deployment tips</h2>
+<ul>
+<li>Use separate environments (dev/staging/prod).</li>
+<li>Cache embeddings and vector stores; recompute only when content changes.</li>
+<li>Protect API keys and use quotas.</li>
+<li>Use least-privilege for MCP servers; run them in trusted networks.\</li>
+<li>Monitor input/output for data exfiltration (especially with MCP/tool calls).</li>
+<li>Consider model fallback strategies (e.g., use smaller cheaper model for trivial tasks; bigger model for hard tasks).</li>
+</ul>
+<p>&nbsp;</p>
+<h2>15.&nbsp;Simple end-to-end mini project (RAG Q&amp;A)</h2>
+<p><strong>Steps:</strong></p>
+<ol>
+<li>Gather docs (PDFs, web pages).</li>
+<li>Convert to text, split into chunks (500&ndash;1000 chars).</li>
+<li>Create embeddings for each chunk.</li>
+<li>Store in vector DB (Chroma / FAISS / Pinecone).</li>
+<li>Build retriever (top k).</li>
+<li>Create prompt template: include top chunks and user question.</li>
+<li>Call LLM to generate answer with sources.</li>
+</ol>
+<p>We showed code with LangChain earlier &mdash; that&rsquo;s a complete minimal RAG.</p>
+<p>&nbsp;</p>
+<h2>16.&nbsp;Short glossary (simple)</h2>
+<ul>
+<li><strong>Hallucination</strong>: model says something wrong as if it were true.</li>
+<li><strong>Embedding</strong>: vector representing meaning.</li>
+<li><strong>Retriever</strong>: component that finds relevant text from a vector store.</li>
+<li><strong>Vector store</strong>: database for embeddings.</li>
+<li><strong>Prompt engineering</strong>: designing instructions for models.</li>
+<li><strong>Agent</strong>: model plus tools that can act.</li>
+<li><strong>MCP server</strong>: standardized server exposing tools/data to models.</li>
+</ul>
+<p>&nbsp;</p>
+<h3><strong>WANT TO MAKE A COMPLETE PROJECT:</strong></h3>
+<p>Here is the link:</p>
+<p><span style="font-size: 1rem;"><strong>AI Debate Bot:&nbsp;</strong></span></p>
+<ul>
+<li>YouTube:&nbsp;<a href="https://youtu.be/WF2X6tYo3kY" target="_blank" rel="noopener">https://youtu.be/WF2X6tYo3kY</a></li>
+<li>Github:&nbsp;<a href="https://github.com/IshwarGautam/Gen-AI-debate-" target="_blank" rel="noopener">https://github.com/IshwarGautam/Gen-AI-debate-</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p></div>
 
 <script>
   if (window.hljs) {
@@ -593,7 +608,7 @@
           const commentsContainer = document.querySelector(".comment-container");
           if (!form || !commentsContainer) return;
 
-          const slug = "deep-learning-most-important-interview-questions-2025";
+          const slug = "generative-ai-complete-simple-step-by-step-guide-for-beginners";
           const submitBtn = form.querySelector("button[type='submit']");
 
           form.addEventListener("submit", function (e) {

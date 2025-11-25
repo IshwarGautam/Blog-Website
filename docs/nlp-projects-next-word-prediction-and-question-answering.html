@@ -24,11 +24,8 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
 
-    <!-- Summernote CSS -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css"
-      rel="stylesheet"
-    />
+    <!-- TinyMCE CDN (v8, with API key) -->
+    <script src="https://cdn.tiny.cloud/1/cu5386mwdbw5uvluas7htq32hn0uibngcmaylurs3dl7xhc9/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
 
     <!-- Highlight.js -->
     <link
@@ -45,9 +42,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
 
-    <!-- jQuery & Summernote JS -->
+    <!-- jQuery (required for Bootstrap, not TinyMCE) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
 
     <!-- Bootstrap JS (for navbar toggle) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -167,7 +163,7 @@
     margin-top: -1px;
   "
 >
-  <p><p>Let's make NLP Projects.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+  <div class="post-body"><p>Let's make NLP Projects.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#next-word-prediction">Next word prediction using LSTM</a></li>
 <!-- /wp:list-item -->
 
@@ -895,7 +891,13 @@ _, _ , _ , _, ans  = bert_question_answer( question, passage)
 
 <!-- wp:paragraph -->
 
-<!-- /wp:paragraph --></p><p>I hope from this post, you get an idea of how can you create your own NLP Projects. If you have any questions, drop your comment in the comment section below. I will back to you as soon as possible. Keep learning mate.</p></p>
+<!-- /wp:paragraph --></p><p>I hope from this post, you get an idea of how can you create your own NLP Projects. If you have any questions, drop your comment in the comment section below. I will back to you as soon as possible. Keep learning mate.</p></div>
+
+<script>
+  if (window.hljs) {
+    hljs.highlightAll();
+  }
+</script>
 </div>
 
 <!-- Comment section -->
@@ -1294,62 +1296,29 @@ _, _ , _ , _, ans  = bert_question_answer( question, passage)
 <!-- Leaving this empty so to skip base.html footer-->
 
 
-    <!-- Summernote Initialization -->
+    <!-- TinyMCE Initialization (official example, all features) -->
     <script>
-      $(document).ready(function () {
-        $("#summernote").summernote({
-          height: 300,
-          toolbar: [
-            ["style", ["style"]],
-            ["font", ["bold", "italic", "underline", "clear"]],
-            ["fontname", ["fontname"]],
-            ["fontsize", ["fontsize"]],
-            ["color", ["color"]],
-            ["para", ["ul", "ol", "paragraph"]],
-            ["insert", ["link", "picture", "video", "table", "hr"]],
-            ["view", ["fullscreen", "codeview", "help"]],
-            ["custom", ["codeblock"]],
-          ],
-          buttons: {
-            codeblock: function (context) {
-              var ui = $.summernote.ui;
-              var button = ui.button({
-                contents: '<i class="fa fa-code"></i> Code Block',
-                tooltip: "Insert Code Block",
-                click: function () {
-                  let lang = prompt(
-                    "Enter language (e.g. python, javascript, java, html, css):",
-                    "python"
-                  );
-                  if (!lang) lang = "plaintext";
-
-                  var codeBlock = `
-                <pre><code class="language-${lang}" contenteditable="true" style="white-space: pre-wrap;"></code></pre>
-              `;
-                  context.invoke("editor.pasteHTML", codeBlock);
-                  hljs.highlightAll();
-                  var codeBlockNode =
-                    context.invoke("editor.getBody").lastChild;
-                  $(codeBlockNode).find("code").focus();
-                },
-              });
-              return button.render();
-            },
-          },
-        });
-
-        // Auto-highlight on Enter inside code blocks
-        $(".note-editable").on("keyup", function (e) {
-          if (e.key === "Enter") {
-            $(this)
-              .find("pre code")
-              .each(function () {
-                hljs.highlightElement(this);
-              });
-          }
-        });
-
-        hljs.highlightAll();
+      tinymce.init({
+        selector: 'textarea.tinymce-editor',
+        plugins: [
+          // Core editing features
+          'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount', 'fullscreen',
+          // Free trial premium features (if available for your key)
+          'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown', 'importword', 'exportword', 'exportpdf'
+        ],
+        toolbar: 'fullscreen | undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+          { value: 'First.Name', title: 'First Name' },
+          { value: 'Email', title: 'Email' },
+        ],
+        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+        uploadcare_public_key: 'd857dd4d5adbe5038f25',
+        height: 300,
+        menubar: true,
+        branding: false,
+        content_style: 'body { font-family: Segoe UI,Arial,sans-serif; font-size:14px }',
       });
     </script>
   </body>

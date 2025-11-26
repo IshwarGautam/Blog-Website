@@ -81,7 +81,7 @@
         </div>
 
         <!-- Right: Login/Logout buttons -->
-        {% if not is_build %}
+        {% if not is_static_build and current_user is defined %}
         <div class="d-flex align-items-center gap-2">
           {% if current_user.is_authenticated and current_user.is_admin %}
           <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-light btn-sm px-4 py-2 fw-semibold shadow-sm">

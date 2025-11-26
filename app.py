@@ -18,14 +18,14 @@ from googleapiclient.discovery import build
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
-
-    @app.context_processor
-    def inject_is_build():
-        return {"is_build": app.config["IS_BUILD"]}
     
     @app.context_processor
     def inject_tinymce_key():
         return {"TINY_MCE_API_KEY": app.config.get("TINY_MCE_API_KEY")}
+
+    @app.context_processor
+    def inject_is_static_build():
+        return {"is_static_build": os.environ.get("IS_STATIC_BUILD") == "1"}
 
     db.init_app(app)
     mail.init_app(app)

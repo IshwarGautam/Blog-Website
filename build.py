@@ -4,6 +4,8 @@ from app import create_app
 from flask_frozen import Freezer
 from database.models.post import Post
 
+# For this static build process
+os.environ["IS_STATIC_BUILD"] = "1"
 
 def delete_comment_folders(destination):
     for root, dirs, files in os.walk(destination):

@@ -157,17 +157,25 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><h2 class="wp-block-heading">What will you learn [NLP Essentials]?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+  <div class="post-body"><h2 class="wp-block-heading">What will you learn [NLP Essentials]?</h2>
+<ol class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#embedding-layer">Embedding Layer</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#word2vec">Word2Vec in NLP</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#glove">Glove (Global Vectors for Word Representation)</a></li>
-<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="embedding-layer">Embedding layer</h2><p>An<strong> embedding layer</strong> is a word embedding technique used in natural language processing. It is one of the available layers in&nbsp;Keras&nbsp;i.e., Keras provides an Embedding layer that can be used for neural networks on text data. The embedding layer is defined as the&nbsp;first hidden layer of the <strong>network</strong>.&nbsp;</p><p>This layer takes three arguments:</p><p>1.&nbsp;<strong>input_dim</strong>: the size of the vocabulary in text data</p><p>2.&nbsp;<strong>output_dim</strong>: the size of the output or vector space that the words will be embedded.</p><p>3.&nbsp;<strong>input_length</strong>: length of the input sequences</p><p>The embedding layer is initialized with random weights and then learns word embeddings of the training dataset. Other Word embedding techniques are&nbsp;Word2Vec&nbsp;and&nbsp;Glove.&nbsp;</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/wwz93b-OMf0" width="640" height="360" class="note-video-clip"></iframe></div></figure><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
+<!-- /wp:list-item --></ol>
+<h2 id="embedding-layer" class="wp-block-heading">Embedding layer</h2>
+<p>An<strong> embedding layer</strong> is a word embedding technique used in natural language processing. It is one of the available layers in&nbsp;Keras&nbsp;i.e., Keras provides an Embedding layer that can be used for neural networks on text data. The embedding layer is defined as the&nbsp;first hidden layer of the <strong>network</strong>.&nbsp;</p>
+<p>This layer takes three arguments:</p>
+<p>1.&nbsp;<strong>input_dim</strong>: the size of the vocabulary in text data</p>
+<p>2.&nbsp;<strong>output_dim</strong>: the size of the output or vector space that the words will be embedded.</p>
+<p>3.&nbsp;<strong>input_length</strong>: length of the input sequences</p>
+<p>The embedding layer is initialized with random weights and then learns word embeddings of the training dataset. Other Word embedding techniques are Word2Vec and Glove.&nbsp;</p>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/wwz93b-OMf0">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/wwz93b-OMf0?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
 tf.__version__
 
 reviews=[<span class="hljs-string">'awesome movie'</span>,
@@ -204,12 +212,29 @@ model.<span class="hljs-built_in">compile</span>(optimizer=<span class="hljs-str
 model.summary()
 model.predict(embedded_docs)
 
-<span class="hljs-built_in">print</span>(model.predict(embedded_docs[<span class="hljs-number">0</span>]))</code></pre><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><br></div></figure><h2 class="wp-block-heading" id="word2vec">Word2Vec in NLP | Natural Language Processing</h2><p>Word2Vec is a method for converting words to numbers or vector representations. This technique was published in 2013. This algorithm includes skip-gram and CBOW models (Continuous Bag of Words model).</p><p><img src="https://drive.google.com/thumbnail?id=1q7pFiTILckTescpVzYFw57WCieWGVra9&amp;sz=w1000" data-filename="word2vec.png" style="width: 1099px;"></p><figure class="wp-block-image size-large"><br></figure><p>As illustrated in the diagram, CBOW predicts a word by a context, whereas Skip-gram predicts the context by a word.</p><p>Now, what's the difference between <strong>Glove</strong> and <strong>Word2Vec</strong>? The glove is a pre-trained file that is also used to obtain vector representation for words. Basically, Glove pre-computes a large co-occurrence matrix (word*word) in memory, then factorize it. Whereas, Word2Vec processes each co-occurrence separately. Thus, Glove takes more memory whereas Word2Vec takes more time to train. This is based on your project whether to choose Glove or Word2Vec.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/zKO0ogiaOik" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading">To install gensim:</h2><p><code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-luminous-vivid-orange-color"><font color="#ff9c00">pip install gensim</font></mark></code></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> nltk
+<span class="hljs-built_in">print</span>(model.predict(embedded_docs[<span class="hljs-number">0</span>]))</code></pre>
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<div class="wp-block-embed__wrapper">&nbsp;</div>
+</figure>
+<h2 id="word2vec" class="wp-block-heading">Word2Vec in NLP | Natural Language Processing</h2>
+<p>Word2Vec is a method for converting words to numbers or vector representations. This technique was published in 2013. This algorithm includes skip-gram and CBOW models (Continuous Bag of Words model).</p>
+<p><img style="width: 1099px;" src="https://drive.google.com/thumbnail?id=1q7pFiTILckTescpVzYFw57WCieWGVra9&amp;sz=w1000" data-filename="word2vec.png"></p>
+<figure class="wp-block-image size-large"></figure>
+<p>As illustrated in the diagram, CBOW predicts a word by a context, whereas Skip-gram predicts the context by a word.</p>
+<p>Now, what's the difference between <strong>Glove</strong> and <strong>Word2Vec</strong>? The glove is a pre-trained file that is also used to obtain vector representation for words. Basically, Glove pre-computes a large co-occurrence matrix (word*word) in memory, then factorize it. Whereas, Word2Vec processes each co-occurrence separately. Thus, Glove takes more memory whereas Word2Vec takes more time to train. This is based on your project whether to choose Glove or Word2Vec.</p>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/zKO0ogiaOik">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/zKO0ogiaOik?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<h2 class="wp-block-heading">To install gensim:</h2>
+<p><code><mark class="has-inline-color has-luminous-vivid-orange-color" style="background-color: rgba(0, 0, 0, 0);"><span style="color: #ff9c00;">pip install gensim</span></mark></code></p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> nltk
 <span class="hljs-keyword">import</span> re
 <span class="hljs-keyword">from</span> gensim.models <span class="hljs-keyword">import</span> Word2Vec
-<span class="hljs-keyword">from</span> nltk.corpus <span class="hljs-keyword">import</span> stopwords</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># Required package from nltk</span>
+<span class="hljs-keyword">from</span> nltk.corpus <span class="hljs-keyword">import</span> stopwords</code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-comment"># Required package from nltk</span>
 nltk.download(<span class="hljs-string">'stopwords'</span>)
-nltk.download(<span class="hljs-string">'punkt'</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">Paragraph= <span class="hljs-string">"""Frequently Asked Questions
+nltk.download(<span class="hljs-string">'punkt'</span>)</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">Paragraph= <span class="hljs-string">"""Frequently Asked Questions
 The Basics
 What is Colaboratory?
 A product of Google Research is Colaboratory, or "Colab" for short. Colab excels in three areas: machine learning, teaching, and data analysis. Through the browser, anyone may write and run arbitrary Python code. In terms of technology, Colab is a hosted Jupyter notebook service that provides free access to computer resources, including GPUs, and doesn't require any setup to use.
@@ -263,13 +288,13 @@ The amount of data that each user can save in Google Drive is restricted. If you
 Visit Google Drive to acquire additional Drive space. Please take note that purchasing more Drive space will not result in more disk space becoming accessible for Colab VMs. Subscribing to Colab Pro will.
 
 Resource Limits
-Why aren’t resources guaranteed in Colab?
+Why aren&rsquo;t resources guaranteed in Colab?
 Colab must continue to be adaptable enough to change usage restrictions and hardware availability as needed in order to provide computing resources without charge. The resources that Colab has available change over time to meet changing demand, as well as to support overall growth and other variables.
 
 The resource restrictions prevent some users from doing everything they wish to do in Colab. Many users have expressed a desire for faster GPUs, longer-lasting notebooks, more RAM, greater usage caps, and less erratic usage patterns. The first step we are taking to assist consumers who want more out of Colab is introducing Colab Pro. Our long-term objective is to maintain a free version of Colab while expanding sustainably to serve our users' requirements. Please sample Colab Pro and let us know what you think if you're interested in doing more with Colab than the resource restrictions of the free edition of Colab permit.
 
 What are the usage limits of Colab?
-Colab is able to offer free resources in part because it uses dynamic usage caps that occasionally change and does not guarantee or supply unlimited resources. This implies that overall utilization caps, idle timeout durations, maximum VM lifetimes, available GPU kinds, and other parameters change over time. These restrictions are not made public by Colab in part because they can—and occasionally do—change quickly.
+Colab is able to offer free resources in part because it uses dynamic usage caps that occasionally change and does not guarantee or supply unlimited resources. This implies that overall utilization caps, idle timeout durations, maximum VM lifetimes, available GPU kinds, and other parameters change over time. These restrictions are not made public by Colab in part because they can&mdash;and occasionally do&mdash;change quickly.
 
 Sometimes, users who use Colab interactively rather than for lengthy computations or users who have recently utilized fewer resources in Colab have priority access to GPUs and TPUs. As a result, users who use Colab for lengthy calculations or users who have recently accessed more resources in Colab are more likely to hit utilization caps and have temporary access restrictions placed on GPU and TPU usage. Colab's user interface may be used in conjunction with a local runtime running on the user's own hardware if they have high computing requirements. Colab Pro may be of interest to users who want larger and more reliable use limitations.
 
@@ -320,7 +345,8 @@ To change your Python 2 notebook's runtime to Python 3, choose Runtime &gt; Chan
 
 Where can I learn more about Colab Pro?
 There is an FAQ for Colab Pro on the Colab Pro sign-up page.
-"""</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># Preprocessing the data and preparing the dataset</span>
+"""</span></code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-comment"># Preprocessing the data and preparing the dataset</span>
 sentences = nltk.sent_tokenize(Paragraph)
 final_text = []
 <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(sentences)):
@@ -330,19 +356,35 @@ final_text = []
     review = [word <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> review <span class="hljs-keyword">if</span> word <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">set</span>(stopwords.words(<span class="hljs-string">'english'</span>))]
     final_text.append(review)
 <span class="hljs-built_in">print</span>(final_text)
-<span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(final_text))</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># Training the Word2Vec model</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(final_text))</code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-comment"># Training the Word2Vec model</span>
 model = Word2Vec(final_text)
-<span class="hljs-built_in">print</span>(model)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># finding vocabulary</span>
+<span class="hljs-built_in">print</span>(model)</code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-comment"># finding vocabulary</span>
 vocab = model.wv.vocab
 <span class="hljs-built_in">print</span>(vocab.keys())
 
 <span class="hljs-comment"># vocab = model.wv.key_to_index</span>
-<span class="hljs-comment"># print(vocab)</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># Finding Word Vectors</span>
+<span class="hljs-comment"># print(vocab)</span></code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-comment"># Finding Word Vectors</span>
 vector = model.wv[<span class="hljs-string">'colab'</span>]
-<span class="hljs-built_in">print</span>(vector)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># Most similar words</span>
+<span class="hljs-built_in">print</span>(vector)</code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-comment"># Most similar words</span>
 similar = model.wv.most_similar(<span class="hljs-string">'notebooks'</span>)
-similar</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># finding similarity score between two words in vocab</span>
-model.wv.similarity(w1=<span class="hljs-string">"jupyter"</span>,w2=<span class="hljs-string">"notebooks"</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">model.wv.similarity(w1=<span class="hljs-string">"notebooks"</span>,w2=<span class="hljs-string">"notebooks"</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(vocab))</code></pre><p style="font-size: 14px;"><span style="font-weight: bolder; color: rgb(0, 0, 0); font-family: sans-serif; font-size: 1rem;">Conclusion:</span><span style="color: rgb(0, 0, 0); font-family: sans-serif; font-size: 1rem;">&nbsp;We have less vocabulary right now but for large documents, we will have more vocabulary and we can find the most similar&nbsp;words&nbsp;using the word2vec model.</span></p><div><span style="color: rgb(0, 0, 0); font-family: sans-serif; font-size: 1rem;"><br></span></div><h1><span style="font-size: 2rem; color: rgb(0, 0, 0); font-family: sans-serif;">GLOVE (Global Vectors for Word Representation) | Natural Language Processing</span></h1><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Glove (<strong>Global Vectors for Word Representation</strong>) is an unsupervised learning technique used to obtain vector representations for words. This is a&nbsp;pre-trained&nbsp;file. You can use this file to convert each word into vectors. You can download this file from&nbsp;<a rel="noreferrer noopener" href="https://nlp.stanford.edu/projects/glove/" target="_blank">here</a>.&nbsp;Each word is mapped into its corresponding vectors based on the similarity between each word. The place where it is mapped is called embedding space.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">&nbsp;<br>Now, what's the difference between&nbsp;<strong>Glove</strong>&nbsp;and&nbsp;<strong>Word2Vec</strong>? Basically, Glove pre-computes a large co-occurrence matrix (word*word) in memory, then factorize it. Whereas, Word2Vec processes each co-occurrence separately. Thus, Glove takes more memory whereas Word2Vec takes more time to train. This is based on your project whether to choose Glove or Word2Vec.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/7ahKnJTF_9Y" width="640" height="360" class="note-video-clip"></iframe></div></figure><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np 
+similar</code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-comment"># finding similarity score between two words in vocab</span>
+model.wv.similarity(w1=<span class="hljs-string">"jupyter"</span>,w2=<span class="hljs-string">"notebooks"</span>)</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">model.wv.similarity(w1=<span class="hljs-string">"notebooks"</span>,w2=<span class="hljs-string">"notebooks"</span>)</code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(vocab))</code></pre>
+<p style="font-size: 14px;"><span style="font-weight: bolder; color: #000000; font-family: sans-serif; font-size: 1rem;">Conclusion:</span><span style="color: #000000; font-family: sans-serif; font-size: 1rem;">&nbsp;We have less vocabulary right now but for large documents, we will have more vocabulary and we can find the most similar&nbsp;words&nbsp;using the word2vec model.</span></p>
+<div><span style="color: #000000; font-family: sans-serif; font-size: 1rem;">&nbsp;</span></div>
+<h1><span style="font-size: 2rem; color: #000000; font-family: sans-serif;">GLOVE (Global Vectors for Word Representation) | Natural Language Processing</span></h1>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Glove (<strong>Global Vectors for Word Representation</strong>) is an unsupervised learning technique used to obtain vector representations for words. This is a&nbsp;pre-trained&nbsp;file. You can use this file to convert each word into vectors. You can download this file from&nbsp;<a href="https://nlp.stanford.edu/projects/glove/" target="_blank" rel="noreferrer noopener">here</a>.&nbsp;Each word is mapped into its corresponding vectors based on the similarity between each word. The place where it is mapped is called embedding space.</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">&nbsp;<br>Now, what's the difference between&nbsp;<strong>Glove</strong>&nbsp;and&nbsp;<strong>Word2Vec</strong>? Basically, Glove pre-computes a large co-occurrence matrix (word*word) in memory, then factorize it. Whereas, Word2Vec processes each co-occurrence separately. Thus, Glove takes more memory whereas Word2Vec takes more time to train. This is based on your project whether to choose Glove or Word2Vec.</p>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/7ahKnJTF_9Y">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/7ahKnJTF_9Y?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np 
 <span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd 
 <span class="hljs-keyword">import</span> os
 
@@ -379,161 +421,11 @@ vocab, w2v = read_data(<span class="hljs-string">"glove.6B/glove.6B.50d.txt"</sp
 <span class="hljs-built_in">print</span>(<span class="hljs-string">"Similarity Score of Father and Apple"</span>,cos_sim(w2v[<span class="hljs-string">'father'</span>],w2v[<span class="hljs-string">'apple'</span>]))
 <span class="hljs-built_in">print</span>(<span class="hljs-string">"Similarity Score of Man and Woman"</span>,cos_sim(w2v[<span class="hljs-string">'man'</span>],w2v[<span class="hljs-string">'woman'</span>]))
 <span class="hljs-built_in">print</span>(<span class="hljs-string">"Similarity Score of Clothes and Shoes"</span>,cos_sim(w2v[<span class="hljs-string">'clothes'</span>],w2v[<span class="hljs-string">'shoes'</span>]))
-<span class="hljs-built_in">print</span>(<span class="hljs-string">"Similarity Score of Water and USA"</span>,cos_sim(w2v[<span class="hljs-string">'water'</span>],w2v[<span class="hljs-string">'usa'</span>]))</code></pre><h2 class="wp-block-heading">Conclusion</h2><p>This post is all about the NLP Essentials: Embedding layer, word2vec, and glove technique. These all are very important concepts in Natural Language Processing. If you are looking for a complete course on NLP, click <a href="https://www.youtube.com/playlist?list=PLiWNvnK7PSPErp-DQRRbTKT1_fVKDDL3p" target="_blank" rel="noreferrer noopener">here</a>.</p><p><!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"ordered":true} -->
-
-<!-- /wp:list -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/wwz93b-OMf0","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":1285,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/zKO0ogiaOik","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/7ahKnJTF_9Y","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph --></p><p>I hope this post is very helpful to You. Visit my Channel <a href="https://www.youtube.com/@IGTechTeam" target="_blank" rel="noreferrer noopener">IG Tech Team</a> and get more of your desired content including other NLP Essentials. If you have any questions, ask me in the comment section. I will reply as soon as possible. Keep learning.</p></div>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Similarity Score of Water and USA"</span>,cos_sim(w2v[<span class="hljs-string">'water'</span>],w2v[<span class="hljs-string">'usa'</span>]))</code></pre>
+<h2 class="wp-block-heading">Conclusion</h2>
+<p>This post is all about the NLP Essentials: Embedding layer, word2vec, and glove technique. These all are very important concepts in Natural Language Processing. If you are looking for a complete course on NLP, click <a href="https://www.youtube.com/playlist?list=PLiWNvnK7PSPErp-DQRRbTKT1_fVKDDL3p" target="_blank" rel="noreferrer noopener">here</a>.</p>
+<p><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"ordered":true} --><!-- /wp:list --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/wwz93b-OMf0","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:image {"id":1285,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/zKO0ogiaOik","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/7ahKnJTF_9Y","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --></p>
+<p>I hope this post is very helpful to You. Visit my Channel <a href="https://www.youtube.com/@IGTechTeam" target="_blank" rel="noreferrer noopener">IG Tech Team</a> and get more of your desired content including other NLP Essentials. If you have any questions, ask me in the comment section. I will reply as soon as possible. Keep learning.</p></div>
 
 <script>
   if (window.hljs) {

@@ -157,50 +157,46 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><p><img src="https://drive.google.com/thumbnail?id=1R_o8dr0TmwkLcuO59szrwYck-00Lltt6&sz=w1000" data-filename="selenium.jpg" style="width: 50%;"><br></p><p>Selenium is the most popular framework for automation.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+  <div class="post-body"><p><img style="width: 50%;" src="https://drive.google.com/thumbnail?id=1R_o8dr0TmwkLcuO59szrwYck-00Lltt6&amp;sz=w1000" data-filename="selenium.jpg"></p>
+<p>Selenium is the most popular framework for automation.</p>
+<h2 class="wp-block-heading">What will you learn?</h2>
+<ol class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#web-crawling">What is web crawling?</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#crawl-facebook">Crawl a Facebook website and perform some action on it.</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#explore-code">Explore each of the code</a><!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#import-packages">Import required packages</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#configure-driver">Configuring Chrome driver</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#headless-browser">Headless browser</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#window-size">Window size</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#wait">Implicit or Explicit Wait</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#fb-crawler">Facebook crawler</a></li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></li>
-<!-- /wp:list-item --></ol><p></p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/xe7iLj987Mk" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading" id="web-crawling">What is web crawling?</h2><p>Web crawling is a technique for automating certain web tasks with the help of an automated script. It crawls the web in order to index content for search engines. We can also call it a spider or search engine bot.</p><h2 class="wp-block-heading" id="crawl-facebook">Let's crawl a Facebook website and perform some action on it</h2><p>I'm going to crawl the Facebook website and perform a few actions. Please keep in mind that this post is purely for educational purposes. You must be familiar with the Facebook account. Crawling Facebook sites may be a good place to start. If you execute the script repeatedly, Facebook will recognize whether it is being done by a human or a bot and mark your request as Spam. So, execute this script periodically. The most important thing is to understand what this code is doing.</p><p><strong>Task:</strong></p><ul class="wp-block-list"><!-- wp:list-item -->
+<!-- /wp:list-item --></ol>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/xe7iLj987Mk">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/xe7iLj987Mk?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<h2 id="web-crawling" class="wp-block-heading">What is web crawling?</h2>
+<p>Web crawling is a technique for automating certain web tasks with the help of an automated script. It crawls the web in order to index content for search engines. We can also call it a spider or search engine bot.</p>
+<h2 id="crawl-facebook" class="wp-block-heading">Let's crawl a Facebook website and perform some action on it</h2>
+<p>I'm going to crawl the Facebook website and perform a few actions. Please keep in mind that this post is purely for educational purposes. You must be familiar with the Facebook account. Crawling Facebook sites may be a good place to start. If you execute the script repeatedly, Facebook will recognize whether it is being done by a human or a bot and mark your request as Spam. So, execute this script periodically. The most important thing is to understand what this code is doing.</p>
+<p><strong>Task:</strong></p>
+<ul class="wp-block-list"><!-- wp:list-item -->
 <li>Log in to the Facebook website with credentials username and password.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Go to the user profile.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Post something on Facebook.</li></ul><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Post something on Facebook.</li>
+</ul>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver
 <span class="hljs-keyword">from</span> selenium.webdriver.common.by <span class="hljs-keyword">import</span> By
 <span class="hljs-keyword">from</span> selenium.webdriver.chrome.service <span class="hljs-keyword">import</span> Service
 
@@ -276,25 +272,67 @@ driver.implicitly_wait(<span class="hljs-number">10</span>)
     <span class="hljs-keyword">if</span> isLogin:
         post_text = <span class="hljs-built_in">input</span>(<span class="hljs-string">"What you want to post: "</span>)
         post_on_facebook(post_text)
-</code><div><br></div></pre><ul class="wp-block-list">
-<!-- /wp:list-item --></ul><pre class="wp-block-syntaxhighlighter-code"><em style="font-size: 2rem; color: rgb(0, 0, 0); font-family: sans-serif;">Let's explore the code mentioned above in more detail.</em></pre><h2 class="wp-block-heading" id="import-packages">Step 1: Import required packages</h2><p>Install selenium with Pip. Selenium is an open-source package for automating certain tasks.</p><p><code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-luminous-vivid-orange-color"><font color="#e76363">pip install selenium</font></mark></code></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver
+</code></pre>
+<div>&nbsp;</div>
+<ul class="wp-block-list"><!-- /wp:list-item --></ul>
+<pre class="wp-block-syntaxhighlighter-code"><em style="font-size: 2rem; color: #000000; font-family: sans-serif;">Let's explore the code mentioned above in more detail.</em></pre>
+<h2 id="import-packages" class="wp-block-heading">Step 1: Import required packages</h2>
+<p>Install selenium with Pip. Selenium is an open-source package for automating certain tasks.</p>
+<p><code><mark class="has-inline-color has-luminous-vivid-orange-color" style="background-color: rgba(0, 0, 0, 0);"><span style="color: #e76363;">pip install selenium</span></mark></code></p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver
 <span class="hljs-keyword">from</span> selenium.webdriver.common.by <span class="hljs-keyword">import</span> By
-<span class="hljs-keyword">from</span> selenium.webdriver.chrome.service <span class="hljs-keyword">import</span> Service</code></pre><p>The 'By' module is used to locate elements by class name, ID, tags, CSS selector, and so on. 'Service' is used to take selenium service like configuring chrome driver.</p><h2 class="wp-block-heading" id="configure-driver">Step 2: Configuring Chrome driver</h2><p>I will mention two ways to configure the Chrome driver.</p><ol class="wp-block-list"><!-- wp:list-item -->
+<span class="hljs-keyword">from</span> selenium.webdriver.chrome.service <span class="hljs-keyword">import</span> Service</code></pre>
+<p>The 'By' module is used to locate elements by class name, ID, tags, CSS selector, and so on. 'Service' is used to take selenium service like configuring chrome driver.</p>
+<h2 id="configure-driver" class="wp-block-heading">Step 2: Configuring Chrome driver</h2>
+<p>I will mention two ways to configure the Chrome driver.</p>
+<ol class="wp-block-list"><!-- wp:list-item -->
 <li>Install chrome driver at run time.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Provide the Chrome driver path</li>
-<!-- /wp:list-item --></ol><p>The Chrome driver will be downloaded during <strong>runtime</strong> if it has not already been downloaded. However, if you wish to deploy your code somewhere where it will be difficult to download anything at run time, these are not viable solutions. However, configuring the Chrome driver with this option is straightforward. For this, you need to install webdriver-manager from pip.</p><p><code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-luminous-vivid-orange-color"><font color="#e76363">pip install webdriver-manager</font></mark></code></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> webdriver_manager.chrome <span class="hljs-keyword">import</span> ChromeDriverManager
+<!-- /wp:list-item --></ol>
+<p>The Chrome driver will be downloaded during <strong>runtime</strong> if it has not already been downloaded. However, if you wish to deploy your code somewhere where it will be difficult to download anything at run time, these are not viable solutions. However, configuring the Chrome driver with this option is straightforward. For this, you need to install webdriver-manager from pip.</p>
+<p><code><mark class="has-inline-color has-luminous-vivid-orange-color" style="background-color: rgba(0, 0, 0, 0);"><span style="color: #e76363;">pip install webdriver-manager</span></mark></code></p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> webdriver_manager.chrome <span class="hljs-keyword">import</span> ChromeDriverManager
 
 driver = webdriver.Chrome(service=Service(
-    ChromeDriverManager().install()), options=chrome_options)</code></pre><p>The second method is to provide the chrome driver path. I have provided a path in the above sample code. For this, you need to install Chromium and a Chrome driver manually. </p><p>To download <strong>Chromium</strong> specific to your Operating system:</p><p><a href="https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html">https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html</a></p><p>To download <strong>Chrome driver</strong> specific to your Operating system:</p><p><a href="https://chromedriver.storage.googleapis.com/index.html?path=114.0.5735.90/">https://chromedriver.storage.googleapis.com/index.html?path=114.0.5735.90/</a></p><p></p><h2 class="wp-block-heading" id="headless-browser">Step 3: Headless browser</h2><p>Now it's up to you to run your script headless or not. In a headless browser, there will be no graphical user interface.</p><p>To run a script in headless, add an option in Chrome options:</p><pre><code class="language-python hljs" contenteditable="true" style="">options.add_argument(<span class="hljs-string">"--headless"</span>)</code></pre><p>If you prefer a graphical user interface, simply remove or comment on this line, as I have done above.</p><p>And, if you also want to keep your browser open after the execution is completed, simply add the below option:</p><pre><code class="language-python hljs" contenteditable="true" style="">options.add_experimental_option(<span class="hljs-string">"detach"</span>, <span class="hljs-literal">True</span>)</code></pre><h2 class="wp-block-heading" id="window-size">Step 4: Window size</h2><p>It is compulsory to add window size even if you are executing your script in headless mode. It is because Selenium may sometimes consider your program to be for a mobile device.</p><pre><code class="language-python hljs" contenteditable="true" style="">options.add_argument(<span class="hljs-string">"--window-size=1520,800"</span>)</code></pre><p>In GUI, we can also maximize the window to its full size.</p><pre><code class="language-python hljs" contenteditable="true" style="">driver.maximize_window()</code></pre><h2 class="wp-block-heading" id="wait">Step 5: Implicit or Explicit wait</h2><p>The wait function in Selenium is important to ensure the&nbsp;uninterrupted operation of our program. It's important to give our driver some extra time to make sure everything is loaded properly. For this, there are primarily two approaches.</p><p>The implicit and explicit wait&nbsp;enable the selenium Webdriver to wait for a specific length of time before throwing an exception. They both serve the same function. The difference is that implicit wait is defined just once throughout the program, whereas explicit wait can be defined several times and it makes Webdriver wait until a certain condition is met.</p><p>I'm using implicit wait in the above program. As a result, if the driver is unable to locate any elements, it will always wait for a predefined&nbsp;amount&nbsp;of times.</p><pre><code class="language-python hljs" contenteditable="true" style="">driver.implicitly_wait(<span class="hljs-number">10</span>)</code></pre><p>Sample code for defining explicit wait:</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> selenium.webdriver.support.wait <span class="hljs-keyword">import</span> WebDriverWait
+    ChromeDriverManager().install()), options=chrome_options)</code></pre>
+<p>The second method is to provide the chrome driver path. I have provided a path in the above sample code. For this, you need to install Chromium and a Chrome driver manually.</p>
+<p>To download <strong>Chromium</strong> specific to your Operating system:</p>
+<p><a href="https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html">https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html</a></p>
+<p>To download <strong>Chrome driver</strong> specific to your Operating system:</p>
+<p><a href="https://chromedriver.storage.googleapis.com/index.html?path=114.0.5735.90/">https://chromedriver.storage.googleapis.com/index.html?path=114.0.5735.90/</a></p>
+<p>&nbsp;</p>
+<h2 id="headless-browser" class="wp-block-heading">Step 3: Headless browser</h2>
+<p>Now it's up to you to run your script headless or not. In a headless browser, there will be no graphical user interface.</p>
+<p>To run a script in headless, add an option in Chrome options:</p>
+<pre><code class="language-python hljs" contenteditable="true">options.add_argument(<span class="hljs-string">"--headless"</span>)</code></pre>
+<p>If you prefer a graphical user interface, simply remove or comment on this line, as I have done above.</p>
+<p>And, if you also want to keep your browser open after the execution is completed, simply add the below option:</p>
+<pre><code class="language-python hljs" contenteditable="true">options.add_experimental_option(<span class="hljs-string">"detach"</span>, <span class="hljs-literal">True</span>)</code></pre>
+<h2 id="window-size" class="wp-block-heading">Step 4: Window size</h2>
+<p>It is compulsory to add window size even if you are executing your script in headless mode. It is because Selenium may sometimes consider your program to be for a mobile device.</p>
+<pre><code class="language-python hljs" contenteditable="true">options.add_argument(<span class="hljs-string">"--window-size=1520,800"</span>)</code></pre>
+<p>In GUI, we can also maximize the window to its full size.</p>
+<pre><code class="language-python hljs" contenteditable="true">driver.maximize_window()</code></pre>
+<h2 id="wait" class="wp-block-heading">Step 5: Implicit or Explicit wait</h2>
+<p>The wait function in Selenium is important to ensure the&nbsp;uninterrupted operation of our program. It's important to give our driver some extra time to make sure everything is loaded properly. For this, there are primarily two approaches.</p>
+<p>The implicit and explicit wait&nbsp;enable the selenium Webdriver to wait for a specific length of time before throwing an exception. They both serve the same function. The difference is that implicit wait is defined just once throughout the program, whereas explicit wait can be defined several times and it makes Webdriver wait until a certain condition is met.</p>
+<p>I'm using implicit wait in the above program. As a result, if the driver is unable to locate any elements, it will always wait for a predefined&nbsp;amount&nbsp;of times.</p>
+<pre><code class="language-python hljs" contenteditable="true">driver.implicitly_wait(<span class="hljs-number">10</span>)</code></pre>
+<p>Sample code for defining explicit wait:</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> selenium.webdriver.support.wait <span class="hljs-keyword">import</span> WebDriverWait
 <span class="hljs-keyword">from</span> selenium.webdriver.support <span class="hljs-keyword">import</span> expected_conditions <span class="hljs-keyword">as</span> EC
 
 wait = WebDriverWait(driver, <span class="hljs-number">10</span>)
 
 wait.until(EC.presence_of_element_located(
-    (By.ID, <span class="hljs-string">"datePicker"</span>)))</code></pre><p><strong>Which wait is better? </strong>Both of them are very useful. Both of them do not wait for the full amount of time if a given condition has already been met. In a basic application, I believe the&nbsp;implicit wait is preferable because we only need to define it once throughout the program. As a result, we can concentrate only on other parts of the code. </p><p>However, for complex programs or if your program may need to be extended later, an explicit wait is a better technique. It's because you don't always have to wait the same length of time throughout the program. You could also need to take action only when an exception occurs. So, in my opinion, implicit wait is better for a basic program while explicit wait is better for a large one. By the way, I am a software engineer and I am currently working on web crawling. It is completely up to you to make your choice.</p><h2 class="wp-block-heading" id="fb-crawler">Step 6: Facebook crawler</h2><p>I have already provided you with a basic and important concept in Selenium. Now, it's time to discuss our main project. </p><p>Here I am crawling the Facebook website. To locate an element, we must first determine how we can uniquely locate that element, such as by Id, class name, and so on.</p><pre><code class="language-python hljs" contenteditable="true" style="">driver.get(<span class="hljs-string">'https://www.facebook.com'</span>)
+    (By.ID, <span class="hljs-string">"datePicker"</span>)))</code></pre>
+<p><strong>Which wait is better? </strong>Both of them are very useful. Both of them do not wait for the full amount of time if a given condition has already been met. In a basic application, I believe the&nbsp;implicit wait is preferable because we only need to define it once throughout the program. As a result, we can concentrate only on other parts of the code.</p>
+<p>However, for complex programs or if your program may need to be extended later, an explicit wait is a better technique. It's because you don't always have to wait the same length of time throughout the program. You could also need to take action only when an exception occurs. So, in my opinion, implicit wait is better for a basic program while explicit wait is better for a large one. By the way, I am a software engineer and I am currently working on web crawling. It is completely up to you to make your choice.</p>
+<h2 id="fb-crawler" class="wp-block-heading">Step 6: Facebook crawler</h2>
+<p>I have already provided you with a basic and important concept in Selenium. Now, it's time to discuss our main project.</p>
+<p>Here I am crawling the Facebook website. To locate an element, we must first determine how we can uniquely locate that element, such as by Id, class name, and so on.</p>
+<pre><code class="language-python hljs" contenteditable="true">driver.get(<span class="hljs-string">'https://www.facebook.com'</span>)
 
 txtUsername = driver.find_element(By.ID, <span class="hljs-string">'email'</span>)
 txtUsername.send_keys(username)
@@ -303,249 +341,13 @@ txtPasswd = driver.find_element(By.ID, <span class="hljs-string">'pass'</span>)
 txtPasswd.send_keys(passwd)
 
 btnLogin = driver.find_element(By.NAME, <span class="hljs-string">'login'</span>)
-btnLogin.submit()</code></pre><p>After navigating to facebook.com, I send keys (username and password) to the required element and then I click the submit button.</p><p>Everything is clear in the code now. After executing the script, the bot will post on Facebook.</p><h2 class="wp-block-heading">Conclusion</h2><p>This is how you can automate a Selenium task. I've made it quite clear how you can log into Facebook automatically and post stuff there.</p><p><!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"ordered":true} -->
-
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/xe7iLj987Mk","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-
-<!-- /wp:list -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:list {"ordered":true} -->
-
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":628,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph --></p><p>I hope this post is clear to you. Please leave feedback below if you have any queries. I will reply as soon as possible. Thanks mate.</p></div>
+btnLogin.submit()</code></pre>
+<p>After navigating to facebook.com, I send keys (username and password) to the required element and then I click the submit button.</p>
+<p>Everything is clear in the code now. After executing the script, the bot will post on Facebook.</p>
+<h2 class="wp-block-heading">Conclusion</h2>
+<p>This is how you can automate a Selenium task. I've made it quite clear how you can log into Facebook automatically and post stuff there.</p>
+<p><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"ordered":true} --><!-- /wp:list --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/xe7iLj987Mk","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:list --><!-- /wp:list --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:list {"ordered":true} --><!-- /wp:list --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:image {"id":628,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --></p>
+<p>I hope this post is clear to you. Please leave feedback below if you have any queries. I will reply as soon as possible. Thanks mate.</p></div>
 
 <script>
   if (window.hljs) {

@@ -157,7 +157,23 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><p><img src="https://drive.google.com/thumbnail?id=1fYVDJxtjDVPAKg593SfaVeMy549egnuK&sz=w1000" data-filename="ludo.png" style="width: 50%;"><br></p><p><b>React Native</b> is a popular open-source library for mobile phones for building user interfaces with JavaScript, and it runs on React. You may have come across several tutorials on React Native. But this time, let's do different. Let's learn through a project. I have made a Ludo Board with React Native for mobile phones. Let's deep dive into that.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/w559fHJvLKE" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading">Steps</h2><p>1. The first step is to install React Native and create an app</p><pre class="wp-block-syntaxhighlighter-code"><font color="#ce0000"><b>npx create-expo-app ludoBoard</b></font></pre><p>When you run this command, the default folder structure will be created. </p><p>2. Second, download <a href="https://developer.android.com/studio" target="_blank" rel="noreferrer noopener">Android Studio</a>, create a new device and start an emulator. Take a look at the video above for more information.</p><h2 class="wp-block-heading">Initial setup in your device</h2><p>Run the program with the below command:</p><pre class="wp-block-syntaxhighlighter-code"><b><font color="#ce0000">npm start</font></b></pre><p>You can download Expo Go in your Android application from a Play Store and visualize the output there or download a specified emulator based on your device. You can download an emulator on your OS or your mobile phone (Android or IOS).</p><h2 class="wp-block-heading">Start with the default basic application</h2><p>Let's try this basic code.</p><pre><code class="language-javascript hljs" contenteditable="true" style=""><span class="hljs-comment">//app.js</span>
+  <div class="post-body"><p><img style="width: 50%;" src="https://drive.google.com/thumbnail?id=1fYVDJxtjDVPAKg593SfaVeMy549egnuK&amp;sz=w1000" data-filename="ludo.png"></p>
+<p><strong>React Native</strong> is a popular open-source library for mobile phones for building user interfaces with JavaScript, and it runs on React. You may have come across several tutorials on React Native. But this time, let's do different. Let's learn through a project. I have made a Ludo Board with React Native for mobile phones. Let's deep dive into that.</p>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/w559fHJvLKE">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/w559fHJvLKE?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<h2 class="wp-block-heading">Steps</h2>
+<p>1. The first step is to install React Native and create an app</p>
+<pre class="wp-block-syntaxhighlighter-code"><span style="color: #ce0000;"><strong>npx create-expo-app ludoBoard</strong></span></pre>
+<p>When you run this command, the default folder structure will be created.</p>
+<p>2. Second, download <a href="https://developer.android.com/studio" target="_blank" rel="noreferrer noopener">Android Studio</a>, create a new device and start an emulator. Take a look at the video above for more information.</p>
+<h2 class="wp-block-heading">Initial setup in your device</h2>
+<p>Run the program with the below command:</p>
+<pre class="wp-block-syntaxhighlighter-code"><strong><span style="color: #ce0000;">npm start</span></strong></pre>
+<p>You can download Expo Go in your Android application from a Play Store and visualize the output there or download a specified emulator based on your device. You can download an emulator on your OS or your mobile phone (Android or IOS).</p>
+<h2 class="wp-block-heading">Start with the default basic application</h2>
+<p>Let's try this basic code.</p>
+<pre><code class="language-javascript hljs" contenteditable="true"><span class="hljs-comment">//app.js</span>
 <span class="hljs-keyword">import</span> {
   <span class="hljs-title class_">Text</span>,
   <span class="hljs-title class_">Platform</span>,
@@ -166,7 +182,7 @@
   <span class="hljs-title class_">SafeAreaView</span>,
 } <span class="hljs-keyword">from</span> <span class="hljs-string">"react-native"</span>;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) {
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>() {
   <span class="hljs-keyword">return</span> (
     <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">SafeAreaView</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{styles.container}</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">Text</span>&gt;</span>Hello world. IG Tech Team<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
@@ -180,7 +196,13 @@
     <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">"#fff"</span>,
     <span class="hljs-attr">marginTop</span>: <span class="hljs-title class_">Platform</span>.<span class="hljs-property">OS</span> === <span class="hljs-string">"android"</span> ? <span class="hljs-title class_">StatusBar</span>.<span class="hljs-property">currentHeight</span> + <span class="hljs-number">10</span> : <span class="hljs-number">0</span>,
   },
-});</code></pre><p>I have used <strong>SafeAreaView</strong> to display output in the safe area (preventing display output in the top status bar). This <strong>SafeAreaView</strong> might not be working as expected on all the devices. So, you can calculate the height of the Status bar and implement <strong>marginTop</strong> to display the output where you want.</p><p>Without wasting more time, let's deep dive into the implementation of the Ludo Board. I hope you have set up your emulator and initial code as I have mentioned above.</p><h2 class="wp-block-heading"><strong>Implementation of Ludo Board</strong></h2><p>Are you familiar with HTML and CSS? If yes, then it will be straightforward to get this code. I first made a Ludo board with HTML and CSS and then converted that into React Native. Only some of the basics will be different; otherwise, everything will be almost similar.</p><p>You use the &lt;div&gt; tag to create a division in the HTML. Here in react native, you will be using the &lt;View&gt; tag. As you give a class name or ID to each of your divisions in HTML, here in react native, you can also similarly give the style. For example:</p><pre><code class="language-javascript hljs" contenteditable="true" style=""><span class="hljs-comment">// Let's create a view </span>
+});</code></pre>
+<p>I have used <strong>SafeAreaView</strong> to display output in the safe area (preventing display output in the top status bar). This <strong>SafeAreaView</strong> might not be working as expected on all the devices. So, you can calculate the height of the Status bar and implement <strong>marginTop</strong> to display the output where you want.</p>
+<p>Without wasting more time, let's deep dive into the implementation of the Ludo Board. I hope you have set up your emulator and initial code as I have mentioned above.</p>
+<h2 class="wp-block-heading"><strong>Implementation of Ludo Board</strong></h2>
+<p>Are you familiar with HTML and CSS? If yes, then it will be straightforward to get this code. I first made a Ludo board with HTML and CSS and then converted that into React Native. Only some of the basics will be different; otherwise, everything will be almost similar.</p>
+<p>You use the &lt;div&gt; tag to create a division in the HTML. Here in react native, you will be using the &lt;View&gt; tag. As you give a class name or ID to each of your divisions in HTML, here in react native, you can also similarly give the style. For example:</p>
+<pre><code class="language-javascript hljs" contenteditable="true"><span class="hljs-comment">// Let's create a view </span>
 &lt;<span class="hljs-title class_">View</span> style={styles.<span class="hljs-property">subVerticalPath</span>}&gt;&lt;/<span class="hljs-title class_">View</span>&gt;
 
 <span class="hljs-comment">// CSS for that View section</span>
@@ -191,7 +213,10 @@
     <span class="hljs-attr">borderWidth</span>: <span class="hljs-number">1</span>,
     <span class="hljs-attr">borderColor</span>: <span class="hljs-string">"#000"</span>,
   },
-});</code></pre><p><strong>Adjust board size based on device</strong></p><p>The size of the mobile phone will be different. So it is very important to adjust the size of the Ludo board accordingly. Here is how I managed to calculate the app dimension. Take a look.</p><pre><code class="language-javascript hljs" contenteditable="true" style=""><span class="hljs-comment">//dimension.js</span>
+});</code></pre>
+<p><strong>Adjust board size based on device</strong></p>
+<p>The size of the mobile phone will be different. So it is very important to adjust the size of the Ludo board accordingly. Here is how I managed to calculate the app dimension. Take a look.</p>
+<pre><code class="language-javascript hljs" contenteditable="true"><span class="hljs-comment">//dimension.js</span>
 <span class="hljs-keyword">import</span> { <span class="hljs-title class_">Dimensions</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"react-native"</span>;
 
 <span class="hljs-keyword">const</span> { width, height } = <span class="hljs-title class_">Dimensions</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">"window"</span>);
@@ -210,8 +235,11 @@
   minScreenDimension,
 };
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> appDimensions;</code></pre><p>This is just a sample of how you can adjust the dimensions. If you have any other method, you are free to implement that.</p><p>You can create a LudoGame function in your program and call that function in your main app.js file.</p><pre><code class="language-javascript hljs" contenteditable="true" style=""><span class="hljs-comment">//screens/LudoGame.js</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">LudoGame</span>(<span class="hljs-params"></span>) {
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> appDimensions;</code></pre>
+<p>This is just a sample of how you can adjust the dimensions. If you have any other method, you are free to implement that.</p>
+<p>You can create a LudoGame function in your program and call that function in your main app.js file.</p>
+<pre><code class="language-javascript hljs" contenteditable="true"><span class="hljs-comment">//screens/LudoGame.js</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">LudoGame</span>() {
   <span class="hljs-keyword">return</span> (
     <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">View</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{styles.wrapper}</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">View</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{styles.container}</span>&gt;</span>
@@ -392,12 +420,16 @@
       <span class="hljs-tag">&lt;/<span class="hljs-name">View</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">View</span>&gt;</span></span>
   );
-}</code></pre><p>And your app.js file will be:</p><pre><code class="language-javascript hljs" contenteditable="true" style=""><span class="hljs-comment">//app.js</span>
+}</code></pre>
+<p>And your app.js file will be:</p>
+<pre><code class="language-javascript hljs" contenteditable="true"><span class="hljs-comment">//app.js</span>
 <span class="hljs-keyword">import</span> <span class="hljs-title class_">LudoGame</span> <span class="hljs-keyword">from</span> <span class="hljs-string">"./screens/LudoGame"</span>;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) {
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>() {
   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">LudoGame</span> /&gt;</span></span>;
-}</code></pre><p>Here is the complete CSS code for this board:</p><pre><code class="language-javascript hljs" contenteditable="true" style=""><span class="hljs-comment">//screens/MyStyles.js</span>
+}</code></pre>
+<p>Here is the complete CSS code for this board:</p>
+<pre><code class="language-javascript hljs" contenteditable="true"><span class="hljs-comment">//screens/MyStyles.js</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> styles = <span class="hljs-title class_">StyleSheet</span>.<span class="hljs-title function_">create</span>({
   <span class="hljs-attr">wrapper</span>: {
     <span class="hljs-attr">alignItems</span>: <span class="hljs-string">"center"</span>,
@@ -577,129 +609,9 @@
     <span class="hljs-attr">fontSize</span>: minScreenDimension * <span class="hljs-number">0.03</span>,
     <span class="hljs-attr">fontWeight</span>: <span class="hljs-string">"bold"</span>,
   },
-});</code></pre><p><!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/w559fHJvLKE","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"jscript"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"jscript"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"jscript"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"jscript"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"jscript"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"jscript"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph --></p><p>This is how you can implement Ludo Board with React Native. I hope this tutorial will be helpful to you. If you find it difficult to get all those structures and code, you can find complete source code on GitHub. Here is the <a href="https://github.com/IshwarGautam/ludoGame" target="_blank" rel="noreferrer noopener">link</a>. You can ask me in the comment section if you have any queries. Keep Learning.</p></div>
+});</code></pre>
+<p><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/w559fHJvLKE","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"jscript"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"jscript"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"jscript"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"jscript"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"jscript"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"jscript"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --></p>
+<p>This is how you can implement Ludo Board with React Native. I hope this tutorial will be helpful to you. If you find it difficult to get all those structures and code, you can find complete source code on GitHub. Here is the <a href="https://github.com/IshwarGautam/ludoGame" target="_blank" rel="noreferrer noopener">link</a>. You can ask me in the comment section if you have any queries. Keep Learning.</p></div>
 
 <script>
   if (window.hljs) {

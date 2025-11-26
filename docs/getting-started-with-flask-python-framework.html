@@ -157,49 +157,55 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+  <div class="post-body"><h2 class="wp-block-heading">What will you learn?</h2>
+<ol class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#flask-intro">Flask Introduction: Definition and how to install</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#get-started">Get started with Flask: print Hello World</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#html-code">Flask: Write HTML code</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#multiple-routes">Add multiple routes</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#login-logout">Add a login and a logout page</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#perform-action">Perform an action when a submit button is clicked</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#additional-stuff">Get the required image, CSS, and HTML file for this project</a></li>
-<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="flask-intro">Flask Introduction: Definition and how to install</h2><p>Flask is a Python-based web application framework i.e. it is a third-party Python package that is used to create web apps.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/Yh23ZtfYOSs" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p><strong><em><span style="text-decoration: underline">To install Flask:</span></em></strong></p><p><code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-luminous-vivid-orange-color">pip install flask</mark></code></p><h2 class="wp-block-heading" id="get-started">Get started with Flask: print Hello World</h2><p>Let's print "Hello World".&nbsp;</p><p>'/' indicates our home page which we have to pass during routing. This code prints 'Hello World' on our main page or home page.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask
+<!-- /wp:list-item --></ol>
+<h2 id="flask-intro" class="wp-block-heading">Flask Introduction: Definition and how to install</h2>
+<p>Flask is a Python-based web application framework i.e. it is a third-party Python package that is used to create web apps.</p>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/Yh23ZtfYOSs">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/Yh23ZtfYOSs?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p><strong><em><span style="text-decoration: underline;">To install Flask:</span></em></strong></p>
+<p><code><mark class="has-inline-color has-luminous-vivid-orange-color" style="background-color: rgba(0, 0, 0, 0);">pip install flask</mark></code></p>
+<h2 id="get-started" class="wp-block-heading">Get started with Flask: print Hello World</h2>
+<p>Let's print "Hello World".&nbsp;</p>
+<p>'/' indicates our home page which we have to pass during routing. This code prints 'Hello World' on our main page or home page.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask
 app = Flask(__name__)
 
 <span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/"</span></span>)  </span><span class="hljs-comment"># flask routing</span>
 <span class="hljs-keyword">def</span> <span class="hljs-title function_">hello</span>():
-    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello World…"</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello World&hellip;"</span>
 
 <span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
-    app.run()</code></pre><h2 class="wp-block-heading" id="html-code">Flask: Write HTML code</h2><p>We can also return html code as below.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask
+    app.run()</code></pre>
+<h2 id="html-code" class="wp-block-heading">Flask: Write HTML code</h2>
+<p>We can also return html code as below.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask
 app = Flask(__name__)
 
 <span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/"</span></span>)</span>
 <span class="hljs-keyword">def</span> <span class="hljs-title function_">hello</span>():
-    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello World… &lt;h1&gt;Ishwar&lt;/h1&gt;"</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello World&hellip; &lt;h1&gt;Ishwar&lt;/h1&gt;"</span>
 
 <span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
-    app.run()</code></pre><h2 class="wp-block-heading" id="multiple-routes">Add multiple routes</h2><p>Now, the below code contains two routes: one is a home page, and another to display your name. When you write your name in the URL, it will display the output as "Hello {your name}! How are you?"</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask  
+    app.run()</code></pre>
+<h2 id="multiple-routes" class="wp-block-heading">Add multiple routes</h2>
+<p>Now, the below code contains two routes: one is a home page, and another to display your name. When you write your name in the URL, it will display the output as "Hello {your name}! How are you?"</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask  
 app = Flask(__name__)  
 
 <span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/"</span></span>)</span>
@@ -211,7 +217,10 @@ app = Flask(__name__)
     <span class="hljs-keyword">return</span> <span class="hljs-string">f"Hello <span class="hljs-subst">{name}</span>! How are you?"</span> 
   
 <span class="hljs-keyword">if</span> __name__ ==<span class="hljs-string">"__main__"</span>:  
-    app.run()</code></pre><p>"/" indicates the home page, right?&nbsp;</p><p>We can also pass two routes for the same function.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask  
+    app.run()</code></pre>
+<p>"/" indicates the home page, right?&nbsp;</p>
+<p>We can also pass two routes for the same function.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask  
 app = Flask(__name__)  
 
 <span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/"</span></span>)</span>
@@ -224,7 +233,10 @@ app = Flask(__name__)
     <span class="hljs-keyword">return</span> <span class="hljs-string">f"Hello <span class="hljs-subst">{name}</span>! How are you?"</span> 
   
 <span class="hljs-keyword">if</span> __name__ ==<span class="hljs-string">"__main__"</span>:  
-    app.run()</code></pre><p>Now, "/home" also indicates the home page.</p><p>We are not required to basically return messages; we are free to return HTML pages as well. For this, we have to import render_template from the flask, and then all we have to do is, pass the name of the HTML page in render_template.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, render_template
+    app.run()</code></pre>
+<p>Now, "/home" also indicates the home page.</p>
+<p>We are not required to basically return messages; we are free to return HTML pages as well. For this, we have to import render_template from the flask, and then all we have to do is, pass the name of the HTML page in render_template.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, render_template
 app = Flask(__name__)
 
 <span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/"</span></span>)</span>
@@ -237,7 +249,10 @@ app = Flask(__name__)
     <span class="hljs-keyword">return</span> render_template(<span class="hljs-string">"new.html"</span>)
   
 <span class="hljs-keyword">if</span> __name__ ==<span class="hljs-string">"__main__"</span>:  
-    app.run()</code></pre><h2 class="wp-block-heading" id="login-logout">Add a login and a logout page</h2><p>Let's add a login and logout page. The login page displays a message as "Login successfully" whereas the logout page redirects us to the home page.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, redirect, url_for
+    app.run()</code></pre>
+<h2 id="login-logout" class="wp-block-heading">Add a login and a logout page</h2>
+<p>Let's add a login and logout page. The login page displays a message as "Login successfully" whereas the logout page redirects us to the home page.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, redirect, url_for
 app = Flask(__name__)
 
 <span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/"</span></span>)  </span>
@@ -255,7 +270,9 @@ app = Flask(__name__)
     
 
 <span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
-    app.run()</code></pre><p>Let's add html file to our home page and login page. (The code for the HTML page is attached below)</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, redirect, url_for, render_template
+    app.run()</code></pre>
+<p>Let's add html file to our home page and login page. (The code for the HTML page is attached below)</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, redirect, url_for, render_template
 app = Flask(__name__)
 
 <span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/"</span></span>)  </span>
@@ -273,7 +290,12 @@ app = Flask(__name__)
     
 
 <span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
-    app.run()</code></pre><h2 class="wp-block-heading" id="perform-action">Perform an action when a submit button is clicked</h2><p>I have made a form on the login.html page. But what happens if I click the submit button?</p><p>I have to perform some action when I click the submit button, right?</p><p>Here, I have added a submit function to display messages as per our action.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, redirect, url_for, render_template, request
+    app.run()</code></pre>
+<h2 id="perform-action" class="wp-block-heading">Perform an action when a submit button is clicked</h2>
+<p>I have made a form on the login.html page. But what happens if I click the submit button?</p>
+<p>I have to perform some action when I click the submit button, right?</p>
+<p>Here, I have added a submit function to display messages as per our action.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, redirect, url_for, render_template, request
 app = Flask(__name__)
 
 <span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">"/"</span></span>)  </span>
@@ -300,12 +322,22 @@ app = Flask(__name__)
 
 
 <span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
-    app.run()</code></pre><h2 class="wp-block-heading" id="additional-stuff">Get the required image, CSS, and HTML file for this project</h2><h2 class="wp-block-heading">static/img.jpg</h2><h2 class="wp-block-heading"><img src="https://drive.google.com/thumbnail?id=1ibb-gBlqXyC5zSjboNthNPxvLD4Tkqy3&sz=w1000" data-filename="homepage.png" style="width: 400px;"></h2><figure class="wp-block-image size-large"><br></figure><h2 class="wp-block-heading">static/style.css</h2><pre><code class="language-css hljs" contenteditable="true" style=""><span class="hljs-selector-tag">body</span>{
+    app.run()</code></pre>
+<h2 id="additional-stuff" class="wp-block-heading">Get the required image, CSS, and HTML file for this project</h2>
+<h2 class="wp-block-heading">static/img.jpg</h2>
+<h2 class="wp-block-heading"><img style="width: 400px;" src="https://drive.google.com/thumbnail?id=1ibb-gBlqXyC5zSjboNthNPxvLD4Tkqy3&amp;sz=w1000" data-filename="homepage.png"></h2>
+<figure class="wp-block-image size-large"></figure>
+<h2 class="wp-block-heading">static/style.css</h2>
+<pre><code class="language-css hljs" contenteditable="true"><span class="hljs-selector-tag">body</span>{
     <span class="hljs-attribute">color</span>:orange;
-}</code></pre><h2 class="wp-block-heading">templates/home.html</h2><pre><code class="language-html hljs language-xml" contenteditable="true" style="">{% extends "layout.html" %}
+}</code></pre>
+<h2 class="wp-block-heading">templates/home.html</h2>
+<pre><code class="language-html hljs language-xml" contenteditable="true">{% extends "layout.html" %}
 {% block content %}
 <span class="hljs-tag">&lt;<span class="hljs-name">image</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"{{ url_for('static', filename='img.jpg') }}"</span>&gt;</span>
-{% endblock %}</code></pre><h2 class="wp-block-heading">templates/layout.html</h2><pre><code class="language-html hljs language-xml" contenteditable="true" style=""><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+{% endblock %}</code></pre>
+<h2 class="wp-block-heading">templates/layout.html</h2>
+<pre><code class="language-html hljs language-xml" contenteditable="true"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"</span> <span class="hljs-attr">integrity</span>=<span class="hljs-string">"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">"anonymous"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"{{ url_for('static',filename='style.css')}}"</span>&gt;</span>
@@ -338,7 +370,9 @@ app = Flask(__name__)
 https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
 https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js
     <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><h2 class="wp-block-heading">templates/login.html</h2><pre><code class="language-html hljs language-xml" contenteditable="true" style="">{% extends "layout.html" %}
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<h2 class="wp-block-heading">templates/login.html</h2>
+<pre><code class="language-html hljs language-xml" contenteditable="true">{% extends "layout.html" %}
 {% block content %}
 
 <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"/submit"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span>
@@ -349,208 +383,20 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js
     <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"submit"</span>/&gt;</span> 
 <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 
-{% endblock %}</code></pre><h2 class="wp-block-heading">templates/new.html</h2><pre><code class="language-html hljs language-xml" contenteditable="true" style=""><span style="text-wrap-mode: wrap;">&lt;html&gt;
+{% endblock %}</code></pre>
+<h2 class="wp-block-heading">templates/new.html</h2>
+<pre><code class="language-html hljs language-xml" contenteditable="true"><span style="text-wrap-mode: wrap;">&lt;html&gt;
     &lt;head&gt;
         &lt;title&gt;This is my html file&lt;/title&gt;
     &lt;/head&gt;
     &lt;body&gt;
         &lt;h2&gt;Due to Corona Virus, there is lockdown in my locality....&lt;/h2&gt;
     &lt;/body&gt;
-&lt;/html&gt;</span></code></pre><h2 class="wp-block-heading">Conclusion:</h2><p>This is the absolute Flask tutorial. In this tutorial, we simply learn how to get started with Flask, deal with routing, create a page, and so on. In the above video, you may noticed I have used Jupyter Notebook for writing code. This is not a good practice. For recording and for explaining purposes only, I chose Jupyter Notebook. You can try with other editors like Visual Studio or any other of your choice.</p><p><!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"ordered":true} -->
-
-<!-- /wp:list -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/Yh23ZtfYOSs","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:image {"id":1299,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"css"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"xml"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"xml"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"xml"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"xml"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph --></p><p>I hope this post is very helpful to you. If you have any questions, you can ask me in the comment section. I will back to you as soon as possible. Thanks.</p></div>
+&lt;/html&gt;</span></code></pre>
+<h2 class="wp-block-heading">Conclusion:</h2>
+<p>This is the absolute Flask tutorial. In this tutorial, we simply learn how to get started with Flask, deal with routing, create a page, and so on. In the above video, you may noticed I have used Jupyter Notebook for writing code. This is not a good practice. For recording and for explaining purposes only, I chose Jupyter Notebook. You can try with other editors like Visual Studio or any other of your choice.</p>
+<p><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"ordered":true} --><!-- /wp:list --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/Yh23ZtfYOSs","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:heading --><!-- /wp:heading --><!-- wp:image {"id":1299,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:heading --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"css"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"xml"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"xml"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"xml"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"xml"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --></p>
+<p>I hope this post is very helpful to you. If you have any questions, you can ask me in the comment section. I will back to you as soon as possible. Thanks.</p></div>
 
 <script>
   if (window.hljs) {

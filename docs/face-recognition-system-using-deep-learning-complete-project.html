@@ -157,25 +157,31 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Face Recognition System using Deep Learning/Convolutional Neural Network.&nbsp; You have to first collect data, then train your model and the final step is to make a prediction.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+  <div class="post-body"><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Face Recognition System using Deep Learning/Convolutional Neural Network.&nbsp; You have to first collect data, then train your model and the final step is to make a prediction.</p>
+<h2 class="wp-block-heading">What will you learn?</h2>
+<ol class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#generate-dataset">Generate a dataset of authorized users</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#create-label">Create a label using a generated dataset</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#create-data">Create data: Train-Test split</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#create-model">Create the model</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#prediction">Visualize the data and make a prediction</a></li>
-<!-- /wp:list-item --></ol><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/-I-kSz0rblU" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="has-text-align-right wp-embed-aspect-16-9 wp-has-aspect-ratio" style="text-align: right; "><strong><a href="/face-recognition-system-complete-documentation" target="_blank" rel="noreferrer noopener">View Complete Documentation</a></strong></p><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="generate-dataset">1. Generate a dataset</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">First of all, I must create the dataset. That implies I'll have to gather pictures. I can use the OpenCV package for this task.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"> To install this package, open any terminal and type:</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><code><mark style="background-color: rgb(255, 231, 156);" class="has-inline-color has-luminous-vivid-orange-color">pip install opencv-python</mark></code></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">I am using the haarcascade_frontalface_default XML file to get the coordinates of my face so that I can crop it and use it to make a dataset and for future prediction. </p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">I need to convert my RGB (Red, Green, Blue) images to grayscale. An RGB image has three channels, whereas a grayscale image has only one. <br>Turning an image into a grayscale makes things much simpler. Then, we can use a face classifier and a technique called detectMultiScale to find the coordinates we need. We must pass the scaling factor as well as the minimal neighbors. The scale factor is the factor that determines how much to modify from the original image. The number of minimum neighbors indicates how many faces to detect. A greater value yields less detection but of higher quality. We must experiment with this value. We can alter these parameters depending on our results.&nbsp;Then we simply collect the image and terminate the execution when it reaches 200 images or when we press the Enter key on the keyboard.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> cv2</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_dataset</span>():
+<!-- /wp:list-item --></ol>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/-I-kSz0rblU">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/-I-kSz0rblU?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p class="has-text-align-right wp-embed-aspect-16-9 wp-has-aspect-ratio" style="text-align: right;"><strong><a href="../face-recognition-system-complete-documentation" target="_blank" rel="noreferrer noopener">View Complete Documentation</a></strong></p>
+<h2 id="generate-dataset" class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">1. Generate a dataset</h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">First of all, I must create the dataset. That implies I'll have to gather pictures. I can use the OpenCV package for this task.</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">To install this package, open any terminal and type:</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><code><mark class="has-inline-color has-luminous-vivid-orange-color" style="background-color: #ffe79c;">pip install opencv-python</mark></code></p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">I am using the haarcascade_frontalface_default XML file to get the coordinates of my face so that I can crop it and use it to make a dataset and for future prediction.</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">I need to convert my RGB (Red, Green, Blue) images to grayscale. An RGB image has three channels, whereas a grayscale image has only one. <br>Turning an image into a grayscale makes things much simpler. Then, we can use a face classifier and a technique called detectMultiScale to find the coordinates we need. We must pass the scaling factor as well as the minimal neighbors. The scale factor is the factor that determines how much to modify from the original image. The number of minimum neighbors indicates how many faces to detect. A greater value yields less detection but of higher quality. We must experiment with this value. We can alter these parameters depending on our results.&nbsp;Then we simply collect the image and terminate the execution when it reaches 200 images or when we press the Enter key on the keyboard.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> cv2</code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_dataset</span>():
     face_classifier = cv2.CascadeClassifier(<span class="hljs-string">"haarcascade_frontalface_default.xml"</span>)
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">face_cropped</span>(<span class="hljs-params">img</span>):
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -208,7 +214,11 @@
     cap.release()
     cv2.destroyAllWindows()
     <span class="hljs-built_in">print</span>(<span class="hljs-string">"Collecting samples is completed !!!"</span>)
-<span class="hljs-comment">#generate_dataset()</span></code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="create-label">2. Create a label</h2><p>A numpy module can be used to create a label. In this part, we just need to convert the user name into a numpy array.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np <span class="hljs-comment"># pip install numpy</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">my_label</span>(<span class="hljs-params">image_name</span>):
+<span class="hljs-comment">#generate_dataset()</span></code></pre>
+<h2 id="create-label" class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">2. Create a label</h2>
+<p>A numpy module can be used to create a label. In this part, we just need to convert the user name into a numpy array.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np <span class="hljs-comment"># pip install numpy</span></code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">def</span> <span class="hljs-title function_">my_label</span>(<span class="hljs-params">image_name</span>):
     name = image_name.split(<span class="hljs-string">'.'</span>)[-<span class="hljs-number">3</span>] 
     <span class="hljs-comment">#suppose your dataset contains two person</span>
 <span class="hljs-comment">#     if name=="Ishwar":</span>
@@ -223,9 +233,13 @@
     <span class="hljs-keyword">elif</span> name==<span class="hljs-string">"Manish"</span>:
         <span class="hljs-keyword">return</span> np.array([<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>])
     <span class="hljs-keyword">elif</span> name==<span class="hljs-string">"Bijay"</span>:
-        <span class="hljs-keyword">return</span> np.array([<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>])</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="create-data">3. Create data</h2><p>This part involves creating data from images. OpenCV can be used for this purpose. Also, we need to divide our data into training and testing parts.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> os
+        <span class="hljs-keyword">return</span> np.array([<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>])</code></pre>
+<h2 id="create-data" class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">3. Create data</h2>
+<p>This part involves creating data from images. OpenCV can be used for this purpose. Also, we need to divide our data into training and testing parts.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> os
 <span class="hljs-keyword">from</span> random <span class="hljs-keyword">import</span> shuffle
-<span class="hljs-keyword">from</span> tqdm <span class="hljs-keyword">import</span> tqdm</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">my_data</span>():
+<span class="hljs-keyword">from</span> tqdm <span class="hljs-keyword">import</span> tqdm</code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">def</span> <span class="hljs-title function_">my_data</span>():
     data = []
     <span class="hljs-keyword">for</span> img <span class="hljs-keyword">in</span> tqdm(os.listdir(<span class="hljs-string">"data"</span>)):
         path=os.path.join(<span class="hljs-string">"data"</span>,img)
@@ -233,21 +247,27 @@
         img_data = cv2.resize(img_data, (<span class="hljs-number">50</span>,<span class="hljs-number">50</span>))
         data.append([np.array(img_data), my_label(img)])
     shuffle(data)  
-    <span class="hljs-keyword">return</span> data</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">data = my_data()</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">train = data[:<span class="hljs-number">2400</span>]  
+    <span class="hljs-keyword">return</span> data</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">data = my_data()</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">train = data[:<span class="hljs-number">2400</span>]  
 test = data[<span class="hljs-number">2400</span>:]
 X_train = np.array([i[<span class="hljs-number">0</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> train]).reshape(-<span class="hljs-number">1</span>,<span class="hljs-number">50</span>,<span class="hljs-number">50</span>,<span class="hljs-number">1</span>)
 <span class="hljs-built_in">print</span>(X_train.shape)
 y_train = [i[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> train]
 X_test = np.array([i[<span class="hljs-number">0</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> test]).reshape(-<span class="hljs-number">1</span>,<span class="hljs-number">50</span>,<span class="hljs-number">50</span>,<span class="hljs-number">1</span>)
 <span class="hljs-built_in">print</span>(X_test.shape)
-y_test = [i[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> test]</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="create-model">4. Create the model</h2><p>This part involves creating a model with tflearn. The convolutional neural network plays a major role in creating a model. We utilize a ReLU activation layer.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># import warnings</span>
+y_test = [i[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> test]</code></pre>
+<h2 id="create-model" class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">4. Create the model</h2>
+<p>This part involves creating a model with tflearn. The convolutional neural network plays a major role in creating a model. We utilize a ReLU activation layer.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-comment"># import warnings</span>
 <span class="hljs-comment"># warnings.filterwarnings('ignore')</span>
 
 <span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
 <span class="hljs-keyword">import</span> tflearn
 <span class="hljs-keyword">from</span> tflearn.layers.conv <span class="hljs-keyword">import</span> conv_2d, max_pool_2d
 <span class="hljs-keyword">from</span> tflearn.layers.core <span class="hljs-keyword">import</span> input_data, dropout, fully_connected
-<span class="hljs-keyword">from</span> tflearn.layers.estimator <span class="hljs-keyword">import</span> regression</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">tf.reset_default_graph()
+<span class="hljs-keyword">from</span> tflearn.layers.estimator <span class="hljs-keyword">import</span> regression</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">tf.reset_default_graph()
 convnet = input_data(shape=[<span class="hljs-number">50</span>,<span class="hljs-number">50</span>,<span class="hljs-number">1</span>])
 convnet = conv_2d(convnet, <span class="hljs-number">32</span>, <span class="hljs-number">5</span>, activation=<span class="hljs-string">'relu'</span>)
 <span class="hljs-comment"># 32 filters and stride=5 in order for the filter to move 5 pixels or units at once.</span>
@@ -266,7 +286,10 @@ convnet = dropout(convnet, <span class="hljs-number">0.8</span>)
 convnet = fully_connected(convnet, <span class="hljs-number">3</span>, activation=<span class="hljs-string">'softmax'</span>)
 convnet = regression(convnet, optimizer=<span class="hljs-string">'adam'</span>, learning_rate = <span class="hljs-number">0.001</span>, loss=<span class="hljs-string">'categorical_crossentropy'</span>)
 model = tflearn.DNN(convnet, tensorboard_verbose=<span class="hljs-number">1</span>)
-model.fit(X_train, y_train, n_epoch=<span class="hljs-number">12</span>, validation_set=(X_test, y_test), show_metric = <span class="hljs-literal">True</span>, run_id=<span class="hljs-string">"FRS"</span> )</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="prediction">5. Let's visualize the data and make a prediction</h2><p>Now it's time to visualize our data and make a prediction. Our model should identify authorized users.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">data_for_visualization</span>():
+model.fit(X_train, y_train, n_epoch=<span class="hljs-number">12</span>, validation_set=(X_test, y_test), show_metric = <span class="hljs-literal">True</span>, run_id=<span class="hljs-string">"FRS"</span> )</code></pre>
+<h2 id="prediction" class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">5. Let's visualize the data and make a prediction</h2>
+<p>Now it's time to visualize our data and make a prediction. Our model should identify authorized users.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">def</span> <span class="hljs-title function_">data_for_visualization</span>():
     Vdata = []
     <span class="hljs-keyword">for</span> img <span class="hljs-keyword">in</span> tqdm(os.listdir(<span class="hljs-string">"Images for visualization"</span>)):
         path = os.path.join(<span class="hljs-string">"Images for visualization"</span>, img)
@@ -275,7 +298,9 @@ model.fit(X_train, y_train, n_epoch=<span class="hljs-number">12</span>, validat
         img_data = cv2.resize(img_data, (<span class="hljs-number">50</span>,<span class="hljs-number">50</span>))
         Vdata.append([np.array(img_data), img_num])
     shuffle(Vdata)
-    <span class="hljs-keyword">return</span> Vdata</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">Vdata = data_for_visualization()</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt   <span class="hljs-comment"># installation command: pip install matplotlib</span>
+    <span class="hljs-keyword">return</span> Vdata</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">Vdata = data_for_visualization()</code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt   <span class="hljs-comment"># installation command: pip install matplotlib</span>
 
 fig = plt.figure(figsize=(<span class="hljs-number">20</span>,<span class="hljs-number">20</span>))
 <span class="hljs-keyword">for</span> num, data <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(Vdata[:<span class="hljs-number">20</span>]):
@@ -297,157 +322,15 @@ fig = plt.figure(figsize=(<span class="hljs-number">20</span>,<span class="hljs-
     
     y.axes.get_xaxis().set_visible(<span class="hljs-literal">False</span>)
     y.axes.get_yaxis().set_visible(<span class="hljs-literal">False</span>)
-plt.show()</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Final output:</strong></h2><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><img src="https://drive.google.com/thumbnail?id=1NnJbCF0O0Iqe-ONsmBsVwzpDyYuEqvMJ&amp;sz=w1000" data-filename="face-prediction.png" style="width: 715px;"><br></h2><figure class="wp-block-image size-large"><br></figure><h2 class="wp-block-heading">Conclusion:</h2><p>In this way, you can identify and recognize the face of an authorized user using Deep learning. Make sure you collect the face of a user properly. The quality of your output is determined by how your face is generated. I recommend that you watch the video step by step I have provided.</p><p><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
+plt.show()</code></pre>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Final output:</strong></h2>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><img style="width: 715px;" src="https://drive.google.com/thumbnail?id=1NnJbCF0O0Iqe-ONsmBsVwzpDyYuEqvMJ&amp;sz=w1000" data-filename="face-prediction.png"></h2>
+<figure class="wp-block-image size-large"></figure>
+<h2 class="wp-block-heading">Conclusion:</h2>
+<p>In this way, you can identify and recognize the face of an authorized user using Deep learning. Make sure you collect the face of a user properly. The quality of your output is determined by how your face is generated. I recommend that you watch the video step by step I have provided.</p>
+<p><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"ordered":true} --><!-- /wp:list --><!-- wp:embed {"url":"https://youtu.be/-I-kSz0rblU","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph {"align":"right","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:image {"id":1333,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --></p>
 <!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"ordered":true} -->
-
-<!-- /wp:list -->
-
-<!-- wp:embed {"url":"https://youtu.be/-I-kSz0rblU","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph {"align":"right","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:image {"id":1333,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-</p><p></p>
-<!-- /wp:paragraph --><p></p><p>I hope this project is helpful to you. If you have any questions, you can ask me in the comment section below. I will reply as soon as possible. Thanks.</p></div>
+<p>I hope this project is helpful to you. If you have any questions, you can ask me in the comment section below. I will reply as soon as possible. Thanks.</p></div>
 
 <script>
   if (window.hljs) {

@@ -157,68 +157,58 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><h2 class="wp-block-heading"><img src="https://drive.google.com/thumbnail?id=1gQ9S5wcrqxcPl45BClZpJRKSYR05Yi5r&sz=w1000" data-filename="hubspot.png" style="width: 50%;"><br></h2><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+  <div class="post-body"><h2 class="wp-block-heading"><img style="width: 50%;" src="https://drive.google.com/thumbnail?id=1gQ9S5wcrqxcPl45BClZpJRKSYR05Yi5r&amp;sz=w1000" data-filename="hubspot.png"></h2>
+<h2 class="wp-block-heading">What will you learn?</h2>
+<ol class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#private-apps">Private apps</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#scopes">Defining scopes</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#api-integration">API Integration</a><!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#get-record">Get an individual record</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#get-records">Get all records</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#other-requests">Post, Patch, and Delete request</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#get-deals">Get all deals</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#get-skills">Get skills from deals</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#get-multiple-properties">Get multiple properties with a value</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#filter-by-amount">Filter the data by amount</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#filter-by-created_date">Filter the data by the created date</a></li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#create-property">Create new property</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#email-engagement">How to get and post Email Engagement</a></li>
-<!-- /wp:list-item --></ol><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/Exis0Aq5SZM" width="640" height="360" class="note-video-clip"></iframe><span style="font-size: 2rem;"><br></span></div><div class="wp-block-embed__wrapper" id="private-apps"><span style="font-size: 2rem;">Private apps:</span></div></figure><p>Currently, no API key is used for authentication. Private apps are replacing API keys. Instead of API keys, private apps utilize secure access tokens.</p><ul class="wp-block-list"><!-- wp:list-item -->
-<li>Create a private app <mark style="background-color:#7bdcb5" class="has-inline-color">(Settings → Account setup → Integrations → Private App</mark>). (access token will be generated)</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Then use `Bearer &lt;access_token&gt;’ as an authorization key.</li>
-<!-- /wp:list-item --></ul><h2 class="wp-block-heading" id="scopes">Defining scopes:</h2><ul class="wp-block-list"><!-- wp:list-item -->
+<!-- /wp:list-item --></ol>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/Exis0Aq5SZM">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/Exis0Aq5SZM?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p><span style="font-size: 2rem;">Private apps:</span></p>
+<p>Currently, no API key is used for authentication. Private apps are replacing API keys. Instead of API keys, private apps utilize secure access tokens.</p>
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Create a private app <mark class="has-inline-color" style="background-color: #7bdcb5;">(Settings &rarr; Account setup &rarr; Integrations &rarr; Private App</mark>). (access token will be generated)</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Then use `Bearer &lt;access_token&gt;&rsquo; as an authorization key.</li>
+<!-- /wp:list-item --></ul>
+<h2 id="scopes" class="wp-block-heading">Defining scopes:</h2>
+<ul class="wp-block-list"><!-- wp:list-item -->
 <li>Scopes determine what our app can access and do in HubSpot. It's strongly encouraged to require as few scopes as possible for our app's functionality.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Scopes can be defined while creating private apps. It set the permissions for what to do and what not to do with that generated access token as below:</li></ul><p><img src="https://drive.google.com/thumbnail?id=1h7QpPqE5HpTJUWguUqfHxkF-B3jCaPAo&amp;sz=w1000" data-filename="hubspot-scopes.png" style="width: 900px;"><br></p><h2 class="wp-block-heading" id="api-integration"><em><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color"><font color="#ce0000"><b>API Integration:</b></font></mark></em></h2><h2 class="wp-block-heading" id="get-record"><strong>Get an individual record:&nbsp;</strong></h2><pre><code class="language-plaintext hljs" contenteditable="true" style="">GET https://api.hubapi.com/crm/v3/objects/contacts/&lt;id&gt;</code></pre><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Scopes can be defined while creating private apps. It set the permissions for what to do and what not to do with that generated access token as below:</li>
+</ul>
+<p><img style="width: 900px;" src="https://drive.google.com/thumbnail?id=1h7QpPqE5HpTJUWguUqfHxkF-B3jCaPAo&amp;sz=w1000" data-filename="hubspot-scopes.png"></p>
+<h2 id="api-integration" class="wp-block-heading"><em><mark class="has-inline-color has-vivid-red-color" style="background-color: rgba(0, 0, 0, 0);"><span style="color: #ce0000;"><strong>API Integration:</strong></span></mark></em></h2>
+<h2 id="get-record" class="wp-block-heading"><strong>Get an individual record:&nbsp;</strong></h2>
+<pre><code class="language-plaintext hljs" contenteditable="true">GET https://api.hubapi.com/crm/v3/objects/contacts/&lt;id&gt;</code></pre>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"1"</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">"properties"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
        <span class="hljs-attr">"createdate"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2023-01-13T06:36:56.100Z"</span><span class="hljs-punctuation">,</span>
@@ -231,7 +221,10 @@
    <span class="hljs-attr">"createdAt"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2023-01-13T06:36:56.100Z"</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">"updatedAt"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2023-01-13T06:37:11.880Z"</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">"archived"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span>
-<span class="hljs-punctuation">}</span></code></pre><h2 class="wp-block-heading" id="get-records">Get all records:&nbsp;</h2><pre><code class="language-plaintext hljs" contenteditable="true" style="">GET https://api.hubapi.com/crm/v3/objects/contacts</code></pre><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+<span class="hljs-punctuation">}</span></code></pre>
+<h2 id="get-records" class="wp-block-heading">Get all records:&nbsp;</h2>
+<pre><code class="language-plaintext hljs" contenteditable="true">GET https://api.hubapi.com/crm/v3/objects/contacts</code></pre>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"results"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
        <span class="hljs-punctuation">{</span>
            <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"1"</span><span class="hljs-punctuation">,</span>
@@ -332,23 +325,28 @@
            <span class="hljs-attr">"archived"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span>
        <span class="hljs-punctuation">}</span>
    <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><h3 class="wp-block-heading" id="other-requests"><br></h3><h3 class="wp-block-heading" id="other-requests">Some of the other requests are:</h3><ul class="wp-block-list"><!-- wp:list-item -->
-<li>Add a record: POST <code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">https://api.hubapi.com/crm/v3/objects/contacts</mark></code></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Update a record: PATCH <code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">https://api.hubapi.com/crm/v3/objects/contacts/&lt;id&gt;</mark></code></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Delete a record: DELETE <code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">https://api.hubapi.com/crm/v3/objects/contacts/&lt;id&gt;</mark></code></li>
-<!-- /wp:list-item --></ul><p><strong>Body for POST and PATCH requests (example):</strong></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+<span class="hljs-punctuation">}</span></code></pre>
+<h3 id="other-requests" class="wp-block-heading"></h3>
+<h3 id="other-requests" class="wp-block-heading">Some of the other requests are:</h3>
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Add a record: POST <code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">https://api.hubapi.com/crm/v3/objects/contacts</mark></code></li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Update a record: PATCH <code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">https://api.hubapi.com/crm/v3/objects/contacts/&lt;id&gt;</mark></code></li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Delete a record: DELETE <code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">https://api.hubapi.com/crm/v3/objects/contacts/&lt;id&gt;</mark></code></li>
+<!-- /wp:list-item --></ul>
+<p><strong>Body for POST and PATCH requests (example):</strong></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"properties"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
        <span class="hljs-attr">"email"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"jonedoe@hubspot.com"</span><span class="hljs-punctuation">,</span>
        <span class="hljs-attr">"firstname"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Jone"</span><span class="hljs-punctuation">,</span>
        <span class="hljs-attr">"lastname"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Doe (Sample Contact)"</span>
    <span class="hljs-punctuation">}</span>
-<span class="hljs-punctuation">}</span></code></pre><p><strong><br></strong></p><h2 class="wp-block-heading" id="get-deals">Get all deals:</h2><p><code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">https://api.hubapi.com/crm/v3/objects/deal</mark></code></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+<span class="hljs-punctuation">}</span></code></pre>
+<p><strong>&nbsp;</strong></p>
+<h2 id="get-deals" class="wp-block-heading">Get all deals:</h2>
+<p><code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">https://api.hubapi.com/crm/v3/objects/deal</mark></code></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"results"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
        <span class="hljs-punctuation">{</span>
            <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"11742595446"</span><span class="hljs-punctuation">,</span>
@@ -383,13 +381,20 @@
            <span class="hljs-attr">"archived"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span>
        <span class="hljs-punctuation">}</span>
    <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><h2 class="wp-block-heading" id="create-property"><br></h2><h2 class="wp-block-heading" id="create-property">Create new Property:</h2><p>We can also create a new property through <mark style="background-color:#7bdcb5" class="has-inline-color">Settings → Data Management → Properties → Create property</mark> or click on a<mark style="background-color:#7bdcb5" class="has-inline-color"> particular record → View all properties → Manage Properties → Create property</mark>.</p><p><img src="https://drive.google.com/thumbnail?id=1IPhIwkTZR9yjDdk2Q4B6WeHo_OC3w7Db&amp;sz=w1000" data-filename="hubspot-property.png" style="width: 100%;"><br></p><h2 class="wp-block-heading" id="get-skills"><br></h2><h2 class="wp-block-heading" id="get-skills">Get skills from deals:</h2><ul class="wp-block-list"><!-- wp:list-item -->
+<span class="hljs-punctuation">}</span></code></pre>
+<h2 id="create-property" class="wp-block-heading"></h2>
+<h2 id="create-property" class="wp-block-heading">Create new Property:</h2>
+<p>We can also create a new property through <mark class="has-inline-color" style="background-color: #7bdcb5;">Settings &rarr; Data Management &rarr; Properties &rarr; Create property</mark> or click on a<mark class="has-inline-color" style="background-color: #7bdcb5;"> particular record &rarr; View all properties &rarr; Manage Properties &rarr; Create property</mark>.</p>
+<p><img style="width: 100%;" src="https://drive.google.com/thumbnail?id=1IPhIwkTZR9yjDdk2Q4B6WeHo_OC3w7Db&amp;sz=w1000" data-filename="hubspot-property.png"></p>
+<h2 id="get-skills" class="wp-block-heading"></h2>
+<h2 id="get-skills" class="wp-block-heading">Get skills from deals:</h2>
+<ul class="wp-block-list"><!-- wp:list-item -->
 <li>When we call API, only default properties will get fetched.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>So, we also need to pass query parameters to get particular properties.</li>
-<!-- /wp:list-item --></ul><p>e.g. <code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">https://api.hubapi.com/crm/v3/objects/deal?properties=skill</mark></code></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+<!-- /wp:list-item --></ul>
+<p>e.g. <code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">https://api.hubapi.com/crm/v3/objects/deal?properties=skill</mark></code></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"results"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
        <span class="hljs-punctuation">{</span>
            <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"11742595446"</span><span class="hljs-punctuation">,</span>
@@ -416,7 +421,11 @@
            <span class="hljs-attr">"archived"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span>
        <span class="hljs-punctuation">}</span>
    <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><p><code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color"><br></mark></code></p><h2 class="wp-block-heading" id="get-multiple-properties">Get multiple properties with a value:</h2><p><code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">https://api.hubapi.com/crm/v3/objects/deal?properties=skill,amount</mark></code></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+<span class="hljs-punctuation">}</span></code></pre>
+<p><code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">&nbsp;</mark></code></p>
+<h2 id="get-multiple-properties" class="wp-block-heading">Get multiple properties with a value:</h2>
+<p><code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">https://api.hubapi.com/crm/v3/objects/deal?properties=skill,amount</mark></code></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"results"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
        <span class="hljs-punctuation">{</span>
            <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"11742595446"</span><span class="hljs-punctuation">,</span>
@@ -445,7 +454,12 @@
            <span class="hljs-attr">"archived"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span>
        <span class="hljs-punctuation">}</span>
    <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><p><code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color"><br></mark></code></p><h2 class="wp-block-heading" id="filter-by-amount">Filter the data by amount:</h2><p>Post <code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">https://api.hubapi.com/crm/v3/objects/deals/search</mark></code></p><p>Request Body:</p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+<span class="hljs-punctuation">}</span></code></pre>
+<p><code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">&nbsp;</mark></code></p>
+<h2 id="filter-by-amount" class="wp-block-heading">Filter the data by amount:</h2>
+<p>Post <code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">https://api.hubapi.com/crm/v3/objects/deals/search</mark></code></p>
+<p>Request Body:</p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"filterGroups"</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span>
      <span class="hljs-punctuation">{</span>
        <span class="hljs-attr">"filters"</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span>
@@ -457,7 +471,9 @@
        <span class="hljs-punctuation">]</span>
      <span class="hljs-punctuation">}</span>
    <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><p>The response will be:</p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+<span class="hljs-punctuation">}</span></code></pre>
+<p>The response will be:</p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"total"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">"results"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
        <span class="hljs-punctuation">{</span>
@@ -477,7 +493,11 @@
            <span class="hljs-attr">"archived"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span>
        <span class="hljs-punctuation">}</span>
    <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><h2 class="wp-block-heading" id="filter-by-created_date">Filter the data by created date:</h2><p>Post <code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">https://api.hubapi.com/crm/v3/objects/deals/search</mark></code></p><p>Request Body:</p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+<span class="hljs-punctuation">}</span></code></pre>
+<h2 id="filter-by-created_date" class="wp-block-heading">Filter the data by created date:</h2>
+<p>Post <code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">https://api.hubapi.com/crm/v3/objects/deals/search</mark></code></p>
+<p>Request Body:</p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"filterGroups"</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span>
      <span class="hljs-punctuation">{</span>
        <span class="hljs-attr">"filters"</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span>
@@ -490,13 +510,16 @@
        <span class="hljs-punctuation">]</span>
      <span class="hljs-punctuation">}</span>
    <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><p><strong>Note</strong>:&nbsp;</p><ul class="wp-block-list"><!-- wp:list-item -->
-<li><code><mark style="background-color:#7bdcb5" class="has-inline-color">highvalue</mark></code> and <code><mark style="background-color:#7bdcb5" class="has-inline-color">value</mark></code> take the date in the epoch (in milliseconds).</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<span class="hljs-punctuation">}</span></code></pre>
+<p><strong>Note</strong>:&nbsp;</p>
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><code><mark class="has-inline-color" style="background-color: #7bdcb5;">highvalue</mark></code> and <code><mark class="has-inline-color" style="background-color: #7bdcb5;">value</mark></code> take the date in the epoch (in milliseconds).</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>The Unix epoch counts the number of seconds elapsed since January 1, 1970, at midnight UTC, excluding leap seconds.</li>
-<!-- /wp:list-item --></ul><p>There are a lot of online tools available to convert human-readable date to epochs. For e.g. <a href="https://www.epochconverter.com/">epochconverter.com</a></p><p>The response will be:</p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+<!-- /wp:list-item --></ul>
+<p>There are a lot of online tools available to convert human-readable date to epochs. For e.g. <a href="https://www.epochconverter.com/">epochconverter.com</a></p>
+<p>The response will be:</p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"total"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">"results"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
        <span class="hljs-punctuation">{</span>
@@ -532,209 +555,16 @@
            <span class="hljs-attr">"archived"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span>
        <span class="hljs-punctuation">}</span>
    <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><p>For more information, <a href="https://developers.hubspot.com/docs/api/crm/search" target="_blank" rel="noreferrer noopener">click here</a></p><h2 class="wp-block-heading" id="email-engagement">How to GET and POST email engagement?</h2><p><!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"ordered":true} -->
-
-<!-- /wp:list -->
-
-<!-- wp:embed {"url":"https://youtu.be/Exis0Aq5SZM","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-
-<!-- /wp:list -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list -->
-
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"level":3} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list -->
-
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list -->
-
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/hNTcuHHiYtY","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed --></p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/hNTcuHHiYtY" width="640" height="360" class="note-video-clip"></iframe><br></div></figure></div>
+<span class="hljs-punctuation">}</span></code></pre>
+<p>For more information, <a href="https://developers.hubspot.com/docs/api/crm/search" target="_blank" rel="noreferrer noopener">click here</a></p>
+<h2 id="email-engagement" class="wp-block-heading">How to GET and POST email engagement?</h2>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/hNTcuHHiYtY">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/hNTcuHHiYtY?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"ordered":true} --><!-- /wp:list --><!-- wp:embed {"url":"https://youtu.be/Exis0Aq5SZM","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:list --><!-- /wp:list --><!-- wp:heading --><!-- /wp:heading --><!-- wp:list --><!-- /wp:list --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:heading --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"level":3} --><!-- /wp:heading --><!-- wp:list --><!-- /wp:list --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:list --><!-- /wp:list --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:list --><!-- /wp:list --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/hNTcuHHiYtY","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --></p>
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<div class="wp-block-embed__wrapper">&nbsp;</div>
+</figure></div>
 
 <script>
   if (window.hljs) {

@@ -157,25 +157,27 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><p><span style="font-size: 1rem;">Handwritten digit recognition is a simple project that should help you learn how a convolutional neural network works. In this lesson, I built a model with TensorFlow and Tflearn.</span></p><h2 class="wp-block-heading">What will you learn?</h2><ul class="wp-block-list"><!-- wp:list-item -->
+  <div class="post-body"><p><span style="font-size: 1rem;">Handwritten digit recognition is a simple project that should help you learn how a convolutional neural network works. In this lesson, I built a model with TensorFlow and Tflearn.</span></p>
+<h2 class="wp-block-heading">What will you learn?</h2>
+<ul class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#collect-images">Collection of digits/images&nbsp;</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#create-data">Using that images to create data&nbsp;</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#divide-data">Divide data into training and testing part</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#create-model">Using that data to create a model&nbsp;</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#prediction">Using that model to predict new digits.</a></li>
-<!-- /wp:list-item --></ul><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/aqaD1wdeNeE" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading" id="collect-images">1. Collect the images</h2><p>First of all, we have to collect images of digits (from 0 to 9). You can use the pyscreenshot package to gather images. It's downloadable via pip, which is Python Package Installer. Pip typically gets installed automatically when you install Python. To install pyscreenshot, open any terminal and enter the following command:</p><p><code><mark style="background-color: rgb(255, 231, 156);" class="has-inline-color has-luminous-vivid-orange-color">pip install pyscreenshot</mark></code></p><p>I'm also importing time since I want to pause my execution for a second so that I can draw the following image (digit). Everything is clear in the code below, but some may have difficulty locating the exact bbox coordinate value. This coordinate value determines the part of your screen that will be captured. It was found through trial and error. You might also try using the same&nbsp;coordinate that I am using&nbsp;for your first run. However, because our laptop sizes vary, it is possible that it will be different for you and me. So, you have to&nbsp;utilize the trial and error method to identify the correct coordinate value.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">screen_capture</span>():
+<!-- /wp:list-item --></ul>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/aqaD1wdeNeE">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/aqaD1wdeNeE?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<h2 id="collect-images" class="wp-block-heading">1. Collect the images</h2>
+<p>First of all, we have to collect images of digits (from 0 to 9). You can use the pyscreenshot package to gather images. It's downloadable via pip, which is Python Package Installer. Pip typically gets installed automatically when you install Python. To install pyscreenshot, open any terminal and enter the following command:</p>
+<p><code><mark class="has-inline-color has-luminous-vivid-orange-color" style="background-color: #ffe79c;">pip install pyscreenshot</mark></code></p>
+<p>I'm also importing time since I want to pause my execution for a second so that I can draw the following image (digit). Everything is clear in the code below, but some may have difficulty locating the exact bbox coordinate value. This coordinate value determines the part of your screen that will be captured. It was found through trial and error. You might also try using the same&nbsp;coordinate that I am using&nbsp;for your first run. However, because our laptop sizes vary, it is possible that it will be different for you and me. So, you have to&nbsp;utilize the trial and error method to identify the correct coordinate value.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">def</span> <span class="hljs-title function_">screen_capture</span>():
     <span class="hljs-keyword">import</span> pyscreenshot <span class="hljs-keyword">as</span> ImageGrab <span class="hljs-comment">#pip install pyscreenshot</span>
     <span class="hljs-keyword">import</span> time
 
@@ -188,7 +190,10 @@
         <span class="hljs-built_in">print</span> (<span class="hljs-string">"saved...."</span>,i)
         im.save(images_folder+<span class="hljs-built_in">str</span>(i)+<span class="hljs-string">'.png'</span>)
         <span class="hljs-built_in">print</span> (<span class="hljs-string">"clear screen now and redraw again..."</span>)
-<span class="hljs-comment">#screen_capture()</span></code></pre><h2 class="wp-block-heading" id="create-data">2. Create data with a label</h2><p>This part involves converting the image name into a numpy array. We then use OpenCV to create data that can be utilized for building a model.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-comment">#screen_capture()</span></code></pre>
+<h2 id="create-data" class="wp-block-heading">2. Create data with a label</h2>
+<p>This part involves converting the image name into a numpy array. We then use OpenCV to create data that can be utilized for building a model.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 
 <span class="hljs-keyword">def</span> <span class="hljs-title function_">create_label</span>(<span class="hljs-params">image_name</span>):
     <span class="hljs-string">""" Create an one-hot encoded vector from image name """</span> 
@@ -211,7 +216,8 @@
     <span class="hljs-keyword">elif</span> image_name == <span class="hljs-string">'8'</span>:
         <span class="hljs-keyword">return</span> np.array([<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>])
     <span class="hljs-keyword">elif</span> image_name == <span class="hljs-string">'9'</span>:
-        <span class="hljs-keyword">return</span> np.array([<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>])</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> os
+        <span class="hljs-keyword">return</span> np.array([<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>])</code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> os
 <span class="hljs-keyword">import</span> cv2
 <span class="hljs-keyword">from</span> random <span class="hljs-keyword">import</span> shuffle
 <span class="hljs-keyword">from</span> tqdm <span class="hljs-keyword">import</span> tqdm
@@ -228,24 +234,34 @@
                 <span class="hljs-keyword">continue</span>
             data.append([np.array(img_data), create_label(folder)])
     shuffle(data)
-    <span class="hljs-keyword">return</span> data</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">data = create_data()
-</code><div><br></div></pre><pre class="wp-block-syntaxhighlighter-code"><span style="font-size: 2rem; color: rgb(0, 0, 0); font-family: sans-serif;">3. Dividing data into training and testing part</span></pre><p>We use training data to create a model and testing data to verify it.</p><pre><code class="language-python hljs" contenteditable="true" style="">train = data[:<span class="hljs-number">800</span>]
+    <span class="hljs-keyword">return</span> data</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">data = create_data()
+</code></pre>
+<div>&nbsp;</div>
+<pre class="wp-block-syntaxhighlighter-code"><span style="font-size: 2rem; color: #000000; font-family: sans-serif;">3. Dividing data into training and testing part</span></pre>
+<p>We use training data to create a model and testing data to verify it.</p>
+<pre><code class="language-python hljs" contenteditable="true">train = data[:<span class="hljs-number">800</span>]
 test = data[<span class="hljs-number">800</span>:]
 X_train = np.array([i[<span class="hljs-number">0</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> train]).reshape(-<span class="hljs-number">1</span>, <span class="hljs-number">28</span>,<span class="hljs-number">28</span>, <span class="hljs-number">1</span>)
 y_train = [i[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> train]
 X_test = np.array([i[<span class="hljs-number">0</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> test]).reshape(-<span class="hljs-number">1</span>, <span class="hljs-number">28</span>,<span class="hljs-number">28</span>, <span class="hljs-number">1</span>)
-y_test = [i[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> test]</code></pre><h2 class="wp-block-heading" id="create-model">4. Building the model</h2><p>This is an important step. You can create a model using the training and testing data. Training data trains our model whereas testing data validates our model.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> warnings
+y_test = [i[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> test]</code></pre>
+<h2 id="create-model" class="wp-block-heading">4. Building the model</h2>
+<p>This is an important step. You can create a model using the training and testing data. Training data trains our model whereas testing data validates our model.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> warnings
 warnings.filterwarnings(<span class="hljs-string">'ignore'</span>)
 
 <span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
 <span class="hljs-keyword">import</span> tflearn
 <span class="hljs-keyword">from</span> tflearn.layers.conv <span class="hljs-keyword">import</span> conv_2d, max_pool_2d
 <span class="hljs-keyword">from</span> tflearn.layers.core <span class="hljs-keyword">import</span> input_data, dropout, fully_connected
-<span class="hljs-keyword">from</span> tflearn.layers.estimator <span class="hljs-keyword">import</span> regression</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment">## Steps of Convolutional neural network:</span>
+<span class="hljs-keyword">from</span> tflearn.layers.estimator <span class="hljs-keyword">import</span> regression</code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-comment">## Steps of Convolutional neural network:</span>
 <span class="hljs-comment"># 1. Convolution layers</span>
 <span class="hljs-comment"># 2. Normalization</span>
 <span class="hljs-comment"># 3. Pooling</span>
-<span class="hljs-comment"># 4. Fully connected</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style="">tf.reset_default_graph()
+<span class="hljs-comment"># 4. Fully connected</span></code></pre>
+<pre><code class="language-python hljs" contenteditable="true">tf.reset_default_graph()
 convnet = input_data(shape=[<span class="hljs-number">28</span>,<span class="hljs-number">28</span>, <span class="hljs-number">1</span>], name=<span class="hljs-string">'input'</span>) 
 convnet = conv_2d(convnet, <span class="hljs-number">32</span>, <span class="hljs-number">5</span>, activation=<span class="hljs-string">'relu'</span>)
 convnet = max_pool_2d(convnet, <span class="hljs-number">5</span>)
@@ -264,7 +280,10 @@ convnet = regression(convnet, optimizer=<span class="hljs-string">'adam'</span>,
 model = tflearn.DNN(convnet, tensorboard_verbose=<span class="hljs-number">1</span>)  
 model.fit({<span class="hljs-string">'input'</span>: X_train}, {<span class="hljs-string">'targets'</span>: y_train}, n_epoch=<span class="hljs-number">12</span>,
           validation_set=({<span class="hljs-string">'input'</span>: X_test}, {<span class="hljs-string">'targets'</span>: y_test}),
-          show_metric=<span class="hljs-literal">True</span>)</code></pre><h2 class="wp-block-heading" id="prediction">5. Let's predict and display using matplotlib</h2><p>Not it's time to make a prediction. Let's see if our model predicts correctly or not. You can visualize the output using the Matplotlib library.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">create_test_data</span>():
+          show_metric=<span class="hljs-literal">True</span>)</code></pre>
+<h2 id="prediction" class="wp-block-heading">5. Let's predict and display using matplotlib</h2>
+<p>Not it's time to make a prediction. Let's see if our model predicts correctly or not. You can visualize the output using the Matplotlib library.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">def</span> <span class="hljs-title function_">create_test_data</span>():
     data = []
     <span class="hljs-keyword">for</span> img <span class="hljs-keyword">in</span> tqdm(os.listdir(<span class="hljs-string">"new_images"</span>)):
         path = os.path.join(<span class="hljs-string">"new_images"</span>, img)
@@ -277,7 +296,9 @@ model.fit({<span class="hljs-string">'input'</span>: X_train}, {<span class="hlj
         data.append([np.array(img_data), img_num])
 
     shuffle(data)
-    <span class="hljs-keyword">return</span> data</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">test_data = create_test_data()</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+    <span class="hljs-keyword">return</span> data</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">test_data = create_test_data()</code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
 
 fig = plt.figure(figsize=(<span class="hljs-number">10</span>,<span class="hljs-number">10</span>))
 <span class="hljs-keyword">for</span> num, data <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(test_data[:<span class="hljs-number">10</span>]):
@@ -292,133 +313,14 @@ fig = plt.figure(figsize=(<span class="hljs-number">10</span>,<span class="hljs-
     plt.title(str_label)
     y.axes.get_xaxis().set_visible(<span class="hljs-literal">False</span>)
     y.axes.get_yaxis().set_visible(<span class="hljs-literal">False</span>)
-plt.show()</code></pre><h2 class="wp-block-heading"><strong>Final output:</strong></h2><h2 class="wp-block-heading"><img src="https://drive.google.com/thumbnail?id=16a2gKp5EixBKd6MWBE6S5xbHvSoXDTfS&sz=w1000" data-filename="digit-prediction.png" style="width: 631px;"></h2><figure class="wp-block-image size-large"><br></figure><h2 class="wp-block-heading">Conclusion:</h2><p>In this way, we can make Handwritten digit recognition using Convolutional Neural Network. Just we need to collect images of digits, create data, then use data to create a model, and then the final step is to make a prediction.</p><p><!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list -->
-
-<!-- /wp:list -->
-
-<!-- wp:embed {"url":"https://youtu.be/aqaD1wdeNeE","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:image {"id":1327,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph --></p><p>I hope this project is very helpful to you. If you have any questions, don't hesitate to ask me in the comment section. I will reply as soon as possible. Thanks.</p></div>
+plt.show()</code></pre>
+<h2 class="wp-block-heading"><strong>Final output:</strong></h2>
+<h2 class="wp-block-heading"><img style="width: 631px;" src="https://drive.google.com/thumbnail?id=16a2gKp5EixBKd6MWBE6S5xbHvSoXDTfS&amp;sz=w1000" data-filename="digit-prediction.png"></h2>
+<figure class="wp-block-image size-large"></figure>
+<h2 class="wp-block-heading">Conclusion:</h2>
+<p>In this way, we can make Handwritten digit recognition using Convolutional Neural Network. Just we need to collect images of digits, create data, then use data to create a model, and then the final step is to make a prediction.</p>
+<p><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:list --><!-- /wp:list --><!-- wp:embed {"url":"https://youtu.be/aqaD1wdeNeE","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:image {"id":1327,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --></p>
+<p>I hope this project is very helpful to you. If you have any questions, don't hesitate to ask me in the comment section. I will reply as soon as possible. Thanks.</p></div>
 
 <script>
   if (window.hljs) {

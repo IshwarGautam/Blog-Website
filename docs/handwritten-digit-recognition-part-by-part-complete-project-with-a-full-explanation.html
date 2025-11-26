@@ -157,33 +157,35 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Handwritten digit recognition is a very simple project that takes a digit as input and predicts that digit as output.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+  <div class="post-body"><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Handwritten digit recognition is a very simple project that takes a digit as input and predicts that digit as output.</p>
+<h2 class="wp-block-heading">What will you learn?</h2>
+<ol class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#part-1">Part 1: Collect the images of digits (0-9)</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#part-2">Part 2: Generate dataset through collected images.</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#part-3">Part 3: Train the model and calculate the accuracy.</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#part-4">Part 4: Live prediction of digits.</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#part-5">Part 5: Converting Project into GUI interface.</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#part-6">(Extra) Part 6: Implement in Tkinter-canvas</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#application">Convert a project into an application (setup file) </a></li>
-<!-- /wp:list-item --></ol><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Demo:</strong></h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/grHXPlwtNQY" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="part-1"><strong>Part 1:</strong> Collect Images</h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/maXzirBEpYM" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Part 1 requires us to collect images of digits (from 0 to 9). The pyscreenshot package can be used to collect images. This package can be downloaded with pip, Python Package Installer. This pip can be installed automatically when Python is installed. To install pyscreenshot, open any terminal and enter the following command:</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-luminous-vivid-orange-color"><code>pip install pyscreenshot</code></mark></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">I'm also importing time since I want to pause my execution for a second so that I can draw the following image (digit). Everything is clear in the code below, but some may have difficulty locating the exact bbox coordinate value. This coordinate value specifies which portion of your screen will be captured.&nbsp;This coordinate was discovered through trial and error. You might also try using the same&nbsp;coordinate that I am using&nbsp;for your first run. However, because our laptop sizes vary, it is possible that it will be different for you and me. So, you have to&nbsp;utilize the trial and error method to identify the correct coordinate value.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> pyscreenshot <span class="hljs-keyword">as</span> ImageGrab
+<!-- /wp:list-item --></ol>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Demo:</strong></h2>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/grHXPlwtNQY">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/grHXPlwtNQY?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<h2 id="part-1" class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Part 1:</strong>&nbsp;Collect Images</h2>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/maXzirBEpYM">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/maXzirBEpYM?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Part 1 requires us to collect images of digits (from 0 to 9). The pyscreenshot package can be used to collect images. This package can be downloaded with pip, Python Package Installer. This pip can be installed automatically when Python is installed. To install pyscreenshot, open any terminal and enter the following command:</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><mark class="has-inline-color has-luminous-vivid-orange-color" style="background-color: rgba(0, 0, 0, 0);"><code>pip install pyscreenshot</code></mark></p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">I'm also importing time since I want to pause my execution for a second so that I can draw the following image (digit). Everything is clear in the code below, but some may have difficulty locating the exact bbox coordinate value. This coordinate value specifies which portion of your screen will be captured.&nbsp;This coordinate was discovered through trial and error. You might also try using the same&nbsp;coordinate that I am using&nbsp;for your first run. However, because our laptop sizes vary, it is possible that it will be different for you and me. So, you have to&nbsp;utilize the trial and error method to identify the correct coordinate value.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> pyscreenshot <span class="hljs-keyword">as</span> ImageGrab
 <span class="hljs-keyword">import</span> time
 images_folder=<span class="hljs-string">"captured_images/0/"</span>
  
@@ -192,7 +194,14 @@ images_folder=<span class="hljs-string">"captured_images/0/"</span>
    im=ImageGrab.grab(bbox=(<span class="hljs-number">60</span>,<span class="hljs-number">170</span>,<span class="hljs-number">400</span>,<span class="hljs-number">550</span>)) <span class="hljs-comment">#x1,y1,x2,y2</span>
    <span class="hljs-built_in">print</span>(<span class="hljs-string">"saved......"</span>,i)
    im.save(images_folder+<span class="hljs-built_in">str</span>(i)+<span class="hljs-string">'.png'</span>)
-   <span class="hljs-built_in">print</span>(<span class="hljs-string">"clear screen now and redraw now........"</span>)</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="part-2"><strong>Part 2:</strong> Generate dataset</h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/jcSWNU4jRL4" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Part 2 requires us to create our <a href="https://drive.google.com/file/d/1aMRLUWmv_l1IbjL76Re-47knaZ09pfVZ/view?usp=sharing" target="_blank" rel="noreferrer noopener">dataset</a> from the images we obtained in Part 1. To construct a dataset, we must first assign 1 to the drawn region and 0 to the background. That means our dataset will only include two values: 0 and 1. I'm sure you're aware that pixel values range from 0 to 255. In most cases, 0 symbolizes black and 255 represents white. I'm assigning 0 to pixel values ranging from 0 to 100, and 1 to pixel values ranging from 100 to 255. Our pixel values are now merely 0 and 1, rather than 0 and 255. In this manner, I am producing a dataset (CSV file).</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">The final step is to open the dataset, shuffle it i.e., change the position of each row of data, and display it.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment">#Generate dataset</span>
+   <span class="hljs-built_in">print</span>(<span class="hljs-string">"clear screen now and redraw now........"</span>)</code></pre>
+<h2 id="part-2" class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Part 2:</strong> Generate dataset</h2>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/jcSWNU4jRL4">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/jcSWNU4jRL4?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Part 2 requires us to create our <a href="https://drive.google.com/file/d/1aMRLUWmv_l1IbjL76Re-47knaZ09pfVZ/view?usp=sharing" target="_blank" rel="noreferrer noopener">dataset</a> from the images we obtained in Part 1. To construct a dataset, we must first assign 1 to the drawn region and 0 to the background. That means our dataset will only include two values: 0 and 1. I'm sure you're aware that pixel values range from 0 to 255. In most cases, 0 symbolizes black and 255 represents white. I'm assigning 0 to pixel values ranging from 0 to 100, and 1 to pixel values ranging from 100 to 255. Our pixel values are now merely 0 and 1, rather than 0 and 255. In this manner, I am producing a dataset (CSV file).</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">The final step is to open the dataset, shuffle it i.e., change the position of each row of data, and display it.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-comment">#Generate dataset</span>
 <span class="hljs-keyword">import</span> cv2
 <span class="hljs-keyword">import</span> csv
 <span class="hljs-keyword">import</span> glob
@@ -228,28 +237,56 @@ header  =[<span class="hljs-string">"label"</span>]
                data.append(k)
        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'dataset.csv'</span>, <span class="hljs-string">'a'</span>) <span class="hljs-keyword">as</span> f:
            writer = csv.writer(f)
-           writer.writerow(data)</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong><em>Load the dataset:</em></strong></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Then we have to open the dataset, shuffle it i.e., change the position of each row of data, and display it.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd <span class="hljs-comment">#pip install pandas</span>
+           writer.writerow(data)</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong><em>Load the dataset:</em></strong></p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Then we have to open the dataset, shuffle it i.e., change the position of each row of data, and display it.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd <span class="hljs-comment">#pip install pandas</span>
 <span class="hljs-keyword">from</span> sklearn.utils <span class="hljs-keyword">import</span> shuffle <span class="hljs-comment">#pip install scikit-learn</span>
 <span class="hljs-comment">#0,....,1.....,2.....</span>
 <span class="hljs-comment">#5,3,1,0,2,5,.......</span>
 
 data = pd.read_csv(<span class="hljs-string">'dataset.csv'</span>)
 data = shuffle(data)
-<span class="hljs-built_in">print</span>(data)</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="part-3">Part 3: Train the model and calculate the accuracy</h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/ocbXj4LM--U" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Part 3 requires us to train our model and calculate its accuracy. To train our model, we can utilize scikit-learn. Run the following command to install scikit-learn:</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><code><mark style="background-color: rgb(255, 231, 156);" class="has-inline-color has-luminous-vivid-orange-color">pip install scikit-learn</mark></code></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Separating dependent and independent variables:</strong></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Then we have to separate the dependent (Y) and the independent variable (X). The pixel value (between 0 and 1) will be our independent variable. Keep in mind that each digit is represented by a massive amount of 0 and 1. Our digit (from 0 to 9) will be our dependent variable.</p><pre><code class="language-python hljs" contenteditable="true" style="">X = data.drop([<span class="hljs-string">"label"</span>],axis=<span class="hljs-number">1</span>)
-Y= data[<span class="hljs-string">"label"</span>]</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Preview of one image using matplotlib</strong></p><pre><code class="language-python hljs" contenteditable="true" style="">%matplotlib inline
+<span class="hljs-built_in">print</span>(data)</code></pre>
+<h2 id="part-3" class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">Part 3: Train the model and calculate the accuracy</h2>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/ocbXj4LM--U">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/ocbXj4LM--U?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Part 3 requires us to train our model and calculate its accuracy. To train our model, we can utilize scikit-learn. Run the following command to install scikit-learn:</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><code><mark class="has-inline-color has-luminous-vivid-orange-color" style="background-color: #ffe79c;">pip install scikit-learn</mark></code></p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Separating dependent and independent variables:</strong></p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Then we have to separate the dependent (Y) and the independent variable (X). The pixel value (between 0 and 1) will be our independent variable. Keep in mind that each digit is represented by a massive amount of 0 and 1. Our digit (from 0 to 9) will be our dependent variable.</p>
+<pre><code class="language-python hljs" contenteditable="true">X = data.drop([<span class="hljs-string">"label"</span>],axis=<span class="hljs-number">1</span>)
+Y= data[<span class="hljs-string">"label"</span>]</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Preview of one image using matplotlib</strong></p>
+<pre><code class="language-python hljs" contenteditable="true">%matplotlib inline
 <span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
 <span class="hljs-keyword">import</span> cv2
 idx = <span class="hljs-number">314</span>
 img = X.loc[idx].values.reshape(<span class="hljs-number">28</span>,<span class="hljs-number">28</span>)
 <span class="hljs-built_in">print</span>(Y[idx])
-plt.imshow(img)</code></pre><figure class="wp-block-image size-large"><img src="https://igtechteam.wordpress.com/wp-content/uploads/2023/06/image-25.png?w=402" alt="" class="wp-image-1320"></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Train-Test split</strong></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
-train_x,test_x,train_y,test_y = train_test_split(X,Y, test_size = <span class="hljs-number">0.2</span>)</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Fit the model using svc and also save the model using joblib</strong></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> joblib
+plt.imshow(img)</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Train-Test split</strong></p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+train_x,test_x,train_y,test_y = train_test_split(X,Y, test_size = <span class="hljs-number">0.2</span>)</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Fit the model using svc and also save the model using joblib</strong></p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> joblib
 <span class="hljs-keyword">from</span> sklearn.svm <span class="hljs-keyword">import</span> SVC
 classifier=SVC(kernel=<span class="hljs-string">"linear"</span>, random_state=<span class="hljs-number">6</span>)
 classifier.fit(train_x,train_y)
-joblib.dump(classifier, <span class="hljs-string">"model/digit_recognizer"</span>)</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Calculate accuracy</strong></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> metrics
+joblib.dump(classifier, <span class="hljs-string">"model/digit_recognizer"</span>)</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Calculate accuracy</strong></p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> metrics
 prediction=classifier.predict(test_x)
-<span class="hljs-built_in">print</span>(<span class="hljs-string">"Accuracy= "</span>,metrics.accuracy_score(prediction, test_y))</code></pre><p>I am giving 80% of my data to the training part and the remaining 20% to the testing part (as I have defined test_size = 0.2).&nbsp;Remember, training images are used to create our model, and testing images are used to calculate accuracy. In the training part, we train our model i.e., we give our model pixel value (bunch of 0 and 1) and also label (i.e. which digit is this). That means we teach our model.&nbsp;After this step, our model gets learned. Now, in the testing part, we only give pixel value (a bunch of 0 and 1) to our model, our model has to predict that digit. We count how much our model returns a true answer. This way, we calculate accuracy. If our accuracy is 0.97, that means out of 100 data, 97 are correctly predicted and 3 are wrong.&nbsp;</p><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="part-4"><strong>Part 4:</strong> Live Prediction</h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/NKlFuYf11gE" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">In part 4, we have to predict digits drawn in paint. Our model is already trained, right? Now, we don't provide 20% images (testing images) to our model but we provide new images. We draw a digit in paint and at the same time, pass that digit to the model, our model has to predict that digit.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">I am using an infinite loop so that I can test any number of inputs. If I press enter, it should close all the windows and stop my execution because I have passed cv2.waitkey(1)==13, and this 13 is the ASCII value of enter. But, I am using waitkey(10000) to display the same window for the long run. So, if I press enter, my execution does not halt. I have to press enter again and again (I think 4 or 5 times) and then only my execution gets stopped. I didn't get any solution regarding this. This is also nice, not. This is not a big deal to press enter 4 or 5 times but if you find any other solution, please let me know.&nbsp;</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment">#prediction of image drawn in paint</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Accuracy= "</span>,metrics.accuracy_score(prediction, test_y))</code></pre>
+<p>I am giving 80% of my data to the training part and the remaining 20% to the testing part (as I have defined test_size = 0.2).&nbsp;Remember, training images are used to create our model, and testing images are used to calculate accuracy. In the training part, we train our model i.e., we give our model pixel value (bunch of 0 and 1) and also label (i.e. which digit is this). That means we teach our model.&nbsp;After this step, our model gets learned. Now, in the testing part, we only give pixel value (a bunch of 0 and 1) to our model, our model has to predict that digit. We count how much our model returns a true answer. This way, we calculate accuracy. If our accuracy is 0.97, that means out of 100 data, 97 are correctly predicted and 3 are wrong.&nbsp;</p>
+<h2 id="part-4" class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Part 4:</strong> Live Prediction</h2>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/NKlFuYf11gE">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/NKlFuYf11gE?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">In part 4, we have to predict digits drawn in paint. Our model is already trained, right? Now, we don't provide 20% images (testing images) to our model but we provide new images. We draw a digit in paint and at the same time, pass that digit to the model, our model has to predict that digit.</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">I am using an infinite loop so that I can test any number of inputs. If I press enter, it should close all the windows and stop my execution because I have passed cv2.waitkey(1)==13, and this 13 is the ASCII value of enter. But, I am using waitkey(10000) to display the same window for the long run. So, if I press enter, my execution does not halt. I have to press enter again and again (I think 4 or 5 times) and then only my execution gets stopped. I didn't get any solution regarding this. This is also nice, not. This is not a big deal to press enter 4 or 5 times but if you find any other solution, please let me know.&nbsp;</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-comment">#prediction of image drawn in paint</span>
  
 <span class="hljs-keyword">import</span> joblib
 <span class="hljs-keyword">import</span> cv2
@@ -296,7 +333,18 @@ image_folder=<span class="hljs-string">"img/"</span>
    cv2.waitKey(<span class="hljs-number">10000</span>)
    <span class="hljs-keyword">if</span> cv2.waitKey(<span class="hljs-number">1</span>)==<span class="hljs-number">13</span>: <span class="hljs-comment">#27 is the ascii value of esc, 13 is the ascii value of enter</span>
        <span class="hljs-keyword">break</span>
-cv2.destroyAllWindows()</code></pre><pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"> </pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="part-5"><strong>Part 5 (Converting the above project in GUI):</strong></h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">If you don't know GUI, please watch this video first:&nbsp;<a href="https://youtu.be/FclrlobIOXM" target="_blank" rel="noreferrer noopener">GUI using Python (Tkinter)</a></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">We will now convert our project into a GUI application.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/XUTkyHeMZPQ" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p>We have finished the major sections (parts 1–4). You have your output, right? But why is this part 5? Nowadays, converting any Python project to a GUI application is essential. If you wish to submit your project to a&nbsp;college or a different organization, you must transform it into a graphical user interface (GUI) application. Tkinter, one of the GUI toolkits, is what I'm utilizing for this.</p><p>The codes listed above are repeated here. However, you must be careful about where you place the code. I'm going to explain it pretty simply. So, make sure you've seen this video.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Note: The below code is the same as the above four parts. They are merged here. So, don't get worried by looking at these codes:</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
+cv2.destroyAllWindows()</code></pre>
+<pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"> </pre>
+<h2 id="part-5" class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Part 5 (Converting the above project in GUI):</strong></h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">If you don't know GUI, please watch this video first:&nbsp;<a href="https://youtu.be/FclrlobIOXM" target="_blank" rel="noreferrer noopener">GUI using Python (Tkinter)</a></p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">We will now convert our project into a GUI application.</p>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/XUTkyHeMZPQ">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/XUTkyHeMZPQ?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p>We have finished the major sections (parts 1&ndash;4). You have your output, right? But why is this part 5? Nowadays, converting any Python project to a GUI application is essential. If you wish to submit your project to a&nbsp;college or a different organization, you must transform it into a graphical user interface (GUI) application. Tkinter, one of the GUI toolkits, is what I'm utilizing for this.</p>
+<p>The codes listed above are repeated here. However, you must be careful about where you place the code. I'm going to explain it pretty simply. So, make sure you've seen this video.</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Note: The below code is the same as the above four parts. They are merged here. So, don't get worried by looking at these codes:</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
 <span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> *
 <span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> messagebox
  
@@ -450,241 +498,22 @@ b4=tk.Button(window,text=<span class="hljs-string">"4. Live prediction"</span>, 
 b4.place(x=<span class="hljs-number">5</span>, y=<span class="hljs-number">200</span>)
  
 window.geometry(<span class="hljs-string">"600x300"</span>)
-window.mainloop()</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="part-6">Part 6 (Extra): Implement in Tkinter Canvas</h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/OPNY_3uUJys" width="640" height="360" class="note-video-clip"></iframe><strong style="font-size: 1rem;"><em><br></em></strong></div><div class="wp-block-embed__wrapper"><strong style="font-size: 1rem;"><em>Again another part? But why?</em></strong></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">This is an additional step. I'm creating a graphical user interface with Tkinter Canvas. You can use Tkinter Canvas to make your project appear attractive. I'm not using paint from my system in this case. I'm making paint from Python code, which is a bad idea because it reduces our precision. So, use this video to get an idea of what extra measures you may take to make your project more appealing. You can modify this. But believe me when I say that if you create paint and a brush that draws a really smooth image, this will be a fantastic job. You will leave an impression on everyone!</p><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="application"><strong>Convert your project into the application (setup file):</strong></h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/D6jXMw7STUQ" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p>To run the code, you must launch your Python IDE, right? After this section, you won't need it anymore. Transform your entire project into an application or setup file. You can open this project just like any other application, such as a game.</p><h2 class="wp-block-heading">Conclusion:</h2><p>In this way, you can make a complete Handwritten Digit Recognition project. First of all, you have to collect images of digits and then generate a dataset. Then you need to train a model and using this model, you have to predict digits. You can implement and display your output in a GUI window which improves user interaction. </p><p><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"ordered":true} -->
-
-<!-- /wp:list -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/grHXPlwtNQY","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/maXzirBEpYM","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/jcSWNU4jRL4","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/ocbXj4LM\u002d\u002dU","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:image {"id":1320,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/NKlFuYf11gE","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/XUTkyHeMZPQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/OPNY_3uUJys","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/D6jXMw7STUQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph --></p><p>I hope this project is very helpful to you. If you have any questions, don't hesitate to ask me in the comment section. I will reply as soon as possible. Thanks.</p></div>
+window.mainloop()</code></pre>
+<h2 id="part-6" class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">Part 6 (Extra): Implement in Tkinter Canvas</h2>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/OPNY_3uUJys">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/OPNY_3uUJys?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong style="font-size: 1rem;"><em>Again another part? But why?</em></strong></h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">This is an additional step. I'm creating a graphical user interface with Tkinter Canvas. You can use Tkinter Canvas to make your project appear attractive. I'm not using paint from my system in this case. I'm making paint from Python code, which is a bad idea because it reduces our precision. So, use this video to get an idea of what extra measures you may take to make your project more appealing. You can modify this. But believe me when I say that if you create paint and a brush that draws a really smooth image, this will be a fantastic job. You will leave an impression on everyone!</p>
+<h2 id="application" class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Convert your project into the application (setup file):</strong></h2>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/D6jXMw7STUQ">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/D6jXMw7STUQ?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p>To run the code, you must launch your Python IDE, right? After this section, you won't need it anymore. Transform your entire project into an application or setup file. You can open this project just like any other application, such as a game.</p>
+<h2 class="wp-block-heading">Conclusion:</h2>
+<p>In this way, you can make a complete Handwritten Digit Recognition project. First of all, you have to collect images of digits and then generate a dataset. Then you need to train a model and using this model, you have to predict digits. You can implement and display your output in a GUI window which improves user interaction.</p>
+<p><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"ordered":true} --><!-- /wp:list --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/grHXPlwtNQY","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/maXzirBEpYM","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/jcSWNU4jRL4","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/ocbXj4LM\u002d\u002dU","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:image {"id":1320,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/NKlFuYf11gE","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/XUTkyHeMZPQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/OPNY_3uUJys","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/D6jXMw7STUQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --></p>
+<p>I hope this project is very helpful to you. If you have any questions, don't hesitate to ask me in the comment section. I will reply as soon as possible. Thanks.</p></div>
 
 <script>
   if (window.hljs) {

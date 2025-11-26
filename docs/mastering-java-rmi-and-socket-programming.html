@@ -157,88 +157,52 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><style>
-#fancy-table {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-#fancy-table td, tbody tr:first-child {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#fancy-table tr:nth-child(even){background-color: #f2f2f2;}
-
-#fancy-table tr:hover {background-color: #ddd;}
-
-#fancy-table tbody tr:first-child {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
-}
-</style>
-
-<p>Let's deep dive into RMI and Socket.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+  <div class="post-body"><p>Let's deep dive into RMI and Socket.</p>
+<h2 class="wp-block-heading">What will you learn?</h2>
+<ol class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#rmi-intro">RMI Introduction</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#rmi-architecture">RMI architecture</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#rmi-program">RMI program: How to program in Java?</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#socket-intro">Socket Introduction</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#tcp-udp">About TCP and UDP socket</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#socket-program">Socket program to communicate between client and server</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#tcp-vs-udp">TCP socket vs. UDP socket in table</a></li>
-<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="rmi-intro">RMI Introduction</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Remote Method Invocation (RMI) is a technique for establishing communication between Java applications.&nbsp;It provides a mechanism to provide distributed applications in Java.&nbsp;It includes the main package<code> java.rmi</code>.</p><h2 class="wp-block-heading" id="rmi-architecture">RMI architecture:</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">In an RMI application, we write two programs, a&nbsp;server program&nbsp;(resides on the server) and a&nbsp;client program&nbsp;(resides on the client). It includes stub, skeleton, Remote Reference Layer, and Transport Layer.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><img src="https://drive.google.com/thumbnail?id=18jkmEOxz2tWg_ylDwABoEzTfavA9tNV-&amp;sz=w1000" data-filename="rmi-architecture.png" style="width: 400px;"></p><figure class="wp-block-image size-large"><br></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"></p><h2 class="wp-block-heading" id="rmi-program">RMI Program: <strong><em><span style="text-decoration: underline">How to program in Java??</span></em></strong></h2><ol style="list-style-type:video" class="wp-block-list wp-embed-aspect-16-9 wp-has-aspect-ratio"><!-- wp:list-item -->
+<!-- /wp:list-item --></ol>
+<h2 id="rmi-intro" class="wp-block-heading">RMI Introduction</h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Remote Method Invocation (RMI) is a technique for establishing communication between Java applications.&nbsp;It provides a mechanism to provide distributed applications in Java.&nbsp;It includes the main package<code> java.rmi</code>.</p>
+<h2 id="rmi-architecture" class="wp-block-heading">RMI architecture:</h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">In an RMI application, we write two programs, a&nbsp;server program&nbsp;(resides on the server) and a&nbsp;client program&nbsp;(resides on the client). It includes stub, skeleton, Remote Reference Layer, and Transport Layer.</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><img style="width: 400px;" src="https://drive.google.com/thumbnail?id=18jkmEOxz2tWg_ylDwABoEzTfavA9tNV-&amp;sz=w1000" data-filename="rmi-architecture.png"></p>
+<figure class="wp-block-image size-large"></figure>
+<h2 id="rmi-program" class="wp-block-heading">RMI Program: <strong><em><span style="text-decoration: underline;">How to program in Java??</span></em></strong></h2>
+<ol class="wp-block-list wp-embed-aspect-16-9 wp-has-aspect-ratio" style="list-style-type: video;"><!-- wp:list-item -->
 <li>Defining a remote interface</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Implementing the remote interface</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Implement the server</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Implement the client</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Compile the source file</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Start the Java RMI registry</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Start the server</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Run the client</li>
-<!-- /wp:list-item --></ol><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/32IbmULK6tk" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em>Client.java</em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-comment">//client program</span>
+<!-- /wp:list-item --></ol>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/32IbmULK6tk">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/32IbmULK6tk?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em>Client.java</em></p>
+<pre><code class="language-java hljs" contenteditable="true"><span class="hljs-comment">//client program</span>
 <span class="hljs-keyword">import</span> java.rmi.*;
 <span class="hljs-keyword">import</span> java.net.*;
 <span class="hljs-keyword">import</span> java.io.*;
@@ -263,13 +227,17 @@
             System.out.println(mfe);
         }
     }
-}</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em>Rem.java</em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-comment">//define remote interface</span>
+}</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em>Rem.java</em></p>
+<pre><code class="language-java hljs" contenteditable="true"><span class="hljs-comment">//define remote interface</span>
 <span class="hljs-keyword">import</span> java.rmi.*;
 
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Rem</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Remote</span>{
   <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">addNum</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> <span class="hljs-keyword">throws</span> RemoteException;
   <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">subNum</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> <span class="hljs-keyword">throws</span> RemoteException;
-}</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em>Rem_impt.java</em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-comment">//implementation of interface</span>
+}</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em>Rem_impt.java</em></p>
+<pre><code class="language-java hljs" contenteditable="true"><span class="hljs-comment">//implementation of interface</span>
 <span class="hljs-keyword">import</span> java.rmi.*;
 <span class="hljs-keyword">import</span> java.rmi.server.UnicastRemoteObject;
 
@@ -283,7 +251,9 @@
   <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">subNum</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span>{
     <span class="hljs-keyword">return</span>(a-b);
   }
-}</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em>Server.java</em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-comment">//implementation of interface</span>
+}</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em>Server.java</em></p>
+<pre><code class="language-java hljs" contenteditable="true"><span class="hljs-comment">//implementation of interface</span>
 <span class="hljs-keyword">import</span> java.rmi.*;
 <span class="hljs-keyword">import</span> java.rmi.server.UnicastRemoteObject;
 
@@ -297,29 +267,36 @@
   <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">subNum</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span>{
     <span class="hljs-keyword">return</span>(a-b);
   }
-}</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><br></em></p><h2 class="wp-block-heading" id="socket">Socket programming in Java - Chatting between client and server | Difference between TCP socket and UDP socket</h2><h2 class="wp-block-heading" id="socket-intro">Socket Introduction</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">A&nbsp;socket in Java&nbsp;is one endpoint of a two-way collaboration between two programs (for example, client and server). A socket is connected to a port number so that the TCP layer may detect that one application wants to connect with another program that has the same port number configured.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Questions:</strong></p><ul class="wp-block-list wp-embed-aspect-16-9 wp-has-aspect-ratio"><!-- wp:list-item -->
+}</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em>&nbsp;</em></p>
+<h2 id="socket" class="wp-block-heading">Socket programming in Java - Chatting between client and server | Difference between TCP socket and UDP socket</h2>
+<h2 id="socket-intro" class="wp-block-heading">Socket Introduction</h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">A&nbsp;socket in Java&nbsp;is one endpoint of a two-way collaboration between two programs (for example, client and server). A socket is connected to a port number so that the TCP layer may detect that one application wants to connect with another program that has the same port number configured.</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Questions:</strong></p>
+<ul class="wp-block-list wp-embed-aspect-16-9 wp-has-aspect-ratio"><!-- wp:list-item -->
 <li>What is a UDP socket? Differentiate it with a TCP socket.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>What is a socket? How can you communicate two programs in a network using TCP Socket?</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>What is a TCP socket? Differentiate it with a UDP socket.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>What is a socket? Differentiate TCP socket from UDP socket.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>What is a socket? How can Java programs communicate with one another over TCP sockets? Discuss with a suitable example.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Create a Java program that uses TCP to allow client and server communication.</li>
-<!-- /wp:list-item --></ul><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/ZXx0L7bvVPw" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading" id="tcp-udp">About TCP and UDP socket</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>TCP socket:</strong></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">TCP provides a secure, point-to-point communication channel for&nbsp;client-server applications to connect&nbsp;with one another on the Web. A client program and a server program&nbsp;establish a connection to interact over TCP. Each program associates a socket with the end of the connection. The client and server communicate by reading and writing to the socket linked to the connection.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>UDP socket:</strong></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">UDP socket uses user datagram protocol (UDP). The&nbsp;User Datagram Protocol (UDP)&nbsp;runs on top of the Internet Protocol (IP) and was developed for applications that do not require reliability, acknowledgment, or flow control features at the transport layer. This&nbsp;simple protocol&nbsp;provides transport layer addressing in the form of UDP ports and an optional checksum capability.</p><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="socket-program"><strong>Socket program to communicate between client and server:</strong></h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><span style="text-decoration: underline">client.java</span></em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> java.net.*;
+<!-- /wp:list-item --></ul>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/ZXx0L7bvVPw">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/ZXx0L7bvVPw?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<h2 id="tcp-udp" class="wp-block-heading">About TCP and UDP socket</h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>TCP socket:</strong></p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">TCP provides a secure, point-to-point communication channel for&nbsp;client-server applications to connect&nbsp;with one another on the Web. A client program and a server program&nbsp;establish a connection to interact over TCP. Each program associates a socket with the end of the connection. The client and server communicate by reading and writing to the socket linked to the connection.</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>UDP socket:</strong></p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">UDP socket uses user datagram protocol (UDP). The&nbsp;User Datagram Protocol (UDP)&nbsp;runs on top of the Internet Protocol (IP) and was developed for applications that do not require reliability, acknowledgment, or flow control features at the transport layer. This&nbsp;simple protocol&nbsp;provides transport layer addressing in the form of UDP ports and an optional checksum capability.</p>
+<h2 id="socket-program" class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Socket program to communicate between client and server:</strong></h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><span style="text-decoration: underline;">client.java</span></em></p>
+<pre><code class="language-java hljs" contenteditable="true"><span class="hljs-keyword">import</span> java.net.*;
 <span class="hljs-keyword">import</span> java.io.*;
 
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">client</span>{
@@ -348,7 +325,9 @@
 		conn.close();
 
 	}
-}</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><span style="text-decoration: underline">server.java</span></em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> java.net.*;
+}</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><span style="text-decoration: underline;">server.java</span></em></p>
+<pre><code class="language-java hljs" contenteditable="true"><span class="hljs-keyword">import</span> java.net.*;
 <span class="hljs-keyword">import</span> java.io.*;
 
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">server</span>{
@@ -382,169 +361,60 @@
 		conn.close();
 
 	}
-}</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><span style="text-decoration: underline"><br></span></em></p><h2 class="wp-block-heading" id="tcp-vs-udp"><strong>Differences between TCP and UDP:</strong></h2><figure class="wp-block-table wp-embed-aspect-16-9 wp-has-aspect-ratio"><table id="fancy-table"><tbody><tr><td>S.N.</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>TCP</strong></td><td><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UDP</strong></td></tr><tr><td>i.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>TCP is a connection-oriented protocol.&nbsp;</td><td>UDP is a connection-less protocol.&nbsp;</td></tr><tr><td>ii.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>TCP is reliable as it guarantees the delivery of data to the destination router.</td><td>The delivery of data to the destination cannot be guaranteed in UDP.</td></tr><tr><td>iii.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>TCP is comparatively slower than UDP.</td><td>UDP is faster, simpler, and more efficient than TCP.</td></tr><tr><td>iv.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>Retransmission of lost packets is possible in TCP.</td><td>There is no retransmission of lost packets in User Datagram Protocol (UDP).</td></tr><tr><td>v.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>TCP is heavy-weight.</td><td>UDP is lightweight.</td></tr><tr><td>vi.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>TCP header size is 20 bytes.</td><td>UDP Header size is 8 bytes.</td></tr><tr><td>vii.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>TCP is used by HTTP, FTP, SMTP Telnet etc.</td><td>UDP is used by DNS, RIP (Routing information protocol), VoIP (voice over internet protocol), etc.</td></tr></tbody></table></figure><h2 class="wp-block-heading"><br></h2><h2 class="wp-block-heading">Conclusion:</h2><p>In this way, we can write an RMI program and socket program. Using RMI and Socket, we can communicate between client and server. I hope the given code (RMI program and Socket program) is very clear to you.</p><p><!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"ordered":true} -->
-
-<!-- /wp:list -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":1304,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"ordered":true,"type":"video","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:list -->
-
-<!-- wp:embed {"url":"https://youtu.be/32IbmULK6tk","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:list {"type":"video","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:list -->
-
-<!-- wp:embed {"url":"https://youtu.be/ZXx0L7bvVPw","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:table {"hasFixedLayout":false,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:table -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph --></p><p>I hope this post is very helpful to you. If you have any questions, don't hesitate to ask me in the comment section. I will reply as soon as possible. Thanks.</p></div>
+}</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><span style="text-decoration: underline;">&nbsp;</span></em></p>
+<h2 id="tcp-vs-udp" class="wp-block-heading"><strong>Differences between TCP and UDP:</strong></h2>
+<figure class="wp-block-table wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<table id="fancy-table">
+<tbody>
+<tr>
+<td>S.N.</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>TCP</strong></td>
+<td><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UDP</strong></td>
+</tr>
+<tr>
+<td>i.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>TCP is a connection-oriented protocol.&nbsp;</td>
+<td>UDP is a connection-less protocol.&nbsp;</td>
+</tr>
+<tr>
+<td>ii.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>TCP is reliable as it guarantees the delivery of data to the destination router.</td>
+<td>The delivery of data to the destination cannot be guaranteed in UDP.</td>
+</tr>
+<tr>
+<td>iii.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>TCP is comparatively slower than UDP.</td>
+<td>UDP is faster, simpler, and more efficient than TCP.</td>
+</tr>
+<tr>
+<td>iv.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>Retransmission of lost packets is possible in TCP.</td>
+<td>There is no retransmission of lost packets in User Datagram Protocol (UDP).</td>
+</tr>
+<tr>
+<td>v.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>TCP is heavy-weight.</td>
+<td>UDP is lightweight.</td>
+</tr>
+<tr>
+<td>vi.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>TCP header size is 20 bytes.</td>
+<td>UDP Header size is 8 bytes.</td>
+</tr>
+<tr>
+<td>vii.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>TCP is used by HTTP, FTP, SMTP Telnet etc.</td>
+<td>UDP is used by DNS, RIP (Routing information protocol), VoIP (voice over internet protocol), etc.</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<h2 class="wp-block-heading">&nbsp;</h2>
+<h2 class="wp-block-heading">Conclusion:</h2>
+<p>In this way, we can write an RMI program and socket program. Using RMI and Socket, we can communicate between client and server. I hope the given code (RMI program and Socket program) is very clear to you.</p>
+<p><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"ordered":true} --><!-- /wp:list --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:image {"id":1304,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"ordered":true,"type":"video","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:list --><!-- wp:embed {"url":"https://youtu.be/32IbmULK6tk","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:list {"type":"video","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:list --><!-- wp:embed {"url":"https://youtu.be/ZXx0L7bvVPw","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:table {"hasFixedLayout":false,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:table --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --></p>
+<p>I hope this post is very helpful to you. If you have any questions, don't hesitate to ask me in the comment section. I will reply as soon as possible. Thanks.</p></div>
 
 <script>
   if (window.hljs) {

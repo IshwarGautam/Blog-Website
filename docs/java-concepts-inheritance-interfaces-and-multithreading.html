@@ -157,23 +157,26 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><p>In this post, we will be focusing on the most important Java Concepts i.e. inheritance, interfaces, and multithreading. </p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+  <div class="post-body"><p>In this post, we will be focusing on the most important Java Concepts i.e. inheritance, interfaces, and multithreading.</p>
+<h2 class="wp-block-heading">What will you learn?</h2>
+<ol class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#inheritance">Java Inheritance Simplified: Practical Examples and Explanation</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#multiple-inheritance">How multiple inheritance is possible in Java? Through class or interface</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#multithreading">Exploring Multithreading in Java: Benefits, Importance, and Thread Lifecycle"</a></li>
-<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="inheritance">Java Inheritance Simplified: Practical Examples and Explanation</h2><p><strong id="inheritance">Inheritance</strong> is a process of creating a new class (child class/derived class) built upon an existing class (parent class/base class). It is a mechanism that allows one object to inherit all of the properties and behaviors of its parent object. It is an essential part of OOPs (Object Oriented Programming). When we inherit from a parent class, we can use its methods and fields. Furthermore, we can extend the current class by adding additional methods and properties. The IS-A relationship, often known as a parent-child relationship, is represented by inheritance.</p><p><strong>Why use inheritance in Java?</strong></p><ul class="wp-block-list"><!-- wp:list-item -->
+<!-- /wp:list-item --></ol>
+<h2 id="inheritance" class="wp-block-heading">Java Inheritance Simplified: Practical Examples and Explanation</h2>
+<p><strong id="inheritance">Inheritance</strong> is a process of creating a new class (child class/derived class) built upon an existing class (parent class/base class). It is a mechanism that allows one object to inherit all of the properties and behaviors of its parent object. It is an essential part of OOPs (Object Oriented Programming). When we inherit from a parent class, we can use its methods and fields. Furthermore, we can extend the current class by adding additional methods and properties. The IS-A relationship, often known as a parent-child relationship, is represented by inheritance.</p>
+<p><strong>Why use inheritance in Java?</strong></p>
+<ul class="wp-block-list"><!-- wp:list-item -->
 <li>For Method Overriding (to enable runtime polymorphism).</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>For code reusability.</li>
-<!-- /wp:list-item --></ul><p>We have two methods to initialize the data: using the constructor and using the setter method.</p><p><strong>Using constructor</strong></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> javaProject;
+<!-- /wp:list-item --></ul>
+<p>We have two methods to initialize the data: using the constructor and using the setter method.</p>
+<p><strong>Using constructor</strong></p>
+<pre><code class="language-java hljs" contenteditable="true"><span class="hljs-keyword">package</span> javaProject;
 
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> {
 	<span class="hljs-keyword">private</span> String name;
@@ -190,7 +193,9 @@
  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>{
        <span class="hljs-type">Person</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">"Ishwar"</span>,<span class="hljs-number">26</span>,<span class="hljs-string">"Butwal"</span>);
     }
-}</code></pre><p><strong>Using the setter method of getter/setter</strong></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> javaProject;
+}</code></pre>
+<p><strong>Using the setter method of getter/setter</strong></p>
+<pre><code class="language-java hljs" contenteditable="true"><span class="hljs-keyword">package</span> javaProject;
 
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> {
 	<span class="hljs-keyword">private</span> String name;
@@ -217,7 +222,9 @@
        p.setAge(<span class="hljs-number">26</span>);
        p.setAddress(<span class="hljs-string">"Butwal"</span>);
     }
-}</code></pre><p>Now to inheritance from the base (parent class), we can use the extend keyword as below. Class Student inherits from the Parent class. I am using a constructor to initialize/set the value. You can replace it with a setter method if you like. Here is the complete code showing the inheritance mechanism.</p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> javaProject;
+}</code></pre>
+<p>Now to inheritance from the base (parent class), we can use the extend keyword as below. Class Student inherits from the Parent class. I am using a constructor to initialize/set the value. You can replace it with a setter method if you like. Here is the complete code showing the inheritance mechanism.</p>
+<pre><code class="language-java hljs" contenteditable="true"><span class="hljs-keyword">package</span> javaProject;
 
 <span class="hljs-comment">// parent class</span>
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span>{
@@ -267,17 +274,19 @@
         System.out.println(s.getAddress());
         System.out.println(s.getStuid());
     }
-}</code></pre><h2 class="wp-block-heading" id="multiple-inheritance">How multiple inheritance is possible in Java? Through class or interface</h2><ul class="wp-block-list wp-embed-aspect-16-9 wp-has-aspect-ratio"><!-- wp:list-item -->
+}</code></pre>
+<h2 id="multiple-inheritance" class="wp-block-heading">How multiple inheritance is possible in Java? Through class or interface</h2>
+<ul class="wp-block-list wp-embed-aspect-16-9 wp-has-aspect-ratio"><!-- wp:list-item -->
 <li>The Interface method doesn't have a body part.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Multiple inheritances are not possible in Java through class because of ambiguity and to reduce complexity.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>However multiple inheritances are possible in Java through interface because there is no ambiguity as its implementation is provided by the implement keyword.</li>
-<!-- /wp:list-item --></ul><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/VezF8WeVj3A" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">An interface is a completely "abstract class" that can have methods and variables just like a class, but the methods defined in the interface have no body.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">The interface must be "implemented" (like an inheritance) by another class using the implements keyword (instead of extends) in order to access the interface methods. The body of the interface method is provided by the "implement" class.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><span style="text-decoration: underline">Through class:</span></em></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-comment">/*
+<!-- /wp:list-item --></ul>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">An interface is a completely "abstract class" that can have methods and variables just like a class, but the methods defined in the interface have no body.</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">The interface must be "implemented" (like an inheritance) by another class using the implements keyword (instead of extends) in order to access the interface methods. The body of the interface method is provided by the "implement" class.</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><span style="text-decoration: underline;">Through class:</span></em></p>
+<pre><code class="language-java hljs" contenteditable="true"><span class="hljs-comment">/*
 Q. Discuss the use of interfaces to achieve multiple inheritance.
 Q. What is interface? How can you implement multiple inheritance using the interface concept? Discuss with suitable example.
 Q. How do you achieve multiple inheritance in java? Discuss.
@@ -310,7 +319,9 @@ Q. Write short note on: Interface
 }
 <span class="hljs-comment">//But we will get error with this</span>
 <span class="hljs-comment">//so, multiple inheritance is not achieved through class</span>
-<span class="hljs-comment">//solution: interface</span></code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="text-decoration: underline"><em>Through interface:</em></span></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> myProgram;
+<span class="hljs-comment">//solution: interface</span></code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="text-decoration: underline;"><em>Through interface:</em></span></p>
+<pre><code class="language-java hljs" contenteditable="true"><span class="hljs-keyword">package</span> myProgram;
 
 <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Cricket</span>{
 	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">func1</span><span class="hljs-params">()</span>; <span class="hljs-comment">//interface method (does not have a body)</span>
@@ -331,17 +342,22 @@ Q. Write short note on: Interface
 		s.func1();
 		s.func2();
 	}
-}</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="text-decoration: underline"><em><br></em></span></p><h2 class="wp-block-heading" id="multithreading">Exploring Multithreading in Java: Benefits, Importance, and Thread Lifecycle"</h2><p>Multithreading involves executing multiple threads simultaneously. A multi-threaded program consists of two or more sections that can run concurrently. Each component can tackle a separate task at the same time, making the most use of available resources, which is especially important when our machine has multiple CPUs.</p><p><strong><u><em>Importance/benefits of multithreading:</em></u></strong></p><ul class="wp-block-list"><!-- wp:list-item -->
+}</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="text-decoration: underline;"><em>&nbsp;</em></span></p>
+<h2 id="multithreading" class="wp-block-heading">Exploring Multithreading in Java: Benefits, Importance, and Thread Lifecycle"</h2>
+<p>Multithreading involves executing multiple threads simultaneously. A multi-threaded program consists of two or more sections that can run concurrently. Each component can tackle a separate task at the same time, making the most use of available resources, which is especially important when our machine has multiple CPUs.</p>
+<p><strong><u><em>Importance/benefits of multithreading:</em></u></strong></p>
+<ul class="wp-block-list"><!-- wp:list-item -->
 <li>Multithreading allows us to write efficient programs that make maximum use of the CPU.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Because of multithreading, animation loops can sleep for a second between frames without forcing the entire system to pause.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Multithreading requires less overhead than multitasking: In multitasking, processes run in their own different address space, and tasks involved in multithreading can share the same address space.</li>
-<!-- /wp:list-item --></ul><p><strong><u><em>Life cycle of thread:</em></u></strong></p><p>A thread's life cycle includes several stages. A thread, for example, gets born, starts, runs,&nbsp;and then dies. The graphic below illustrates a thread's whole life cycle.</p><p><img src="https://drive.google.com/thumbnail?id=1AAiseMtPpwAKZtEL6_NCTVKPPyju9Ys6&amp;sz=w1000" data-filename="thread-life-cycle.png" style="width: 472px;"></p><pre><code class="language-java hljs" contenteditable="true" style=""><span class="hljs-keyword">package</span> ishwar;
+<!-- /wp:list-item --></ul>
+<p><strong><u><em>Life cycle of thread:</em></u></strong></p>
+<p>A thread's life cycle includes several stages. A thread, for example, gets born, starts, runs,&nbsp;and then dies. The graphic below illustrates a thread's whole life cycle.</p>
+<p><img style="width: 472px;" src="https://drive.google.com/thumbnail?id=1AAiseMtPpwAKZtEL6_NCTVKPPyju9Ys6&amp;sz=w1000" data-filename="thread-life-cycle.png"></p>
+<pre><code class="language-java hljs" contenteditable="true"><span class="hljs-keyword">package</span> ishwar;
 
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Multithreading</span> {
 
@@ -380,141 +396,11 @@ Q. Write short note on: Interface
             mythread.start();
         }
     }
-}</code></pre><h2 class="wp-block-heading">Conclusion:</h2><p>In this post, we've looked at some important Java Concepts: inheritance, multiple inheritance, and multithreading. By grasping these concepts, you can improve your understanding of Java and utilize its strong capabilities to create more efficient and effective programs.</p><p><!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"ordered":true} -->
-
-<!-- /wp:list -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"java"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"java"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"java"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"type":"video","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:list -->
-
-<!-- wp:embed {"url":"https://youtu.be/VezF8WeVj3A","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":1314,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:syntaxhighlighter/code {"language":"java"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph --></p><p>I hope this post is very helpful to you. If you have any questions, ask me in the comment section. I will reply as soon as possible. Thanks.</p></div>
+}</code></pre>
+<h2 class="wp-block-heading">Conclusion:</h2>
+<p>In this post, we've looked at some important Java Concepts: inheritance, multiple inheritance, and multithreading. By grasping these concepts, you can improve your understanding of Java and utilize its strong capabilities to create more efficient and effective programs.</p>
+<p><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"ordered":true} --><!-- /wp:list --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:list --><!-- /wp:list --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"java"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"java"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"java"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"type":"video","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:list --><!-- wp:embed {"url":"https://youtu.be/VezF8WeVj3A","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"java","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:list --><!-- /wp:list --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:image {"id":1314,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:syntaxhighlighter/code {"language":"java"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --></p>
+<p>I hope this post is very helpful to you. If you have any questions, ask me in the comment section. I will reply as soon as possible. Thanks.</p></div>
 
 <script>
   if (window.hljs) {

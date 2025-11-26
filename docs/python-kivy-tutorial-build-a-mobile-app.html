@@ -157,36 +157,37 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><p>Python Kivy is an open-source graphical user toolkit. This library allows us to make a desktop application or mobile application.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+  <div class="post-body"><p>Python Kivy is an open-source graphical user toolkit. This library allows us to make a desktop application or mobile application.</p>
+<h2 class="wp-block-heading">What will you learn?</h2>
+<ol class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#first-app">Create a first app with kivy</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#grid-layout">Learn about Grid Layout</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#float-layout">Learn about Float Layout</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#page-layout">Learn about Page Layout</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#main-app">Build our main app</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#create-mobile-application">Creating Mobile (Android, IOS) applications with Python</a></li>
-<!-- /wp:list-item --></ol><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/EFCLm_zjKBg" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading" id="first-app">Create a first app with Kivy:</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> kivy.app <span class="hljs-keyword">import</span> App
+<!-- /wp:list-item --></ol>
+<p>&nbsp;</p>
+<h2 id="first-app" class="wp-block-heading">Create a first app with Kivy:</h2>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> kivy.app <span class="hljs-keyword">import</span> App
 <span class="hljs-keyword">from</span> kivy.uix.label <span class="hljs-keyword">import</span> Label
 
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyFirstApp</span>(<span class="hljs-title class_ inherited__">App</span>):
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">build</span>(<span class="hljs-params">self</span>):
         <span class="hljs-keyword">return</span> Label(text=<span class="hljs-string">"IG Tech Team"</span>)
 
-MyFirstApp().run()</code></pre><p><strong>Output:</strong></p><p><img src="https://drive.google.com/thumbnail?id=1vhq4mb8BF-R14331dAbQPHG6MQtbRHi5&amp;sz=w1000" data-filename="kivy-igtechteam.png" style="width: 800px;"><strong><br></strong></p><figure class="wp-block-image size-large"><br></figure><h2 class="wp-block-heading" id="grid-layout">GridLayout:</h2><p>Let's use GridLayout to create a container and then insert a label and a button inside of it.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> kivy.app <span class="hljs-keyword">import</span> App
+MyFirstApp().run()</code></pre>
+<p><strong>Output:</strong></p>
+<p><img style="width: 800px;" src="https://drive.google.com/thumbnail?id=1vhq4mb8BF-R14331dAbQPHG6MQtbRHi5&amp;sz=w1000" data-filename="kivy-igtechteam.png"><strong><br></strong></p>
+<figure class="wp-block-image size-large"></figure>
+<h2 id="grid-layout" class="wp-block-heading">GridLayout:</h2>
+<p>Let's use GridLayout to create a container and then insert a label and a button inside of it.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> kivy.app <span class="hljs-keyword">import</span> App
 <span class="hljs-keyword">from</span> kivy.uix.gridlayout <span class="hljs-keyword">import</span> GridLayout
 <span class="hljs-keyword">from</span> kivy.uix.label <span class="hljs-keyword">import</span> Label
 <span class="hljs-keyword">from</span> kivy.uix.button <span class="hljs-keyword">import</span> Button
@@ -213,7 +214,13 @@ MyFirstApp().run()</code></pre><p><strong>Output:</strong></p><p><img src="https
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">build</span>(<span class="hljs-params">self</span>):
         <span class="hljs-keyword">return</span> MyLayout()
 
-MyApp().run()</code></pre><p><strong>Output:</strong></p><p><img selected="" src="https://drive.google.com/thumbnail?id=12aabNJg8GlsnqG4uZQ1t5cwbOl4x4IFR&amp;sz=w1000" data-filename="kivy-gridlayout.png" style="width: 799px;"><strong><br></strong></p><figure class="wp-block-image size-large"><br></figure><h2 class="wp-block-heading" id="float-layout">FloatLayout:</h2><p>In most cases, I go with this layout. This is because we can set the size of different widgets in this layout and we don't need to mention the number of rows and columns.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> kivy.app <span class="hljs-keyword">import</span> App
+MyApp().run()</code></pre>
+<p><strong>Output:</strong></p>
+<p><img style="width: 799px;" src="https://drive.google.com/thumbnail?id=12aabNJg8GlsnqG4uZQ1t5cwbOl4x4IFR&amp;sz=w1000" data-filename="kivy-gridlayout.png"><strong><br></strong></p>
+<figure class="wp-block-image size-large"></figure>
+<h2 id="float-layout" class="wp-block-heading">FloatLayout:</h2>
+<p>In most cases, I go with this layout. This is because we can set the size of different widgets in this layout and we don't need to mention the number of rows and columns.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> kivy.app <span class="hljs-keyword">import</span> App
 <span class="hljs-keyword">from</span> kivy.uix.floatlayout <span class="hljs-keyword">import</span> FloatLayout
 <span class="hljs-keyword">from</span> kivy.uix.label <span class="hljs-keyword">import</span> Label
 <span class="hljs-keyword">from</span> kivy.uix.button <span class="hljs-keyword">import</span> Button
@@ -256,7 +263,13 @@ MyApp().run()</code></pre><p><strong>Output:</strong></p><p><img selected="" src
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">build</span>(<span class="hljs-params">self</span>):
         <span class="hljs-keyword">return</span> MyLayout()
 
-MyApp().run()</code></pre><p><strong>Output:</strong></p><p><img src="https://drive.google.com/thumbnail?id=1FPJ2Hq7fwDJwbT2FFZvV_Re7jIGgQs6s&amp;sz=w1000" data-filename="kivy-floatlayout.png" style="width: 799px;"><strong><br></strong></p><figure class="wp-block-image size-large"><br></figure><h2 class="wp-block-heading" id="page-layout">PageLayout:</h2><p>Each widget occupied a whole page.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> kivy.app <span class="hljs-keyword">import</span> App
+MyApp().run()</code></pre>
+<p><strong>Output:</strong></p>
+<p><img style="width: 799px;" src="https://drive.google.com/thumbnail?id=1FPJ2Hq7fwDJwbT2FFZvV_Re7jIGgQs6s&amp;sz=w1000" data-filename="kivy-floatlayout.png"><strong><br></strong></p>
+<figure class="wp-block-image size-large"></figure>
+<h2 id="page-layout" class="wp-block-heading">PageLayout:</h2>
+<p>Each widget occupied a whole page.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> kivy.app <span class="hljs-keyword">import</span> App
 <span class="hljs-keyword">from</span> kivy.uix.pagelayout <span class="hljs-keyword">import</span> PageLayout
 <span class="hljs-keyword">from</span> kivy.uix.label <span class="hljs-keyword">import</span> Label
 <span class="hljs-keyword">from</span> kivy.uix.button <span class="hljs-keyword">import</span> Button
@@ -279,28 +292,23 @@ MyApp().run()</code></pre><p><strong>Output:</strong></p><p><img src="https://dr
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">build</span>(<span class="hljs-params">self</span>):
         <span class="hljs-keyword">return</span> MyLayout()
 
-MyApp().run()</code></pre><h2 class="wp-block-heading" id="main-app">Let's build our main app:</h2><p>I am implementing the following things here:</p><ul class="wp-block-list"><!-- wp:list-item -->
+MyApp().run()</code></pre>
+<h2 id="main-app" class="wp-block-heading">Let's build our main app:</h2>
+<p>I am implementing the following things here:</p>
+<ul class="wp-block-list"><!-- wp:list-item -->
 <li>Using FlowLayout</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Change the title of my application</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Change the icon of my app</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>adding an image to my window</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>using a label, text input, and button</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>When a button is pressed, show a popup message.</li></ul><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> kivy.app <span class="hljs-keyword">import</span> App
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>When a button is pressed, show a popup message.</li>
+</ul>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> kivy.app <span class="hljs-keyword">import</span> App
 <span class="hljs-keyword">from</span> kivy.uix.floatlayout <span class="hljs-keyword">import</span> FloatLayout
 <span class="hljs-keyword">from</span> kivy.uix.label <span class="hljs-keyword">import</span> Label
 <span class="hljs-keyword">from</span> kivy.uix.button <span class="hljs-keyword">import</span> Button
@@ -378,8 +386,21 @@ MyApp().run()</code></pre><h2 class="wp-block-heading" id="main-app">Let's build
         self.icon = <span class="hljs-string">"icon.png"</span>
         <span class="hljs-keyword">return</span> MyLayout()
 
-MyApp().run()</code></pre><h2 class="wp-block-heading" id="create-mobile-application">Creating Mobile (Android, IOS) applications with Python</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">With the Python programming language, creating applications is quite simple. Of course, using Python code alone is insufficient.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">To make an app, the following things need to be done:</p><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">Make GUI App using Python Kivy:</h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/EFCLm_zjKBg" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">Convert into Android application using Buildozer:</h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/gFjmkPBVJK0" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Run these codes in Google colaboratory.<br>First of all, upload all the files (i.e. python file and all its dependencies)</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> google.colab <span class="hljs-keyword">import</span> files
-uploaded = files.upload()</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">Install the required package i.e. buildozer.</h2><pre><code class="language-python hljs" contenteditable="true" style="">!pip install buildozer</code></pre><pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="font-size: 2rem; color: rgb(0, 0, 0); font-family: sans-serif;">Then, install all the dependencies of buildozer:</span></pre><pre><code class="language-python hljs" contenteditable="true" style="">!pip install cython==<span class="hljs-number">0.29</span><span class="hljs-number">.19</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style="">!sudo apt-get install -y \
+MyApp().run()</code></pre>
+<h2 id="create-mobile-application" class="wp-block-heading">Creating Mobile (Android, IOS) applications with Python</h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">With the Python programming language, creating applications is quite simple. Of course, using Python code alone is insufficient.</p>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">Convert GUI APP into Android application using&nbsp;Buildozer:</h2>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/gFjmkPBVJK0">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/gFjmkPBVJK0?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Run these codes in Google colaboratory.<br>First of all, upload all the files (i.e. python file and all its dependencies)</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> google.colab <span class="hljs-keyword">import</span> files
+uploaded = files.upload()</code></pre>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">Install the required package i.e. buildozer.</h2>
+<pre><code class="language-python hljs" contenteditable="true">!pip install buildozer</code></pre>
+<pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="font-size: 2rem; color: #000000; font-family: sans-serif;">Then, install all the dependencies of buildozer:</span></pre>
+<pre><code class="language-python hljs" contenteditable="true">!pip install cython==<span class="hljs-number">0.29</span><span class="hljs-number">.19</span></code></pre>
+<pre><code class="language-python hljs" contenteditable="true">!sudo apt-get install -y \
     python3-pip \
     build-essential \
     git \
@@ -394,211 +415,25 @@ uploaded = files.upload()</code></pre><h2 class="wp-block-heading wp-embed-aspec
     libswscale-dev \
     libavformat-dev \
     libavcodec-dev \
-    zlib1g-dev</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">!sudo apt-get install -y \
+    zlib1g-dev</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">!sudo apt-get install -y \
     libgstreamer1<span class="hljs-number">.0</span> \
     gstreamer1<span class="hljs-number">.0</span>-plugins-base \
-    gstreamer1<span class="hljs-number">.0</span>-plugins-good</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">!sudo apt-get install -y \
+    gstreamer1<span class="hljs-number">.0</span>-plugins-good</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">!sudo apt-get install -y \
     libgstreamer1<span class="hljs-number">.0</span> \
     gstreamer1<span class="hljs-number">.0</span>-plugins-base \
-    gstreamer1<span class="hljs-number">.0</span>-plugins-good</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">!sudo apt-get install libffi-dev</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">This step is essential. When you run the below cell, <code>buildozer.spec</code> file is created from where you can set the title, icon, version, and all other important information.</p><pre><code class="language-python hljs" contenteditable="true" style="">!buildozer init</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">This is the final step. This may take about 10-15 minutes to complete execution. So, be patient and wait.</p><pre><code class="language-python hljs" contenteditable="true" style="">!buildozer -v android debug</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Your apk file is stored in the bin directory at last.</p><h2 class="wp-block-heading">Conclusion</h2><p>In this way, we can make a GUI application with Kivy Framework. We have learned how to convert our project into a mobile/Android application. For this, buildozer dependency is required.</p><p><!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"ordered":true} -->
-
-<!-- /wp:list -->
-
-<!-- wp:embed {"url":"https://youtu.be/EFCLm_zjKBg","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":1250,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":1252,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":1253,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-
-<!-- /wp:list -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/EFCLm_zjKBg","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/gFjmkPBVJK0","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph --></p><p>I hope this post is very helpful to you. If you have any doubt, ask me in the comment section. I will reply as soon as possible. Thanks.</p></div>
+    gstreamer1<span class="hljs-number">.0</span>-plugins-good</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">!sudo apt-get install libffi-dev</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">This step is essential. When you run the below cell, <code>buildozer.spec</code> file is created from where you can set the title, icon, version, and all other important information.</p>
+<pre><code class="language-python hljs" contenteditable="true">!buildozer init</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">This is the final step. This may take about 10-15 minutes to complete execution. So, be patient and wait.</p>
+<pre><code class="language-python hljs" contenteditable="true">!buildozer -v android debug</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Your apk file is stored in the bin directory at last.</p>
+<h2 class="wp-block-heading">Conclusion</h2>
+<p>In this way, we can make a GUI application with Kivy Framework. We have learned how to convert our project into a mobile/Android application. For this, buildozer dependency is required.</p>
+<p><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"ordered":true} --><!-- /wp:list --><!-- wp:embed {"url":"https://youtu.be/EFCLm_zjKBg","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:heading --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:image {"id":1250,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:image {"id":1252,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:image {"id":1253,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:list --><!-- /wp:list --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/EFCLm_zjKBg","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/gFjmkPBVJK0","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --></p>
+<p>I hope this post is very helpful to you. If you have any doubt, ask me in the comment section. I will reply as soon as possible. Thanks.</p></div>
 
 <script>
   if (window.hljs) {

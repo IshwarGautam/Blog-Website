@@ -157,17 +157,27 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><p><strong>Main content</strong>: Movie Recommendation System</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+  <div class="post-body"><p><strong>Main content</strong>: Movie Recommendation System</p>
+<h2 class="wp-block-heading">What will you learn?</h2>
+<ol class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#bag-of-words">Bag of Words model</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#tf-idf">TF-IDF model</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#movie-project">Movie Recommendation System using TF-IDF model</a></li>
-<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="bag-of-words">Bag of Words model</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">The <strong>bag of Words</strong> model is a feature extraction technique used in Natural Language Processing. The name 'bag of words' is due to its unordered arrangement of elements.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">&nbsp;<img src="https://drive.google.com/thumbnail?id=1hCXG_ZnWsmDhy4oclAa250gNeXwksQVV&amp;sz=w1000" data-filename="bag-of-words.png" style="width: 329px;"></p><figure class="wp-block-image aligncenter size-large"><br></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">The frequency of words in that text content is described by this model. The numbers 1 and 0 stand for the words that&nbsp;appear and do not appear, respectively. One disadvantage of this model is that it is messy and unstructured as shown in the above figure.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><img selected="" src="https://drive.google.com/thumbnail?id=1ZCfVBMffE59zGsysQLNmcLGxgWzmW4CJ&amp;sz=w1000" data-filename="bag-of-words-slide.png" style="font-size: 1rem; width: 100%;"></p><figure class="wp-block-image size-large"><br></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">The words are case-sensitive i.e., uppercase and lowercase letters are different. So, this model takes 'Human' and 'human' as two words. So, it is good practice to convert all uppercase into lowercase before passing the text of words into this model.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/L8X84Fq0ZkE" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> nltk
+<!-- /wp:list-item --></ol>
+<h2 id="bag-of-words" class="wp-block-heading">Bag of Words model</h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">The <strong>bag of Words</strong> model is a feature extraction technique used in Natural Language Processing. The name 'bag of words' is due to its unordered arrangement of elements.</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">&nbsp;<img style="width: 329px;" src="https://drive.google.com/thumbnail?id=1hCXG_ZnWsmDhy4oclAa250gNeXwksQVV&amp;sz=w1000" data-filename="bag-of-words.png"></p>
+<figure class="wp-block-image aligncenter size-large"></figure>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">The frequency of words in that text content is described by this model. The numbers 1 and 0 stand for the words that&nbsp;appear and do not appear, respectively. One disadvantage of this model is that it is messy and unstructured as shown in the above figure.</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><img style="font-size: 1rem; width: 100%;" src="https://drive.google.com/thumbnail?id=1ZCfVBMffE59zGsysQLNmcLGxgWzmW4CJ&amp;sz=w1000" data-filename="bag-of-words-slide.png"></p>
+<figure class="wp-block-image size-large"></figure>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">The words are case-sensitive i.e., uppercase and lowercase letters are different. So, this model takes 'Human' and 'human' as two words. So, it is good practice to convert all uppercase into lowercase before passing the text of words into this model.</p>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/L8X84Fq0ZkE">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/L8X84Fq0ZkE?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> nltk
 <span class="hljs-keyword">import</span> re
 <span class="hljs-keyword">from</span> nltk.corpus <span class="hljs-keyword">import</span> stopwords
 <span class="hljs-keyword">from</span> nltk.stem <span class="hljs-keyword">import</span> WordNetLemmatizer
@@ -190,7 +200,17 @@ final_text = []
 <span class="hljs-keyword">from</span> sklearn.feature_extraction.text <span class="hljs-keyword">import</span> CountVectorizer
 cv = CountVectorizer()
 bag = cv.fit_transform(final_text).toarray()
-<span class="hljs-built_in">print</span>(bag)</code></pre><pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"></pre><h2 class="wp-block-heading" id="tf-idf">TF-IDF model | Natural Language Processing</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Term Frequency and Inverse Document Frequency are abbreviated as TF-IDF. It determines the relevance of a word to a document in a collection of documents.</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><img src="https://drive.google.com/thumbnail?id=1Bmi2jYmlymQcokExhojBbZnANHA_cqGo&amp;sz=w1000" data-filename="tf-idf.png" style="width: 100%;"></p><figure class="wp-block-image size-large"><br></figure><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">The bag of words model only contains 0 (not important) and 1 (important) values but it doesn't clarify how much that word is important. So, here comes the TF-IDF model which contains a fractional value from 0 to 1. Thus, the TF-IDF model signifies important, not important, and slightly important values.&nbsp;</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/V1dHstesbos" width="640" height="360" class="note-video-clip"></iframe></div></figure><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> nltk
+<span class="hljs-built_in">print</span>(bag)</code></pre>
+<pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio">&nbsp;</pre>
+<h2 id="tf-idf" class="wp-block-heading">TF-IDF model | Natural Language Processing</h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Term Frequency and Inverse Document Frequency are abbreviated as TF-IDF. It determines the relevance of a word to a document in a collection of documents.</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><img style="width: 100%;" src="https://drive.google.com/thumbnail?id=1Bmi2jYmlymQcokExhojBbZnANHA_cqGo&amp;sz=w1000" data-filename="tf-idf.png"></p>
+<figure class="wp-block-image size-large"></figure>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">The bag of words model only contains 0 (not important) and 1 (important) values but it doesn't clarify how much that word is important. So, here comes the TF-IDF model which contains a fractional value from 0 to 1. Thus, the TF-IDF model signifies important, not important, and slightly important values.&nbsp;</p>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/V1dHstesbos">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/V1dHstesbos?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> nltk
 <span class="hljs-keyword">import</span> re
 <span class="hljs-keyword">from</span> nltk.corpus <span class="hljs-keyword">import</span> stopwords
 <span class="hljs-keyword">from</span> nltk.stem <span class="hljs-keyword">import</span> WordNetLemmatizer
@@ -225,15 +245,40 @@ tfIdfVectorizer=TfidfVectorizer()
 tfIdf = tfIdfVectorizer.fit_transform(final_text)
 df = pd.DataFrame(tfIdf[<span class="hljs-number">0</span>].T.todense(), index=tfIdfVectorizer.get_feature_names(), columns=[<span class="hljs-string">"TF*IDF"</span>])
 df = df.sort_values(<span class="hljs-string">'TF*IDF'</span>, ascending=<span class="hljs-literal">False</span>)
-<span class="hljs-built_in">print</span>(df)</code></pre><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><br></div></figure><h2 class="wp-block-heading" id="movie-project">Movie Recommendation System using TF-IDF model | Natural Language Processing</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">One of the most basic projects in Natural Language Processing is the Movie Recommendation System. If you enter one movie title, it will recommend/suggest several more. For example, if I give the movie name 'Spider-Man', then the related movies are its sequel movies: 'Spider-Man 2', 'Spider-Man 3' and so on.&nbsp;<br>I am using&nbsp;the <a rel="noreferrer noopener" href="https://www.kaggle.com/jrobischon/wikipedia-movie-plots" target="_blank">wiki_movie_plot</a>&nbsp;dataset for this purpose. The collection includes 34,886 movie descriptions from throughout the world. However, I am not using all of this data because it takes a lot of time. So, I filter only 'American' movies, and the release year is greater than 2015. Using movie plot/description, our task is to recommend similar movie names.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/7GaAp0XkLpM" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><em>Movie Recommendation System using TF-IDF</em></h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong><em>1: Load the dataset</em></strong></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> google.colab <span class="hljs-keyword">import</span> drive
-drive.mount(<span class="hljs-string">"/content/drive"</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">cd <span class="hljs-string">'drive/My Drive'</span></code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-built_in">print</span>(df)</code></pre>
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<div class="wp-block-embed__wrapper">&nbsp;</div>
+</figure>
+<h2 id="movie-project" class="wp-block-heading">Movie Recommendation System using TF-IDF model | Natural Language Processing</h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">One of the most basic projects in Natural Language Processing is the Movie Recommendation System. If you enter one movie title, it will recommend/suggest several more. For example, if I give the movie name 'Spider-Man', then the related movies are its sequel movies: 'Spider-Man 2', 'Spider-Man 3' and so on.&nbsp;<br>I am using&nbsp;the <a href="https://www.kaggle.com/jrobischon/wikipedia-movie-plots" target="_blank" rel="noreferrer noopener">wiki_movie_plot</a> dataset for this purpose. The collection includes 34,886 movie descriptions from throughout the world. However, I am not using all of this data because it takes a lot of time. So, I filter only 'American' movies, and the release year is greater than 2015. Using movie plot/description, our task is to recommend similar movie names.</p>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/7GaAp0XkLpM">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/7GaAp0XkLpM?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><em>Movie Recommendation System using TF-IDF</em></h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong><em>1: Load the dataset</em></strong></p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> google.colab <span class="hljs-keyword">import</span> drive
+drive.mount(<span class="hljs-string">"/content/drive"</span>)</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">cd <span class="hljs-string">'drive/My Drive'</span></code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
 data = pd.read_csv(<span class="hljs-string">"wiki_movie_plots_deduped.csv"</span>)
-data.head()</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">data.shape</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-np.unique(data[<span class="hljs-string">'Origin/Ethnicity'</span>])</code></pre><pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong><em>2: Choose only some portion of the data</em></strong></p><pre><code class="language-python hljs" contenteditable="true" style="">data2 = data.loc[(data[<span class="hljs-string">'Origin/Ethnicity'</span>]==<span class="hljs-string">'American'</span>) &amp; (data[<span class="hljs-string">'Release Year'</span>]&gt;<span class="hljs-number">2015</span>)]
-<span class="hljs-built_in">len</span>(data2)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">my_data = pd.DataFrame(data2)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">my_data.tail()</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">finaldata = my_data[[<span class="hljs-string">"Title"</span>, <span class="hljs-string">"Plot"</span>]]          
+data.head()</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">data.shape</code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+np.unique(data[<span class="hljs-string">'Origin/Ethnicity'</span>])</code></pre>
+<pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio">&nbsp;</pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong><em>2: Choose only some portion of the data</em></strong></p>
+<pre><code class="language-python hljs" contenteditable="true">data2 = data.loc[(data[<span class="hljs-string">'Origin/Ethnicity'</span>]==<span class="hljs-string">'American'</span>) &amp; (data[<span class="hljs-string">'Release Year'</span>]&gt;<span class="hljs-number">2015</span>)]
+<span class="hljs-built_in">len</span>(data2)</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">my_data = pd.DataFrame(data2)</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">my_data.tail()</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">finaldata = my_data[[<span class="hljs-string">"Title"</span>, <span class="hljs-string">"Plot"</span>]]          
 finaldata = finaldata.set_index(<span class="hljs-string">'Title'</span>)    
   
-finaldata.head(<span class="hljs-number">50</span>)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">finaldata[<span class="hljs-string">"Plot"</span>][<span class="hljs-string">"Criminal"</span>]</code></pre><pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong><em>3: Preprocess the data</em></strong></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> nltk
+finaldata.head(<span class="hljs-number">50</span>)</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">finaldata[<span class="hljs-string">"Plot"</span>][<span class="hljs-string">"Criminal"</span>]</code></pre>
+<pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio">&nbsp;</pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong><em>3: Preprocess the data</em></strong></p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> nltk
 nltk.download(<span class="hljs-string">'punkt'</span>)
 nltk.download(<span class="hljs-string">'averaged_perceptron_tagger'</span>)
 nltk.download(<span class="hljs-string">'wordnet'</span>)
@@ -242,7 +287,8 @@ nltk.download(<span class="hljs-string">'stopwords'</span>)
 <span class="hljs-keyword">from</span> nltk.stem <span class="hljs-keyword">import</span> WordNetLemmatizer
 <span class="hljs-keyword">from</span> nltk.corpus <span class="hljs-keyword">import</span> stopwords
 
-lemmatizer = WordNetLemmatizer() </code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">preprocess_sentences</span>(<span class="hljs-params">text</span>):
+lemmatizer = WordNetLemmatizer() </code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">def</span> <span class="hljs-title function_">preprocess_sentences</span>(<span class="hljs-params">text</span>):
     text = text.lower()
     words = nltk.word_tokenize(text)
     my_sent=[lemmatizer.lemmatize(word) <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> words <span class="hljs-keyword">if</span> word <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> stopwords.words(<span class="hljs-string">'english'</span>)]
@@ -259,14 +305,18 @@ lemmatizer = WordNetLemmatizer() </code></pre><pre><code class="language-python 
     <span class="hljs-keyword">return</span> finalsent
 
 finaldata[<span class="hljs-string">"new_plot"</span>]= finaldata[<span class="hljs-string">"Plot"</span>].apply(preprocess_sentences)
-finaldata.head()</code></pre><pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong><em>4: Use TF-IDF to vectorize preprocessed movie plots</em></strong></p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> sklearn.feature_extraction.text <span class="hljs-keyword">import</span> TfidfVectorizer
+finaldata.head()</code></pre>
+<pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio">&nbsp;</pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong><em>4: Use TF-IDF to vectorize preprocessed movie plots</em></strong></p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> sklearn.feature_extraction.text <span class="hljs-keyword">import</span> TfidfVectorizer
   
 tfidf = TfidfVectorizer()
 tfidf_movieid = tfidf.fit_transform((finaldata[<span class="hljs-string">"new_plot"</span>]))
 
 <span class="hljs-comment"># Finding cosine similarity between vectors</span>
 <span class="hljs-keyword">from</span> sklearn.metrics.pairwise <span class="hljs-keyword">import</span> cosine_similarity
-similarity = cosine_similarity(tfidf_movieid, tfidf_movieid)</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">indices = pd.Series(finaldata.index)
+similarity = cosine_similarity(tfidf_movieid, tfidf_movieid)</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">indices = pd.Series(finaldata.index)
 <span class="hljs-keyword">def</span> <span class="hljs-title function_">recommendations</span>(<span class="hljs-params">title, cosine_sim = similarity</span>):
   <span class="hljs-keyword">try</span>:
     index = indices[indices == title].index[<span class="hljs-number">0</span>]
@@ -278,213 +328,23 @@ similarity = cosine_similarity(tfidf_movieid, tfidf_movieid)</code></pre><pre><c
     recommended_movies = [<span class="hljs-built_in">list</span>(finaldata.index)[i] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> top_10_movies]
     <span class="hljs-keyword">return</span> recommended_movies
   <span class="hljs-keyword">except</span>:
-    <span class="hljs-built_in">print</span>(<span class="hljs-string">"No movie name found"</span>)</code></pre><pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong><em>5: Final predictions</em></strong></p><pre><code class="language-python hljs" contenteditable="true" style="">recommendations(<span class="hljs-string">"Harry Potter and the Chamber of Secrets"</span>)</code></pre><pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="color: rgb(0, 0, 0); font-family: sans-serif; font-size: 1rem;">Output:</span></pre><pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"><img src="https://drive.google.com/thumbnail?id=1iTzrLcLVBQWQheumogBkN96lKwpHNCRx&amp;sz=w1000" data-filename="harry-potter.png" style="width: 384px;"></pre><pre><code class="language-python hljs" contenteditable="true" style="">recommendations(<span class="hljs-string">"Spider-Man"</span>)</code></pre><pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="color: rgb(0, 0, 0); font-family: sans-serif; font-size: 1rem;">Output:</span></pre><pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"><img src="https://drive.google.com/thumbnail?id=1y9sOW1qOkOYHvlxfzTKXBxHKVp_8zZXY&amp;sz=w1000" data-filename="spider-man.png" style="width: 389px;"></pre><pre><code class="language-python hljs" contenteditable="true" style="">recommendations(<span class="hljs-string">"Ice Age"</span>)</code></pre><pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="color: rgb(0, 0, 0); font-family: sans-serif; font-size: 1rem;">Output:</span></pre><pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"><img src="https://drive.google.com/thumbnail?id=1f0gOFL4j-zN2hrcHAS1DBsCDoA2c9Pk7&amp;sz=w1000" data-filename="ice-age.png" style="width: 318px;"></pre><figure class="wp-block-image size-large"><br></figure><h2 class="wp-block-heading">Conclusion</h2><p>In this post, I have clearly explained the Bag of Words and the TF-IDF models which are key concepts in Natural Language Processing. I have made a complete project on the Movie Recommendation System with the TF-IDF model. I hope you like this project.</p><p><!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"ordered":true} -->
-
-<!-- /wp:list -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":1289,"sizeSlug":"large","linkDestination":"none","align":"center"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":1291,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/L8X84Fq0ZkE","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":1292,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/V1dHstesbos","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/7GaAp0XkLpM","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":1293,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":1294,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":1295,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph --></p><p>If you have any questions, ask me in the comment section. I will be back to you as soon as possible. Keep learning. </p></div>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"No movie name found"</span>)</code></pre>
+<pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio">&nbsp;</pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong><em>5: Final predictions</em></strong></p>
+<pre><code class="language-python hljs" contenteditable="true">recommendations(<span class="hljs-string">"Harry Potter and the Chamber of Secrets"</span>)</code></pre>
+<pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="color: #000000; font-family: sans-serif; font-size: 1rem;">Output:</span></pre>
+<pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"><img style="width: 384px;" src="https://drive.google.com/thumbnail?id=1iTzrLcLVBQWQheumogBkN96lKwpHNCRx&amp;sz=w1000" data-filename="harry-potter.png"></pre>
+<pre><code class="language-python hljs" contenteditable="true">recommendations(<span class="hljs-string">"Spider-Man"</span>)</code></pre>
+<pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="color: #000000; font-family: sans-serif; font-size: 1rem;">Output:</span></pre>
+<pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"><img style="width: 389px;" src="https://drive.google.com/thumbnail?id=1y9sOW1qOkOYHvlxfzTKXBxHKVp_8zZXY&amp;sz=w1000" data-filename="spider-man.png"></pre>
+<pre><code class="language-python hljs" contenteditable="true">recommendations(<span class="hljs-string">"Ice Age"</span>)</code></pre>
+<pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="color: #000000; font-family: sans-serif; font-size: 1rem;">Output:</span></pre>
+<pre class="wp-block-syntaxhighlighter-code wp-embed-aspect-16-9 wp-has-aspect-ratio"><img style="width: 318px;" src="https://drive.google.com/thumbnail?id=1f0gOFL4j-zN2hrcHAS1DBsCDoA2c9Pk7&amp;sz=w1000" data-filename="ice-age.png"></pre>
+<figure class="wp-block-image size-large"></figure>
+<h2 class="wp-block-heading">Conclusion</h2>
+<p>In this post, I have clearly explained the Bag of Words and the TF-IDF models which are key concepts in Natural Language Processing. I have made a complete project on the Movie Recommendation System with the TF-IDF model. I hope you like this project.</p>
+<p><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"ordered":true} --><!-- /wp:list --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:image {"id":1289,"sizeSlug":"large","linkDestination":"none","align":"center"} --><!-- /wp:image --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:image {"id":1291,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/L8X84Fq0ZkE","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:image {"id":1292,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/V1dHstesbos","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/7GaAp0XkLpM","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:image {"id":1293,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:image {"id":1294,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:image {"id":1295,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --></p>
+<p>If you have any questions, ask me in the comment section. I will be back to you as soon as possible. Keep learning.</p></div>
 
 <script>
   if (window.hljs) {

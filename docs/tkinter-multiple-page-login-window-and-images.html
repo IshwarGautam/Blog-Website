@@ -157,55 +157,44 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+  <div class="post-body"><h2 class="wp-block-heading">What will you learn?</h2>
+<ol class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#introduction">Tkinter introduction and sample code.</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#typing-speed">Make typing speed application using Python.</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#multiple-page">Multiple page GUI window with login page and image.</a></li>
-<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="introduction">Tkinter Introduction and sample code</h2><p>Tkinter is one of the famous GUI (Graphical User Interface) toolkits that are used in creating GUI applications. </p><p>These are the following steps used while creating a GUI application using Tkinter:</p><div class="wp-block-group"><!-- wp:list {"ordered":true} -->
+<!-- /wp:list-item --></ol>
+<h2 id="introduction" class="wp-block-heading">Tkinter Introduction and sample code</h2>
+<p>Tkinter is one of the famous GUI (Graphical User Interface) toolkits that are used in creating GUI applications.</p>
+<p>These are the following steps used while creating a GUI application using Tkinter:</p>
+<div class="wp-block-group"><!-- wp:list {"ordered":true} -->
 <ol class="wp-block-list"><!-- wp:list-item -->
 <li>Import the Tkinter module.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Create a main window of the GUI application.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Add widgets inside a window like a label, text field, button, scroll box, etc.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Display the window using Mainloop.</li>
 <!-- /wp:list-item --></ol>
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
+<!-- /wp:list --><!-- wp:paragraph -->
 <p>To place any of these widgets inside the window, we have three methods.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:list {"ordered":true} -->
+<!-- /wp:paragraph --><!-- wp:list {"ordered":true} -->
 <ol class="wp-block-list"><!-- wp:list-item -->
 <li>pack() method: put the widget in blocks.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>grid() method: put the widget in a table-like structure.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>place() method: put the widget in a specific position using x and y coordinates.</li>
 <!-- /wp:list-item --></ol>
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
+<!-- /wp:list --><!-- wp:paragraph -->
 <p>I use the place() method in most cases because I can put any widget in any location using this method.</p>
-<!-- /wp:paragraph --></div><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/FclrlobIOXM" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/FclrlobIOXM">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/FclrlobIOXM?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<!-- /wp:paragraph --></div>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
 
 window=tk.Tk()
 window.title(<span class="hljs-string">"Face Recognition System"</span>)
@@ -286,23 +275,42 @@ b1.place(x=<span class="hljs-number">140</span>,y=<span class="hljs-number">480<
 
 
 window.geometry(<span class="hljs-string">"400x550"</span>)
-window.mainloop()</code></pre><pre class="wp-block-syntaxhighlighter-code"></pre><h2 class="wp-block-heading" id="typing-speed">Typing Speed Application Using Python</h2><p>Let us build a typing speed app with Python and Tkinter.</p><p>I'll go over each code step by step.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/GR7ocwfwprg" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 1: Import required packages:</strong></h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">We require a number of packages, including a tkinter, a keyboard, and time.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># importing all libraries</span>
+window.mainloop()</code></pre>
+<pre class="wp-block-syntaxhighlighter-code">&nbsp;</pre>
+<h2 id="typing-speed" class="wp-block-heading">Typing Speed Application Using Python</h2>
+<p>Let us build a typing speed app with Python and Tkinter.</p>
+<p>I'll go over each code step by step.</p>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/GR7ocwfwprg">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/GR7ocwfwprg?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 1: Import required packages:</strong></h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">We require a number of packages, including a tkinter, a keyboard, and time.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-comment"># importing all libraries</span>
 <span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
 <span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> *
 <span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> messagebox
 <span class="hljs-keyword">import</span> random
 <span class="hljs-keyword">import</span> keyboard
-<span class="hljs-keyword">import</span> time</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 2: Create a window</strong></h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">To create a window, we can use tkinter which is a Python GUI toolkit. <code>window.title</code> will define the title of the GUI window and <code>window.resizable(0,0)</code> will remove the maximize option from the window. We will not be able to maximize our window.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># creating window using gui</span>
+<span class="hljs-keyword">import</span> time</code></pre>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 2: Create a window</strong></h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">To create a window, we can use tkinter which is a Python GUI toolkit. <code>window.title</code> will define the title of the GUI window and <code>window.resizable(0,0)</code> will remove the maximize option from the window. We will not be able to maximize our window.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-comment"># creating window using gui</span>
 window = tk.Tk()
 window.title(<span class="hljs-string">'Typing Speed'</span>)
 window.resizable(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>)
 
 <span class="hljs-comment"># define size of window</span>
-window.geometry(<span class="hljs-string">"470x200"</span>)</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 3: Create a label and button</strong></h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">To create a label, we can use <code>tk.Label</code> and to create a button, we can use<code> tk.Button</code>.</p><pre><code class="language-python hljs" contenteditable="true" style="">x1 = tk.Label(window, text=<span class="hljs-string">"Lets check your typing speed...."</span>, font=<span class="hljs-string">"Arial 20"</span>)
+window.geometry(<span class="hljs-string">"470x200"</span>)</code></pre>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 3: Create a label and button</strong></h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">To create a label, we can use <code>tk.Label</code> and to create a button, we can use<code> tk.Button</code>.</p>
+<pre><code class="language-python hljs" contenteditable="true">x1 = tk.Label(window, text=<span class="hljs-string">"Lets check your typing speed...."</span>, font=<span class="hljs-string">"Arial 20"</span>)
 x1.place(x=<span class="hljs-number">10</span>, y=<span class="hljs-number">50</span>)
 
 b1 = tk.Button(window, text=<span class="hljs-string">"Start"</span>, width=<span class="hljs-number">12</span>, bg=<span class="hljs-string">'white'</span>, fg=<span class="hljs-string">"tomato"</span>, font=<span class="hljs-string">"Algerian,10"</span>)
-b1.place(x=<span class="hljs-number">150</span>, y=<span class="hljs-number">100</span>)</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 4: When space is pressed</strong></h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">When the space key is pressed from the keyboard, we have to check whether we typed correctly or not.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">if</span> keyboard.is_pressed(<span class="hljs-string">'space'</span>):
+b1.place(x=<span class="hljs-number">150</span>, y=<span class="hljs-number">100</span>)</code></pre>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 4: When space is pressed</strong></h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">When the space key is pressed from the keyboard, we have to check whether we typed correctly or not.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">if</span> keyboard.is_pressed(<span class="hljs-string">'space'</span>):
     a = txt.get().split()[-<span class="hljs-number">1</span>]
     b = words[word].split()[i]
     
@@ -310,7 +318,10 @@ b1.place(x=<span class="hljs-number">150</span>, y=<span class="hljs-number">100
         count+=<span class="hljs-number">1</span>
 
     <span class="hljs-keyword">else</span>:
-        icount+=<span class="hljs-number">1</span></code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 5: When we typed correctly</strong> vs when we typed incorrectly</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">When we typed correct, we had to increase the number of correct words by 1 and we had to highlight that text with orange color, and in the opposite case, when we typed incorrect, increased the number of incorrect words and highlighted with red color. Another extra code here is to get the index and the length of the typed word so that we can highlight specific parts of the sentence.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">if</span> a==b:
+        icount+=<span class="hljs-number">1</span></code></pre>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 5: When we typed correctly</strong> vs when we typed incorrectly</h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">When we typed correct, we had to increase the number of correct words by 1 and we had to highlight that text with orange color, and in the opposite case, when we typed incorrect, increased the number of incorrect words and highlighted with red color. Another extra code here is to get the index and the length of the typed word so that we can highlight specific parts of the sentence.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">if</span> a==b:
     count+=<span class="hljs-number">1</span>
     new_str = new_str + b + <span class="hljs-string">' '</span>
     c = new_str+<span class="hljs-string">' '</span>.join(words[word].split()[i+<span class="hljs-number">1</span>:])
@@ -338,7 +349,12 @@ b1.place(x=<span class="hljs-number">150</span>, y=<span class="hljs-number">100
     text.insert(END, c)
 
     text.tag_add(<span class="hljs-string">"start"</span>, <span class="hljs-string">"1."</span>+<span class="hljs-built_in">str</span>(idx), <span class="hljs-string">"1."</span>+<span class="hljs-built_in">str</span>(idx+ln))
-    text.tag_config(<span class="hljs-string">"start"</span>,  foreground=<span class="hljs-string">"red"</span>)</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 6: Calculate Typing speed</strong></h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">To calculate typing speed, we have the following formula:</p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><img src="https://drive.google.com/thumbnail?id=1N63CRe_UN7o4kdUx9TncidihW_fF2V4z&sz=w1000" data-filename="typing-speed-formula.png" style="width: 320px;"></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">All typed entries refer to a number of characters typed including a single space (between each word) and special symbols. I am taking each 5 characters as one word.&nbsp;<br>Note: The join function converts the list to a string. I am using the join function to remove multiple spaces between words.</p><pre><code class="language-python hljs" contenteditable="true" style="">start= time.time()
+    text.tag_config(<span class="hljs-string">"start"</span>,  foreground=<span class="hljs-string">"red"</span>)</code></pre>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Step 6: Calculate Typing speed</strong></h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">To calculate typing speed, we have the following formula:</p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><img style="width: 320px;" src="https://drive.google.com/thumbnail?id=1N63CRe_UN7o4kdUx9TncidihW_fF2V4z&amp;sz=w1000" data-filename="typing-speed-formula.png"></p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">All typed entries refer to a number of characters typed including a single space (between each word) and special symbols. I am taking each 5 characters as one word.&nbsp;<br>Note: The join function converts the list to a string. I am using the join function to remove multiple spaces between words.</p>
+<pre><code class="language-python hljs" contenteditable="true">start= time.time()
 
 <span class="hljs-string">'''
 our code
@@ -352,7 +368,25 @@ time_in_min = (end-start)/<span class="hljs-number">60</span>
 result = <span class="hljs-built_in">int</span>((typed_entries/<span class="hljs-number">5</span>)/time_in_min)
 
 <span class="hljs-comment"># Display result in messagebox</span>
-messagebox.showinfo(<span class="hljs-string">'Result'</span>, <span class="hljs-string">"Your Typing Speed= "</span>+<span class="hljs-built_in">str</span>(result)+<span class="hljs-string">" wpm"</span>)</code></pre><h2 class="wp-block-heading" id="multiple-page">Multiple page GUI window with login page and image | Tkinter - Python GUI Toolkit</h2><p>Tkinter is a simple and useful GUI (Graphical user interface) tool. We can use Tkinter to turn our project into a GUI. I have covered the basics of tkinter:&nbsp;</p><p><strong><span style="text-decoration: underline"><em>1.&nbsp;Learn tkinter in 30 minutes:&nbsp;</em></span></strong></p><p><iframe frameborder="0" src="//www.youtube.com/embed/FclrlobIOXM" width="640" height="360" class="note-video-clip"></iframe><strong><span style="text-decoration: underline"><em><br></em></span></strong></p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><strong style="font-size: 1rem;"><span style="text-decoration-line: underline;"><em>2. Tkinter canvas widget in Python:&nbsp;</em></span></strong></div></figure><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/GQu8xepMj4Q" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p><strong><span style="text-decoration: underline"><em>3. Multiple page Tkinter window:&nbsp;</em></span></strong></p><p>In this course, I have made three windows, The first window is the login page. We must register first to enter the next page. </p><p>The username and password will be stored in the text file so that when you open the window the next time, your username and password will still be valid.</p><p>To learn step by step, I recommend you to watch the below video carefully. The source code is attached below.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/tpGjHRDEjCE" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
+messagebox.showinfo(<span class="hljs-string">'Result'</span>, <span class="hljs-string">"Your Typing Speed= "</span>+<span class="hljs-built_in">str</span>(result)+<span class="hljs-string">" wpm"</span>)</code></pre>
+<h2 id="multiple-page" class="wp-block-heading">Multiple page GUI window with login page and image | Tkinter - Python GUI Toolkit</h2>
+<p>Tkinter is a simple and useful GUI (Graphical user interface) tool. We can use Tkinter to turn our project into a GUI. I have covered the basics of tkinter:&nbsp;</p>
+<p><strong><span style="text-decoration: underline;"><em>1.&nbsp;Learn tkinter in 30 minutes:&nbsp;</em></span></strong></p>
+<div style="max-width: 650px;" data-ephox-embed-iri="https://youtu.be/FclrlobIOXM">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/FclrlobIOXM?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p><strong style="font-size: 1rem;"><span style="text-decoration-line: underline;"><em>2.&nbsp;Tkinter canvas widget in Python:&nbsp;</em></span></strong></p>
+<div style="max-width: 650px;" data-ephox-embed-iri="https://youtu.be/GQu8xepMj4Q">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/GQu8xepMj4Q?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p><strong><span style="text-decoration: underline;"><em>3. Multiple page Tkinter window:&nbsp;</em></span></strong></p>
+<p>In this course, I have made three windows, The first window is the login page. We must register first to enter the next page.</p>
+<p>The username and password will be stored in the text file so that when you open the window the next time, your username and password will still be valid.</p>
+<p>To learn step by step, I recommend you to watch the below video carefully. The source code is attached below.</p>
+<div style="max-width: 650px;" data-ephox-embed-iri="https://youtu.be/tpGjHRDEjCE">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/tpGjHRDEjCE?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
 <span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> messagebox
 <span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image, ImageTk  <span class="hljs-comment"># install pillow with pip: pip install pillow</span>
 
@@ -519,193 +553,11 @@ messagebox.showinfo(<span class="hljs-string">'Result'</span>, <span class="hljs
 
 app = Application()
 app.maxsize(<span class="hljs-number">800</span>, <span class="hljs-number">500</span>)
-app.mainloop()</code></pre><h2 class="wp-block-heading">Conclusion:</h2><p>In this way, we can utilize the Tkinter toolkit to make your GUI application. You can use Tkinter Canvas to make a separate layer in the application. You can also add a sign-in and sign-up page in the Tkinter window.</p><p><!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"ordered":true} -->
-
-<!-- /wp:list -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:group {"layout":{"type":"constrained"}} -->
-
-<!-- /wp:group -->
-
-<!-- wp:embed {"url":"https://youtu.be/FclrlobIOXM","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/GR7ocwfwprg","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":1317,"sizeSlug":"large","linkDestination":"none","align":"center"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/FclrlobIOXM?list=PLiWNvnK7PSPFUAyqK0PhNvsKQcGANhp69 ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/GQu8xepMj4Q?list=PLiWNvnK7PSPFUAyqK0PhNvsKQcGANhp69 ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/tpGjHRDEjCE","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph --></p><p>I hope this post is very helpful to you. If you have any questions, ask me in the comment section. I will reply as soon as possible. Thanks.</p></div>
+app.mainloop()</code></pre>
+<h2 class="wp-block-heading">Conclusion:</h2>
+<p>In this way, we can utilize the Tkinter toolkit to make your GUI application. You can use Tkinter Canvas to make a separate layer in the application. You can also add a sign-in and sign-up page in the Tkinter window.</p>
+<p><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"ordered":true} --><!-- /wp:list --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:group {"layout":{"type":"constrained"}} --><!-- /wp:group --><!-- wp:embed {"url":"https://youtu.be/FclrlobIOXM","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/GR7ocwfwprg","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:image {"id":1317,"sizeSlug":"large","linkDestination":"none","align":"center"} --><!-- /wp:image --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/FclrlobIOXM?list=PLiWNvnK7PSPFUAyqK0PhNvsKQcGANhp69 ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/GQu8xepMj4Q?list=PLiWNvnK7PSPFUAyqK0PhNvsKQcGANhp69 ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/tpGjHRDEjCE","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --></p>
+<p>I hope this post is very helpful to you. If you have any questions, ask me in the comment section. I will reply as soon as possible. Thanks.</p></div>
 
 <script>
   if (window.hljs) {

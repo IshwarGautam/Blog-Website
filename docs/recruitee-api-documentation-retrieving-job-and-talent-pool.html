@@ -157,73 +157,55 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><h2 class="wp-block-heading"><img src="https://drive.google.com/thumbnail?id=1cFt03h1xFlkzSQxZSxmcn5ekzAOISB9A&sz=w1000" data-filename="recruitee.jpg" style="width: 50%;"><br></h2><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+  <div class="post-body"><h2 class="wp-block-heading"><img style="width: 50%;" src="https://drive.google.com/thumbnail?id=1cFt03h1xFlkzSQxZSxmcn5ekzAOISB9A&amp;sz=w1000" data-filename="recruitee.jpg"></h2>
+<h2 class="wp-block-heading">What will you learn?</h2>
+<ol class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#get-candidates">Get all candidates</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#get-by-id">Get a candidate by their ID</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#filter-by-status">Filter a candidate by their status</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li><a href="#get-collection">Get a collection of the company’s offers – jobs and talent pools</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="#get-collection">Get a collection of the company&rsquo;s offers &ndash; jobs and talent pools</a></li>
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#get-candidates-job-talentpool">Get all candidates from the talent pool or jobs</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#get-logs">Get all logs</a><!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#log1">When admin updated candidate fields (e.g. skills)</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#log2">When admin changed the candidate stage</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#log3">When admin assigned candidate to offer</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#log4">When admin de-assigned a candidate from the offer</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#log5">When the admin viewed a candidate</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#log6">When admin created a candidate</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#log7">When the admin deleted a candidate</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#log8">When admin disqualified a candidate</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#log9">When admin created an event request link</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#log10">When candidate field visibility changed</a></li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#filter-by-created_date">Filter the logs by the created date</a></li>
-<!-- /wp:list-item --></ol><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/sNnVVnoxxAQ" width="640" height="360" class="note-video-clip"></iframe><span style="font-size: 2rem;"><br></span></div><div class="wp-block-embed__wrapper" id="get-candidates"><span style="font-size: 2rem;">Get all candidates:</span></div></figure><p>GET <code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">https://api.recruitee.com/c/:company_id/candidates</mark></code></p><p>where</p><p>company_id: Settings → Apps and Plugins → Personal API tokens → Current company details</p><p>Authorization: Bearer &lt;api_token&gt; <em>(Required for all API's)</em></p><p><strong>Response</strong></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+<!-- /wp:list-item --></ol>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/sNnVVnoxxAQ">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/sNnVVnoxxAQ?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<div id="get-candidates" class="wp-block-embed__wrapper"><span style="font-size: 2rem;">Get all candidates:</span></div>
+<p>GET <code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">https://api.recruitee.com/c/:company_id/candidates</mark></code></p>
+<p>where</p>
+<p>company_id: Settings &rarr; Apps and Plugins &rarr; Personal API tokens &rarr; Current company details</p>
+<p>Authorization: Bearer &lt;api_token&gt; <em>(Required for all API's)</em></p>
+<p><strong>Response</strong></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"candidates"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
        <span class="hljs-punctuation">{</span>
            <span class="hljs-attr">"admin_id"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">322453</span><span class="hljs-punctuation">,</span>
@@ -279,7 +261,13 @@
        <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
 	....
     <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><p><strong>Note</strong>: It will return only some of the property of each candidate. To fetch <strong>all</strong> the information, we have to pass the <strong>id</strong> of a particular candidate as below.</p><h2 class="wp-block-heading" id="get-by-id">Get a candidate by their ID:</h2><p>Get <code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">https://api.recruitee.com/c/:company_id/candidates/&lt;id&gt;</mark></code></p><p>This will fetch the skills of that particular candidate and other information.</p><p><strong>Response</strong></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+<span class="hljs-punctuation">}</span></code></pre>
+<p><strong>Note</strong>: It will return only some of the property of each candidate. To fetch <strong>all</strong> the information, we have to pass the <strong>id</strong> of a particular candidate as below.</p>
+<h2 id="get-by-id" class="wp-block-heading">Get a candidate by their ID:</h2>
+<p>Get <code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">https://api.recruitee.com/c/:company_id/candidates/&lt;id&gt;</mark></code></p>
+<p>This will fetch the skills of that particular candidate and other information.</p>
+<p><strong>Response</strong></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"candidate"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
        <span class="hljs-attr">"tags"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
        <span class="hljs-attr">"adminapp_url"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"https://app.recruitee.com/#/dashboard/overview?candidate=47628534&amp;company=90598"</span><span class="hljs-punctuation">,</span>
@@ -524,7 +512,13 @@
            <span class="hljs-attr">"type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Admin"</span>
        <span class="hljs-punctuation">}</span>
    <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><p>It will return all the property that belongs to this id. E.g. <strong>Candidate skills</strong></p><h2 class="wp-block-heading" id="filter-by-status">Filter a candidate by their status:</h2><p>GET <code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">https://api.recruitee.com/c/:company_id/search/new/candidates?filters_json=[{"field":"status","in":["disqualified"]}]</mark></code></p><p><strong>Note</strong>: filters_json takes an array of objects, so we can pass multiple objects at the same time to filter them based on different fields.</p><p><strong>Response</strong></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+<span class="hljs-punctuation">}</span></code></pre>
+<p>It will return all the property that belongs to this id. E.g. <strong>Candidate skills</strong></p>
+<h2 id="filter-by-status" class="wp-block-heading">Filter a candidate by their status:</h2>
+<p>GET <code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">https://api.recruitee.com/c/:company_id/search/new/candidates?filters_json=[{"field":"status","in":["disqualified"]}]</mark></code></p>
+<p><strong>Note</strong>: filters_json takes an array of objects, so we can pass multiple objects at the same time to filter them based on different fields.</p>
+<p><strong>Response</strong></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"aggregations"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">"hits"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
        <span class="hljs-punctuation">{</span>
@@ -620,7 +614,11 @@
        <span class="hljs-punctuation">}</span>
    <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">"total"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span>
-<span class="hljs-punctuation">}</span></code></pre><p>We can filter candidates with respect to different fields. For more information, click <a href="https://docs.recruitee.com/reference/searchnewcandidates" target="_blank" rel="noreferrer noopener">here</a>.</p><h2 class="wp-block-heading" id="get-collection">Get a collection of the company's offers - jobs and talent pools:</h2><p>Get <code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">https://api.recruitee.com/c/:company_id/offers</mark></code></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+<span class="hljs-punctuation">}</span></code></pre>
+<p>We can filter candidates with respect to different fields. For more information, click <a href="https://docs.recruitee.com/reference/searchnewcandidates" target="_blank" rel="noreferrer noopener">here</a>.</p>
+<h2 id="get-collection" class="wp-block-heading">Get a collection of the company's offers - jobs and talent pools:</h2>
+<p>Get <code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">https://api.recruitee.com/c/:company_id/offers</mark></code></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"offers"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
 	<span class="hljs-punctuation">{</span>
            <span class="hljs-attr">"closed_at"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span>
@@ -852,7 +850,14 @@
            <span class="hljs-attr">"disqualified_candidates_count"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span>
        <span class="hljs-punctuation">}</span>
    <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><p><strong>Get only jobs</strong></p><p><code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">https://api.recruitee.com/c/:company_id/offers?kind=job</mark></code></p><p><strong>Get only talent-pools</strong></p><p><code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">https://api.recruitee.com/c/:company_id/offers?kind=talent_pool</mark></code></p><h2 class="wp-block-heading" id="get-candidates-job-talentpool">Get all candidates from the talent pool or jobs:</h2><p>Get <code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">https://api.recruitee.com/c/:company_id/candidates?offer_id=&lt;id&gt;</mark></code></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+<span class="hljs-punctuation">}</span></code></pre>
+<p><strong>Get only jobs</strong></p>
+<p><code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">https://api.recruitee.com/c/:company_id/offers?kind=job</mark></code></p>
+<p><strong>Get only talent-pools</strong></p>
+<p><code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">https://api.recruitee.com/c/:company_id/offers?kind=talent_pool</mark></code></p>
+<h2 id="get-candidates-job-talentpool" class="wp-block-heading">Get all candidates from the talent pool or jobs:</h2>
+<p>Get <code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">https://api.recruitee.com/c/:company_id/candidates?offer_id=&lt;id&gt;</mark></code></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"candidates"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
        <span class="hljs-punctuation">{</span>
            <span class="hljs-attr">"admin_id"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">322453</span><span class="hljs-punctuation">,</span>
@@ -1137,7 +1142,12 @@
            <span class="hljs-attr">"updated_at"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2023-01-31T08:15:23.201250Z"</span>
        <span class="hljs-punctuation">}</span>
    <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><h2 class="wp-block-heading" id="get-logs">Get all logs:</h2><p>Get <code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">https://api.recruitee.com/c/:company_id/audit_log</mark></code></p><p>It will display all the changes in the application. Like when a candidate is created, deleted, assigned a job or talent pool, and so on.</p><p id="log1"><em><strong>When admin updated candidate fields (e.g. skills)</strong></em></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+<span class="hljs-punctuation">}</span></code></pre>
+<h2 id="get-logs" class="wp-block-heading">Get all logs:</h2>
+<p>Get <code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">https://api.recruitee.com/c/:company_id/audit_log</mark></code></p>
+<p>It will display all the changes in the application. Like when a candidate is created, deleted, assigned a job or talent pool, and so on.</p>
+<p id="log1"><em><strong>When admin updated candidate fields (e.g. skills)</strong></em></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
            <span class="hljs-attr">"_id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"9Y5wNYYBiDdvSIAhuLrO"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Ishwar Gautam"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor_type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"admin"</span><span class="hljs-punctuation">,</span>
@@ -1191,7 +1201,9 @@
            <span class="hljs-attr">"highlight"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"ip_address"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"103.167.233.20"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"offer"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span>
-       <span class="hljs-punctuation">}</span></code></pre><p id="log2"><strong><em>When admin changed candidate stage:</em></strong></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+       <span class="hljs-punctuation">}</span></code></pre>
+<p id="log2"><strong><em>When admin changed candidate stage:</em></strong></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
            <span class="hljs-attr">"_id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"f_odMIYBWfTYMG3cYlnj"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Ishwar Gautam"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor_type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"admin"</span><span class="hljs-punctuation">,</span>
@@ -1240,7 +1252,9 @@
            <span class="hljs-attr">"highlight"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"ip_address"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"103.167.233.22"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"offer"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span>
-       <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span></code></pre><p id="log3"><strong><em>When admin assigned candidate to offer:</em></strong></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+       <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span></code></pre>
+<p id="log3"><strong><em>When admin assigned candidate to offer:</em></strong></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
            <span class="hljs-attr">"_id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"WoC1KoYBiDdvSIAhj7N9"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Ishwar Gautam"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor_type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"admin"</span><span class="hljs-punctuation">,</span>
@@ -1304,7 +1318,9 @@
                <span class="hljs-attr">"status"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"internal"</span><span class="hljs-punctuation">,</span>
                <span class="hljs-attr">"title"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Recruiter (Sample)"</span>
            <span class="hljs-punctuation">}</span>
-       <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span></code></pre><p id="log4"><strong><em>When admin de-assigned candidate from the offer:</em></strong></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+       <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span></code></pre>
+<p id="log4"><strong><em>When admin de-assigned candidate from the offer:</em></strong></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
            <span class="hljs-attr">"_id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"je--JYYBWfTYMG3cHJsF"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Ishwar Gautam"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor_type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"admin"</span><span class="hljs-punctuation">,</span>
@@ -1339,7 +1355,9 @@
            <span class="hljs-attr">"highlight"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"ip_address"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"103.167.233.5"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"offer"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span>
-       <span class="hljs-punctuation">}</span></code></pre><p id="log5"><strong><em>When admin viewed candidate:</em></strong></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+       <span class="hljs-punctuation">}</span></code></pre>
+<p id="log5"><strong><em>When admin viewed candidate:</em></strong></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
            <span class="hljs-attr">"_id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Uau1KoYBjAGyTaM8eOi1"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Ishwar Gautam"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor_type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"admin"</span><span class="hljs-punctuation">,</span>
@@ -1377,7 +1395,9 @@
            <span class="hljs-attr">"highlight"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"ip_address"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"103.167.233.83"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"offer"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span>
-       <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span></code></pre><p id="log6"><strong><em>When admin created candidate:</em></strong></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+       <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span></code></pre>
+<p id="log6"><strong><em>When admin created candidate:</em></strong></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
            <span class="hljs-attr">"_id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"hqu0KoYBjAGyTaM8_efJ"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Ishwar Gautam"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor_type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"admin"</span><span class="hljs-punctuation">,</span>
@@ -1415,7 +1435,9 @@
            <span class="hljs-attr">"highlight"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"ip_address"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"103.167.233.83"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"offer"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span>
-       <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span></code></pre><p id="log7"><strong><em>When admin deleted candidate:</em></strong></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+       <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span></code></pre>
+<p id="log7"><strong><em>When admin deleted candidate:</em></strong></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
            <span class="hljs-attr">"_id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"pquwKoYBjAGyTaM85-Ja"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Ishwar Gautam"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor_type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"admin"</span><span class="hljs-punctuation">,</span>
@@ -1471,7 +1493,9 @@
            <span class="hljs-attr">"highlight"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"ip_address"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"offer"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span>
-       <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span></code></pre><p id="log8"><strong><em>When admin disqualified candidate:</em></strong></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+       <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span></code></pre>
+<p id="log8"><strong><em>When admin disqualified candidate:</em></strong></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
            <span class="hljs-attr">"_id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"XXa2KoYBcyJdvcla_1qL"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Ishwar Gautam"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor_type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"admin"</span><span class="hljs-punctuation">,</span>
@@ -1510,7 +1534,9 @@
            <span class="hljs-attr">"highlight"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"ip_address"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"offer"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span>
-       <span class="hljs-punctuation">}</span></code></pre><p id="log9"><strong><em>When admin created event request link:</em></strong></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+       <span class="hljs-punctuation">}</span></code></pre>
+<p id="log9"><strong><em>When admin created event request link:</em></strong></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
            <span class="hljs-attr">"_id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"z46qKoYBnNYXiNAQAwRU"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Ishwar Gautam"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor_type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"admin"</span><span class="hljs-punctuation">,</span>
@@ -1541,7 +1567,9 @@
            <span class="hljs-attr">"highlight"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"ip_address"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"offer"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span>
-       <span class="hljs-punctuation">}</span></code></pre><p id="log10"><strong><em>When candidate field visibility changed:</em></strong></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+       <span class="hljs-punctuation">}</span></code></pre>
+<p id="log10"><strong><em>When candidate field visibility changed:</em></strong></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
            <span class="hljs-attr">"_id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"oae-JYYBjAGyTaM8HEj6"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"System"</span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"actor_type"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"system"</span><span class="hljs-punctuation">,</span>
@@ -1568,13 +1596,20 @@
            <span class="hljs-attr">"highlight"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"ip_address"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span>
            <span class="hljs-attr">"offer"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span>
-       <span class="hljs-punctuation">}</span></code></pre><p id="log10"><strong><em><br></em></strong></p><h2 class="wp-block-heading" id="filter-by-created_date">Filter the logs by created date:</h2><p>GET <code><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-cyan-blue-color">https://api.recruitee.com/c/:company_id/audit_log?filters_json=[{ "field": "created_at", "gte": 1675750344, "lte":1675750741}]</mark></code></p><p>Where gte = greater than or equal to (takes a date in epochs),</p><p>And lte = less than or equal to&nbsp; (in epochs)</p><p><strong>Note</strong>:&nbsp;</p><ul class="wp-block-list"><!-- wp:list-item -->
+       <span class="hljs-punctuation">}</span></code></pre>
+<p id="log10"><strong><em>&nbsp;</em></strong></p>
+<h2 id="filter-by-created_date" class="wp-block-heading">Filter the logs by created date:</h2>
+<p>GET <code><mark class="has-inline-color has-vivid-cyan-blue-color" style="background-color: rgba(0, 0, 0, 0);">https://api.recruitee.com/c/:company_id/audit_log?filters_json=[{ "field": "created_at", "gte": 1675750344, "lte":1675750741}]</mark></code></p>
+<p>Where gte = greater than or equal to (takes a date in epochs),</p>
+<p>And lte = less than or equal to&nbsp; (in epochs)</p>
+<p><strong>Note</strong>:&nbsp;</p>
+<ul class="wp-block-list"><!-- wp:list-item -->
 <li>The Unix epoch is the number of seconds that have elapsed since January 1, 1970, at midnight UTC time minus the leap seconds.&nbsp;</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>There are a lot of online tools available to convert human-readable date to epochs. For e.g. <a href="https://www.epochconverter.com/" target="_blank" rel="noreferrer noopener">epochconverter.com</a></li>
-<!-- /wp:list-item --></ul><p><strong>Response</strong></p><pre><code class="language-json hljs" contenteditable="true" style=""><span class="hljs-punctuation">{</span>
+<!-- /wp:list-item --></ul>
+<p><strong>Response</strong></p>
+<pre><code class="language-json hljs" contenteditable="true"><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"aggregations"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">"entries"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
        <span class="hljs-punctuation">{</span>
@@ -1629,283 +1664,17 @@
        <span class="hljs-punctuation">}</span>
    <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">"total"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span>
-<span class="hljs-punctuation">}</span></code></pre><p><strong>Note</strong>: Possible FilterGroups:</p><ul class="wp-block-list"><!-- wp:list-item -->
-<li>{ field: ‘all’, query: string }</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>{ field: ‘created_at’, gte: string | number, lte: string | number}</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>{ field: ‘actor’, in: string, not_in: string}</li>
-<!-- /wp:list-item --></ul><p><!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"ordered":true} -->
-
-<!-- /wp:list -->
-
-<!-- wp:embed {"url":"https://youtu.be/sNnVVnoxxAQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"bash"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph --></p><p>For more information, refer <a rel="noreferrer noopener" href="https://api.recruitee.com/docs/index.html" target="_blank">here</a>.</p></div>
+<span class="hljs-punctuation">}</span></code></pre>
+<p><strong>Note</strong>: Possible FilterGroups:</p>
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>{ field: &lsquo;all&rsquo;, query: string }</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>{ field: &lsquo;created_at&rsquo;, gte: string | number, lte: string | number}</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>{ field: &lsquo;actor&rsquo;, in: string, not_in: string}</li>
+<!-- /wp:list-item --></ul>
+<p><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"ordered":true} --><!-- /wp:list --><!-- wp:embed {"url":"https://youtu.be/sNnVVnoxxAQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:list --><!-- /wp:list --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"bash"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:list --><!-- /wp:list --><!-- wp:paragraph --><!-- /wp:paragraph --></p>
+<p>For more information, refer <a href="https://api.recruitee.com/docs/index.html" target="_blank" rel="noreferrer noopener">here</a>.</p></div>
 
 <script>
   if (window.hljs) {

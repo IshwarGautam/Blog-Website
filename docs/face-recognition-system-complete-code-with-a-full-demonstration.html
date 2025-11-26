@@ -157,37 +157,40 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><p class="has-text-align-right wp-embed-aspect-16-9 wp-has-aspect-ratio" style="text-align: justify;"><img src="https://drive.google.com/thumbnail?id=17BXt2EdIxovW2CLRpwO1Cc-Yl9Gs4cux&amp;sz=w1000" data-filename="frs-featured-image.png" style="width: 50%;"><span style="font-size: 1rem; text-align: left;"><br></span></p><p class="has-text-align-right wp-embed-aspect-16-9 wp-has-aspect-ratio" style="text-align: justify;"><span style="font-size: 1rem; text-align: left;">Face Recognition System is one of the most popular Python, Machine Learning, and Deep Learning projects.</span></p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+  <div class="post-body"><p class="has-text-align-right wp-embed-aspect-16-9 wp-has-aspect-ratio" style="text-align: justify;"><img style="width: 50%;" src="https://drive.google.com/thumbnail?id=17BXt2EdIxovW2CLRpwO1Cc-Yl9Gs4cux&amp;sz=w1000" data-filename="frs-featured-image.png"><span style="font-size: 1rem; text-align: left;"><br></span></p>
+<p class="has-text-align-right wp-embed-aspect-16-9 wp-has-aspect-ratio" style="text-align: justify;"><span style="font-size: 1rem; text-align: left;">Face Recognition System is one of the most popular Python, Machine Learning, and Deep Learning projects.</span></p>
+<h2 class="wp-block-heading">What will you learn?</h2>
+<ol class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#demo">Watch the demo video to get an idea of a project</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#part-1">Part 1: Generate dataset</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#part-2">Part 2: Train the classifier and save it</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#part-3">Part 3: Face detection/recognition</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#part-4">Part 4 (Converting the project into GUI)</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#part-5">Part 5: (Connecting project to the database)</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#part-6">(Extra )Part 6. GUI Face Recognition system using Tkinter-canvas</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#application">Converting the project into a setup (Application) file</a></li>
-<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="demo">Demo:</h2><p><iframe frameborder="0" src="//www.youtube.com/embed/5soarMq7LZ0" width="640" height="360" class="note-video-clip"></iframe><br></p><p class="has-text-align-right" style="text-align: right; "><strong><a rel="noreferrer noopener" href="/face-recognition-system-complete-documentation" target="_blank">View Complete Documentation</a></strong></p><h2 class="wp-block-heading"><strong id="part-1">Part 1:</strong> Generate dataset</h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/oDaZrqJ2zoo" width="640" height="360" class="note-video-clip"></iframe><span style="font-size: 1rem;"><br></span></div><div class="wp-block-embed__wrapper"><span style="font-size: 1rem;">In Part 1, I must create the dataset. That implies I'll have to gather pictures. The Open-CV package can be used for this. To install this package, open any terminal and type:</span></div></figure><p><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-luminous-vivid-amber-color"><code>pip install opencv-python</code></mark></p><p>I am using&nbsp;the haarcascade_frontalface_default&nbsp;xml file to get the coordinates of my face so that I can crop it and use it to make a dataset and for future prediction.</p><p>I need to convert my RGB (Red, Green, Blue) images to grayscale. An RGB image has three channels, whereas a grayscale image has only one. It&nbsp;minimizes a lot of complexity when an image is converted to grayscale. The coordinates can then be obtained by utilizing the face classifier and the detectMultiScale technique. We must pass the scaling factor as well as the minimal neighbors. The scale factor is the factor that determines how much to modify from the original image. The number of minimum neighbors indicates how many faces to detect. A greater value yields less detection but of higher quality. We must experiment with this value. We can alter these parameters depending on our results.&nbsp;Then we simply collect the image and terminate the execution when it reaches 200 images or when we press the Enter key on the keyboard.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment">## pip install opencv-python</span>
+<!-- /wp:list-item --></ol>
+<h2 id="demo" class="wp-block-heading">Demo:</h2>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/5soarMq7LZ0">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/5soarMq7LZ0?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p class="has-text-align-right" style="text-align: right;"><strong><a href="../face-recognition-system-complete-documentation" target="_blank" rel="noreferrer noopener">View Complete Documentation</a></strong></p>
+<h2 class="wp-block-heading"><strong id="part-1">Part 1:</strong> Generate dataset</h2>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/oDaZrqJ2zoo">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/oDaZrqJ2zoo?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p>In Part 1, I must create the dataset. That implies I'll have to gather pictures. The Open-CV package can be used for this. To install this package, open any terminal and type:</p>
+<p><mark class="has-inline-color has-luminous-vivid-amber-color" style="background-color: rgba(0, 0, 0, 0);"><code>pip install opencv-python</code></mark></p>
+<p>I am using&nbsp;the haarcascade_frontalface_default&nbsp;xml file to get the coordinates of my face so that I can crop it and use it to make a dataset and for future prediction.</p>
+<p>I need to convert my RGB (Red, Green, Blue) images to grayscale. An RGB image has three channels, whereas a grayscale image has only one. It&nbsp;minimizes a lot of complexity when an image is converted to grayscale. The coordinates can then be obtained by utilizing the face classifier and the detectMultiScale technique. We must pass the scaling factor as well as the minimal neighbors. The scale factor is the factor that determines how much to modify from the original image. The number of minimum neighbors indicates how many faces to detect. A greater value yields less detection but of higher quality. We must experiment with this value. We can alter these parameters depending on our results.&nbsp;Then we simply collect the image and terminate the execution when it reaches 200 images or when we press the Enter key on the keyboard.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-comment">## pip install opencv-python</span>
 <span class="hljs-keyword">import</span> cv2
 
 <span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_dataset</span>():
@@ -226,7 +229,16 @@
     cap.release()
     cv2.destroyAllWindows()
     <span class="hljs-built_in">print</span>(<span class="hljs-string">"Collecting samples is completed...."</span>)
-generate_dataset()</code></pre><pre class="wp-block-syntaxhighlighter-code"></pre><h2 class="wp-block-heading" id="part-2">Part 2: Train the classifier and save it</h2><p><iframe frameborder="0" src="//www.youtube.com/embed/YYsT2LkaUSQ" width="640" height="360" class="note-video-clip"></iframe><br></p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><span style="font-size: 1rem;">The next step is to train the classifier. Our system doesn't understand images, right? It needs to be converted into a Numpy array format so that it can make certain decisions based on this data. This part generates the classifier.xml file, which contains specific data (information) about our faces.</span></div></figure><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> os
+generate_dataset()</code></pre>
+<pre class="wp-block-syntaxhighlighter-code">&nbsp;</pre>
+<h2 id="part-2" class="wp-block-heading">Part 2: Train the classifier and save it</h2>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/YYsT2LkaUSQ">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/YYsT2LkaUSQ?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<div class="wp-block-embed__wrapper"><span style="font-size: 1rem;">The next step is to train the classifier. Our system doesn't understand images, right? It needs to be converted into a Numpy array format so that it can make certain decisions based on this data. This part generates the classifier.xml file, which contains specific data (information) about our faces.</span></div>
+</figure>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> os
 <span class="hljs-keyword">import</span> cv2
 <span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image <span class="hljs-comment">#pip install pillow</span>
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np    <span class="hljs-comment"># pip install numpy</span>
@@ -251,7 +263,18 @@ generate_dataset()</code></pre><pre class="wp-block-syntaxhighlighter-code"></pr
     clf = cv2.face.LBPHFaceRecognizer_create()
     clf.train(faces,ids)
     clf.write(<span class="hljs-string">"classifier.xml"</span>)
-train_classifier(<span class="hljs-string">"data"</span>)</code></pre><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><span style="font-size: 1rem;"><br></span></div></figure><h2 class="wp-block-heading" id="part-3">Part 3: Face detection/recognition</h2><p><iframe frameborder="0" src="//www.youtube.com/embed/HSsAGzCWE88" width="640" height="360" class="note-video-clip"></iframe><br></p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><span style="font-size: 1rem;">In this part, I am going to make a prediction. I have defined one function name draw_boundary, which draws a boundary around my face and also displays my name at the top of my face. There are two identity persons 'Ishwar' and 'Manish'. Other than these two authorized persons, it will display 'UNKNOWN'.</span></div></figure><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> cv2
+train_classifier(<span class="hljs-string">"data"</span>)</code></pre>
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<div class="wp-block-embed__wrapper"><span style="font-size: 1rem;">&nbsp;</span></div>
+</figure>
+<h2 id="part-3" class="wp-block-heading">Part 3: Face detection/recognition</h2>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/HSsAGzCWE88">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/HSsAGzCWE88?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<div class="wp-block-embed__wrapper"><span style="font-size: 1rem;">In this part, I am going to make a prediction. I have defined one function name draw_boundary, which draws a boundary around my face and also displays my name at the top of my face. There are two identity persons 'Ishwar' and 'Manish'. Other than these two authorized persons, it will display 'UNKNOWN'.</span></div>
+</figure>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> cv2
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 <span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
 <span class="hljs-keyword">import</span> os
@@ -292,7 +315,20 @@ video_capture = cv2.VideoCapture(<span class="hljs-number">1</span>)
     <span class="hljs-keyword">if</span> cv2.waitKey(<span class="hljs-number">1</span>)==<span class="hljs-number">13</span>:
         <span class="hljs-keyword">break</span>
 video_capture.release()
-cv2.destroyAllWindows()</code></pre><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><span style="font-size: 1rem;"><br></span></div></figure><h2 class="wp-block-heading"><strong id="part-4">Part 4 (Converting the above project into GUI):</strong></h2><p>(If you don't know about GUI, you must have to watch this video first:&nbsp;<a href="https://youtu.be/FclrlobIOXM" target="_blank" rel="noreferrer noopener">GUI using Tkinter</a>)</p><p>Now let's convert the above project into a GUI application.</p><p><iframe frameborder="0" src="//www.youtube.com/embed/zJLxQ4fT_YQ" width="640" height="360" class="note-video-clip"></iframe><br></p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><span style="font-size: 1rem;">Why should we change our project to a graphical user interface? It is essential to transform any of our Python projects into a graphical user interface (GUI) if we intend to submit our code to our college or any place else. It's because we can do anything within the same window, right? We don't need to run each cell of code repeatedly.</span></div></figure><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
+cv2.destroyAllWindows()</code></pre>
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<div class="wp-block-embed__wrapper"><span style="font-size: 1rem;">&nbsp;</span></div>
+</figure>
+<h2 class="wp-block-heading"><strong id="part-4">Part 4 (Converting the above project into GUI):</strong></h2>
+<p>(If you don't know about GUI, you must have to watch this video first:&nbsp;<a href="https://youtu.be/FclrlobIOXM" target="_blank" rel="noreferrer noopener">GUI using Tkinter</a>)</p>
+<p>Now let's convert the above project into a GUI application.</p>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/zJLxQ4fT_YQ">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/zJLxQ4fT_YQ?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<div class="wp-block-embed__wrapper"><span style="font-size: 1rem;">Why should we change our project to a graphical user interface? It is essential to transform any of our Python projects into a graphical user interface (GUI) if we intend to submit our code to our college or any place else. It's because we can do anything within the same window, right? We don't need to run each cell of code repeatedly.</span></div>
+</figure>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
 <span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> messagebox
 
 window = tk.Tk()
@@ -326,13 +362,25 @@ b3.grid(column=<span class="hljs-number">2</span>, row=<span class="hljs-number"
 window.geometry(<span class="hljs-string">"800x200"</span>)
 window.mainloop()
 
-<span class="hljs-comment">#other just copy code from previous part same like as I have done in this video</span></code></pre><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><span style="font-size: 1rem;"><br></span></div></figure><h2 class="wp-block-heading" id="part-5"><strong>Part 5: (Connecting this project to the database)</strong></h2><p>(If you don't know how to connect any Python project to the database, you must have to watch this video first:&nbsp;<a href="https://youtu.be/-mVaBwBLgUg" target="_blank" rel="noreferrer noopener">Connect Python to the database</a>)</p><p>Let's now link our project to the database:</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/WVDf5QDBcD0" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p>In the preceding section, we just printed the authorized user's name. But this is not a good practice. We must save the user's information in the database. So, you must understand how to connect Python to a database. The user's information is now derived from the database rather than the code.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
+<span class="hljs-comment">#other just copy code from previous part same like as I have done in this video</span></code></pre>
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<div class="wp-block-embed__wrapper"><span style="font-size: 1rem;">&nbsp;</span></div>
+</figure>
+<h2 id="part-5" class="wp-block-heading"><strong>Part 5: (Connecting this project to the database)</strong></h2>
+<p>(If you don't know how to connect any Python project to the database, you must have to watch this video first:&nbsp;<a href="https://youtu.be/-mVaBwBLgUg" target="_blank" rel="noreferrer noopener">Connect Python to the database</a>)</p>
+<p>Let's now link our project to the database:</p>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/WVDf5QDBcD0">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/WVDf5QDBcD0?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p>In the preceding section, we just printed the authorized user's name. But this is not a good practice. We must save the user's information in the database. So, you must understand how to connect Python to a database. The user's information is now derived from the database rather than the code.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
 <span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> messagebox
 <span class="hljs-keyword">import</span> cv2
 <span class="hljs-keyword">import</span> os
 <span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">import</span> mysql.connector</code></pre><pre><code class="language-python hljs" contenteditable="true" style="">window=tk.Tk()
+<span class="hljs-keyword">import</span> mysql.connector</code></pre>
+<pre><code class="language-python hljs" contenteditable="true">window=tk.Tk()
 window.title(<span class="hljs-string">"Face recognition system"</span>)
 <span class="hljs-comment">#window.config(background="lime")</span>
 l1=tk.Label(window,text=<span class="hljs-string">"Name"</span>,font=(<span class="hljs-string">"Algerian"</span>,<span class="hljs-number">20</span>))
@@ -490,14 +538,20 @@ b3=tk.Button(window,text=<span class="hljs-string">"Generate dataset"</span>,fon
 b3.grid(column=<span class="hljs-number">2</span>, row=<span class="hljs-number">4</span>)
 
 window.geometry(<span class="hljs-string">"800x200"</span>)
-window.mainloop()</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio" id="part-6">Part 6. GUI Face Recognition system using Tkinter-canvas</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">This is an extra step to make an awesome GUI application.</p><p>(<strong>Note:</strong> This part is clearly explained in the <a href="https://youtu.be/tqhSmMfu3Xc" target="_blank" rel="noreferrer noopener">Nepali language Face Recognition Video</a>.)</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
+window.mainloop()</code></pre>
+<h2 id="part-6" class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">Part 6. GUI Face Recognition system using Tkinter-canvas</h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">This is an extra step to make an awesome GUI application.</p>
+<p>(<strong>Note:</strong> This part is clearly explained in the <a href="https://youtu.be/tqhSmMfu3Xc" target="_blank" rel="noreferrer noopener">Nepali language Face Recognition Video</a>.)</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk
 <span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> *
 <span class="hljs-keyword">import</span> cv2
 <span class="hljs-keyword">import</span> os
 <span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image, ImageTk
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 <span class="hljs-keyword">import</span> mysql.connector
-<span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> messagebox</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Divide window</strong></h2><pre><code class="language-python hljs" contenteditable="true" style="">window = tk.Tk()
+<span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> messagebox</code></pre>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Divide window</strong></h2>
+<pre><code class="language-python hljs" contenteditable="true">window = tk.Tk()
 window.title(<span class="hljs-string">"Project"</span>)
 window.resizable(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>)
 
@@ -554,193 +608,19 @@ canvas3.place(x=<span class="hljs-number">515</span>, y=<span class="hljs-number
 canvas3.create_image(<span class="hljs-number">140</span>, <span class="hljs-number">265</span>, image=photo3)
 
 window.geometry(<span class="hljs-string">"800x680"</span>)
-window.mainloop()</code></pre><h2 class="wp-block-heading" id="application"><strong><br></strong></h2><h2 class="wp-block-heading" id="application"><strong>Converting the </strong>above project into a <strong>setup (Application) file:</strong></h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/D6jXMw7STUQ" width="640" height="360" class="note-video-clip"></iframe><span style="font-size: 1rem;"><br></span></div><div class="wp-block-embed__wrapper"><span style="font-size: 1rem;">To run the code, you must launch your Python IDE, right? After this section, you won't need it anymore. Transform your entire project into an application or setup file. You can open this project just like any other application, such as a game.</span></div></figure><h2 class="wp-block-heading">Conclusion:</h2><p>In this way, you can make a complete Face Recognition System project. Make sure to watch each video step by step to prevent any errors. This post illustrates how you can make a Face recognition project with the OpenCV library. If you are searching for making this project using deep learning, you can click <a href="/face-recognition-system-using-deep-learning-complete-project" target="_blank" rel="noreferrer noopener">here</a>.</p><p><!-- wp:paragraph {"align":"right","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"ordered":true} -->
-
-<!-- /wp:list -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/5soarMq7LZ0","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph {"align":"right"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/oDaZrqJ2zoo","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/YYsT2LkaUSQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/HSsAGzCWE88","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/zJLxQ4fT_YQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/WVDf5QDBcD0","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/D6jXMw7STUQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph --></p><p>I hope this project is very helpful to you. If you have any questions, you can comment below. I will reply as soon as possible. Thanks.</p></div>
+window.mainloop()</code></pre>
+<h2 id="application" class="wp-block-heading"><strong>&nbsp;</strong></h2>
+<h2 id="application" class="wp-block-heading"><strong>Converting the </strong>above project into a <strong>setup (Application) file:</strong></h2>
+<div style="max-width: 650px;" data-ephox-embed-iri="https://youtu.be/D6jXMw7STUQ">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/D6jXMw7STUQ?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<div class="wp-block-embed__wrapper"><span style="font-size: 1rem;">To run the code, you must launch your Python IDE, right? After this section, you won't need it anymore. Transform your entire project into an application or setup file. You can open this project just like any other application, such as a game.</span></div>
+</figure>
+<h2 class="wp-block-heading">Conclusion:</h2>
+<p>In this way, you can make a complete Face Recognition System project. Make sure to watch each video step by step to prevent any errors. This post illustrates how you can make a Face recognition project with the OpenCV library. If you are searching for making this project using deep learning, you can click <a href="../face-recognition-system-using-deep-learning-complete-project" target="_blank" rel="noreferrer noopener">here</a>.</p>
+<p><!-- wp:paragraph {"align":"right","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"ordered":true} --><!-- /wp:list --><!-- wp:heading --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/5soarMq7LZ0","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph {"align":"right"} --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/oDaZrqJ2zoo","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/YYsT2LkaUSQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/HSsAGzCWE88","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/zJLxQ4fT_YQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/WVDf5QDBcD0","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/D6jXMw7STUQ","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --></p>
+<p>I hope this project is very helpful to you. If you have any questions, you can comment below. I will reply as soon as possible. Thanks.</p></div>
 
 <script>
   if (window.hljs) {

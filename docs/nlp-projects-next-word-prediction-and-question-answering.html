@@ -157,17 +157,23 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><p>Let's make NLP Projects.</p><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+  <div class="post-body"><p>Let's make NLP Projects.</p>
+<h2 class="wp-block-heading">What will you learn?</h2>
+<ol class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#next-word-prediction">Next word prediction using LSTM</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#bert">What is Bert?</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#question-answering">Question Answering application using BERT</a></li>
-<!-- /wp:list-item --></ol><h2 class="wp-block-heading" id="next-word-prediction"><strong>Next word prediction:</strong></h2><p>If given the&nbsp;three words of a sentence, it should be able to guess the fourth. <em>Long-Short-Term&nbsp;Memory</em>&nbsp;is what I'm employing in this situation.<br><strong>Note: </strong>Recurrent Neural Network (RNN) architecture is a tool used in deep learning, and LSTM falls under this category. Input, output, forget, and cell are the components of a typical LSTM unit.</p><p>For more information,&nbsp;<a rel="noreferrer noopener" href="https://youtu.be/69Hd5NoTBcE" target="_blank">click here</a></p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/VB7bbFIEAhk" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading">1: Import libraries</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
+<!-- /wp:list-item --></ol>
+<h2 id="next-word-prediction" class="wp-block-heading"><strong>Next word prediction:</strong></h2>
+<p>If given the&nbsp;three words of a sentence, it should be able to guess the fourth. <em>Long-Short-Term&nbsp;Memory</em>&nbsp;is what I'm employing in this situation.<br><strong>Note: </strong>Recurrent Neural Network (RNN) architecture is a tool used in deep learning, and LSTM falls under this category. Input, output, forget, and cell are the components of a typical LSTM unit.</p>
+<p>For more information,&nbsp;<a href="https://youtu.be/69Hd5NoTBcE" target="_blank" rel="noreferrer noopener">click here</a></p>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/VB7bbFIEAhk">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/VB7bbFIEAhk?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<h2 class="wp-block-heading">1: Import libraries</h2>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
 <span class="hljs-keyword">from</span> tensorflow.keras.preprocessing.text <span class="hljs-keyword">import</span> Tokenizer
 <span class="hljs-keyword">from</span> tensorflow.keras.layers <span class="hljs-keyword">import</span> Embedding, LSTM, Dense
 <span class="hljs-keyword">from</span> tensorflow.keras.models <span class="hljs-keyword">import</span> Sequential
@@ -175,8 +181,12 @@
 <span class="hljs-keyword">from</span> tensorflow.keras.optimizers <span class="hljs-keyword">import</span> Adam
 <span class="hljs-keyword">import</span> pickle
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">import</span> os</code></pre><h2 class="wp-block-heading">2: Load your file</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> google.colab <span class="hljs-keyword">import</span> files
-uploaded = files.upload()</code></pre><h2 class="wp-block-heading">3: Open and pre-process the data</h2><pre><code class="language-python hljs" contenteditable="true" style="">file = <span class="hljs-built_in">open</span>(<span class="hljs-string">"Pride and Prejudice.txt"</span>, <span class="hljs-string">"r"</span>, encoding = <span class="hljs-string">"utf8"</span>)
+<span class="hljs-keyword">import</span> os</code></pre>
+<h2 class="wp-block-heading">2: Load your file</h2>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> google.colab <span class="hljs-keyword">import</span> files
+uploaded = files.upload()</code></pre>
+<h2 class="wp-block-heading">3: Open and pre-process the data</h2>
+<pre><code class="language-python hljs" contenteditable="true">file = <span class="hljs-built_in">open</span>(<span class="hljs-string">"Pride and Prejudice.txt"</span>, <span class="hljs-string">"r"</span>, encoding = <span class="hljs-string">"utf8"</span>)
 
 <span class="hljs-comment"># store file in list</span>
 lines = []
@@ -189,13 +199,15 @@ data = <span class="hljs-string">""</span>
   data = <span class="hljs-string">' '</span>. join(lines) 
 
 <span class="hljs-comment">#replace unnecessary stuff with space</span>
-data = data.replace(<span class="hljs-string">'\n'</span>, <span class="hljs-string">''</span>).replace(<span class="hljs-string">'\r'</span>, <span class="hljs-string">''</span>).replace(<span class="hljs-string">'\ufeff'</span>, <span class="hljs-string">''</span>).replace(<span class="hljs-string">'“'</span>,<span class="hljs-string">''</span>).replace(<span class="hljs-string">'”'</span>,<span class="hljs-string">''</span>)  <span class="hljs-comment">#new line, carriage return, unicode character --&gt; replace by space</span>
+data = data.replace(<span class="hljs-string">'\n'</span>, <span class="hljs-string">''</span>).replace(<span class="hljs-string">'\r'</span>, <span class="hljs-string">''</span>).replace(<span class="hljs-string">'\ufeff'</span>, <span class="hljs-string">''</span>).replace(<span class="hljs-string">'&ldquo;'</span>,<span class="hljs-string">''</span>).replace(<span class="hljs-string">'&rdquo;'</span>,<span class="hljs-string">''</span>)  <span class="hljs-comment">#new line, carriage return, unicode character --&gt; replace by space</span>
 
 <span class="hljs-comment">#remove unnecessary spaces </span>
 data = data.split()
 data = <span class="hljs-string">' '</span>.join(data)
 data[:<span class="hljs-number">500</span>]
-<span class="hljs-built_in">len</span>(data)</code></pre><h2 class="wp-block-heading">4: Implement tokenization and make additional adjustments</h2><pre><code class="language-python hljs" contenteditable="true" style="">tokenizer = Tokenizer()
+<span class="hljs-built_in">len</span>(data)</code></pre>
+<h2 class="wp-block-heading">4: Implement tokenization and make additional adjustments</h2>
+<pre><code class="language-python hljs" contenteditable="true">tokenizer = Tokenizer()
 tokenizer.fit_on_texts([data])
 
 <span class="hljs-comment"># saving the tokenizer for predict function</span>
@@ -227,20 +239,29 @@ y = np.array(y)
 <span class="hljs-built_in">print</span>(<span class="hljs-string">"Data: "</span>, X[:<span class="hljs-number">10</span>])
 <span class="hljs-built_in">print</span>(<span class="hljs-string">"Response: "</span>, y[:<span class="hljs-number">10</span>])
 y = to_categorical(y, num_classes=vocab_size)
-y[:<span class="hljs-number">5</span>]</code></pre><h2 class="wp-block-heading">5: Creating the model</h2><pre><code class="language-python hljs" contenteditable="true" style="">model = Sequential()
+y[:<span class="hljs-number">5</span>]</code></pre>
+<h2 class="wp-block-heading">5: Creating the model</h2>
+<pre><code class="language-python hljs" contenteditable="true">model = Sequential()
 model.add(Embedding(vocab_size, <span class="hljs-number">10</span>, input_length=<span class="hljs-number">3</span>))
 model.add(LSTM(<span class="hljs-number">1000</span>, return_sequences=<span class="hljs-literal">True</span>))
 model.add(LSTM(<span class="hljs-number">1000</span>))
 model.add(Dense(<span class="hljs-number">1000</span>, activation=<span class="hljs-string">"relu"</span>))
 model.add(Dense(vocab_size, activation=<span class="hljs-string">"softmax"</span>))
-model.summary()</code></pre><h2 class="wp-block-heading">6: Plot the model</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> tensorflow <span class="hljs-keyword">import</span> keras
+model.summary()</code></pre>
+<h2 class="wp-block-heading">6: Plot the model</h2>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> tensorflow <span class="hljs-keyword">import</span> keras
 <span class="hljs-keyword">from</span> keras.utils.vis_utils <span class="hljs-keyword">import</span> plot_model
 
-keras.utils.plot_model(model, to_file=<span class="hljs-string">'plot.png'</span>, show_layer_names=<span class="hljs-literal">True</span>)</code><img src="https://drive.google.com/thumbnail?id=11JqiAp9RBiULuQ_jrIJztNX3cv-C8A_j&amp;sz=w1000" data-filename="plot-model.png" style="width: 214px;"></pre><figure class="wp-block-image size-large"><br></figure><h2 class="wp-block-heading">7: Train the model</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> tensorflow.keras.callbacks <span class="hljs-keyword">import</span> ModelCheckpoint
+keras.utils.plot_model(model, to_file=<span class="hljs-string">'plot.png'</span>, show_layer_names=<span class="hljs-literal">True</span>)</code><img style="width: 214px;" src="https://drive.google.com/thumbnail?id=11JqiAp9RBiULuQ_jrIJztNX3cv-C8A_j&amp;sz=w1000" data-filename="plot-model.png"></pre>
+<figure class="wp-block-image size-large"></figure>
+<h2 class="wp-block-heading">7: Train the model</h2>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> tensorflow.keras.callbacks <span class="hljs-keyword">import</span> ModelCheckpoint
 
 checkpoint = ModelCheckpoint(<span class="hljs-string">"next_words.h5"</span>, monitor=<span class="hljs-string">'loss'</span>, verbose=<span class="hljs-number">1</span>, save_best_only=<span class="hljs-literal">True</span>)
 model.<span class="hljs-built_in">compile</span>(loss=<span class="hljs-string">"categorical_crossentropy"</span>, optimizer=Adam(learning_rate=<span class="hljs-number">0.001</span>))
-model.fit(X, y, epochs=<span class="hljs-number">70</span>, batch_size=<span class="hljs-number">64</span>, callbacks=[checkpoint])</code></pre><h2 class="wp-block-heading">8: Let's predict</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> tensorflow.keras.models <span class="hljs-keyword">import</span> load_model
+model.fit(X, y, epochs=<span class="hljs-number">70</span>, batch_size=<span class="hljs-number">64</span>, callbacks=[checkpoint])</code></pre>
+<h2 class="wp-block-heading">8: Let's predict</h2>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> tensorflow.keras.models <span class="hljs-keyword">import</span> load_model
 <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 <span class="hljs-keyword">import</span> pickle
 
@@ -261,7 +282,8 @@ tokenizer = pickle.load(<span class="hljs-built_in">open</span>(<span class="hlj
           <span class="hljs-keyword">break</span>
   
   <span class="hljs-built_in">print</span>(predicted_word)
-  <span class="hljs-keyword">return</span> predicted_word</code></pre><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">while</span>(<span class="hljs-literal">True</span>):
+  <span class="hljs-keyword">return</span> predicted_word</code></pre>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">while</span>(<span class="hljs-literal">True</span>):
   text = <span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter your line: "</span>)
   
   <span class="hljs-keyword">if</span> text == <span class="hljs-string">"0"</span>:
@@ -278,27 +300,73 @@ tokenizer = pickle.load(<span class="hljs-built_in">open</span>(<span class="hlj
           
       <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
         <span class="hljs-built_in">print</span>(<span class="hljs-string">"Error occurred: "</span>,e)
-        <span class="hljs-keyword">continue</span></code></pre><p><strong><em>Final output:</em></strong></p><p>Enter your line: The Project Gutenberg&nbsp;<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pale-pink-color"><font color="#9c0000">(our input)</font></mark></p><p>['The', 'Project', 'Gutenberg']&nbsp;<mark style="background-color: transparent;" class="has-inline-color has-pale-pink-color"><font color="#9c0000">(takes the last three words of our input)</font></mark></p><p>literary<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pale-pink-color">&nbsp;<font color="#9c0000">(return a next word)</font></mark></p><hr class="wp-block-separator has-alpha-channel-opacity"><p><br>Enter your line: The Project Gutenberg eBook of</p><p>['Gutenberg', 'eBook', 'of']</p><p>pride</p><hr class="wp-block-separator has-alpha-channel-opacity"><p><br>Enter your line: how can you abuse your own</p><p>['abuse', 'your', 'own']</p><p>children</p><hr class="wp-block-separator has-alpha-channel-opacity"><p><br>Enter your line: He was quite</p><p>['He', 'was', 'quite']</p><p>young</p><hr class="wp-block-separator has-alpha-channel-opacity"><p><br>Enter your line: He could not help seeing that you were about five times as</p><p>['five', 'times', 'as']</p><p>pretty</p><hr class="wp-block-separator has-alpha-channel-opacity"><p><br>Enter your line: and her sister</p><p>['and', 'her', 'sister']</p><p>scarcely</p><hr class="wp-block-separator has-alpha-channel-opacity"><p><br>Enter your line: however, it may all come to</p><p>['all', 'come', 'to']</p><p>nothing&nbsp;</p><hr class="wp-block-separator has-alpha-channel-opacity"><p>Enter your line: 0&nbsp;<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-pale-pink-color"><font color="#9c0000">(to stop execution)</font></mark></p><p>Execution completed.....</p><h2 class="wp-block-heading" id="question-answering">Question Answering using Bert | Natural Language Processing</h2><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question Answering project is very easy to build with BERT because we can use pre-defined files and make things easy. When we ask some questions, it should return the correct answer.</p><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/670bR8lYUmc" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><h2 class="wp-block-heading" id="bert"><strong>What is Bert?</strong></h2><ul class="wp-block-list wp-embed-aspect-16-9 wp-has-aspect-ratio"><p><!-- wp:list-item -->
-</p><li>Bert stands for Bi-directional Encoder Representations from Transformers.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+        <span class="hljs-keyword">continue</span></code></pre>
+<p><strong><em>Final output:</em></strong></p>
+<p>Enter your line: The Project Gutenberg&nbsp;<mark class="has-inline-color has-pale-pink-color" style="background-color: rgba(0, 0, 0, 0);"><span style="color: #9c0000;">(our input)</span></mark></p>
+<p>['The', 'Project', 'Gutenberg']&nbsp;<mark class="has-inline-color has-pale-pink-color" style="background-color: transparent;"><span style="color: #9c0000;">(takes the last three words of our input)</span></mark></p>
+<p>literary<mark class="has-inline-color has-pale-pink-color" style="background-color: rgba(0, 0, 0, 0);">&nbsp;<span style="color: #9c0000;">(return a next word)</span></mark></p>
+<hr class="wp-block-separator has-alpha-channel-opacity">
+<p><br>Enter your line: The Project Gutenberg eBook of</p>
+<p>['Gutenberg', 'eBook', 'of']</p>
+<p>pride</p>
+<hr class="wp-block-separator has-alpha-channel-opacity">
+<p><br>Enter your line: how can you abuse your own</p>
+<p>['abuse', 'your', 'own']</p>
+<p>children</p>
+<hr class="wp-block-separator has-alpha-channel-opacity">
+<p><br>Enter your line: He was quite</p>
+<p>['He', 'was', 'quite']</p>
+<p>young</p>
+<hr class="wp-block-separator has-alpha-channel-opacity">
+<p><br>Enter your line: He could not help seeing that you were about five times as</p>
+<p>['five', 'times', 'as']</p>
+<p>pretty</p>
+<hr class="wp-block-separator has-alpha-channel-opacity">
+<p><br>Enter your line: and her sister</p>
+<p>['and', 'her', 'sister']</p>
+<p>scarcely</p>
+<hr class="wp-block-separator has-alpha-channel-opacity">
+<p><br>Enter your line: however, it may all come to</p>
+<p>['all', 'come', 'to']</p>
+<p>nothing&nbsp;</p>
+<hr class="wp-block-separator has-alpha-channel-opacity">
+<p>Enter your line: 0&nbsp;<mark class="has-inline-color has-pale-pink-color" style="background-color: rgba(0, 0, 0, 0);"><span style="color: #9c0000;">(to stop execution)</span></mark></p>
+<p>Execution completed.....</p>
+<h2 id="question-answering" class="wp-block-heading">Question Answering using Bert | Natural Language Processing</h2>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question Answering project is very easy to build with BERT because we can use pre-defined files and make things easy. When we ask some questions, it should return the correct answer.</p>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/670bR8lYUmc">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/670bR8lYUmc?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<h2 id="bert" class="wp-block-heading"><strong>What is Bert?</strong></h2>
+<p><!-- wp:list-item --></p>
+<ul class="wp-block-list wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<li>Bert stands for Bi-directional Encoder Representations from Transformers.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>It is a freely available&nbsp;framework for natural language processing (NLP).</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>Bert was pre-trained using an unlabeled plain text corpus (Entire English Wikipedia, and the Brown Corpus).</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li>If we stack the Transformer encoder, we get Bert.</li>
-<div style="text-align: left;"><img selected="" src="https://drive.google.com/thumbnail?id=1NqsQRuO0UtDNQJobhN6tDH15IRv5-2bP&amp;sz=w1000" data-filename="bert.png" style="font-size: 1rem; width: 292px;"></div><!-- /wp:list-item --><p></p></ul><figure class="wp-block-image aligncenter size-large"><br></figure><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><span style="text-decoration: underline"><strong>Now let's move to the Question Answering project using Bert:</strong></span></em></h2><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">1: Install Required Libraries</h2><pre><code class="language-python hljs" contenteditable="true" style="">pip install transformers
-pip install torch</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">2: Importing required packages</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> BertForQuestionAnswering
+</ul>
+<div style="text-align: left;"><img style="font-size: 1rem; width: 292px;" src="https://drive.google.com/thumbnail?id=1NqsQRuO0UtDNQJobhN6tDH15IRv5-2bP&amp;sz=w1000" data-filename="bert.png"></div>
+<ul class="wp-block-list wp-embed-aspect-16-9 wp-has-aspect-ratio"><!-- /wp:list-item --></ul>
+<p>&nbsp;</p>
+<figure class="wp-block-image aligncenter size-large"></figure>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><em><span style="text-decoration: underline;"><strong>Now let's move to the Question Answering project using Bert:</strong></span></em></h2>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">1: Install Required Libraries</h2>
+<pre><code class="language-python hljs" contenteditable="true">pip install transformers
+pip install torch</code></pre>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">2: Importing required packages</h2>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> BertForQuestionAnswering
 <span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> BertTokenizer
 <span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">3: Load the pre-trained Bert model</h2><pre><code class="language-python hljs" contenteditable="true" style="">model = BertForQuestionAnswering.from_pretrained(<span class="hljs-string">'bert-large-uncased-whole-word-masking-finetuned-squad'</span>)
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</code></pre>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">3: Load the pre-trained Bert model</h2>
+<pre><code class="language-python hljs" contenteditable="true">model = BertForQuestionAnswering.from_pretrained(<span class="hljs-string">'bert-large-uncased-whole-word-masking-finetuned-squad'</span>)
 
-tokenizer_for_bert = BertTokenizer.from_pretrained(<span class="hljs-string">'bert-large-uncased-whole-word-masking-finetuned-squad'</span>)</code></pre><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">4: Define the function for question-answering</h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">def</span> <span class="hljs-title function_">bert_question_answer</span>(<span class="hljs-params">question, passage, max_len=<span class="hljs-number">500</span></span>):
+tokenizer_for_bert = BertTokenizer.from_pretrained(<span class="hljs-string">'bert-large-uncased-whole-word-masking-finetuned-squad'</span>)</code></pre>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio">4: Define the function for question-answering</h2>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">def</span> <span class="hljs-title function_">bert_question_answer</span>(<span class="hljs-params">question, passage, max_len=<span class="hljs-number">500</span></span>):
     
     <span class="hljs-string">"""
     question: What is the name of YouTube Channel
@@ -405,7 +473,9 @@ tokenizer_for_bert = BertTokenizer.from_pretrained(<span class="hljs-string">'be
     <span class="hljs-keyword">return</span> (answer_start_index, answer_end_index, start_token_score, end_token_score,  answer)
 
 <span class="hljs-comment">#Testing function</span>
-bert_question_answer(<span class="hljs-string">"What is the name of YouTube Channel"</span>, <span class="hljs-string">"Watch complete playlist of Natural Language Processing. Don't forget to like, share and subscribe my channel IG Tech Team "</span>)</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Let's use another passage and check the output</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment"># Let me define one passage</span>
+bert_question_answer(<span class="hljs-string">"What is the name of YouTube Channel"</span>, <span class="hljs-string">"Watch complete playlist of Natural Language Processing. Don't forget to like, share and subscribe my channel IG Tech Team "</span>)</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Let's use another passage and check the output</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-comment"># Let me define one passage</span>
 passage = <span class="hljs-string">"""Hello, I am Ishwar. My friend name is Ajay. He is the son of Kristen. I spend most of the time with Ajay. 
 He always call me by my nick name. Ajay call me programmer. Except Ajay, my other friend call me by my original name. 
 Bijay is also my friend. """</span>
@@ -470,7 +540,23 @@ _, _ , _ , _, ans  = bert_question_answer( question, passage)
 question =<span class="hljs-string">"What is supervised learning"</span>
 <span class="hljs-built_in">print</span> (<span class="hljs-string">'\nQuestion 7:\n'</span>, question)
 _, _ , _ , _, ans  = bert_question_answer( question, passage)
-<span class="hljs-built_in">print</span>(<span class="hljs-string">'\nAnswer from BERT: '</span>, ans ,  <span class="hljs-string">'\n'</span>)</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="text-decoration: underline"><em>Output from this cell will be:</em></span></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Length of the passage: 433 words<br>Question 1:&nbsp;What is full form of NLTK<br>Answer from BERT:&nbsp; natural language toolkit&nbsp;</p><hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio"><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 2:&nbsp;What are stop words&nbsp;<br>Answer from BERT:&nbsp; words which are filtered out before or after processing of text&nbsp;</p><hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio"><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 3:&nbsp;What is NLP&nbsp;<br>Answer from BERT:&nbsp; a subfield of computer science and artificial intelligence concerned with interactions between computers and human ( natural ) languages&nbsp;</p><hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio"><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 4:&nbsp;How to download stop words from nltk<br>Answer from BERT:&nbsp; import nltk&nbsp;</p><hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio"><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 5:&nbsp;What do smartphones use to understand speech recognition&nbsp;<br>Answer from BERT:&nbsp; nlp&nbsp;</p><hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio"><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 6:&nbsp;What is Computer vision<br>Answer from BERT:&nbsp; artificial intelligence&nbsp;</p><hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio"><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 7:&nbsp;What is supervised learning<br>Answer from BERT:&nbsp; Sorry!, I was unable to discover an answer in the passage.</p><h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Final Question Answering application:</strong></h2><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment">#@title Question-Answering Application { vertical-output: true }</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">'\nAnswer from BERT: '</span>, ans ,  <span class="hljs-string">'\n'</span>)</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="text-decoration: underline;"><em>Output from this cell will be:</em></span></p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Length of the passage: 433 words<br>Question 1:&nbsp;What is full form of NLTK<br>Answer from BERT:&nbsp; natural language toolkit&nbsp;</p>
+<hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 2:&nbsp;What are stop words&nbsp;<br>Answer from BERT:&nbsp; words which are filtered out before or after processing of text&nbsp;</p>
+<hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 3:&nbsp;What is NLP&nbsp;<br>Answer from BERT:&nbsp; a subfield of computer science and artificial intelligence concerned with interactions between computers and human ( natural ) languages&nbsp;</p>
+<hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 4:&nbsp;How to download stop words from nltk<br>Answer from BERT:&nbsp; import nltk&nbsp;</p>
+<hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 5:&nbsp;What do smartphones use to understand speech recognition&nbsp;<br>Answer from BERT:&nbsp; nlp&nbsp;</p>
+<hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 6:&nbsp;What is Computer vision<br>Answer from BERT:&nbsp; artificial intelligence&nbsp;</p>
+<hr class="wp-block-separator has-alpha-channel-opacity wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio">Question 7:&nbsp;What is supervised learning<br>Answer from BERT:&nbsp; Sorry!, I was unable to discover an answer in the passage.</p>
+<h2 class="wp-block-heading wp-embed-aspect-16-9 wp-has-aspect-ratio"><strong>Final Question Answering application:</strong></h2>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-comment">#@title Question-Answering Application { vertical-output: true }</span>
 <span class="hljs-comment">#@markdown ---</span>
 question= <span class="hljs-string">"what is natural language processing"</span> <span class="hljs-comment">#@param {type:"string"}</span>
 passage = <span class="hljs-string">"NLP stands for Natural Language Processing. NLP is a branch of Artificial Intelligence (AI) that studies how machines understand human language.  This is the complete playlist of Natural Language Processing. I have made several video related to this like Tokenizer, stop words, sequence to sequence model, Bert (Bi-directional Encoder Representation from Transformers. Bert is bidirectional."</span> <span class="hljs-comment">#@param {type:"string"}</span>
@@ -479,413 +565,14 @@ passage = <span class="hljs-string">"NLP stands for Natural Language Processing.
 _, _ , _ , _, ans  = bert_question_answer( question, passage)
 
 <span class="hljs-comment">#@markdown Answer:</span>
-<span class="hljs-built_in">print</span>(ans)</code></pre><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="text-decoration: underline"><em>Final output:</em></span></p><p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><img src="https://drive.google.com/thumbnail?id=1WIfV3KWlu82NFghjBEDJKbu80dARc5jj&amp;sz=w1000" data-filename="question-answering-app.png" style="width: 629px;"></p><figure class="wp-block-image size-large"><br></figure><h2 class="wp-block-heading">Conclusion</h2><p>In this way, you can make a complete NLP Projects with LSTM (Next word prediction) and BERT (Question Answering). If you are looking for a complete course on NLP, you can click <a href="https://www.youtube.com/playlist?list=PLiWNvnK7PSPErp-DQRRbTKT1_fVKDDL3p" target="_blank" rel="noreferrer noopener">here</a>.</p><p><!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"ordered":true} -->
-
-<!-- /wp:list -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/VB7bbFIEAhk","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:image {"id":1278,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:separator -->
-
-<!-- /wp:separator -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:separator -->
-
-<!-- /wp:separator -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:separator -->
-
-<!-- /wp:separator -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:separator -->
-
-<!-- /wp:separator -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:separator -->
-
-<!-- /wp:separator -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:separator -->
-
-<!-- /wp:separator -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:separator -->
-
-<!-- /wp:separator -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:embed {"url":"https://youtu.be/670bR8lYUmc","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"type":"video","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:list -->
-
-<!-- wp:image {"id":1281,"sizeSlug":"large","linkDestination":"none","align":"center"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:separator -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:separator -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:separator -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:separator -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:separator -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:separator -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:heading -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":1282,"sizeSlug":"large","linkDestination":"none"} -->
-
-<!-- /wp:image -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph --></p><p>I hope from this post, you get an idea of how can you create your own NLP Projects. If you have any questions, drop your comment in the comment section below. I will back to you as soon as possible. Keep learning mate.</p></div>
+<span class="hljs-built_in">print</span>(ans)</code></pre>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><span style="text-decoration: underline;"><em>Final output:</em></span></p>
+<p class="wp-embed-aspect-16-9 wp-has-aspect-ratio"><img style="width: 629px;" src="https://drive.google.com/thumbnail?id=1WIfV3KWlu82NFghjBEDJKbu80dARc5jj&amp;sz=w1000" data-filename="question-answering-app.png"></p>
+<figure class="wp-block-image size-large"></figure>
+<h2 class="wp-block-heading">Conclusion</h2>
+<p>In this way, you can make a complete NLP Projects with LSTM (Next word prediction) and BERT (Question Answering). If you are looking for a complete course on NLP, you can click <a href="https://www.youtube.com/playlist?list=PLiWNvnK7PSPErp-DQRRbTKT1_fVKDDL3p" target="_blank" rel="noreferrer noopener">here</a>.</p>
+<p><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"ordered":true} --><!-- /wp:list --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/VB7bbFIEAhk","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:heading --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:image {"id":1278,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:heading --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:separator --><!-- /wp:separator --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:separator --><!-- /wp:separator --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:separator --><!-- /wp:separator --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:separator --><!-- /wp:separator --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:separator --><!-- /wp:separator --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:separator --><!-- /wp:separator --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:separator --><!-- /wp:separator --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:embed {"url":"https://youtu.be/670bR8lYUmc","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"type":"video","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:list --><!-- wp:image {"id":1281,"sizeSlug":"large","linkDestination":"none","align":"center"} --><!-- /wp:image --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:separator --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:separator --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:separator --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:separator --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:separator --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:separator {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:separator --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:heading {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:heading --><!-- wp:syntaxhighlighter/code {"language":"python","className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:paragraph {"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:paragraph --><!-- wp:image {"id":1282,"sizeSlug":"large","linkDestination":"none"} --><!-- /wp:image --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --></p>
+<p>I hope from this post, you get an idea of how can you create your own NLP Projects. If you have any questions, drop your comment in the comment section below. I will back to you as soon as possible. Keep learning mate.</p></div>
 
 <script>
   if (window.hljs) {

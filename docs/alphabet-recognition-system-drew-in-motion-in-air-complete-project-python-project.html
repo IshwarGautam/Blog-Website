@@ -157,21 +157,30 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><h2 class="wp-block-heading">What will you learn?</h2><ol class="wp-block-list"><!-- wp:list-item -->
+  <div class="post-body"><h2 class="wp-block-heading">What will you learn?</h2>
+<ol class="wp-block-list"><!-- wp:list-item -->
 <li><a href="#demo">Know about the project: Demo</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#part-1">Part 1: Building model and calculating accuracy</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#part-2">Part 2: Alphabet Recognizer</a></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="#part-3">Part 3: Final Prediction of alphabets</a></li>
-<!-- /wp:list-item --></ol><p><em><span style="text-decoration: underline">Alphabet (Character) Recognition System</span></em></p><p><strong>Input</strong>: Draw a character in the air</p><p><strong>Output</strong>: Recognition of that character</p><h2 class="wp-block-heading" id="demo">Demo</h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/BGQxavQSk4s" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p></p><h2 class="wp-block-heading" id="part-1"><strong>Part 1: Building model and calculating accuracy</strong></h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/FNgnU6qvuqE" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p>In part 1, our task is to download data. You can&nbsp;<a rel="noreferrer noopener" href="https://github.com/IshwarGautam/ARS/tree/master/data" target="_blank">click here</a>&nbsp;to download the data required for this project.&nbsp;And then I am reshaping my data into 28*28 pixels. To train my model, I am passing 80% of my data to the training part and 20% of my data to the test part. Remember, training data are used to train our model, and testing data are used to calculate accuracy. I am using Keras to fit my model, which is a very popular deep learning framework.&nbsp;</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-comment">### 1. import data</span>
+<!-- /wp:list-item --></ol>
+<p><em><span style="text-decoration: underline;">Alphabet (Character) Recognition System</span></em></p>
+<p><strong>Input</strong>: Draw a character in the air</p>
+<p><strong>Output</strong>: Recognition of that character</p>
+<h2 id="demo" class="wp-block-heading">Demo</h2>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/BGQxavQSk4s">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/BGQxavQSk4s?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p>&nbsp;</p>
+<h2 id="part-1" class="wp-block-heading"><strong>Part 1: Building model and calculating accuracy</strong></h2>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/FNgnU6qvuqE">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/FNgnU6qvuqE?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p>In part 1, our task is to download data. You can&nbsp;<a href="https://github.com/IshwarGautam/ARS/tree/master/data" target="_blank" rel="noreferrer noopener">click here</a>&nbsp;to download the data required for this project.&nbsp;And then I am reshaping my data into 28*28 pixels. To train my model, I am passing 80% of my data to the training part and 20% of my data to the test part. Remember, training data are used to train our model, and testing data are used to calculate accuracy. I am using Keras to fit my model, which is a very popular deep learning framework.&nbsp;</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-comment">### 1. import data</span>
 
 <span class="hljs-keyword">from</span> mnist <span class="hljs-keyword">import</span> MNIST
 
@@ -253,7 +262,14 @@ score = model.evaluate(X_test, y_test, verbose=<span class="hljs-number">0</span
 accuracy = <span class="hljs-number">100</span>*score[<span class="hljs-number">1</span>]
 
 <span class="hljs-built_in">print</span>(<span class="hljs-string">"Test accuracy is "</span>, accuracy)
-</code><div><br></div></pre><pre class="wp-block-syntaxhighlighter-code"><span style="font-size: 2rem; color: rgb(0, 0, 0); font-family: sans-serif;">Part 2: Alphabet Recognizer</span></pre><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/6WriadB0b1c" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p>In this part 2, I am using the same model that I have prepared in part 1. I am trying to make one background where I can draw characters. My model takes the edge of my character within that background.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span class="hljs-keyword">from</span> keras.models <span class="hljs-keyword">import</span> load_model
+</code></pre>
+<div>&nbsp;</div>
+<pre class="wp-block-syntaxhighlighter-code"><span style="font-size: 2rem; color: #000000; font-family: sans-serif;">Part 2: Alphabet Recognizer<br></span></pre>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/6WriadB0b1c">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/6WriadB0b1c?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p class="wp-block-syntaxhighlighter-code">In this part 2, I am using the same model that I have prepared in part 1. I am trying to make one background where I can draw characters. My model takes the edge of my character within that background.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span class="hljs-keyword">from</span> keras.models <span class="hljs-keyword">import</span> load_model
 
 model = load_model(<span class="hljs-string">'best_model.h5'</span>)
 
@@ -332,7 +348,13 @@ cap = cv2.VideoCapture(<span class="hljs-number">0</span>)
     <span class="hljs-keyword">if</span> cv2.waitKey(<span class="hljs-number">1</span>)==<span class="hljs-number">13</span>: <span class="hljs-comment">#if I press enter</span>
         <span class="hljs-keyword">break</span>
 cap.release()
-cv2.destroyAllWindows()</code></pre><h2 class="wp-block-heading" id="part-3">Part 3: Final Prediction</h2><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper"><iframe frameborder="0" src="//www.youtube.com/embed/mBgeaPBWE-A" width="640" height="360" class="note-video-clip"></iframe><br></div></figure><p>This is the final part where I pass the edge of my character to my model so that it can predict a character that I have drawn.</p><pre><code class="language-python hljs" contenteditable="true" style=""><span style="text-wrap-mode: wrap;">import cv2 #pip install opencv-python
+cv2.destroyAllWindows()</code></pre>
+<h2 id="part-3" class="wp-block-heading">Part 3: Final Prediction</h2>
+<div style="max-width: 650px; margin-left: auto; margin-right: auto;" data-ephox-embed-iri="https://youtu.be/mBgeaPBWE-A">
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" src="https://www.youtube.com/embed/mBgeaPBWE-A?rel=0" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" allowfullscreen="allowfullscreen" referrerpolicy="strict-origin"></iframe></div>
+</div>
+<p>This is the final part where I pass the edge of my character to my model so that it can predict a character that I have drawn.</p>
+<pre><code class="language-python hljs" contenteditable="true"><span style="text-wrap-mode: wrap;">import cv2 #pip install opencv-python
 cap = cv2.VideoCapture(0)
 prediction = 26
 while True:
@@ -415,97 +437,11 @@ while True:
     if cv2.waitKey(1)==13: #if I press enter
         break
 cap.release()
-cv2.destroyAllWindows()</span></code></pre><h2 class="wp-block-heading">Conclusion:</h2><p>In this manner, you can create a complete Alphabet Recognizer project. Remember that the input will be a character drawn in the air, and the output will be the predicted character. If you draw the character clearly, the prediction will be accurate. Therefore, ensure that you draw the character properly so that our model can accurately predict the corresponding alphabet.</p><p><!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:list {"ordered":true} -->
-
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/BGQxavQSk4s","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/FNgnU6qvuqE","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/6WriadB0b1c","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:embed {"url":"https://youtu.be/mBgeaPBWE-A","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
-
-<!-- /wp:embed -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:syntaxhighlighter/code {"language":"python"} -->
-
-<!-- /wp:syntaxhighlighter/code -->
-
-<!-- wp:heading -->
-
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-
-<!-- /wp:paragraph --></p><p>I hope this post is very helpful to you. If you have any doubts or questions, you can ask me in the comment section. I will back to you as soon as possible. Thanks.</p></div>
+cv2.destroyAllWindows()</span></code></pre>
+<h2 class="wp-block-heading">Conclusion:</h2>
+<p>In this manner, you can create a complete Alphabet Recognizer project. Remember that the input will be a character drawn in the air, and the output will be the predicted character. If you draw the character clearly, the prediction will be accurate. Therefore, ensure that you draw the character properly so that our model can accurately predict the corresponding alphabet.</p>
+<p><!-- wp:heading --><!-- /wp:heading --><!-- wp:list {"ordered":true} --><!-- /wp:list --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/BGQxavQSk4s","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:heading --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/FNgnU6qvuqE","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/6WriadB0b1c","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:embed {"url":"https://youtu.be/mBgeaPBWE-A","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} --><!-- /wp:embed --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:syntaxhighlighter/code {"language":"python"} --><!-- /wp:syntaxhighlighter/code --><!-- wp:heading --><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><!-- /wp:paragraph --></p>
+<p>I hope this post is very helpful to you. If you have any doubts or questions, you can ask me in the comment section. I will back to you as soon as possible. Thanks.</p></div>
 
 <script>
   if (window.hljs) {

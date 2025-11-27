@@ -80,20 +80,257 @@
           </ul>
         </div>
 
-        <!-- Right: Login/Logout buttons -->
-        {% if not is_static_build and current_user is defined %}
+        <!-- Notification Bell and Login/Logout -->
         <div class="d-flex align-items-center gap-2">
-          {% if current_user.is_authenticated and current_user.is_admin %}
-          <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-light btn-sm px-4 py-2 fw-semibold shadow-sm">
-            <i class="bi bi-box-arrow-right me-1"></i> Logout
-          </a>
-          {% else %}
-          <a href="{{ url_for('auth.login') }}" class="btn btn-success btn-sm px-4 py-2 fw-semibold shadow-sm">
-            <i class="bi bi-box-arrow-in-right me-1"></i> Login
-          </a>
+          {% if not is_static_build and current_user is defined %}
+            {% if current_user.is_authenticated and current_user.is_admin %}
+            <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-light btn-sm px-4 py-2 fw-semibold shadow-sm">
+              <i class="bi bi-box-arrow-right me-1"></i> Logout
+            </a>
+            {% else %}
+            <a href="{{ url_for('auth.login') }}" class="btn btn-success btn-sm px-4 py-2 fw-semibold shadow-sm">
+              <i class="bi bi-box-arrow-in-right me-1"></i> Login
+            </a>
+            {% endif %}
           {% endif %}
+          <!-- Notification Bell (moved to end) -->
+          <div class="nav-item dropdown ms-2">
+            <a class="nav-link position-relative" href="#" id="notificationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-bell fa-lg"></i>
+              <span id="notification-count" class="badge badge-danger position-absolute" style="top:0;right:0;display:none;">0</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right p-2" aria-labelledby="notificationDropdown" style="min-width:350px;max-height:400px;overflow-y:auto;">
+              <h6 class="dropdown-header">Comments</h6>
+              <div id="notification-list">
+                <div class="text-center text-muted small">No comments</div>
+              </div>
+            </div>
+          </div>
         </div>
-        {% endif %}
+    <!-- Notification JS -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const bell = document.getElementById('notificationDropdown');
+        const list = document.getElementById('notification-list');
+        const count = document.getElementById('notification-count');
+        function loadNotifications() {
+          // Show loading spinner while fetching comments
+          list.innerHTML = '<div class="text-center py-3"><span class="spinner-border spinner-border-sm text-primary" role="status" aria-hidden="true"></span> Loading comments...</div>';
+          fetch('/notifications/comments')
+            .then(res => res.json())
+            .then(data => {
+              list.innerHTML = '';
+              if (data.length === 0) {
+                list.innerHTML = '<div class="text-center text-muted small">No comments</div>';
+                count.style.display = 'none';
+              } else {
+                count.textContent = data.length;
+                count.style.display = '';
+                // Helper to render replies recursively
+                  function renderReplies(replies, level=1) {
+                  let html = '';
+                  replies.forEach(r => {
+                    html += `<div class='ml-${level*2} mt-2 p-2 border-left notification-comment' data-post-id='${r.post_id}'>
+                      <div class='notification-main clickable-comment'>
+                        <span class='comment-badge'></span>
+                        <strong>${r.name}</strong> <span class='text-muted small float-right'>${r.timestamp}</span><br>
+                        <span>${r.content}</span>
+                      </div>
+                      <button type='button' class='btn btn-link btn-sm p-0 reply-toggle' data-comment-id='${r.id}' tabindex='-1'>
+                        <i class='fa fa-reply'></i> Reply
+                      </button>
+                      <form class='reply-form mt-2' data-comment-id='${r.id}' style='display:none;' autocomplete='off'>
+                        <input type='text' name='name' class='form-control form-control-sm mb-1' placeholder='Your name' required />
+                        <textarea name='content' class='form-control form-control-sm mb-1' placeholder='Reply...' required></textarea>
+                        <button type='submit' class='btn btn-sm btn-primary'>Reply</button>
+                      </form>
+                      <div class='replies'>${renderReplies(r.replies, level+1)}</div>
+                    </div>`;
+                  });
+                  return html;
+                }
+                data.forEach(c => {
+                  const item = document.createElement('div');
+                  item.className = 'dropdown-item notification-comment';
+                  item.setAttribute('data-post-id', c.post_id);
+                  item.setAttribute('data-post-title', c.post_title_slug || c.post_title); // Use slug if available
+                  if (c.post_url) {
+                    item.setAttribute('data-post-url', c.post_url);
+                  }
+                  item.innerHTML = `
+                    <div class='notification-main clickable-comment'>
+                      <span class='comment-badge'></span>
+                      <strong>${c.name}</strong> <span class='text-muted small float-right'>${c.timestamp}</span><br>
+                      <span>${c.content}</span><br>
+                      <span class='text-muted small'>Post: ${c.post_title}</span>
+                    </div>
+                    <button type='button' class='btn btn-link btn-sm p-0 reply-toggle' data-comment-id='${c.id}' tabindex='-1'>
+                      <i class='fa fa-reply'></i> Reply
+                    </button>
+                    <form class='reply-form mt-2' data-comment-id='${c.id}' style='display:none;' autocomplete='off'>
+                      <input type='text' name='name' class='form-control form-control-sm mb-1' placeholder='Your name' required />
+                      <textarea name='content' class='form-control form-control-sm mb-1' placeholder='Reply...' required></textarea>
+                      <button type='submit' class='btn btn-sm btn-primary'>Reply</button>
+                    </form>
+                    <div class='replies'>${renderReplies(c.replies)}</div>
+                  `;
+                  list.appendChild(item);
+                });
+                // ...existing code for event listeners...
+                list.querySelectorAll('.reply-toggle').forEach(btn => {
+                  btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const commentId = this.getAttribute('data-comment-id');
+                    const form = list.querySelector(`form.reply-form[data-comment-id='${commentId}']`);
+                    if (form) {
+                      // Always show the form when clicking reply-toggle (after posting, form is hidden)
+                      form.style.display = 'block';
+                      form.querySelector('input[name="name"]').focus();
+                    }
+                  });
+                });
+                // No blink on reply input/textarea focus
+                list.querySelectorAll('.reply-form').forEach(form => {
+                  form.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                  });
+                });
+                // Make clicking on a comment redirect to the post
+                list.querySelectorAll('.clickable-comment').forEach(div => {
+                  div.addEventListener('click', function(e) {
+                    // Only redirect if not clicking a reply button or inside a form
+                    if (!e.target.closest('.reply-toggle') && !e.target.closest('form')) {
+                      const parent = this.closest('.notification-comment');
+                      if (parent) {
+                        const dropdown = document.getElementById('notificationDropdown');
+                        if (dropdown) {
+                          $(dropdown).dropdown('hide');
+                        }
+                        // Use post_url if available, else fallback, open in new tab
+                        const postUrl = parent.getAttribute('data-post-url');
+                        if (postUrl) {
+                          window.open(postUrl, '_blank');
+                        } else if (parent.getAttribute('data-post-title')) {
+                          window.open('/post/' + encodeURIComponent(parent.getAttribute('data-post-title')), '_blank');
+                        }
+                      }
+                    }
+                  });
+                });
+                // ...existing code for reply form submission will be below...
+                  // (No re-attaching bell click handler or setTimeout here)
+              }
+            });
+        }
+        if (bell) {
+          bell.addEventListener('click', function(e) {
+            loadNotifications();
+          });
+        }
+          // Attach reply form AJAX submission (after DOM loaded, outside loadNotifications)
+          // This will use event delegation to handle dynamically loaded forms
+          list.addEventListener('submit', function(e) {
+            const form = e.target;
+            if (form.classList.contains('reply-form')) {
+              e.preventDefault();
+              const name = form.querySelector('input[name="name"]').value.trim();
+              const content = form.querySelector('textarea[name="content"]').value.trim();
+              const parent_id = form.getAttribute('data-comment-id');
+              if (!name || !content) {
+                form.querySelector('button[type="submit"]').disabled = false;
+                return;
+              }
+              const btn = form.querySelector('button[type="submit"]');
+              btn.disabled = true;
+              btn.textContent = 'Posting...';
+              fetch('/notifications/reply', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, content, parent_id })
+              })
+              .then(res => res.json())
+              .then(data => {
+                if (data.success) {
+                  // Reload only the replies section for the parent comment
+                  const parentDiv = form.closest('.notification-comment');
+                  if (parentDiv) {
+                    const parentId = form.getAttribute('data-comment-id');
+                    fetch(`/notifications/comments`)
+                      .then(res => res.json())
+                      .then(allComments => {
+                        // Find the parent comment in the returned data
+                        function findCommentById(comments, id) {
+                          for (const c of comments) {
+                            if (String(c.id) === String(id)) return c;
+                            if (c.replies && c.replies.length) {
+                              const found = findCommentById(c.replies, id);
+                              if (found) return found;
+                            }
+                          }
+                          return null;
+                        }
+                        const parentComment = findCommentById(allComments, parentId);
+                        if (parentComment) {
+                          // Render replies HTML (reuse renderReplies from loadNotifications)
+                          function renderReplies(replies, level=1) {
+                            let html = '';
+                            replies.forEach(r => {
+                              html += `<div class='ml-${level*2} mt-2 p-2 border-left notification-comment' data-post-id='${r.post_id}'>
+                                <div class='notification-main clickable-comment'>
+                                  <span class='comment-badge'></span>
+                                  <strong>${r.name}</strong> <span class='text-muted small float-right'>${r.timestamp}</span><br>
+                                  <span>${r.content}</span>
+                                </div>
+                                <button type='button' class='btn btn-link btn-sm p-0 reply-toggle' data-comment-id='${r.id}' tabindex='-1'>
+                                  <i class='fa fa-reply'></i> Reply
+                                </button>
+                                <form class='reply-form mt-2' data-comment-id='${r.id}' style='display:none;' autocomplete='off'>
+                                  <input type='text' name='name' class='form-control form-control-sm mb-1' placeholder='Your name' required />
+                                  <textarea name='content' class='form-control form-control-sm mb-1' placeholder='Reply...' required></textarea>
+                                  <button type='submit' class='btn btn-sm btn-primary'>Reply</button>
+                                </form>
+                                <div class='replies'>${renderReplies(r.replies, level+1)}</div>
+                              </div>`;
+                            });
+                            return html;
+                          }
+                          const repliesDiv = parentDiv.querySelector('.replies');
+                          if (repliesDiv) {
+                            repliesDiv.innerHTML = renderReplies(parentComment.replies);
+                          }
+                          // Re-attach reply-toggle event handlers for new buttons
+                          list.querySelectorAll('.reply-toggle').forEach(btn => {
+                            btn.onclick = null;
+                            btn.addEventListener('click', function(e) {
+                              e.stopPropagation();
+                              const commentId = this.getAttribute('data-comment-id');
+                              const form = list.querySelector(`form.reply-form[data-comment-id='${commentId}']`);
+                              if (form) {
+                                form.style.display = 'block';
+                                form.querySelector('input[name="name"]').focus();
+                              }
+                            });
+                          });
+                        }
+                      });
+                  }
+                } else {
+                  alert(data.error || 'Failed to post reply.');
+                }
+              })
+              .catch(() => {
+                alert('Failed to post reply.');
+              })
+              .finally(() => {
+                btn.disabled = false;
+                btn.textContent = 'Reply';
+                form.reset();
+                form.style.display = 'none';
+              });
+            }
+          });
+      });
+    </script>
 
         <!-- Toggler button for small screens -->
         <button
@@ -185,6 +422,67 @@
             </a>
           </div>
         </div>
+    <style>
+      .dropdown-menu[aria-labelledby="notificationDropdown"] {
+        border-radius: 1rem;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        border: none;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        min-width: 370px;
+        background: #fff;
+      }
+      .dropdown-item.notification-comment:active, .dropdown-item.notification-comment:focus, .dropdown-item.notification-comment {
+        background: none !important;
+        border-radius: 0.5rem;
+        margin-bottom: 0.2rem;
+        transition: background 0.2s;
+      }
+      .dropdown-item.notification-comment:hover {
+        background: #f3f7fa !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      }
+      .dropdown-item.notification-comment {
+        cursor: pointer;
+        position: relative;
+        padding-left: 2.2rem !important;
+      }
+      .notification-main {
+        position: relative;
+      }
+      .notification-main .comment-badge {
+        position: absolute;
+        left: -1.5rem;
+        top: 0.2rem;
+        width: 1rem;
+        height: 1rem;
+        background: #ff5252;
+        border-radius: 50%;
+        box-shadow: 0 0 4px #ff5252a0;
+        border: 2px solid #fff;
+        display: inline-block;
+        animation: badge-pop 0.6s cubic-bezier(.68,-0.55,.27,1.55);
+      }
+      @keyframes badge-pop {
+        0% { transform: scale(0.2); opacity: 0; }
+        60% { transform: scale(1.2); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      .reply-form input, .reply-form textarea {
+        background: #f8f9fa;
+      }
+      /* blink-anim and blink-highlight removed */
+      .dropdown-header {
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: #2d3a4a;
+        border-bottom: 1px solid #e3e8ee;
+        margin-bottom: 0.5rem;
+      }
+      .dropdown-menu .text-muted.small {
+        font-size: 0.85rem;
+      }
+    </style>
       </div>
     </footer>
     {% endblock %}

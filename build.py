@@ -7,6 +7,7 @@ from database.models.post import Post
 # For this static build process
 os.environ["IS_STATIC_BUILD"] = "1"
 
+
 def delete_comment_folders(destination):
     for root, dirs, files in os.walk(destination):
         if "comment.html" in files:
@@ -430,13 +431,13 @@ def build_static_site(destination, base_url):
             shutil.rmtree("temp_netlify_backup")
         if os.path.exists("temp_package_backup.json"):
             os.remove("temp_package_backup.json")
-            
+
         netlify_path = os.path.join(destination, "netlify")
         package_path = os.path.join(destination, "package.json")
-        
+
         if os.path.exists(netlify_path):
             shutil.copytree(netlify_path, "temp_netlify_backup")
-            
+
         if os.path.exists(package_path):
             shutil.copy2(package_path, "temp_package_backup.json")
 
@@ -451,7 +452,7 @@ def build_static_site(destination, base_url):
             yield ("post.index", {"page": page})
 
     freezer.freeze()
-    
+
     # Restore backed up files for docs destination
     if destination == "docs":
         if os.path.exists("temp_netlify_backup"):
@@ -460,9 +461,11 @@ def build_static_site(destination, base_url):
                 shutil.rmtree(netlify_dest)
             shutil.copytree("temp_netlify_backup", netlify_dest)
             shutil.rmtree("temp_netlify_backup")
-            
+
         if os.path.exists("temp_package_backup.json"):
-            shutil.move("temp_package_backup.json", os.path.join(destination, "package.json"))
+            shutil.move(
+                "temp_package_backup.json", os.path.join(destination, "package.json")
+            )
     else:
         delete_comment_folders(destination)
 

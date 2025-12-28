@@ -18,7 +18,7 @@ from googleapiclient.discovery import build
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
-    
+
     @app.context_processor
     def inject_tinymce_key():
         return {"TINY_MCE_API_KEY": app.config.get("TINY_MCE_API_KEY")}
@@ -74,7 +74,6 @@ def create_app():
     Migrate(app, db)
 
     return app
-
 
 
 # Run dev server if --build flag is present

@@ -904,7 +904,22 @@ public class Main {
         height: 300,
         menubar: true,
         branding: false,
+        promotion: false,
         content_style: 'body { font-family: Segoe UI,Arial,sans-serif; font-size:14px }',
+        setup: function(editor) {
+          editor.on('init', function() {
+            // Hide any notification warnings about premium plugins
+            setTimeout(function() {
+              const notifications = document.querySelectorAll('.tox-notification--warning, .tox-notification--error');
+              notifications.forEach(function(notification) {
+                const text = notification.textContent || '';
+                if (text.includes('premium plugin') || text.includes('Upgrade your account')) {
+                  notification.style.display = 'none';
+                }
+              });
+            }, 100);
+          });
+        }
       });
     </script>
   </body>

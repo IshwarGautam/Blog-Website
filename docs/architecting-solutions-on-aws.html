@@ -131,7 +131,7 @@
       margin-bottom: 1rem;
     "
   >
-    Generative AI — Complete, simple, step-by-step guide (for beginners)
+    Architecting Solutions on AWS
   </h1>
 
   <span
@@ -142,7 +142,7 @@
       font-size: 0.95rem;
     "
   >
-    🕒 2025-11-23 11:59:36.234654
+    🕒 2025-12-28 12:55:20.030517
   </span>
 </header>
 
@@ -157,326 +157,209 @@
     margin-top: -1px;
   "
 >
-  <div class="post-body"><h1><img style="width: 640px;" src="https://drive.google.com/thumbnail?id=1fdxVQdeVUAWvL7qoHusnzgV7ORKqd5bu&amp;sz=w1000" data-filename="artificial-intelligence-6767502_640.jpg"></h1>
-<h1>Generative AI - ALL IN ONE</h1>
-<h2>1. What is Generative AI (Gen AI)?</h2>
-<p>Generative AI is a type of artificial intelligence that creates new content.&nbsp;<span style="font-size: 1rem;">Instead of only analyzing data, it can produce text, images, audio, code, or even videos.&nbsp;</span><span style="font-size: 1rem;">The most powerful form of Generative AI today is the Large Language Model (LLM).&nbsp;</span><span style="font-size: 1rem;">An LLM is trained on massive amounts of text from books, websites, and code. Because of this training, it can:</span></p>
-<ul>
-<li><span style="font-size: 1rem;">understand human language,</span></li>
-<li>answer questions,</li>
-<li>write stories or articles,</li>
-<li>solve coding tasks,</li>
-<li>summarise information,</li>
-<li>chat like a human.</li>
-</ul>
-<p><strong>Why Generative AI Matters</strong></p>
-<p>Generative AI is important because it allows people to build powerful tools such as:</p>
-<ul>
-<li><strong>Chatbots</strong>: Customer support, personal assistants</li>
-<li><strong>Writing helpers</strong>: Blog writers, email writers, grammar fixers</li>
-<li><strong>Code assistants</strong>: Debugging, writing functions, explaining errors</li>
-<li><strong>Content creation tools</strong>: Images, videos, music, designs</li>
-</ul>
-<p>It saves time, reduces effort, and improves productivity.</p>
-<p><strong>But It Has Limitations (Hallucinations)</strong></p>
-<p>Sometimes, Generative AI gives confident but incorrect answers.&nbsp;<span style="font-size: 1rem;">This is called a hallucination.</span></p>
-<p><strong>Example:</strong></p>
-<p>If the model does not know something exactly, it may guess or create a wrong answer.</p>
-<p><span style="font-size: 1rem;">We will later learn ways to reduce hallucinations using:</span></p>
-<ul>
-<li><span style="font-size: 1rem;">Prompt engineering</span></li>
-<li>Retrieval-Augmented Generation (RAG)</li>
-<li>Using external tools and APIs</li>
-<li>Better model instructions</li>
-</ul>
-<p>&nbsp;</p>
-<h2>2. Key building blocks</h2>
-<p><strong>a. LLM (Large Language Model)</strong></p>
-<p>The core engine that writes, answers, explains, and reasons.<br>Examples: GPT, Claude, Llama.<br>You send text &rarr; it gives a response.</p>
-<p>&nbsp;</p>
-<p><strong>b. Prompt</strong></p>
-<p>A message or instruction you give to the model.<br>It tells the AI what you want.<br>Example: &ldquo;Write a short email to my boss.&rdquo;</p>
-<p>&nbsp;</p>
-<p><strong>c. Prompt Engineering</strong></p>
-<p>The skill of designing better prompts so the AI gives accurate, useful answers.<br>This includes adding examples, structure, or clear instructions.</p>
-<p>&nbsp;</p>
-<p><strong>d. Embeddings</strong></p>
-<p>A way to turn text into numbers (vectors) so that computers can understand meaning.<br>If two texts are similar, their embeddings will also be similar.<br>Used for search, clustering, similarity checks, etc.</p>
-<p>&nbsp;</p>
-<p><strong>e. Vector Store</strong></p>
-<p>A special database that stores embeddings.<br>It lets you quickly search for similar text.<br>Popular options: FAISS, Chroma, Pinecone, Weaviate.</p>
-<p>&nbsp;</p>
-<p><strong>f. RAG (Retrieval-Augmented Generation)</strong></p>
-<p>A technique where you:</p>
-<ul>
-<li>Search your knowledge base using embeddings.</li>
-<li>Retrieve useful documents.</li>
-<li>Pass them to the LLM to get a correct answer.</li>
-</ul>
-<p>This makes answers more accurate and reduces hallucinations.</p>
-<p>&nbsp;</p>
-<p><strong>g. LangChain</strong></p>
-<p>A Python/JavaScript library that helps you build AI apps.<br>It provides:</p>
-<ul>
-<li>Chains (multi-step logic)</li>
-<li>RAG pipelines</li>
-<li>Memory</li>
-<li>Tool calling</li>
-<li>Integrations with models and vector stores</li>
-</ul>
-<p>It's like a framework for building LLM applications quickly.</p>
-<h5>&nbsp;</h5>
-<p><strong>h. Agents &amp; Tools</strong></p>
-<p>Agents let the model call functions or APIs automatically.<br>Example:</p>
-<ul>
-<li>AI checks weather by calling a weather API</li>
-<li>AI fetches data from a database</li>
-<li>AI runs Python code</li>
-</ul>
-<p>This makes models act more like smart assistants.</p>
-<p>&nbsp;</p>
-<p><strong>i. MCP Server (Model Context Protocol / Model Control Plane)</strong></p>
-<p>A standard that lets AI models securely access external tools, databases, and services.<br>It works like a bridge between the model and your system.<br>For example, with MCP:</p>
-<ul>
-<li>AI can fetch data from your database</li>
-<li>AI can read files or run local tools</li>
-<li>AI can call APIs using a controlled and safe method</li>
-</ul>
-<p>Modern tools like OpenAI&rsquo;s GPTs use MCP directly.</p>
-<p>&nbsp;</p>
-<h2>3.&nbsp;Prompts: how to speak to the model</h2>
-<p>A prompt is just text. Clear, simple prompts give better results.</p>
-<p><strong>Good prompt tips:</strong></p>
-<ul>
-<li>Be specific. Don&rsquo;t assume the model knows context.</li>
-<li>Show examples (few-shot) for pattern learning.</li>
-<li>Give format instructions (e.g., &ldquo;Return JSON with fields: title, summary&rdquo;).</li>
-<li>Limit creativity if you need facts: add &ldquo;Be concise and factual.&rdquo;</li>
-</ul>
-<p><strong>Example: Simple prompt</strong></p>
-<div>
-<pre class="language-python"><code>You are a helpful assistant.
-Task: Summarize the text below in one sentence.
-
-Text: "LangChain helps developers build apps that combine LLMs with external tools."
-
-Answer:</code></pre>
-</div>
-<p><strong>Prompt + instruction + constraints (stronger)</strong></p>
-<pre class="language-python"><code>You are a helpful assistant. Return only JSON.
-
-Task: From the text, return {"summary": "...", "keywords": ["a","b"]}
-
-Text: "LangChain helps developers build apps that combine LLMs with external tools."</code></pre>
-<pre>&nbsp;</pre>
-<h2>4.&nbsp;Basic code: calling an LLM (Python, OpenAI style)</h2>
-<p>(Install <span style="background-color: #cedee7;">openai</span> or use your provider's SDK and set <span style="background-color: #cedee7;">OPENAI_API_KEY</span>)</p>
-<pre class="language-python"><code># pip install openai
-import os
-import openai
-
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
-def ask(prompt):
-    resp = openai.ChatCompletion.create(
-        model="gpt-4o-mini",  # example model name
-        messages=[{"role":"user","content": prompt}],
-        max_tokens=200
-    )
-    return resp["choices"][0]["message"]["content"]
-
-print(ask("Write a 2-line summary of 'RAG' in simple words."))</code></pre>
-<p>Replace model name with whatever your provider offers. Keep tokens and costs in mind.</p>
-<p>&nbsp;</p>
-<h2>5. Embeddings: turning text into numbers (for search)</h2>
-<p>Embeddings let you compare meaning. Steps:</p>
+  <div class="post-body"><h1><img title="aws-sa.png" src="https://drive.google.com/thumbnail?id=1XrhZvpYVnVV8SvEpYi8xUfRHUEx0Un_D&amp;sz=w1000" alt="" width="371" height="223"></h1>
+<h1>Content</h1>
 <ol>
-<li>Break text into chunks.</li>
-<li>Call embedding model on each chunk.</li>
-<li>Store vectors in a vector store.</li>
-<li>For a user query, embed it, then find nearest vectors.</li>
+<li><a href="#serverless-backend">Designing a serverless web backend on AWS</a></li>
+<li><a href="#serverless-data-analytics">Designing a serverless data analytics solution on AWS</a></li>
+<li><a href="#hybrid-solution">Designing a hybrid solution for container based workloads on AWS</a></li>
+<li><a href="#account-governance">Designing a solution following account governance and management best practices</a></li>
 </ol>
-<p>Example using OpenAI embeddings (conceptual)</p>
-<pre class="language-python"><code># pip install openai numpy
-import openai
-import numpy as np
-
-def get_embedding(text):
-    resp = openai.Embedding.create(
-        model="text-embedding-3-small",
-        input=text
-    )
-    return np.array(resp["data"][0]["embedding"])</code></pre>
-<p>You usually store these vectors in FAISS, Chroma, Pinecone, etc.</p>
-<p><span style="color: #000000; font-family: sans-serif; font-size: 16px; white-space: normal;">&nbsp;</span></p>
-<h2>6.&nbsp;What is RAG (Retrieval-Augmented Generation)?</h2>
-<p><strong>RAG </strong>= Retrieval-Augmented Generation.</p>
-<p><strong>Idea</strong>: before asking the model to answer, fetch relevant documents (from your files, manuals, website) and give those to the model as context. This reduces hallucinations and lets the model use up-to-date or private data. Many cloud providers and docs explain this pattern.&nbsp;</p>
-<p><strong>Simple RAG flow: </strong></p>
-<ol>
-<li>Ingest docs &rarr; split into chunks &rarr; embed &rarr; store.</li>
-<li>On user question: embed query &rarr; retrieve top-k chunks.</li>
-<li>Build a prompt with those chunks and the question &rarr; send to LLM.</li>
-<li>Return answer (optionally include sources).</li>
-</ol>
-<p>&nbsp;</p>
-<h2>7.&nbsp;LangChain: glue to build LLM apps</h2>
-<p>LangChain is a popular library that helps build chains, agents, RAG pipelines, and connects LLMs to tools. It has loaders for documents, wrappers for models, and helpers for vector stores. Use it when you want a structured app instead of raw API calls.&nbsp;</p>
-<p><strong>Short LangChain RAG example (Python)</strong></p>
-<pre class="language-python"><code> # pip install langchain openai chroma-client
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import Chroma
-from langchain.chat_models import ChatOpenAI
-from langchain.chains import RetrievalQA
-from langchain.document_loaders import TextLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-
-# 1. load docs
-loader = TextLoader("docs/manual.txt", encoding="utf-8")
-docs = loader.load()
-
-# 2. split
-splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=100)
-chunks = splitter.split_documents(docs)
-
-# 3. embeddings + vector store
-emb = OpenAIEmbeddings()
-vectordb = Chroma.from_documents(chunks, emb, collection_name="manuals")
-
-# 4. create retriever and QA chain
-retriever = vectordb.as_retriever(search_kwargs={"k": 4})
-llm = ChatOpenAI(temperature=0, model_name="gpt-4o-mini")
-qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever)
-
-# 5. ask
-print(qa.run("How do I reset the device?")
-</code></pre>
-<pre><strong>Notes:</strong></pre>
+<p>Designing solutions on AWS is about choosing the right managed services, reducing operational work, and building scalable and secure systems. In this blog, we will walk through four real-world use cases and design AWS architectures step by step.</p>
+<h1 id="serverless-backend">Designing a serverless web backend on AWS</h1>
+<p>The first section follows a customer use case where an ecommerce company needs to migrate a backend web service to AWS. Design the solution for this use case, step by step, by using services such as Amazon API Gateway, AWS Lambda, Amazon Simple Queue Service (Amazon SQS), Amazon Simple Notification Service (Amazon SNS), and Amazon DynamoDB.</p>
+<p><strong>Use Case</strong></p>
+<p>An ecommerce company wants to migrate its backend web service to AWS.</p>
+<p>The goal is:</p>
 <ul>
-<li><span style="background-color: #cee7f7;">chain_type="stuff"</span> is one way (puts all contexts into prompt). There are other chain types (map-reduce, refine) for long contexts.</li>
-<li>Replace Chroma with FAISS, Pinecone, etc., as needed.</li>
+<li>No server management</li>
+<li>Automatic scaling</li>
+<li>High availability</li>
+<li>Low operational cost</li>
+</ul>
+<p><strong>Key AWS Services Used</strong></p>
+<ul>
+<li>Amazon API Gateway &ndash; Entry point for APIs</li>
+<li>AWS Lambda &ndash; Backend business logic</li>
+<li>Amazon DynamoDB &ndash; NoSQL database</li>
+<li>Amazon SQS &ndash; Queue for background tasks</li>
+<li>Amazon SNS &ndash; Notifications (email, SMS, alerts)</li>
+</ul>
+<p><strong>Step-by-Step Architecture Design</strong></p>
+<p>A. Client Request</p>
+<ul>
+<li>Web or mobile client sends a request (e.g., place order)</li>
+</ul>
+<p>B. API Layer</p>
+<ul>
+<li>API Gateway receives and validates requests</li>
+</ul>
+<p>C. Compute Layer</p>
+<ul>
+<li>Lambda processes the request (create order, validate user)</li>
+</ul>
+<p>D. Data Layer</p>
+<ul>
+<li>DynamoDB stores order and customer data</li>
+</ul>
+<p>E. Async Processing</p>
+<ul>
+<li>SQS handles background jobs (order processing, invoice generation)</li>
+</ul>
+<p>F. Notifications</p>
+<ul>
+<li>SNS sends order confirmation emails or alerts</li>
+</ul>
+<p><strong>Architecture Diagram</strong><br><code>Client (Web / Mobile)<br>&nbsp; &nbsp; &nbsp; &nbsp; |<br>&nbsp; Amazon API Gateway<br>&nbsp; &nbsp; &nbsp; &nbsp; |<br>&nbsp; &nbsp; &nbsp;AWS Lambda<br>&nbsp; &nbsp; &nbsp;/ &nbsp; &nbsp; &nbsp; &nbsp;\<br>DynamoDB &nbsp; &nbsp; Amazon SQS<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;AWS Lambda<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Amazon SNS</code></p>
+<p><strong>Why This Design?</strong></p>
+<ul>
+<li>Fully serverless</li>
+<li>Automatically scales</li>
+<li>Pay only for usage</li>
+<li>Fault-tolerant by default</li>
 </ul>
 <p>&nbsp;</p>
-<h2>8.&nbsp;Vector stores quick guide</h2>
-<p>Common vector stores:</p>
+<h1 id="serverless-data-analytics">Designing a serverless data analytics solution on AWS</h1>
+<p>The second section follows a customer use case where a software company needs a data analytics solution in AWS so that they can derive insights from clickstream data. Design the solution for this use case, step by step, by using services such as Amazon Simple Storage Service (Amazon S3), Amazon Kinesis Data Firehose, Amazon Athena, Amazon QuickSight, and more.</p>
+<p><strong>Use Case</strong></p>
+<p>A software company wants insights from clickstream data (user clicks, page views).</p>
+<p><strong>Goals:</strong></p>
 <ul>
-<li><strong>FAISS </strong>&mdash; offline, local, fast (Facebook/Meta).</li>
-<li><strong>Chroma </strong>&mdash; simple local store with helpful features.</li>
-<li><strong>Pinecone / Weaviate / Milvus</strong> &mdash; hosted and scalable.</li>
+<li>Real-time ingestion</li>
+<li>Low-cost analytics</li>
+<li>No data warehouse management</li>
 </ul>
-<p>Pick local FAISS for prototypes, hosted for production.</p>
-<p>&nbsp;</p>
-<h2>9.&nbsp;Agents and tools (models calling actions)</h2>
-<p>Agents let models call tools (like calculators, search, or your APIs). This is powerful: model decides which tool to use. But it needs careful guardrails.</p>
-<p><strong>LangChain Agents example</strong></p>
-<pre class="language-python"><code>from langchain.agents import initialize_agent, Tool
-from langchain.tools import BaseTool
-from langchain.llms import OpenAI
-
-def search_web(query):
-    # your search code here
-    return "search results for: " + query
-
-tools = [Tool(name="web_search", func=search_web, description="Search the web")]
-
-llm = OpenAI(temperature=0)
-agent = initialize_agent(tools, llm, agent="zero-shot-react-description")
-print(agent.run("Find latest release of Python and summarize."))</code></pre>
-<p>Agents + MCP (next section) is how models call real system tools securely.<br><br></p>
-<h2>10.&nbsp;MCP servers: what and why</h2>
-<p><strong>MCP</strong> stands for Model Context Protocol (often called Model Context Protocol or Model Control Plane in different contexts). It is an open protocol and ecosystem that standardizes how LLMs (or hosts) connect to external tools, data, and services via a client-server style interface. An MCP server exposes tool endpoints and data to the model in a standardized way so many models and tools can interoperate. This makes building connected AI easier and reduces custom glue code.</p>
-<p><strong>Key points:</strong></p>
+<p><strong>Key AWS Services Used</strong></p>
 <ul>
-<li><span style="font-size: 1rem;">MCP servers provide a JSON-RPC API or similar interface models can call.</span></li>
-<li>They expose tools with schema (what inputs they need, what they return).</li>
-<li>MCP reduces the N&times;M problem: many models &times; many tools.</li>
+<li>Amazon Kinesis Data Firehose &ndash; Data ingestion</li>
+<li>Amazon S3 &ndash; Data lake storage</li>
+<li>Amazon Athena &ndash; SQL queries on S3</li>
+<li>Amazon QuickSight &ndash; Visualization and dashboards</li>
 </ul>
-<p><em>Security note</em>: MCP servers have high privileges and can access sensitive data. There have been real security incidents where a malicious MCP server exfiltrated email data. Always verify MCP server code and use least-privilege access.</p>
-<p>&nbsp;</p>
-<h2>11.&nbsp;Example: simple MCP-like tool (conceptual)</h2>
-<p>This is a toy HTTP server that exposes a tool "get_time". Real MCP is a spec; production MCP servers follow the protocol</p>
-<pre class="language-python"><code># Very simple Flask server exposing a tool
-# pip install flask
-from flask import Flask, request, jsonify
-import datetime
-
-app = Flask(__name__)
-
-@app.route("/tool/get_time", methods=["POST"])
-def get_time():
-    payload = request.json or {}
-    tz = payload.get("tz", "UTC")
-    now = datetime.datetime.utcnow().isoformat() + "Z"
-    return jsonify({"result": f"Current time (UTC): {now}"})
-LLM (Large Language Model)
-if __name__ == "__main__":
-    app.run(port=8080)</code></pre>
-<p>In real MCP, the model or client would call a standard RPC endpoint and the server would return structured data. Use authentication, logging, and permission checks.<br><br></p>
-<h2>12.&nbsp;Reducing hallucination &amp; improving reliability</h2>
-<p><strong>Common techniques:</strong></p>
+<p><strong>Step-by-Step Architecture Design</strong></p>
+<p>A. Data Generation</p>
 <ul>
-<li><strong>Use RAG</strong>: give the model real documents to base answers on.</li>
-<li><span style="font-size: 1rem;"><strong>Provide system instructions</strong> (role + constraints).</span></li>
-<li><strong>Chain-of-thought control</strong>: prefer concise reasoning, avoid verbose internal chains when you want short answers.</li>
-<li><strong>Verify</strong>: ask the model to cite sources. Build a check that compares returned facts with the source texts.</li>
-<li><strong>Limit model temperature</strong> (0&ndash;0.3) for factual answers.</li>
-<li><strong>Human-in-the-loop</strong>: for critical outputs, require human review.</li>
+<li>Web apps generate clickstream events</li>
 </ul>
-<p>&nbsp;</p>
-<h2>13.&nbsp;Evaluation &amp; testing</h2>
-<p>Always measure:</p>
+<p>B. Data Ingestion</p>
 <ul>
-<li><strong>Accuracy </strong>(is the answer correct?)</li>
-<li><strong>Recall </strong>(does it find needed info?)</li>
-<li><strong>Latency </strong>(how fast?)</li>
-<li><strong>Cost </strong>(API tokens, compute)</li>
-<li><strong>Safety </strong>(PII leakage, prompt injection)</li>
+<li>Kinesis Firehose collects and delivers data</li>
 </ul>
-<p>Unit test flows: write test cases (question &rarr; expected answer or expected doc id). Use LangChain/LangSmith or your own logging to trace failures.</p>
-<p>&nbsp;</p>
-<h2>14.&nbsp;Deployment tips</h2>
+<p>C. Data Storage</p>
 <ul>
-<li>Use separate environments (dev/staging/prod).</li>
-<li>Cache embeddings and vector stores; recompute only when content changes.</li>
-<li>Protect API keys and use quotas.</li>
-<li>Use least-privilege for MCP servers; run them in trusted networks.\</li>
-<li>Monitor input/output for data exfiltration (especially with MCP/tool calls).</li>
-<li>Consider model fallback strategies (e.g., use smaller cheaper model for trivial tasks; bigger model for hard tasks).</li>
+<li>Raw data stored in Amazon S3</li>
 </ul>
-<p>&nbsp;</p>
-<h2>15.&nbsp;Simple end-to-end mini project (RAG Q&amp;A)</h2>
-<p><strong>Steps:</strong></p>
-<ol>
-<li>Gather docs (PDFs, web pages).</li>
-<li>Convert to text, split into chunks (500&ndash;1000 chars).</li>
-<li>Create embeddings for each chunk.</li>
-<li>Store in vector DB (Chroma / FAISS / Pinecone).</li>
-<li>Build retriever (top k).</li>
-<li>Create prompt template: include top chunks and user question.</li>
-<li>Call LLM to generate answer with sources.</li>
-</ol>
-<p>We showed code with LangChain earlier &mdash; that&rsquo;s a complete minimal RAG.</p>
-<p>&nbsp;</p>
-<h2>16.&nbsp;Short glossary (simple)</h2>
+<p>D. Data Query</p>
 <ul>
-<li><strong>Hallucination</strong>: model says something wrong as if it were true.</li>
-<li><strong>Embedding</strong>: vector representing meaning.</li>
-<li><strong>Retriever</strong>: component that finds relevant text from a vector store.</li>
-<li><strong>Vector store</strong>: database for embeddings.</li>
-<li><strong>Prompt engineering</strong>: designing instructions for models.</li>
-<li><strong>Agent</strong>: model plus tools that can act.</li>
-<li><strong>MCP server</strong>: standardized server exposing tools/data to models.</li>
+<li>Athena runs SQL queries directly on S3 data</li>
 </ul>
-<p>&nbsp;</p>
-<h3><strong>WANT TO MAKE A COMPLETE PROJECT:</strong></h3>
-<p>Here is the link:</p>
-<p><span style="font-size: 1rem;"><strong>AI Debate Bot:&nbsp;</strong></span></p>
+<p>E. Visualization</p>
 <ul>
-<li>YouTube:&nbsp;<a href="https://youtu.be/WF2X6tYo3kY" target="_blank" rel="noopener">https://youtu.be/WF2X6tYo3kY</a></li>
-<li>Github:&nbsp;<a href="https://github.com/IshwarGautam/Gen-AI-debate-" target="_blank" rel="noopener">https://github.com/IshwarGautam/Gen-AI-debate-</a></li>
+<li>QuickSight creates dashboards and reports</li>
 </ul>
-<p>&nbsp;</p>
-<p>&nbsp;</p></div>
+<p><strong>Architecture Diagram</strong><br><code>Web / App Events</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>Amazon Kinesis Firehose</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp; &nbsp; &nbsp;Amazon S3</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp; Amazon Athena</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp;Amazon QuickSight</code></p>
+<p><strong>Why This Design?</strong></p>
+<ul>
+<li>No servers to manage</li>
+<li>Cheap storage using S3</li>
+<li>Query data using SQL</li>
+<li>Fast insights with dashboards</li>
+</ul>
+<h2>&nbsp;</h2>
+<h1 id="hybrid-solution">Designing a hybrid solution for container based workloads on AWS</h1>
+<p>The third section follows a customer use case where an enterprise insurance company needs to migrate some of their container workloads to AWS by using a hybrid model. Design the solution for this use case, step by step, by using services such as AWS Direct Connect, Amazon Elastic Container Service (Amazon ECS), Amazon ECS Anywhere, Amazon Relational Database Service (Amazon RDS), AWS Systems Manager, and more.</p>
+<p><strong>Use Case</strong></p>
+<p>An insurance company wants to move container workloads to AWS but still keep some workloads on-premises.</p>
+<p><strong>Goals:</strong></p>
+<ul>
+<li>Hybrid model</li>
+<li>Centralized management</li>
+<li>Secure connectivity</li>
+</ul>
+<p><strong>Key AWS Services Used</strong></p>
+<ul>
+<li>AWS Direct Connect &ndash; Private network connection</li>
+<li>Amazon ECS &ndash; Container orchestration</li>
+<li>Amazon ECS Anywhere &ndash; Run ECS on on-prem servers</li>
+<li>Amazon RDS &ndash; Managed database</li>
+<li>AWS Systems Manager &ndash; Server and container management</li>
+</ul>
+<p><strong>Step-by-Step Architecture Design</strong></p>
+<p>A. Network Connectivity</p>
+<ul>
+<li>Direct Connect links on-premises to AWS</li>
+</ul>
+<p>B. Container Management</p>
+<ul>
+<li>ECS runs containers in AWS</li>
+<li>ECS Anywhere runs containers on on-prem servers</li>
+</ul>
+<p>C. Database Layer</p>
+<ul>
+<li>RDS hosts application database</li>
+</ul>
+<p>D. Operations</p>
+<ul>
+<li>Systems Manager handles patching and monitoring</li>
+</ul>
+<p><strong>Architecture Diagram</strong><br><code>On-Prem Data Center</code><br><code>&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp; &nbsp;| ECS Anywhere</code><br><code>&nbsp; &nbsp;|</code><br><code>AWS Direct Connect</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp; &nbsp;Amazon ECS (AWS)</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp; &nbsp; &nbsp;Amazon RDS</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp;AWS Systems Manager</code></p>
+<p><strong>Why This Design?</strong></p>
+<ul>
+<li>Gradual cloud migration</li>
+<li>Same tools for cloud and on-prem</li>
+<li>Secure and low-latency connectivity</li>
+</ul>
+<h2>&nbsp;</h2>
+<h1 id="account-governance">Designing a solution following account governance and management best practices</h1>
+<p>The fourth section follows a customer use case where a startup company needs guidance about how to set up an account-management strategy that follows best practices for account governance and standards. Design the solution for this use case, step by step, by using services such as AWS Organizations, AWS IAM Identity Center (successor to AWS Single Sign-On), AWS CloudTrail, and more.</p>
+<p><strong>Use Case</strong></p>
+<p>A startup needs a secure AWS account setup following best practices.</p>
+<p><strong>Goals:</strong></p>
+<ul>
+<li>Centralized billing</li>
+<li>Strong security</li>
+<li>Easy user management</li>
+<li>Audit and compliance</li>
+</ul>
+<p><strong>Key AWS Services Used</strong></p>
+<ul>
+<li>AWS Organizations &ndash; Multi-account management</li>
+<li>AWS IAM Identity Center &ndash; Centralized access (SSO)</li>
+<li>AWS CloudTrail &ndash; Audit logging</li>
+<li>AWS Config &ndash; Resource compliance</li>
+</ul>
+<p><strong>Step-by-Step Architecture Design</strong></p>
+<p>A. Account Structure</p>
+<ul>
+<li>Create separate accounts (Dev, Test, Prod)</li>
+</ul>
+<p>B. User Access</p>
+<ul>
+<li>IAM Identity Center manages user login</li>
+</ul>
+<p>C. Security Monitoring</p>
+<ul>
+<li>CloudTrail records all API calls</li>
+</ul>
+<p>D. Compliance</p>
+<ul>
+<li>AWS Config tracks resource changes</li>
+</ul>
+<p><strong>Architecture Diagram</strong><br><code>AWS Organizations</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp; -----------------</code><br><code>&nbsp; | &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp;Dev &nbsp; &nbsp; Test &nbsp; &nbsp;Prod</code><br><code>&nbsp; | &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; |</code><br><code>IAM Identity Center</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp; &nbsp;AWS CloudTrail</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp; &nbsp; AWS Config</code></p>
+<p><strong>Why This Design?</strong></p>
+<ul>
+<li>Strong isolation between environments</li>
+<li>Centralized security and access</li>
+<li>Easy audits and compliance</li>
+</ul>
+<h3>Final Thoughts</h3>
+<p>Architecting on AWS is about:</p>
+<ul>
+<li>Choosing managed services</li>
+<li>Designing for scalability and security</li>
+<li>Reducing operational overhead</li>
+</ul>
+<p>These architectures follow AWS best practices and can be adapted for real-world production systems.</p></div>
 
 <script>
   if (window.hljs) {
@@ -602,7 +485,7 @@ if __name__ == "__main__":
           const commentsContainer = document.querySelector(".comment-container");
           if (!form || !commentsContainer) return;
 
-          const slug = "generative-ai-complete-simple-step-by-step-guide-for-beginners";
+          const slug = "architecting-solutions-on-aws";
           const submitBtn = form.querySelector("button[type='submit']");
 
           form.addEventListener("submit", function (e) {

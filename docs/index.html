@@ -113,6 +113,22 @@
   
     <div class="post-card-upgraded">
       <div class="post-image-container">
+        <img src="https://drive.google.com/thumbnail?id=1XrhZvpYVnVV8SvEpYi8xUfRHUEx0Un_D&amp;sz=w1000" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/architecting-solutions-on-aws.html" class="post-link">
+          <h2 class="post-title">Architecting Solutions on AWS</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-12-28 12:55:20.030517</span>
+          
+        </div>
+        <p class="post-excerpt">Content Designing a serverless web backend on AWS Designing a serverless data analytics solution on AWS Designing a hybrid solution for container based workloads on AWS Designing a solution following...</p>
+      </div>
+    </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
         <img src="https://drive.google.com/thumbnail?id=1fdxVQdeVUAWvL7qoHusnzgV7ORKqd5bu&amp;sz=w1000" alt="Featured" class="post-image">
       </div>
       <div class="post-content p-4">
@@ -239,22 +255,6 @@
       </div>
     </div>
   
-    <div class="post-card-upgraded">
-      <div class="post-image-container">
-        <img src="https://drive.google.com/thumbnail?id=1CLO5PHXcLp0SYfFKOcUdD_HsY0lpyd55&amp;sz=w1000" alt="Featured" class="post-image">
-      </div>
-      <div class="post-content p-4">
-        <a href="/python-advanced-course-with-notes-and-source-code.html" class="post-link">
-          <h2 class="post-title">Python Advanced course with notes and source code</h2>
-        </a>
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <span class="post-date">2025-04-27 10:13:59.206333</span>
-          
-        </div>
-        <p class="post-excerpt">Python is a popular programming language created by Guido van Rossum and released in 1991. It is a platform-independent, high-level, object-oriented language. Python requires less code than other programming languages...</p>
-      </div>
-    </div>
-  
 </div>
 <hr />
 
@@ -363,11 +363,33 @@
         selector: 'textarea.tinymce-editor',
         plugins: [
           // Core editing features
-          'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount', 'fullscreen',
+          'anchor', 'autolink', 'charmap', 'code', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount', 'fullscreen',
           // Free trial premium features (if available for your key)
           'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown', 'importword', 'exportword', 'exportpdf'
         ],
-        toolbar: 'fullscreen | undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        toolbar: 'code fullscreen | undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        image_title: true,
+        automatic_uploads: true,
+        file_picker_types: 'image',
+        file_picker_callback: function(cb, value, meta) {
+          var input = document.createElement('input');
+          input.setAttribute('type', 'file');
+          input.setAttribute('accept', 'image/*');
+          input.onchange = function() {
+            var file = this.files[0];
+            var reader = new FileReader();
+            reader.onload = function() {
+              var id = 'blobid' + (new Date()).getTime();
+              var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+              var base64 = reader.result.split(',')[1];
+              var blobInfo = blobCache.create(id, file, base64);
+              blobCache.add(blobInfo);
+              cb(blobInfo.blobUri(), { title: file.name });
+            };
+            reader.readAsDataURL(file);
+          };
+          input.click();
+        },
         tinycomments_mode: 'embedded',
         tinycomments_author: 'Author name',
         mergetags_list: [

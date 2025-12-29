@@ -113,6 +113,22 @@
   
     <div class="post-card-upgraded">
       <div class="post-image-container">
+        <img src="https://drive.google.com/thumbnail?id=1N63CRe_UN7o4kdUx9TncidihW_fF2V4z&amp;sz=w1000" alt="Featured" class="post-image">
+      </div>
+      <div class="post-content p-4">
+        <a href="/tkinter-multiple-page-login-window-and-images.html" class="post-link">
+          <h2 class="post-title">Tkinter: Multiple page Login window and images</h2>
+        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="post-date">2025-04-21 09:14:50.117231</span>
+          
+        </div>
+        <p class="post-excerpt">What will you learn? Tkinter introduction and sample code. Make typing speed application using Python. Multiple page GUI window with login page and image. Tkinter Introduction and sample code Tkinter...</p>
+      </div>
+    </div>
+  
+    <div class="post-card-upgraded">
+      <div class="post-image-container">
         <img src="/static/images/blank.png" alt="Featured" class="post-image">
       </div>
       <div class="post-content p-4">
@@ -331,11 +347,33 @@
         selector: 'textarea.tinymce-editor',
         plugins: [
           // Core editing features
-          'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount', 'fullscreen',
+          'anchor', 'autolink', 'charmap', 'code', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount', 'fullscreen',
           // Free trial premium features (if available for your key)
           'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown', 'importword', 'exportword', 'exportpdf'
         ],
-        toolbar: 'fullscreen | undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        toolbar: 'code fullscreen | undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        image_title: true,
+        automatic_uploads: true,
+        file_picker_types: 'image',
+        file_picker_callback: function(cb, value, meta) {
+          var input = document.createElement('input');
+          input.setAttribute('type', 'file');
+          input.setAttribute('accept', 'image/*');
+          input.onchange = function() {
+            var file = this.files[0];
+            var reader = new FileReader();
+            reader.onload = function() {
+              var id = 'blobid' + (new Date()).getTime();
+              var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+              var base64 = reader.result.split(',')[1];
+              var blobInfo = blobCache.create(id, file, base64);
+              blobCache.add(blobInfo);
+              cb(blobInfo.blobUri(), { title: file.name });
+            };
+            reader.readAsDataURL(file);
+          };
+          input.click();
+        },
         tinycomments_mode: 'embedded',
         tinycomments_author: 'Author name',
         mergetags_list: [

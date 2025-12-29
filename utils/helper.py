@@ -7,18 +7,43 @@ from googleapiclient.http import MediaFileUpload
 
 
 def extract_base64_images(content):
-    # Regex to find base64 image blocks with their filenames
-    pattern = (
-        r'data:(image/(?:png|jpeg));base64,([a-zA-Z0-9+/=]+)".*?data-filename="([^"]+)"'
-    )
+    # Regex to find base64 image blocks - more flexible to handle TinyMCE format
+    # Matches: <img src="data:image/TYPE;base64,DATA" ... >
+    pattern = r'<img[^>]*src="(data:image/(png|jpeg|jpg|gif|webp);base64,[a-zA-Z0-9+/=]+)"[^>]*>'
     matches = re.findall(pattern, content)
 
     images = []
-    for img_format, base64_data, filename in matches:
+    for full_data_url, img_type in matches:
+        # Try to extract filename from alt or title attribute, or generate one
+        img_tag_match = re.search(
+            r'<img[^>]*src="' + re.escape(full_data_url) + r'"[^>]*>',
+            content
+        )
+        if img_tag_match:
+            img_tag = img_tag_match.group(0)
+            # Try to get filename from alt, title, or data-filename
+            filename_match = re.search(
+                r'(?:alt|title|data-filename)="([^"]+)"', img_tag
+            )
+            if filename_match:
+                filename = filename_match.group(1)
+                # Ensure it has an extension
+                if not filename.endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp')):
+                    filename = f"{filename}.{img_type}"
+            else:
+                # Generate a filename
+                import hashlib
+                hash_val = hashlib.md5(full_data_url.encode()).hexdigest()[:8]
+                filename = f"image_{hash_val}.{img_type}"
+        else:
+            import hashlib
+            hash_val = hashlib.md5(full_data_url.encode()).hexdigest()[:8]
+            filename = f"image_{hash_val}.{img_type}"
+
         images.append(
             {
-                "base64": f"data:{img_format};base64,{base64_data}",
-                "format": img_format,
+                "base64": full_data_url,
+                "format": f"image/{img_type}",
                 "filename": filename,
             }
         )

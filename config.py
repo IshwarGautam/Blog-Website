@@ -7,6 +7,9 @@ class Config:
 
     SECRET_KEY = os.getenv("SECRET_KEY")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    
+    # Increase max upload size to 16MB (for images embedded in posts)
+    MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16 MB
 
     # Supabase/PostgreSQL database connection
     DB_USER = os.getenv("DB_USER", "postgres")

@@ -18,6 +18,7 @@ from utils.helper import (
     extract_base64_images,
     upload_image_to_google_drive,
     delete_image_from_google_drive,
+    replace_base64_with_url,
 )
 
 
@@ -109,7 +110,7 @@ def create():
                     current_app.folder_id,
                     image_data["filename"],
                 )
-                content = content.replace(image_data["base64"], file_url)
+                content = replace_base64_with_url(content, image_data["base64"], file_url)
                 drive_image_id = file_url.split("id=")[-1].split("&")[0]
                 uploaded_images.append(drive_image_id)
 
@@ -157,7 +158,7 @@ def edit(slug):
                 current_app.folder_id,
                 image_data["filename"],
             )
-            content = content.replace(image_data["base64"], file_url)
+            content = replace_base64_with_url(content, image_data["base64"], file_url)
             drive_id_match = re.search(r"id=([\w-]+)&", file_url)
             if drive_id_match:
                 new_uploaded_ids.append(drive_id_match.group(1))

@@ -43,11 +43,19 @@ def extract_base64_images(content):
         images.append(
             {
                 "base64": full_data_url,
+                "full_img_tag": img_tag_match.group(0) if img_tag_match else None,
                 "format": f"image/{img_type}",
                 "filename": filename,
             }
         )
     return images
+
+
+def replace_base64_with_url(content, base64_data, new_url):
+    """Replace base64 image src with the new URL while preserving other attributes"""
+    # Pattern to match the src attribute with the base64 data
+    pattern = r'(src=")' + re.escape(base64_data) + r'(")'
+    return re.sub(pattern, r'\1' + new_url + r'\2', content)
 
 
 def upload_image_to_google_drive(

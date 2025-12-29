@@ -210,7 +210,8 @@
 <ul>
 <li>SNS sends order confirmation emails or alerts</li>
 </ul>
-<p><strong>Architecture Diagram</strong><br><code>Client (Web / Mobile)<br>&nbsp; &nbsp; &nbsp; &nbsp; |<br>&nbsp; Amazon API Gateway<br>&nbsp; &nbsp; &nbsp; &nbsp; |<br>&nbsp; &nbsp; &nbsp;AWS Lambda<br>&nbsp; &nbsp; &nbsp;/ &nbsp; &nbsp; &nbsp; &nbsp;\<br>DynamoDB &nbsp; &nbsp; Amazon SQS<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;AWS Lambda<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Amazon SNS</code></p>
+<p><strong>Architecture Diagram</strong></p>
+<p><strong><img title="ch1.png" src="https://drive.google.com/thumbnail?id=1xPccZKvMCYG4nGoEGc0xTpntolbShaMZ&amp;sz=w1000" alt="" width="471" height="416"></strong></p>
 <p><strong>Why This Design?</strong></p>
 <ul>
 <li>Fully serverless</li>
@@ -257,7 +258,8 @@
 <ul>
 <li>QuickSight creates dashboards and reports</li>
 </ul>
-<p><strong>Architecture Diagram</strong><br><code>Web / App Events</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>Amazon Kinesis Firehose</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp; &nbsp; &nbsp;Amazon S3</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp; Amazon Athena</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp;Amazon QuickSight</code></p>
+<p><strong>Architecture Diagram</strong></p>
+<p><img title="ch2.png" src="https://drive.google.com/thumbnail?id=1_4Sw3UwmlFKyHXIwsnkuXCs_oIV9qmL6&amp;sz=w1000" alt="" width="394" height="392"></p>
 <p><strong>Why This Design?</strong></p>
 <ul>
 <li>No servers to manage</li>
@@ -302,7 +304,8 @@
 <ul>
 <li>Systems Manager handles patching and monitoring</li>
 </ul>
-<p><strong>Architecture Diagram</strong><br><code>On-Prem Data Center</code><br><code>&nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp; &nbsp;| ECS Anywhere</code><br><code>&nbsp; &nbsp;|</code><br><code>AWS Direct Connect</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp; &nbsp;Amazon ECS (AWS)</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp; &nbsp; &nbsp;Amazon RDS</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp;AWS Systems Manager</code></p>
+<p><strong>Architecture Diagram</strong></p>
+<p><img title="ch3.png" src="https://drive.google.com/thumbnail?id=1rvrDCvo3vBhD1sGrQnDwnb43irv_FpAR&amp;sz=w1000" alt="" width="568" height="359"></p>
 <p><strong>Why This Design?</strong></p>
 <ul>
 <li>Gradual cloud migration</li>
@@ -345,7 +348,8 @@
 <ul>
 <li>AWS Config tracks resource changes</li>
 </ul>
-<p><strong>Architecture Diagram</strong><br><code>AWS Organizations</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp; -----------------</code><br><code>&nbsp; | &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp;Dev &nbsp; &nbsp; Test &nbsp; &nbsp;Prod</code><br><code>&nbsp; | &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; |</code><br><code>IAM Identity Center</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp; &nbsp;AWS CloudTrail</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; |</code><br><code>&nbsp; &nbsp; AWS Config</code></p>
+<p><strong>Architecture Diagram</strong></p>
+<p><img title="ch4.png" src="https://drive.google.com/thumbnail?id=1Vr-VLhcpv5MZ0trxCDVcpjn0qYdjR2Er&sz=w1000" alt="" width="506" height="385"></p>
 <p><strong>Why This Design?</strong></p>
 <ul>
 <li>Strong isolation between environments</li>
